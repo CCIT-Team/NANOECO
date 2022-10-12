@@ -10,7 +10,6 @@ public class Scenario : MonoBehaviour
         Events_Setting();
     }
 
-    //MAP
     public string mission_name;
     public List<Events> events_list;
 

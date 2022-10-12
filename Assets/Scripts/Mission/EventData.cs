@@ -7,9 +7,9 @@ public class EventData : ScriptableObject
 {
     public enum E_map
     {
-        MAP_0,
-        MAP_1,
-        MAP_2
+        KITCHEN,
+        BATHROOM,
+        OFFICE
     }
     public E_map map;
     public int event_num;
@@ -19,13 +19,17 @@ public class EventData : ScriptableObject
     {
         switch(map)
         {
-            case E_map.MAP_0:
-                Map_0 map_0 = new Map_0(event_object);
-                map_0.Set_Event(i);
+            case E_map.KITCHEN:
+                Map_Kitchen kitchen = new Map_Kitchen(event_object);
+                kitchen.Set_Event(i);
                 break;
-            case E_map.MAP_1:
+            case E_map.BATHROOM:
+                Map_Bathroom bathroom = new Map_Bathroom(event_object);
+                bathroom.Set_Event(i);
                 break;
-            case E_map.MAP_2:
+            case E_map.OFFICE:
+                Map_Office office = new Map_Office(event_object);
+                office.Set_Event(i);
                 break;
         }
     }
@@ -43,9 +47,69 @@ abstract class ABMap : MonoBehaviour
     public abstract void Set_Event(int i);
 }
 
-class Map_0 : ABMap
+class Map_Kitchen : ABMap
 {
-    public Map_0(List<GameObject> event_object)
+    public Map_Kitchen(List<GameObject> event_object)
+    {
+        this.event_object = event_object;
+    }
+
+    public override void Set_Event(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                test_event();
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+    }
+
+    void test_event()
+    {
+        Debug.Log(123);
+        Instantiate(event_object[0]);
+    }
+}
+
+class Map_Bathroom : ABMap
+{
+    public Map_Bathroom(List<GameObject> event_object)
+    {
+        this.event_object = event_object;
+    }
+
+    public override void Set_Event(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                test_event();
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+    }
+
+    void test_event()
+    {
+        Debug.Log(123);
+        Instantiate(event_object[0]);
+    }
+}
+
+class Map_Office : ABMap
+{
+    public Map_Office(List<GameObject> event_object)
     {
         this.event_object = event_object;
     }
