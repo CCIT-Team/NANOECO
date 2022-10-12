@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Scene_Change_Button : MonoBehaviour
+public class SceneChangeButton : MonoBehaviour
 {
     [Header("True : 다음씬으로 이동 , False : String씬으로 이동")]
     public bool next_scene = true;
@@ -20,12 +20,12 @@ public class Scene_Change_Button : MonoBehaviour
         if(next_scene)
         {
             scene_change_btn.onClick.RemoveAllListeners();
-            scene_change_btn.onClick.AddListener(Scene_Manager.Fade_Out);
+            scene_change_btn.onClick.AddListener(SceneFunction.Fade_Out);
         }
         else
         {
             scene_change_btn.onClick.RemoveAllListeners();
-            scene_change_btn.onClick.AddListener(Scene_Manager.Fade_In);
+            scene_change_btn.onClick.AddListener(SceneFunction.Fade_In);
         } 
             
 
@@ -37,11 +37,11 @@ public class Scene_Change_Button : MonoBehaviour
 
     public void Input_Scene_Change_Event()
     {
-        Scene_Manager.Load_Scene();
+        SceneFunction.Load_Scene();
     }
 
     public void Input_Scene_Change_Event(string scene_name)
     {
-        Scene_Manager.Load_Scene(scene_name);
+        SceneFunction.Load_Scene(scene_name);
     }
 }

@@ -12,7 +12,7 @@ public class Fade : MonoBehaviour
 
     public void Load_Scene()
     {
-        Scene_Manager.Load_Scene();
+        SceneFunction.Load_Scene();
     }
 
     void Start()
@@ -23,7 +23,7 @@ public class Fade : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Scene_Manager.Fade_In();
+        SceneFunction.Fade_In();
     }
 
     void OnDisable()

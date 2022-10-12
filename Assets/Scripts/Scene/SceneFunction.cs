@@ -12,20 +12,10 @@ using UnityEngine.SceneManagement;
 
 
 
-public static class Scene_Manager 
+public static class SceneFunction
 {
     public static GameObject fade;
     public static Animation anim;
-
-    public static void Start()
-    {
-        fade = GameObject.Find("Fade");
-        anim = fade.GetComponent<Animation>();
-    }
-
-
-
-
 
 
     public static void Fade_Out()
