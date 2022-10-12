@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class Scenario : MonoBehaviour
 {
+    //테스트용
+    void Awake()
+    {
+        Events_Setting();
+    }
+
     //MAP
     public string mission_name;
-    public List<Event> events_list;
+    public List<Events> events_list;
 
     public void Events_Setting()
     {
+        foreach (var item in events_list)
+        {
+            item.trigger.scenario = this;
 
+            int i = Random.Range(0, item.event_data_list.Count);
+            item.trigger.event_data = item.event_data_list[i];
+        }
     }
 
     public delegate void Get_Trigger();
@@ -25,9 +37,9 @@ public class Mission
 }
 
 [System.Serializable]
-public class Event
+public class Events
 {
     public string event_name;
-    public List<EventData> event_data;
+    public List<EventData> event_data_list;
     public Trigger trigger;
 }

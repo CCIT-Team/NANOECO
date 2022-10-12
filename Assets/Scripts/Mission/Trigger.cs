@@ -9,9 +9,7 @@ public class Trigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag(""))
-        {
-            scenario.On_Trigger();              //수정해야됌
-        }
+        scenario.On_Trigger = event_data.Send_Event;
+        scenario.On_Trigger();
     }
 }
