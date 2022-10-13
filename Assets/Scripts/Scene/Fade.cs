@@ -10,9 +10,16 @@ public class Fade : MonoBehaviour
     public AnimationClip fade_out;
     public AnimationClip fade_in;
 
-    public void Load_Scene()
+    public void Fade_Out()
     {
-        SceneFunction.Load_Scene();
+        if(SceneFunction.game_map_name != "")
+        SceneFunction.Fade_Out();
+    }
+
+    public void Load_Scene()//Fade Out
+    {
+        if(SceneFunction.game_map_name != "")
+        SceneFunction.Load_Scene(SceneFunction.game_map_name);
     }
 
     void Start()
