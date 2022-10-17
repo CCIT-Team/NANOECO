@@ -16,7 +16,7 @@ public class TestMonster : MonsterBase
     { 
         if(!isdead)
         {
-
+            
             
         }
     }
@@ -30,7 +30,8 @@ public class TestMonster : MonsterBase
             _monster_hp = 100;
             _damage = 5;
             _defense = 5;
-            _parol_speed = 15f;
+            _patrol_speed = 15f;
+            _patrol_dist = 100f;
             _chase_dist = 20f;
             _chase_speed = 20f;
             _attack_speed = 5f;
@@ -43,4 +44,14 @@ public class TestMonster : MonsterBase
 
     //»ç¸Á
 
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _patrol_dist);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, _attack_dist);
+    }
+
+#endif
 }
