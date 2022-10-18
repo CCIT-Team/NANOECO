@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MonsterBase : MonoBehaviour
+public class MonsterBase : Character
 {
     
     protected NavMeshAgent nav;
@@ -15,14 +15,6 @@ public class MonsterBase : MonoBehaviour
     protected Vector3 monsterpos;
 
     [Header("STATS")]
-    [SerializeField]
-    protected int _monster_max_hp; //최대체력
-    [SerializeField]
-    protected int _monster_hp; //현재체력
-    [SerializeField]
-    protected int _damage; //공격력
-    [SerializeField]
-    protected object _defense; //방어력 일단 int형
     [SerializeField]
     protected float _patrol_speed; //순찰속도
     [SerializeField]
@@ -55,10 +47,7 @@ public class MonsterBase : MonoBehaviour
     protected float _wait_time;
 
     
-    public int monster_hp { get { return _monster_hp; } set { _monster_hp = value; } }
-    public int monster_max_hp { get { return _monster_max_hp; } set { _monster_max_hp = value; } }
-    public int damage { get { return _damage; } set { _damage = value; } }
-    public int defense { get { return (int)_defense; } set { _defense = value; } }
+
     public float patrol_speed { get { return _patrol_speed; } set { _patrol_speed = value; } }
     public float patrol_dist { get { return _patrol_dist; } set { _patrol_dist = value; } }
     public float chase_dist { get { return _chase_dist; } set { _chase_dist = value; } }
@@ -85,7 +74,7 @@ public class MonsterBase : MonoBehaviour
                 nav.SetDestination(GetRandomPoint(transform, move_range));
             }
             Update_Patrol();
-            if (_monster_hp < _monster_max_hp)
+            if (current_hp < max_hp)
             {
                 combat_state = CombatState.ECHASE;
             }
@@ -166,7 +155,7 @@ public class MonsterBase : MonoBehaviour
     //죽음
     protected virtual void Is_Dead()
     {
-        if(monster_hp == 0)
+        if(current_hp == 0)
         {
             isdead = true;
         }

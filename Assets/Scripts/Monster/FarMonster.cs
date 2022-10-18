@@ -19,8 +19,8 @@ public class FarMonster : MonsterBase
             yield return new WaitForSeconds(5f);
             nav = GetComponent<NavMeshAgent>();
             monsterpos = transform.position;
-            _monster_max_hp = 50;
-            _monster_hp = 50;
+            _max_hp = 50;
+            _current_hp = 50;
             _damage = 5;
             _defense = 1;
             _patrol_speed = 10f;

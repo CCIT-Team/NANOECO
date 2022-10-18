@@ -18,8 +18,8 @@ public class CloseMonster : MonsterBase
             _wait_time = 5f;
             yield return new WaitForSeconds(_wait_time);
             nav = GetComponent<NavMeshAgent>();
-            _monster_max_hp = 150;
-            _monster_hp = 150;
+            _max_hp = 150;
+            _current_hp = 150;
             _damage = 15;
             _defense = 11;
             _patrol_speed = 15f;
