@@ -494,6 +494,7 @@ GameObject:
   - component: {fileID: 4881306984996895266}
   - component: {fileID: 5463062671331414382}
   - component: {fileID: 5939051507432723657}
+  - component: {fileID: 6396095984657942138}
   m_Layer: 0
   m_Name: character
   m_TagString: Untagged
@@ -629,10 +630,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b768e99d5f8d54340972658a3882ee20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
-  moveSpeed: 50
-  jumpforce: 10
+  _max_hp: 0
+  _current_hp: 0
+  _damage: 0
+  _defense: 0
+  _jump_force: 0
+  _is_jump: 0
+  _move_speed: 0
+  _attack_speed: 0
+  _attack_range: 0
+  _is_armor: 0
+  _light_armor_percent: 0
+  _heavy_armor_percent: 0
   rigid: {fileID: 7527399381784831653}
+  dash_force: 0
+--- !u!114 &6396095984657942138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7855876306134900396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31374c296e625e34fa37db8c9ccb7e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &7967630379981022908
 GameObject:
   m_ObjectHideFlags: 0
