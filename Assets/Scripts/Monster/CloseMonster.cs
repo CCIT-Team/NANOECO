@@ -80,10 +80,9 @@ public class CloseMonster : MonsterBase
         }
     }
 
-    void Attack()
+    protected override void Attack()
     {
-        StartCoroutine(Atteck_Cool());
-        
+        base.Attack();
     }
 
     IEnumerator Atteck_Cool()

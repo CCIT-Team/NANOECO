@@ -78,17 +78,17 @@ public class MonsterBase : Character
     //아이들
     protected virtual void Idle()
     {
-        currnetcool += Time.deltaTime;
-        if(locktarget !=null)
-        {
-            non_combet_state = NonCombetState.ENONE;
-            current_state = CurrentState.ECHASE;
-        }
-        if(currnetcool >= cool_time)
-        {
-            currnetcool = 0f;
-            current_state = CurrentState.EPATROL;
-        }
+        //currnetcool += Time.deltaTime;
+        //if(locktarget !=null)
+        //{
+        //    non_combet_state = NonCombetState.ENONE;
+        //    current_state = CurrentState.ECHASE;
+        //}
+        //if(currnetcool >= cool_time)
+        //{
+        //    currnetcool = 0f;
+        //    current_state = CurrentState.EPATROL;
+        //}
 
     }
     //생각
@@ -102,17 +102,12 @@ public class MonsterBase : Character
     {
         if(locktarget !=null)
         {
-            currnetcool += Time.deltaTime;
             monsterpos = locktarget.transform.position;
             float distance = (monsterpos - transform.position).magnitude;
             if (distance <= attack_dist)
             {
-                if(currnetcool >= attack_speed)
-                {
                     current_state = CurrentState.EATTACK;
-                    currnetcool = 0;
                     return;
-                }
             }
 
             Vector3 dir = monsterpos - transform.position;
@@ -130,6 +125,36 @@ public class MonsterBase : Character
         }
     }
 
+    protected virtual void Attack()
+    {
+        if(locktarget != null)
+        {
+            Character character = locktarget.GetComponent<Character>();
+            //데미지 수식이 들어가야 됨
+            character.current_hp -= damage;
+            
+            if(character.current_hp > 0)
+            {
+                float distance = (locktarget.transform.position - transform.position).magnitude;
+                if(distance <= attack_dist)
+                {
+                    current_state = CurrentState.EATTACK;
+                }
+                else
+                {
+                    current_state = CurrentState.ECHASE;
+                }
+            }
+            else
+            {
+                current_state = CurrentState.EPATROL;
+            }
+        }
+        else
+        {
+            current_state = CurrentState.EPATROL;
+        }
+    }
     //플레이어 찾기
     protected virtual void Update_Patrol()
     {
@@ -140,7 +165,6 @@ public class MonsterBase : Character
         if(distance <= patrol_dist)
         {
             locktarget = target;
-            non_combet_state = NonCombetState.ENONE;
             current_state = CurrentState.ECHASE;
             return;
         }
