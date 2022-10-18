@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float hp = 100;
     public float moveSpeed = 50;
     public float jumpforce = 10;
+    bool jumpstate = false;
     public Rigidbody rigid;
     Animator ani;
 
@@ -28,6 +29,10 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         float jump = Input.GetAxisRaw("Jump");
+        if (jump > 0)
+        {
+            jumpstate = true;
+        }
         if (horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0)
         {
             ani.SetBool("Run", true);
@@ -39,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = new Vector3(-horizontal * moveSpeed, 0f, -vertical * moveSpeed);
         rigid.velocity = move;
         rigid.AddForce(Vector3.up * jump * jumpforce);
+
 
         MouseRotation();
     }
@@ -57,9 +63,32 @@ public class PlayerMovement : MonoBehaviour
         //float rotateDegree = Mathf.Atan2(dx, dy) * Mathf.Rad2Deg;
 
         //transform.rotation = Quaternion.Euler(0f, rotateDegree, 0f);
-        transform.Rotate(0f, -Input.GetAxis("Mouse X") * speed, 0f, Space.World);
-        //transform.Rotate(-Input.GetAxis("Mouse Y") * speed, 0f, 0f);
+        transform.Rotate(0f, Input.GetAxis("Mouse X") * speed, 0f, Space.World);
+        transform.Rotate(0f, -Input.GetAxis("Mouse Y") * speed, 0f, Space.World);
     }
 
+    private void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.tag == "Ground")
+        {
+            jumpstate = false;
+        }
+    }
+}
 
+
+public enum state
+{
+    IDLE,
+        RUN,
+        DASH,
+        JUMP,
+
+
+
+
+}
+public class Wepon:PlayerMovement
+{
+    
 }
