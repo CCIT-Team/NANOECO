@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class testweapon : MonoBehaviour
+public class Testweapon : MonoBehaviour
 {
     public GameObject bullet;
     public GameObject firePosition;
+    public GameObject player;
     void Start()
     {
         
@@ -16,10 +17,12 @@ public class testweapon : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            // 2. 총알 공장에서 총알을 만든다.
-            GameObject bullets = Instantiate(bullet);
-            // 3. 총알을 발사한다.(총알을 총구 위치로 가져다 둔다.)
+            GameObject bullets = Instantiate(bullet);     
             bullet.transform.position = firePosition.transform.position;
+            //bullet.transform.Rotate(new Vector3(0, player.transform.rotation.y, 0));
+            bullet.transform.rotation = player.transform.rotation;
+            //Bulletsss bs = bullets.GetComponent<Bulletsss>();
+            //bs.dir = we
         }
     }
 }
