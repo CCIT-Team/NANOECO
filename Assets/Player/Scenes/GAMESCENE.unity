@@ -130,6 +130,61 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 27411151431720642, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 521961108975717702, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1645463117979429746, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1737280658953997333, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745533751675070348, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1917799553862426291, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3264346715830767894, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456144799422985927, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5666910148239794971, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6925474028101150716, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304530440984251517, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7371967406633403414, guid: deb7c516add78d4449c8af87466f6800,
         type: 3}
       propertyPath: m_RootOrder
@@ -190,10 +245,45 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 7653616685605339292, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7658555597391597977, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7855876306134900396, guid: deb7c516add78d4449c8af87466f6800,
         type: 3}
       propertyPath: m_Name
       value: character
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855876306134900396, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855876306134900396, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967630379981022908, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7975331895614831489, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8307178502852659295, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5611069144107256385, guid: deb7c516add78d4449c8af87466f6800, type: 3}
@@ -484,7 +574,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: ecfb00b9a8db4be4c96ea60177680b0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
