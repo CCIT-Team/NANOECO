@@ -6,6 +6,11 @@ public class Bulletsss : MonoBehaviour
 {
     public float damage = 10;
     public float speed = 500;
+
+    private void Start()
+    {
+        Destroy(gameObject, 1f);
+    }
     private void Update()
     {
         transform.Translate(Vector3.forward * speed);
@@ -17,6 +22,5 @@ public class Bulletsss : MonoBehaviour
             damage -= other.gameObject.GetComponent<Character>().current_hp;
             Destroy(gameObject);
         }
-        else { Destroy(gameObject, 3f); }
     }
 }
