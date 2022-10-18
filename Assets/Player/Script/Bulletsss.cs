@@ -19,7 +19,7 @@ public class Bulletsss : MonoBehaviour
     {
         if (other.tag == "Monster")
         {
-            damage -= other.gameObject.GetComponent<Character>().current_hp;
+            other.gameObject.GetComponent<Character>().current_hp -= damage;
             Destroy(gameObject);
         }
     }
