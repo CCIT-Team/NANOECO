@@ -16,7 +16,7 @@ public class MonsterTakeDamage : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            monbase.monster_hp -= 5;
+           
         }
     }
 }

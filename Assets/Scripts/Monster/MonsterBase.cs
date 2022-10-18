@@ -38,9 +38,7 @@ public class MonsterBase : Character
     [SerializeField]
     protected NonCombetState non_combet_state = new NonCombetState();
     [SerializeField]
-    protected CombatState combat_state = new CombatState();
-    [SerializeField]
-    protected AttackType attack_type = new AttackType();
+    protected CurrentState current_state = new CurrentState();
 
     [Header("LodingTime")]
     [SerializeField]
@@ -65,9 +63,6 @@ public class MonsterBase : Character
     //패트롤
     protected virtual void Patrol()
     {
-        
-        if(non_combet_state == NonCombetState.EPATROL)
-        {
             nav.speed = patrol_speed;
             if (!nav.hasPath)
             {
@@ -76,11 +71,10 @@ public class MonsterBase : Character
             Update_Patrol();
             if (current_hp < max_hp)
             {
-                combat_state = CombatState.ECHASE;
+                current_state = CurrentState.ECHASE;
             }
-        }
-
     }
+
     //아이들
     protected virtual void Idle()
     {
@@ -88,12 +82,12 @@ public class MonsterBase : Character
         if(locktarget !=null)
         {
             non_combet_state = NonCombetState.ENONE;
-            combat_state = CombatState.ECHASE;
+            current_state = CurrentState.ECHASE;
         }
         if(currnetcool >= cool_time)
         {
             currnetcool = 0f;
-            non_combet_state = NonCombetState.EPATROL;
+            current_state = CurrentState.EPATROL;
         }
 
     }
@@ -115,7 +109,7 @@ public class MonsterBase : Character
             {
                 if(currnetcool >= attack_speed)
                 {
-                    combat_state = CombatState.EATTACK;
+                    current_state = CurrentState.EATTACK;
                     currnetcool = 0;
                     return;
                 }
@@ -124,7 +118,7 @@ public class MonsterBase : Character
             Vector3 dir = monsterpos - transform.position;
             if(dir.magnitude < 0.1f)
             {
-                non_combet_state = NonCombetState.EPATROL;
+                current_state = CurrentState.EPATROL;
             }
             else
             {
@@ -147,7 +141,7 @@ public class MonsterBase : Character
         {
             locktarget = target;
             non_combet_state = NonCombetState.ENONE;
-            combat_state = CombatState.ECHASE;
+            current_state = CurrentState.ECHASE;
             return;
         }
     }

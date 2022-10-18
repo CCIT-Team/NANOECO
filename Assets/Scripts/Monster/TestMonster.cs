@@ -26,8 +26,8 @@ public class TestMonster : MonsterBase
         if (!isdead)
         {
             yield return new WaitForSeconds(5f);
-            _monster_max_hp = 100;
-            _monster_hp = 100;
+            _max_hp = 100;
+            _current_hp = 100;
             _damage = 5;
             _defense = 5;
             _patrol_speed = 15f;
