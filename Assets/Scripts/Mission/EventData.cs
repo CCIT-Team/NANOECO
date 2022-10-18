@@ -72,7 +72,6 @@ class Map_Kitchen : ABMap
 
     void test_event()
     {
-        Debug.Log(123);
         Instantiate(event_object[0]);
     }
 }
@@ -102,7 +101,6 @@ class Map_Bathroom : ABMap
 
     void test_event()
     {
-        Debug.Log(123);
         Instantiate(event_object[0]);
     }
 }
@@ -132,7 +130,6 @@ class Map_Office : ABMap
 
     void test_event()
     {
-        Debug.Log(123);
         Instantiate(event_object[0]);
     }
 }
