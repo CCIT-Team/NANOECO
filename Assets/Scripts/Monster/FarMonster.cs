@@ -29,7 +29,6 @@ public class FarMonster : MonsterBase
             _chase_speed = 15f;
             _attack_speed = 5f;
             _attack_dist = 20f;
-            _range = 10f;
         }
     }
     // Update is called once per frame

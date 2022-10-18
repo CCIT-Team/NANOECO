@@ -148,7 +148,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: eb48a07cd09b54346850ad895db30233,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 108.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb48a07cd09b54346850ad895db30233,
         type: 3}
@@ -189,6 +189,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: character
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eb48a07cd09b54346850ad895db30233,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb48a07cd09b54346850ad895db30233, type: 3}
@@ -1020,11 +1025,12 @@ MonoBehaviour:
   _attack_speed: 0
   _attack_dist: 0
   _move_range: 0
-  _range: 0
+  _cool_time: 0
   isdead: 0
   non_combet_state: 0
   combat_state: 0
   attack_type: 0
+  _wait_time: 0
 --- !u!4 &456991860
 Transform:
   m_ObjectHideFlags: 0
@@ -2202,7 +2208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &1330486932
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2266,11 +2272,12 @@ MonoBehaviour:
   _attack_speed: 0
   _attack_dist: 0
   _move_range: 0
-  _range: 0
+  _cool_time: 0
   isdead: 0
   non_combet_state: 0
   combat_state: 0
   attack_type: 0
+  _wait_time: 0
 --- !u!4 &1330486935
 Transform:
   m_ObjectHideFlags: 0
@@ -3002,7 +3009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1844032036
 Transform:
   m_ObjectHideFlags: 0
@@ -3082,11 +3089,12 @@ MonoBehaviour:
   _attack_speed: 0
   _attack_dist: 0
   _move_range: 0
-  _range: 0
+  _cool_time: 0
   isdead: 0
   non_combet_state: 0
   combat_state: 0
   attack_type: 0
+  _wait_time: 0
 --- !u!1 &2037275692
 GameObject:
   m_ObjectHideFlags: 0
