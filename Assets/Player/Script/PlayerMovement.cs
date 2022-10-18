@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Character
 {
     [Header("Status")]
     public float hp = 100;
@@ -69,12 +69,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.tag == "Ground")
+        if(col.gameObject.tag == "Monster")
         {
-            jumpstate = false;
+            current_hp -= col.gameObject.GetComponent<Character>().damage;
         }
     }
 }
+
 
 
 public enum state
