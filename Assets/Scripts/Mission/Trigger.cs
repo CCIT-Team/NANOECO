@@ -9,7 +9,10 @@ public class Trigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        scenario.On_Trigger = event_data.Send_Event;
-        scenario.On_Trigger();
+        if(other.CompareTag("Player"))
+        {
+            scenario.On_Trigger = event_data.Send_Event;
+            scenario.On_Trigger();
+        }
     }
 }
