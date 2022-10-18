@@ -18,8 +18,8 @@ public class CloseMonster : MonsterBase
             _wait_time = 5f;
             yield return new WaitForSeconds(_wait_time);
             nav = GetComponent<NavMeshAgent>();
-            _monster_max_hp = 150;
-            _monster_hp = 150;
+            _max_hp = 150;
+            _current_hp = 150;
             _damage = 15;
             _defense = 11;
             _patrol_speed = 15f;
@@ -30,7 +30,7 @@ public class CloseMonster : MonsterBase
             _attack_dist = 5f;
             _move_range = 50f;
             _cool_time = 1f;
-            non_combet_state = NonCombetState.EIDLE;
+            current_state = CurrentState.EPATROL;
         }
     }
 
@@ -50,9 +50,6 @@ public class CloseMonster : MonsterBase
                 case NonCombetState.EIDLE:
                     Idle();
                     break;
-                case NonCombetState.EPATROL:
-                    Patrol();
-                    break;
                 case NonCombetState.ETHINK:
                     Think();
                     break;
@@ -65,15 +62,18 @@ public class CloseMonster : MonsterBase
         if(!isdead)
         {
             yield return new WaitForSeconds(_wait_time);
-            switch(combat_state)
+            switch(current_state)
             {
-                case CombatState.ECHASE:
+                case CurrentState.EPATROL:
+                    Patrol();
+                    break;
+                case CurrentState.ECHASE:
                     Chase();
                     break;
-                case CombatState.EATTACK:
+                case CurrentState.EATTACK:
                     Attack();
                     break;
-                case CombatState.ESKILL:
+                case CurrentState.ESKILL:
                     Skill();
                     break;
             }
@@ -88,8 +88,11 @@ public class CloseMonster : MonsterBase
 
     IEnumerator Atteck_Cool()
     {
+        //쿨타임
+        //공격 하는거
+        
         yield return new WaitForSeconds(0.1f);
-        Debug.Log("Attack Player");
+        
     }
 
     void Skill()

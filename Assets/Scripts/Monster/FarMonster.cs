@@ -19,8 +19,8 @@ public class FarMonster : MonsterBase
             yield return new WaitForSeconds(5f);
             nav = GetComponent<NavMeshAgent>();
             monsterpos = transform.position;
-            _monster_max_hp = 50;
-            _monster_hp = 50;
+            _max_hp = 50;
+            _current_hp = 50;
             _damage = 5;
             _defense = 1;
             _patrol_speed = 10f;
@@ -29,6 +29,7 @@ public class FarMonster : MonsterBase
             _chase_speed = 15f;
             _attack_speed = 5f;
             _attack_dist = 20f;
+            current_state = CurrentState.EPATROL;
         }
     }
     // Update is called once per frame
@@ -46,7 +47,7 @@ public class FarMonster : MonsterBase
         //∫Ò¿¸≈ı
         if(!isdead)
         {
-            if (combat_state != CombatState.ECHASE)
+            if (current_state != CurrentState.ECHASE)
             {
                 
                 yield return new WaitForSeconds(6f);
@@ -54,9 +55,6 @@ public class FarMonster : MonsterBase
                 {
                     case NonCombetState.EIDLE :
                         Idle();
-                        break;
-                    case NonCombetState.EPATROL:
-                        Patrol();
                         break;
                     case NonCombetState.ETHINK:
                         Think();
@@ -70,18 +68,20 @@ public class FarMonster : MonsterBase
     {
         if(!isdead)
         {
-            if (combat_state == CombatState.ECHASE)
+            if (current_state == CurrentState.ECHASE)
             {
                 yield return new WaitForSeconds(0.1f);
-                switch(combat_state)
+                switch(current_state)
                 {
-                    case CombatState.ECHASE:
+                    case CurrentState.EPATROL:
+                        Patrol();
+                        break;
+                    case CurrentState.ECHASE:
                         Chase();
                         break;
-                    case CombatState.EATTACK:
+                    case CurrentState.EATTACK:
                         break;
-                    case CombatState.ESKILL:
-                        Debug.Log("SKILL");
+                    case CurrentState.ESKILL:
                         break;
                 }
             }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MonsterBase : MonoBehaviour
+public class MonsterBase : Character
 {
     
     protected NavMeshAgent nav;
@@ -15,14 +15,6 @@ public class MonsterBase : MonoBehaviour
     protected Vector3 monsterpos;
 
     [Header("STATS")]
-    [SerializeField]
-    protected int _monster_max_hp; //최대체력
-    [SerializeField]
-    protected int _monster_hp; //현재체력
-    [SerializeField]
-    protected int _damage; //공격력
-    [SerializeField]
-    protected object _defense; //방어력 일단 int형
     [SerializeField]
     protected float _patrol_speed; //순찰속도
     [SerializeField]
@@ -46,19 +38,14 @@ public class MonsterBase : MonoBehaviour
     [SerializeField]
     protected NonCombetState non_combet_state = new NonCombetState();
     [SerializeField]
-    protected CombatState combat_state = new CombatState();
-    [SerializeField]
-    protected AttackType attack_type = new AttackType();
+    protected CurrentState current_state = new CurrentState();
 
     [Header("LodingTime")]
     [SerializeField]
     protected float _wait_time;
 
     
-    public int monster_hp { get { return _monster_hp; } set { _monster_hp = value; } }
-    public int monster_max_hp { get { return _monster_max_hp; } set { _monster_max_hp = value; } }
-    public int damage { get { return _damage; } set { _damage = value; } }
-    public int defense { get { return (int)_defense; } set { _defense = value; } }
+
     public float patrol_speed { get { return _patrol_speed; } set { _patrol_speed = value; } }
     public float patrol_dist { get { return _patrol_dist; } set { _patrol_dist = value; } }
     public float chase_dist { get { return _chase_dist; } set { _chase_dist = value; } }
@@ -76,22 +63,18 @@ public class MonsterBase : MonoBehaviour
     //패트롤
     protected virtual void Patrol()
     {
-        
-        if(non_combet_state == NonCombetState.EPATROL)
-        {
             nav.speed = patrol_speed;
             if (!nav.hasPath)
             {
                 nav.SetDestination(GetRandomPoint(transform, move_range));
             }
             Update_Patrol();
-            if (_monster_hp < _monster_max_hp)
+            if (current_hp < max_hp)
             {
-                combat_state = CombatState.ECHASE;
+                current_state = CurrentState.ECHASE;
             }
-        }
-
     }
+
     //아이들
     protected virtual void Idle()
     {
@@ -99,12 +82,12 @@ public class MonsterBase : MonoBehaviour
         if(locktarget !=null)
         {
             non_combet_state = NonCombetState.ENONE;
-            combat_state = CombatState.ECHASE;
+            current_state = CurrentState.ECHASE;
         }
         if(currnetcool >= cool_time)
         {
             currnetcool = 0f;
-            non_combet_state = NonCombetState.EPATROL;
+            current_state = CurrentState.EPATROL;
         }
 
     }
@@ -126,7 +109,7 @@ public class MonsterBase : MonoBehaviour
             {
                 if(currnetcool >= attack_speed)
                 {
-                    combat_state = CombatState.EATTACK;
+                    current_state = CurrentState.EATTACK;
                     currnetcool = 0;
                     return;
                 }
@@ -135,7 +118,7 @@ public class MonsterBase : MonoBehaviour
             Vector3 dir = monsterpos - transform.position;
             if(dir.magnitude < 0.1f)
             {
-                non_combet_state = NonCombetState.EPATROL;
+                current_state = CurrentState.EPATROL;
             }
             else
             {
@@ -158,7 +141,7 @@ public class MonsterBase : MonoBehaviour
         {
             locktarget = target;
             non_combet_state = NonCombetState.ENONE;
-            combat_state = CombatState.ECHASE;
+            current_state = CurrentState.ECHASE;
             return;
         }
     }
@@ -166,7 +149,7 @@ public class MonsterBase : MonoBehaviour
     //죽음
     protected virtual void Is_Dead()
     {
-        if(monster_hp == 0)
+        if(current_hp == 0)
         {
             isdead = true;
         }
