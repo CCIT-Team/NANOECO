@@ -132,7 +132,6 @@ public class MonsterBase : Character
             if (dist <= attack_dist)
             {
                 current_state = CurrentState.EATTACK;
-                return;
             }
             
             if (dist <= chase_dist)
@@ -161,11 +160,35 @@ public class MonsterBase : Character
             Character character = locktarget.GetComponent<Character>();
             //데미지 수식이 들어가야 됨
             currnetcool += Time.deltaTime;
-            if(currnetcool >= attack_cool_time)
+
+            if (character.current_hp > 0)
             {
-                character.current_hp -= damage;
-                currnetcool = 0f;
+                float distance = (locktarget.transform.position - transform.position).magnitude;
+                if (distance <= attack_dist)
+                {
+                    if (currnetcool >= attack_cool_time)
+                    {
+                        character.current_hp -= damage;
+                        currnetcool = 0f;
+                    }
+                    else
+                    {
+                        current_state = CurrentState.ECHASE;
+                    }
+                }
+                else
+                {
+                    current_state = CurrentState.ECHASE;
+                }
             }
+            else
+            {
+                current_state = CurrentState.EIDLE;
+            }
+        }
+        else
+        {
+            current_state = CurrentState.EIDLE;
         }
     }
  
