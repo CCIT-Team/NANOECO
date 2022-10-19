@@ -16,7 +16,7 @@ public class MonsterTakeDamage : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
-           
+            monbase.is_dead = true;
         }
     }
 }

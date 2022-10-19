@@ -1027,6 +1027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae29cd001d7d0df419dfc67c4b75c18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _name: 
   _max_hp: 0
   _current_hp: 0
   _damage: 0
@@ -1034,9 +1035,11 @@ MonoBehaviour:
   _move_speed: 0
   _light_armor_percent: 0
   _heavy_armor_percent: 0
+  _is_dead: 0
   target: {fileID: 0}
   locktarget: {fileID: 0}
-  monsterpos: {x: 0, y: 0, z: 0}
+  locktargetpos: {x: 0, y: 0, z: 0}
+  playertransform: {fileID: 0}
   _patrol_speed: 0
   _patrol_dist: 0
   _chase_dist: 0
@@ -1044,8 +1047,9 @@ MonoBehaviour:
   _attack_speed: 0
   _attack_dist: 0
   _move_range: 0
-  _cool_time: 0
-  isdead: 0
+  _idle_cool_time: 0
+  _chase_cool_time: 0
+  _attack_cool_time: 0
   non_combet_state: 0
   current_state: 0
   _wait_time: 0
@@ -1149,7 +1153,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: eb48a07cd09b54346850ad895db30233,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb48a07cd09b54346850ad895db30233, type: 3}
@@ -2214,7 +2218,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: eb48a07cd09b54346850ad895db30233,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb48a07cd09b54346850ad895db30233, type: 3}
@@ -2287,6 +2291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05984db1db33e242a7ccc0faa1d7e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _name: 
   _max_hp: 0
   _current_hp: 0
   _damage: 0
@@ -2294,9 +2299,11 @@ MonoBehaviour:
   _move_speed: 0
   _light_armor_percent: 0
   _heavy_armor_percent: 0
+  _is_dead: 0
   target: {fileID: 0}
   locktarget: {fileID: 0}
-  monsterpos: {x: 0, y: 0, z: 0}
+  locktargetpos: {x: 0, y: 0, z: 0}
+  playertransform: {fileID: 0}
   _patrol_speed: 0
   _patrol_dist: 0
   _chase_dist: 0
@@ -2304,8 +2311,9 @@ MonoBehaviour:
   _attack_speed: 0
   _attack_dist: 0
   _move_range: 0
-  _cool_time: 0
-  isdead: 0
+  _idle_cool_time: 0
+  _chase_cool_time: 0
+  _attack_cool_time: 0
   non_combet_state: 0
   current_state: 0
   _wait_time: 0
@@ -2732,7 +2740,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: eb48a07cd09b54346850ad895db30233,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb48a07cd09b54346850ad895db30233, type: 3}
@@ -3112,6 +3120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f89d4ef6d24f34386462de6766f12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _name: 
   _max_hp: 0
   _current_hp: 0
   _damage: 0
@@ -3119,9 +3128,11 @@ MonoBehaviour:
   _move_speed: 0
   _light_armor_percent: 0
   _heavy_armor_percent: 0
+  _is_dead: 0
   target: {fileID: 0}
   locktarget: {fileID: 0}
-  monsterpos: {x: 0, y: 0, z: 0}
+  locktargetpos: {x: 0, y: 0, z: 0}
+  playertransform: {fileID: 0}
   _patrol_speed: 0
   _patrol_dist: 0
   _chase_dist: 0
@@ -3129,8 +3140,9 @@ MonoBehaviour:
   _attack_speed: 0
   _attack_dist: 0
   _move_range: 0
-  _cool_time: 0
-  isdead: 0
+  _idle_cool_time: 0
+  _chase_cool_time: 0
+  _attack_cool_time: 0
   non_combet_state: 0
   current_state: 0
   _wait_time: 0
@@ -3217,6 +3229,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2037275692}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2046973350 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: eb48a07cd09b54346850ad895db30233,
+    type: 3}
+  m_PrefabInstance: {fileID: 75117466}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2046973353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046973350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0393812304f900340bbf173a289830d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: 
+  _max_hp: 100
+  _current_hp: 100
+  _damage: 0
+  _defense: 0
+  _move_speed: 0
+  _light_armor_percent: 0
+  _heavy_armor_percent: 0
+  _is_dead: 0
 --- !u!1 &2054398973
 GameObject:
   m_ObjectHideFlags: 0

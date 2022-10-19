@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum CurrentState
 {
-    EDIE = 0,
+    EIDLE = 0,
     EPATROL,
     ECHASE,
     EATTACK, //쫒는 속도와 공격 속도 공격력
@@ -14,6 +14,5 @@ public enum CurrentState
 public enum NonCombetState
 {
     ENONE = 0,
-    EIDLE, //정지상태 혹은 주변 두리번
-    ETHINK
+    ETHINK//정지상태 혹은 주변 두리번
 }

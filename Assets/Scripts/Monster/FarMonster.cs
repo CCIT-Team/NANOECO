@@ -14,11 +14,11 @@ public class FarMonster : MonsterBase
 
     IEnumerator CheckState()
     {//최대, 현재, 공격력, 방어력, 순찰속도, 쫒아 범위,쫒는 속도, 공격 속도, 사정거리, 죽었는지
-        if (!isdead)
+        if (!is_dead)
         {
             yield return new WaitForSeconds(5f);
             nav = GetComponent<NavMeshAgent>();
-            monsterpos = transform.position;
+
             _max_hp = 50;
             _current_hp = 50;
             _damage = 5;
@@ -45,28 +45,19 @@ public class FarMonster : MonsterBase
     IEnumerator Non_Combet_State()
     {
         //비전투
-        if(!isdead)
+        if(!is_dead)
         {
+            yield return new WaitForSeconds(5f);
             if (current_state != CurrentState.ECHASE)
             {
-                
-                yield return new WaitForSeconds(6f);
-                switch(non_combet_state)
-                {
-                    case NonCombetState.EIDLE :
-                        Idle();
-                        break;
-                    case NonCombetState.ETHINK:
-                        Think();
-                        break;      
-                }
+               
             }
         }
     }
 
     IEnumerator Combat_State()
     {
-        if(!isdead)
+        if(!is_dead)
         {
             if (current_state == CurrentState.ECHASE)
             {

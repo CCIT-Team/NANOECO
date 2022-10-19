@@ -13,7 +13,7 @@ public class CloseMonster : MonsterBase
 
     IEnumerator CheckState()
     {//최대, 현재, 공격력, 방어력, 순찰속도, 순찰범위, 쫒아 범위,쫒는 속도, 공격 속도, 사정거리, 죽었는지
-        if (!isdead)
+        if (!is_dead)
         {
             _wait_time = 5f;
             yield return new WaitForSeconds(_wait_time);
@@ -29,7 +29,10 @@ public class CloseMonster : MonsterBase
             _attack_speed = 3f;
             _attack_dist = 5f;
             _move_range = 50f;
-            _cool_time = 1f;
+            _idle_cool_time = 1f;
+            _chase_cool_time = 20f;
+            _attack_cool_time = 1f;
+            _is_dead = false;
             current_state = CurrentState.EPATROL;
         }
     }
@@ -37,20 +40,17 @@ public class CloseMonster : MonsterBase
     private void Update()
     {
         StartCoroutine(Non_State());
-        StartCoroutine(Combat_State());
+        StartCoroutine(Current_State());
         StartCoroutine(Check_Isdead());
     }
 
     IEnumerator Non_State()
     {
-        if(!isdead)
+        if(!is_dead)
         {
             yield return new WaitForSeconds(_wait_time);
             switch(non_combet_state)
             {
-                case NonCombetState.EIDLE:
-                    Idle();
-                    break;
                 case NonCombetState.ETHINK:
                     Think();
                     break;
@@ -58,13 +58,16 @@ public class CloseMonster : MonsterBase
         }
     }
     
-    IEnumerator Combat_State()
+    IEnumerator Current_State()
     {
-        if(!isdead)
+        if(!is_dead)
         {
             yield return new WaitForSeconds(_wait_time);
             switch(current_state)
             {
+                case CurrentState.EIDLE:
+                    Idle();
+                    break;
                 case CurrentState.EPATROL:
                     Patrol();
                     break;
@@ -84,6 +87,10 @@ public class CloseMonster : MonsterBase
     {
         yield return new WaitForSeconds(10f);
         Is_Dead();
+    }
+    protected override void Patrol()
+    {
+        base.Patrol();
     }
     protected override void Attack()
     {

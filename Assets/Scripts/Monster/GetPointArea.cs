@@ -5,14 +5,7 @@ using UnityEngine.AI;
 
 public class GetPointArea : MonoBehaviour
 {
-    public static GetPointArea Instance;
-
     public float Range;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
