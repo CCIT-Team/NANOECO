@@ -5,6 +5,7 @@ using UnityEngine;
 public class Melee : WeaponeBase
 {
     public Transform player;
+    public GameObject center;
 
     void Start()
     {
@@ -13,12 +14,12 @@ public class Melee : WeaponeBase
 
     void Update()
     {
-        /*if(Input.GetKey(KeyCode.Q)&&!isdelay)
+        if(Input.GetKey(KeyCode.Q)&&!isdelay)
         {
             isdelay = true;
             Attack();
             StartCoroutine("AttackDelay");
-        }*/
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,6 +29,11 @@ public class Melee : WeaponeBase
             other.gameObject.GetComponent<Rigidbody>().AddForce(knockback*Vector3.Normalize(other.transform.position - player.position),ForceMode.Impulse);
             other.gameObject.GetComponent<Character>().current_hp -= damage;
         }
+    }
+
+    new void Attack()
+    {
+
     }
 
 }
