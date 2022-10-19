@@ -192,6 +192,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5939051507432723657, guid: deb7c516add78d4449c8af87466f6800,
         type: 3}
+      propertyPath: dash_force
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939051507432723657, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
+      propertyPath: jump_force
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939051507432723657, guid: deb7c516add78d4449c8af87466f6800,
+        type: 3}
       propertyPath: _current_hp
       value: 100
       objectReference: {fileID: 0}
