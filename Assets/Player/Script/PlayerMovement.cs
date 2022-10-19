@@ -10,37 +10,38 @@ public class PlayerMovement : Character
     bool isdash = false;
     public float jump_force;
     bool isjump = false;
-   // public Camera maincamera;
+    public PlayerMouseRotate pmr;
+    // public Camera maincamera;
 
     void Start()
     {
         ani = gameObject.GetComponent<Animator>();
+        is_dead = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        if(is_dead == false)
+        {
+            Movement();
+        }
+        Dead();
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            current_hp -= 10;
+        }
     }
-
 
     void Movement()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
        
-        if (horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0)
-        {
-            ani.SetBool("Run", true);
-        }
-        else
-        {
-            ani.SetBool("Run", false);
-        }
+        if (horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0) {  ani.SetBool("Run", true); }
+        else {ani.SetBool("Run", false);}
         Vector3 move = new Vector3(-horizontal * move_speed, 0f, -vertical * move_speed);
-        rigid.velocity = move;
-        Jump();
-        Dash();
+        rigid.velocity = move; Jump(); Dash();
     }
     void Jump()
     {
@@ -57,25 +58,28 @@ public class PlayerMovement : Character
         }
         else { isdash = false; }
     }
-
+    void Dead()
+    {
+        if(current_hp <= 0)
+        {
+            is_dead = true;
+            pmr.enabled = false;
+            Destroy(gameObject, 1f);
+            //죽는 애니메이션 추가
+        }
+        else { pmr.enabled = true; }
+    }
     private void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "Monster") { current_hp -= col.gameObject.GetComponent<Character>().damage;}
     }
 }
 
-public enum state
+public enum EPlayerState
 {
     IDLE,
     RUN,
     DASH,
     JUMP,
-
-
-
-
 }
-public class Wepon : PlayerMovement
-{
 
-}

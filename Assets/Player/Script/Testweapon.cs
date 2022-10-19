@@ -19,10 +19,7 @@ public class Testweapon : MonoBehaviour
         {
             GameObject bullets = Instantiate(bullet);     
             bullet.transform.position = firePosition.transform.position;
-            //bullet.transform.Rotate(new Vector3(0, player.transform.rotation.y, 0));
             bullet.transform.rotation = player.transform.rotation;
-            //Bulletsss bs = bullets.GetComponent<Bulletsss>();
-            //bs.dir = we
         }
     }
 }
