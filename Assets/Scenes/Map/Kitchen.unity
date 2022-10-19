@@ -148,7 +148,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: eb48a07cd09b54346850ad895db30233,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 108.9
+      value: 82.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eb48a07cd09b54346850ad895db30233,
         type: 3}
@@ -185,6 +185,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: eb48a07cd09b54346850ad895db30233,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: eb48a07cd09b54346850ad895db30233,
         type: 3}
       propertyPath: m_Name
@@ -192,8 +197,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: eb48a07cd09b54346850ad895db30233,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eb48a07cd09b54346850ad895db30233,
+        type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036213049465896255, guid: eb48a07cd09b54346850ad895db30233,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb48a07cd09b54346850ad895db30233, type: 3}
@@ -1012,12 +1027,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae29cd001d7d0df419dfc67c4b75c18c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _max_hp: 0
+  _current_hp: 0
+  _damage: 0
+  _defense: 0
+  _move_speed: 0
+  _light_armor_percent: 0
+  _heavy_armor_percent: 0
   target: {fileID: 0}
   locktarget: {fileID: 0}
   monsterpos: {x: 0, y: 0, z: 0}
-  _monster_max_hp: 0
-  _monster_hp: 0
-  _damage: 0
   _patrol_speed: 0
   _patrol_dist: 0
   _chase_dist: 0
@@ -1028,8 +1047,7 @@ MonoBehaviour:
   _cool_time: 0
   isdead: 0
   non_combet_state: 0
-  combat_state: 0
-  attack_type: 0
+  current_state: 0
   _wait_time: 0
 --- !u!4 &456991860
 Transform:
@@ -1127,6 +1145,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: character (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eb48a07cd09b54346850ad895db30233,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb48a07cd09b54346850ad895db30233, type: 3}
@@ -2188,6 +2211,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: character (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eb48a07cd09b54346850ad895db30233,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb48a07cd09b54346850ad895db30233, type: 3}
 --- !u!1 &1330486931
@@ -2259,12 +2287,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05984db1db33e242a7ccc0faa1d7e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _max_hp: 0
+  _current_hp: 0
+  _damage: 0
+  _defense: 0
+  _move_speed: 0
+  _light_armor_percent: 0
+  _heavy_armor_percent: 0
   target: {fileID: 0}
   locktarget: {fileID: 0}
   monsterpos: {x: 0, y: 0, z: 0}
-  _monster_max_hp: 0
-  _monster_hp: 0
-  _damage: 0
   _patrol_speed: 0
   _patrol_dist: 0
   _chase_dist: 0
@@ -2275,8 +2307,7 @@ MonoBehaviour:
   _cool_time: 0
   isdead: 0
   non_combet_state: 0
-  combat_state: 0
-  attack_type: 0
+  current_state: 0
   _wait_time: 0
 --- !u!4 &1330486935
 Transform:
@@ -2698,6 +2729,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: character (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eb48a07cd09b54346850ad895db30233,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb48a07cd09b54346850ad895db30233, type: 3}
 --- !u!1 &1760198594
@@ -3076,12 +3112,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12f89d4ef6d24f34386462de6766f12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _max_hp: 0
+  _current_hp: 0
+  _damage: 0
+  _defense: 0
+  _move_speed: 0
+  _light_armor_percent: 0
+  _heavy_armor_percent: 0
   target: {fileID: 0}
   locktarget: {fileID: 0}
   monsterpos: {x: 0, y: 0, z: 0}
-  _monster_max_hp: 0
-  _monster_hp: 0
-  _damage: 0
   _patrol_speed: 0
   _patrol_dist: 0
   _chase_dist: 0
@@ -3092,8 +3132,7 @@ MonoBehaviour:
   _cool_time: 0
   isdead: 0
   non_combet_state: 0
-  combat_state: 0
-  attack_type: 0
+  current_state: 0
   _wait_time: 0
 --- !u!1 &2037275692
 GameObject:

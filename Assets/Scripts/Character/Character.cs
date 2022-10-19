@@ -19,7 +19,7 @@ public class Character : MonoBehaviour
     public string thisname { get { return _name; } set { _name = value; } }
     public float max_hp { get { return _max_hp; } set { _max_hp = value; } }
     public float current_hp { get { return _current_hp; } set { _current_hp = value; } }
-    public float damage { get { return damage; } set { damage = value; } }
+    public float damage { get { return _damage; } set { _damage = value; } }
     public float defense { get { return _defense; } set { _defense = value; } }
     public float move_speed { get { return _move_speed; } set { _move_speed = value; } }
     public float light_armor_percent { get { return _light_armor_percent; } set { _light_armor_percent = value; } }

@@ -38,6 +38,7 @@ public class CloseMonster : MonsterBase
     {
         StartCoroutine(Non_State());
         StartCoroutine(Combat_State());
+        StartCoroutine(Check_Isdead());
     }
 
     IEnumerator Non_State()
@@ -79,7 +80,11 @@ public class CloseMonster : MonsterBase
             }
         }
     }
-
+    IEnumerator Check_Isdead()
+    {
+        yield return new WaitForSeconds(10f);
+        Is_Dead();
+    }
     protected override void Attack()
     {
         base.Attack();

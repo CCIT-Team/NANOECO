@@ -63,16 +63,16 @@ public class MonsterBase : Character
     //패트롤
     protected virtual void Patrol()
     {
-            nav.speed = patrol_speed;
-            if (!nav.hasPath)
-            {
-                nav.SetDestination(GetRandomPoint(transform, move_range));
-            }
-            Update_Patrol();
-            if (current_hp < max_hp)
-            {
-                current_state = CurrentState.ECHASE;
-            }
+        nav.speed = patrol_speed;
+        if (!nav.hasPath)
+        {
+            nav.SetDestination(GetRandomPoint(transform, move_range));
+        }
+        Update_Patrol();
+        if (current_hp < max_hp)
+        {
+           current_state = CurrentState.ECHASE;
+        }
     }
 
     //아이들
@@ -104,10 +104,11 @@ public class MonsterBase : Character
         {
             monsterpos = locktarget.transform.position;
             float distance = (monsterpos - transform.position).magnitude;
+
             if (distance <= attack_dist)
             {
-                    current_state = CurrentState.EATTACK;
-                    return;
+                current_state = CurrentState.EATTACK;
+                return;
             }
 
             Vector3 dir = monsterpos - transform.position;
@@ -120,7 +121,7 @@ public class MonsterBase : Character
                 nav.speed = chase_speed;
                 nav.SetDestination(monsterpos);
 
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 10 * Time.deltaTime);
+                //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 10 * Time.deltaTime);
             }
         }
     }
@@ -176,6 +177,10 @@ public class MonsterBase : Character
         if(current_hp == 0)
         {
             isdead = true;
+            if(isdead)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
