@@ -12,7 +12,9 @@ public class MonsterBase : Character
     [SerializeField]
     protected GameObject locktarget;
     [SerializeField]
-    protected Vector3 monsterpos;
+    protected Vector3 locktargetpos;
+    [SerializeField]
+    protected Transform playertransform;
 
     [Header("STATS")]
     [SerializeField]
@@ -30,11 +32,13 @@ public class MonsterBase : Character
     [SerializeField]
     protected float _move_range; //범위 내 움직임
     [SerializeField]
-    protected float _cool_time;
+    protected float _idle_cool_time; //통합 쿨타임은 안될듯
+    [SerializeField]
+    protected float _chase_cool_time;
+    [SerializeField]
+    protected float _attack_cool_time;
 
     [Header("STATE")]
-    [SerializeField]
-    protected bool isdead = false;
     [SerializeField]
     protected NonCombetState non_combet_state = new NonCombetState();
     [SerializeField]
@@ -54,11 +58,14 @@ public class MonsterBase : Character
     public float attack_dist { get { return _attack_dist; } set { _attack_dist = value; } }
     public float move_range { get { return _move_range; } set { _move_range = value; } }
     public float wait_time { get { return _wait_time; } set { _wait_time = value; } }
-    public float cool_time { get { return _cool_time; } set { _cool_time = value; } }
+    public float idle_cool_time { get { return _idle_cool_time; } set { _idle_cool_time = value; } }
+    public float chase_cool_time { get { return _chase_cool_time; } set { _chase_cool_time = value; } }
+    public float attack_cool_time { get { return _attack_cool_time; } set { _attack_cool_time = value; } }
 
 
 
     float currnetcool = 0f;
+    
 
     //패트롤
     protected virtual void Patrol()
@@ -68,28 +75,44 @@ public class MonsterBase : Character
         {
             nav.SetDestination(GetRandomPoint(transform, move_range));
         }
-        Update_Patrol();
         if (current_hp < max_hp)
         {
-           current_state = CurrentState.ECHASE;
+            current_state = CurrentState.ECHASE;
+        }
+        Update_Patrol();
+    }
+    //플레이어 찾기
+    protected virtual void Update_Patrol()
+    {
+        target = GameObject.FindGameObjectWithTag("Player");
+        if (target == null)
+            return;
+        float distance = (target.transform.position - transform.position).magnitude;
+        if (distance <= patrol_dist)
+        {
+            locktarget = target;
+            current_state = CurrentState.ECHASE;
+            return;
         }
     }
 
-    //아이들
+    //아이들 추격에 실패할때 이쪽으로
     protected virtual void Idle()
     {
-        //currnetcool += Time.deltaTime;
-        //if(locktarget !=null)
-        //{
-        //    non_combet_state = NonCombetState.ENONE;
-        //    current_state = CurrentState.ECHASE;
-        //}
-        //if(currnetcool >= cool_time)
-        //{
-        //    currnetcool = 0f;
-        //    current_state = CurrentState.EPATROL;
-        //}
-
+        currnetcool += Time.deltaTime;
+        
+        if (locktarget != null)
+        {
+            current_state = CurrentState.ECHASE;
+        }
+        if(locktarget == null)
+        {
+            if (currnetcool >= idle_cool_time)
+            {
+                current_state = CurrentState.EPATROL;
+                currnetcool = 0f;
+            }
+        }
     }
     //생각
     protected virtual void Think()
@@ -100,46 +123,58 @@ public class MonsterBase : Character
     //체이싱
     protected virtual void Chase()
     {
-        if(locktarget !=null)
+        if (locktarget != null)
         {
-            monsterpos = locktarget.transform.position;
-            float distance = (monsterpos - transform.position).magnitude;
-
-            if (distance <= attack_dist)
+            currnetcool += Time.deltaTime;
+            locktargetpos = locktarget.transform.position;
+            float dist = (locktargetpos - transform.position).magnitude;
+            //공격 볌위
+            if (dist <= attack_dist)
             {
                 current_state = CurrentState.EATTACK;
-                return;
             }
-
-            Vector3 dir = monsterpos - transform.position;
-            if(dir.magnitude < 0.1f)
-            {
-                current_state = CurrentState.EPATROL;
-            }
-            else
+            
+            if (dist <= chase_dist)
             {
                 nav.speed = chase_speed;
-                nav.SetDestination(monsterpos);
+                nav.SetDestination(locktargetpos);
+            }
 
-                //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 10 * Time.deltaTime);
+            if(dist > chase_dist)
+            {
+                if(currnetcool >= chase_cool_time)
+                {
+                    
+                    locktarget = null;
+                    current_state = CurrentState.EIDLE;
+                    currnetcool = 0f;
+                }
             }
         }
     }
 
     protected virtual void Attack()
     {
-        if(locktarget != null)
+        if (locktarget != null)
         {
             Character character = locktarget.GetComponent<Character>();
             //데미지 수식이 들어가야 됨
-            character.current_hp -= damage;
-            
-            if(character.current_hp > 0)
+            currnetcool += Time.deltaTime;
+
+            if (character.current_hp > 0)
             {
                 float distance = (locktarget.transform.position - transform.position).magnitude;
-                if(distance <= attack_dist)
+                if (distance <= attack_dist)
                 {
-                    current_state = CurrentState.EATTACK;
+                    if (currnetcool >= attack_cool_time)
+                    {
+                        character.current_hp -= damage;
+                        currnetcool = 0f;
+                    }
+                    else
+                    {
+                        current_state = CurrentState.ECHASE;
+                    }
                 }
                 else
                 {
@@ -148,37 +183,25 @@ public class MonsterBase : Character
             }
             else
             {
-                current_state = CurrentState.EPATROL;
+                current_state = CurrentState.EIDLE;
             }
         }
         else
         {
-            current_state = CurrentState.EPATROL;
+            current_state = CurrentState.EIDLE;
         }
     }
-    //플레이어 찾기
-    protected virtual void Update_Patrol()
-    {
-        target = GameObject.FindGameObjectWithTag("Player");
-        if (target == null)
-            return;
-        float distance = (target.transform.position - transform.position).magnitude;
-        if(distance <= patrol_dist)
-        {
-            locktarget = target;
-            current_state = CurrentState.ECHASE;
-            return;
-        }
-    }
+ 
 
     //죽음
     protected virtual void Is_Dead()
     {
         if(current_hp == 0)
         {
-            isdead = true;
-            if(isdead)
+            is_dead = true;
+            if (is_dead)
             {
+                current_state = CurrentState.EIDLE;
                 Destroy(gameObject);
             }
         }

@@ -14,7 +14,7 @@ public class TestMonster : MonsterBase
     // Update is called once per frame
     void Update()
     { 
-        if(!isdead)
+        if(!is_dead)
         {
             
             
@@ -23,7 +23,7 @@ public class TestMonster : MonsterBase
 
     IEnumerator CheckState()
     {//최대, 현재, 공격력, 방어력, 순찰속도, 쫒아 범위,쫒는 속도, 공격 속도, 사정거리, 죽었는지
-        if (!isdead)
+        if (!is_dead)
         {
             yield return new WaitForSeconds(5f);
             _max_hp = 100;
