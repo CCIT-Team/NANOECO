@@ -196,7 +196,7 @@ public class MonsterBase : Character
     //Á×À½
     protected virtual void Is_Dead()
     {
-        if(current_hp == 0)
+        if(current_hp <= 0)
         {
             is_dead = true;
             if (is_dead)
