@@ -13,9 +13,7 @@ public class Trigger : MonoBehaviour
     {
         if(!is_run && other.CompareTag("Player"))
         {
-            print(0);
             event_data.event_point = spawn_point;
-            print(1);
             scenario.On_Trigger = event_data.Send_Event;
             scenario.On_Trigger();
             is_run = true;
