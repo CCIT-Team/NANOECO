@@ -4456,7 +4456,7 @@ PrefabInstance:
     - target: {fileID: 8235777505056674385, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 36.4
       objectReference: {fileID: 0}
     - target: {fileID: 8235777505056674385, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
@@ -4502,6 +4502,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CloseMonster
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235777505056674389, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Monster
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cfe1fe2d974e5f469f520026c3bd09a, type: 3}
