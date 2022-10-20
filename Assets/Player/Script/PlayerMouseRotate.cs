@@ -11,7 +11,7 @@ public class PlayerMouseRotate : MonoBehaviour
     #endregion
     #region Private Fields
 
-    private Camera mainCamera;
+    public Camera mainCamera;
 
     #endregion
 
@@ -25,7 +25,7 @@ public class PlayerMouseRotate : MonoBehaviour
     private void Start()
     {
         // Cache the camera, Camera.main is an expensive operation.
-        mainCamera = Camera.main;
+        //mainCamera = Camera.main;
     }
 
     private void Update()
