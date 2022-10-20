@@ -11,8 +11,11 @@ public class PlayerCamera : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 desired_position = player.position + offset;
-        Vector3 smoothed_position = Vector3.Lerp(transform.position, desired_position, smooth_speed);
-        transform.position = smoothed_position;
+        if(player != null)
+        {
+            Vector3 desired_position = player.position + offset;
+            Vector3 smoothed_position = Vector3.Lerp(transform.position, desired_position, smooth_speed);
+            transform.position = smoothed_position;
+        }
     }
 }
