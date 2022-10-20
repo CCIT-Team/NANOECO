@@ -5402,6 +5402,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8235777505056674389, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235777505056674389, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
       propertyPath: m_TagString
       value: Monster
       objectReference: {fileID: 0}
