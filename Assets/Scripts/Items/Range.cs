@@ -21,7 +21,7 @@ public class Range : WeaponeBase
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Q)&&!isdelay)
+        if (Input.GetMouseButtonDown(0)&& !isdelay)
         {
             isdelay = true;
             Attack();

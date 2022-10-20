@@ -13,7 +13,7 @@ public class Bulletsss : MonoBehaviour
     }
     private void Update()
     {
-        transform.Translate(Vector3.forward * speed);
+        transform.Translate(Vector3.back * speed);
     }
     private void OnTriggerEnter(Collider other)
     {

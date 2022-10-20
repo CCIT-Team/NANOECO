@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerMovement : Character
 {
     public Rigidbody rigid;
@@ -64,22 +64,36 @@ public class PlayerMovement : Character
         {
             is_dead = true;
             pmr.enabled = false;
-            Destroy(gameObject, 1f);
             //죽는 애니메이션 추가
+            Destroy(gameObject, 1f);//애니메이션 실행후 삭제
+            Invoke("Respawn", 5);
         }
         else { pmr.enabled = true; }
     }
+    void Respawn()
+    {
+        //부활 애니메이션 추가
+        //transform.position = //스폰 위치
+
+    }
+
     private void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "Monster") { current_hp -= col.gameObject.GetComponent<Character>().damage;}
     }
 }
 
-public enum EPlayerState
+public interface IPlayer
 {
-    IDLE,
-    RUN,
-    DASH,
-    JUMP,
+    void Connect()
+    {
+        Debug.Log("Connect");
+        SceneManager.LoadScene(1);//플레이어들이 연결되어 시작 버튼을 누르면 게임 씬으로 이동
+    }
+    void Disconnect()
+    {
+        Debug.Log("DisConnect");
+        SceneManager.LoadScene(0);//연결이 끊기면 대기실로 돌아감
+    }
 }
 
