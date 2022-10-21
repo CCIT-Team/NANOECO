@@ -9,10 +9,10 @@ public class ItemControler : MonoBehaviour
     public bool iscooldown = false;
     public int maxcount = 0;
     public int count = 0;
-    Vector3 target;
+    protected Vector3 target;
 
-    public GameObject item;
-    GameObject throweditem;
+    public GameObject itemprefab;
+    public GameObject useditem;
 
     void Start()
     {
@@ -29,7 +29,7 @@ public class ItemControler : MonoBehaviour
             else
             {
                 iscooldown = true;
-                Throwing();
+                Useitem();
                 StartCoroutine("Cooling");
             }
         }
@@ -46,22 +46,8 @@ public class ItemControler : MonoBehaviour
         iscooldown = false;
     }
 
-    void Throwing()
+    public virtual void Useitem()
     {
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-            target = hit.point;
-        }
-        else
-            return;
-        throweditem = Instantiate(item);
-        throweditem.transform.position = this.transform.position;
-        throweditem.GetComponent<Bomb>().target = target;
-        throweditem.SetActive(true);
 
-        count--;
     }
-
 }
