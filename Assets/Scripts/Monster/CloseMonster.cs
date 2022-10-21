@@ -61,10 +61,8 @@ public class CloseMonster : MonsterBase
     
     IEnumerator Current_State()
     {
-        while(!is_dead)
+        if(!is_dead)
         {
-            if(current_hp == 150)
-            {
                 yield return new WaitForSeconds(0.1f);
                 switch (current_state)
                 {
@@ -84,7 +82,7 @@ public class CloseMonster : MonsterBase
                         Skill();
                         break;
                 }
-            }
+            
         }
         
     }
