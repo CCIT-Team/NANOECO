@@ -12,6 +12,7 @@ public class PlayerMovement : Character
 
     public float jump_force;
     public float dash_force;
+    public float move_force;
 
     bool isdash = false;
     bool isjump = false;
@@ -25,7 +26,7 @@ public class PlayerMovement : Character
     // Update is called once per frame
     void Update()
     {
-        Movement();
+            Movement();
         Dead();
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -39,7 +40,8 @@ public class PlayerMovement : Character
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 move = new Vector3(-Input.GetAxis("Horizontal"),0, -Input.GetAxis("Vertical"));
-        cc.Move(move * Time.deltaTime * move_speed);
+        move *= move_force;
+        if (!cc.isGrounded) { move.y -= 9.81f * Time.deltaTime; }
         if (horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0) 
         { 
             ani.SetBool("Run", true);
@@ -47,34 +49,23 @@ public class PlayerMovement : Character
         else 
         { 
             ani.SetBool("Run", false);
-        } 
+        }
         //rigid.velocity = move * move_speed * Time.deltaTime; 
 
-        Jump(); 
-
-        Dash();
-    }
-    void Jump()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rigid.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
+        if (Input.GetKeyDown(KeyCode.Space))//점프
+        { 
+            move. y = jump_force;
             isjump = true;
         }
-        //if(Input.GetKeyUp(KeyCode.Space))
-        //{
-        //    rigid.AddForceAtPosition(Vector3.down * 400, Vector3.down);
-        //}
-    }
-    void Dash()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift))//대쉬
         {
-            rigid.AddForce(Vector3.forward * dash_force);
+            move = Vector3.forward * dash_force;
             isdash = true;
         }
         else { isdash = false; }
+        cc.Move(move);
     }
+    
     void Dead()
     {
         if (current_hp <= 0)
