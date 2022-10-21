@@ -9,19 +9,12 @@ public class Range : WeaponeBase
     public int currentammo = 0; //ÇöÀç Åº¼ö
     public GameObject firePosition;
     public GameObject bullet;
-    //List<GameObject> bullets;
     void Start()
     {
-        //bullets = new List<GameObject>();
         type = Type.ERANGE;
         currentammo = ammo;
-        //GameObject bulletobject;
-        /*for(int i=0;i<ammo+20; i++)
-        {
-            bulletobject = Instantiate(bullet);
-            bullets.Add(bulletobject);
-            bulletobject.SetActive(false);
-        }*/
+        bullet.GetComponent<Bullet>().damage = damage;
+        bullet.GetComponent<Bullet>().knockback = knockback;
     }
 
     void Update()
@@ -31,7 +24,7 @@ public class Range : WeaponeBase
             switch (currentammo)
             {
                 case 0:
-                    Reload();
+                    StartCoroutine("Reloading");
                     break;
                 default :
                     isdelay = true;
@@ -41,31 +34,20 @@ public class Range : WeaponeBase
             }
         }
         if(Input.GetKeyDown(KeyCode.R) && !isdelay)
-        {
-            Reload();
-           
-        }
+            StartCoroutine("Reloading");
     }
 
     new void Attack()
     {
         GameObject chargedbullet = Instantiate(bullet);
-        //GameObject chargedbullet = bullets[0];
         chargedbullet.transform.position = firePosition.transform.position;
         chargedbullet.transform.rotation = firePosition.transform.rotation;
-        //chargedbullet.SetActive(true);
-        //bullets.Remove(chargedbullet);
         currentammo--;
-    }
-
-    void Reload()
-    {
-        isdelay = true;
-        StartCoroutine("Reloading");
     }
 
     IEnumerator Reloading()
     {
+        isdelay = true;
         yield return new WaitForSecondsRealtime(2);
         currentammo = ammo;
         isdelay = false;
