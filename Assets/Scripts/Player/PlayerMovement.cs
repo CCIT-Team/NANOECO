@@ -51,7 +51,7 @@ public class PlayerMovement : Character
             rigid.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
             isjump = true;
         }
-        else { isjump = false; rigid.}
+        else { isjump = false; /*rigid.*/}
     }
     void Dash()
     {
