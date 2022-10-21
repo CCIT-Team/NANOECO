@@ -10,7 +10,6 @@ public class Character : MonoBehaviour
     [SerializeField] protected float _current_hp; //현재체력
     [SerializeField] protected float _damage; //공격력
     [SerializeField] protected float _defense; //방어력 일단 int형
-    [SerializeField] protected float _move_speed; //방어력 일단 int형
     [SerializeField] protected float _light_armor_percent; //방어구의 수치 ex) light:20 heavy:60
     [SerializeField] protected float _heavy_armor_percent;// 방어구 배율 계산식 아머 퍼센트 * 0.01 = x, x * attack = 방어구대비 데미지 하락으로
                                                           // 몬스터 공격에 구현하면 좋을듯? 
@@ -21,7 +20,6 @@ public class Character : MonoBehaviour
     public float current_hp { get { return _current_hp; } set { _current_hp = value; } }
     public float damage { get { return _damage; } set { _damage = value; } }
     public float defense { get { return _defense; } set { _defense = value; } }
-    public float move_speed { get { return _move_speed; } set { _move_speed = value; } }
     public float light_armor_percent { get { return _light_armor_percent; } set { _light_armor_percent = value; } }
     public float heavy_armor_percent { get { return _heavy_armor_percent; } set { _heavy_armor_percent = value; } }
     public bool is_dead { get { return _is_dead; } set { _is_dead = value; } }

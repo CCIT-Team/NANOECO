@@ -9,13 +9,11 @@ public class CloseMonster : MonsterBase
     void Start()
     {
         StartCoroutine(CheckState());
-        StartCoroutine(Current_State());
-        StartCoroutine(Check_Isdead());
     }
 
     IEnumerator CheckState()
     {//최대, 현재, 공격력, 방어력, 순찰속도, 순찰범위, 쫒아 범위,쫒는 속도, 공격 속도, 사정거리, 죽었는지
-        if (!is_dead)
+        if (!_is_dead)
         {
             _wait_time = 5f;
             yield return new WaitForSeconds(_wait_time);
@@ -42,12 +40,14 @@ public class CloseMonster : MonsterBase
     private void Update()
     {
         //StartCoroutine(Non_State());
+        StartCoroutine(Current_State());
+        StartCoroutine(Check_Isdead());
 
     }
 
     IEnumerator Non_State()
     {
-        if(!is_dead)
+        if(!_is_dead)
         {
             yield return new WaitForSeconds(_wait_time);
             switch(non_combet_state)
@@ -61,9 +61,9 @@ public class CloseMonster : MonsterBase
     
     IEnumerator Current_State()
     {
-        if(!is_dead)
+        if(!_is_dead)
         {
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(_wait_time);
                 switch (current_state)
                 {
                     case CurrentState.EIDLE:
@@ -100,15 +100,6 @@ public class CloseMonster : MonsterBase
         base.Attack();
     }
 
-    IEnumerator Atteck_Cool()
-    {
-        //쿨타임
-        //공격 하는거
-        
-        yield return new WaitForSeconds(0.1f);
-        
-    }
-
     void Skill()
     {
 
@@ -118,7 +109,7 @@ public class CloseMonster : MonsterBase
     {
         Gizmos.DrawWireSphere(transform.position, _move_range);
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, patrol_dist);
+        Gizmos.DrawWireSphere(transform.position, _patrol_dist);
         
     }
 
