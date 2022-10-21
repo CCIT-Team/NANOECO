@@ -4,40 +4,52 @@ using UnityEngine;
 
 public class Range : WeaponeBase
 {
+
+    public int ammo = 0;    //ÃÖ´ë Åº¼ö
+    public int currentammo = 0; //ÇöÀç Åº¼ö
+    public GameObject firePosition;
     public GameObject bullet;
-    //List<GameObject> bullets;
     void Start()
     {
-        //bullets = new List<GameObject>();
         type = Type.ERANGE;
-        //GameObject bulletobject;
-        /*for(int i=0;i<ammo+20; i++)
-        {
-            bulletobject = Instantiate(bullet);
-            bullets.Add(bulletobject);
-            bulletobject.SetActive(false);
-        }*/
+        currentammo = ammo;
+        bullet.GetComponent<Bullet>().damage = damage;
+        bullet.GetComponent<Bullet>().knockback = knockback;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)&& !isdelay)
+        if (Input.GetMouseButton(0)&& !isdelay)
         {
-            isdelay = true;
-            Attack();
-            StartCoroutine("AttackDelay");
+            switch (currentammo)
+            {
+                case 0:
+                    StartCoroutine("Reloading");
+                    break;
+                default :
+                    isdelay = true;
+                    Attack();
+                    StartCoroutine("AttackDelay");
+                    break;
+            }
         }
-            
+        if(Input.GetKeyDown(KeyCode.R) && !isdelay)
+            StartCoroutine("Reloading");
     }
 
     new void Attack()
     {
         GameObject chargedbullet = Instantiate(bullet);
-        //GameObject chargedbullet = bullets[0];
         chargedbullet.transform.position = firePosition.transform.position;
         chargedbullet.transform.rotation = firePosition.transform.rotation;
-        //chargedbullet.SetActive(true);
-        //bullets.Remove(chargedbullet);
+        currentammo--;
+    }
 
+    IEnumerator Reloading()
+    {
+        isdelay = true;
+        yield return new WaitForSecondsRealtime(2);
+        currentammo = ammo;
+        isdelay = false;
     }
 }

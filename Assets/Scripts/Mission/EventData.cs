@@ -14,13 +14,14 @@ public class EventData : ScriptableObject
     public E_map map;
     public int event_num;
     public List<GameObject> event_object;
+    public List<GameObject> event_point;
 
     void Set_Map(int i)
     {
         switch(map)
         {
             case E_map.KITCHEN:
-                Map_Kitchen kitchen = new Map_Kitchen(event_object);
+                Map_Kitchen kitchen = new Map_Kitchen(event_object, event_point);
                 kitchen.Set_Event(i);
                 break;
             case E_map.BATHROOM:
@@ -43,15 +44,17 @@ public class EventData : ScriptableObject
 abstract class ABMap : MonoBehaviour
 {
     protected List<GameObject> event_object;
+    protected List<GameObject> event_point;
 
     public abstract void Set_Event(int i);
 }
 
 class Map_Kitchen : ABMap
 {
-    public Map_Kitchen(List<GameObject> event_object)
+    public Map_Kitchen(List<GameObject> event_object, List<GameObject> event_point)
     {
         this.event_object = event_object;
+        this.event_point = event_point;
     }
 
     public override void Set_Event(int i)
@@ -59,9 +62,10 @@ class Map_Kitchen : ABMap
         switch (i)
         {
             case 0:
-                test_event();
+                test_event_0();
                 break;
             case 1:
+                test_event_1();
                 break;
             case 2:
                 break;
@@ -70,9 +74,28 @@ class Map_Kitchen : ABMap
         }
     }
 
-    void test_event()
+    void test_event_0()
     {
-        Instantiate(event_object[0]);
+        for (int i = 0; i < 5; i++)
+        {
+            float x = Random.Range(event_point[0].transform.position.x - 5, event_point[0].transform.position.x + 5);
+            float z = Random.Range(event_point[0].transform.position.z - 5, event_point[0].transform.position.z + 5);
+            Vector3 spawnposition = new Vector3(x, event_point[0].transform.position.y, z);
+
+            Instantiate(event_object[0], spawnposition, Quaternion.identity);
+        }
+    }
+
+    void test_event_1()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            float x = Random.Range(event_point[0].transform.position.x - 5, event_point[0].transform.position.x + 5);
+            float z = Random.Range(event_point[0].transform.position.z - 5, event_point[0].transform.position.z + 5);
+            Vector3 spawnposition = new Vector3(x, event_point[0].transform.position.y, z);
+
+            Instantiate(event_object[0], spawnposition, Quaternion.identity);
+        }
     }
 }
 
@@ -88,9 +111,10 @@ class Map_Bathroom : ABMap
         switch (i)
         {
             case 0:
-                test_event();
+                test_event_0();
                 break;
             case 1:
+                test_event_1();
                 break;
             case 2:
                 break;
@@ -99,9 +123,16 @@ class Map_Bathroom : ABMap
         }
     }
 
-    void test_event()
+    void test_event_0()
     {
-        Instantiate(event_object[0]);
+        for (int i = 0; i < 5; i++)
+            Instantiate(event_object[0]);
+    }
+
+    void test_event_1()
+    {
+        for (int i = 0; i < 5; i++)
+            Instantiate(event_object[0]);
     }
 }
 
@@ -117,9 +148,10 @@ class Map_Office : ABMap
         switch (i)
         {
             case 0:
-                test_event();
+                test_event_0();
                 break;
             case 1:
+                test_event_1();
                 break;
             case 2:
                 break;
@@ -128,8 +160,15 @@ class Map_Office : ABMap
         }
     }
 
-    void test_event()
+    void test_event_0()
     {
-        Instantiate(event_object[0]);
+        for(int i = 0; i < 5; i++)
+            Instantiate(event_object[0]);
+    }
+
+    void test_event_1()
+    {
+        for (int i = 0; i < 5; i++)
+            Instantiate(event_object[0]);
     }
 }

@@ -21,11 +21,11 @@ public class ReQuestButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
 
         ///
-        if (this.transform.GetChild(0).gameObject.active == false)
+        if (!transform.GetChild(0).gameObject.activeSelf)
         {
             image.color = new Color(1, 1, 1, 0);
-            this.transform.GetChild(0).gameObject.SetActive(true);
-            SceneFunction.game_map_name = "GAMESCENE";
+            transform.GetChild(0).gameObject.SetActive(true);
+            SceneFunction.game_map_name = "Kitchen";
         }
         else
         {

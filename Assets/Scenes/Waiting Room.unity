@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 57477202}
   - component: {fileID: 57477205}
   m_Layer: 5
-  m_Name: OFFICE
+  m_Name: Office
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -607,7 +607,7 @@ GameObject:
   - component: {fileID: 337967752}
   - component: {fileID: 337967755}
   m_Layer: 5
-  m_Name: KITCHEN
+  m_Name: Kitchen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1926,7 +1926,7 @@ GameObject:
   - component: {fileID: 1847394978}
   - component: {fileID: 1847394981}
   m_Layer: 5
-  m_Name: BATHROOM
+  m_Name: Bathroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2107,8 +2107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99258303bcf69ca4990af03730305b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map_selected: 0
-  scene_change_btn: {fileID: 0}
 --- !u!114 &1967425709
 MonoBehaviour:
   m_ObjectHideFlags: 0

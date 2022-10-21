@@ -24,13 +24,13 @@ public class CloseMonster : MonsterBase
             _defense = 11;
             _patrol_speed = 15f;
             _patrol_dist = 25f;
-            _chase_dist = 30f;
+            _chase_dist = 60f;
             _chase_speed = 20f;
             _attack_speed = 3f;
             _attack_dist = 5f;
-            _move_range = 50f;
+            _move_range = 100f;
             _idle_cool_time = 1f;
-            _chase_cool_time = 20f;
+            _chase_cool_time = 3f;
             _attack_cool_time = 1f;
             _is_dead = false;
             current_state = CurrentState.EPATROL;

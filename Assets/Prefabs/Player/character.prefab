@@ -511,7 +511,7 @@ Transform:
   m_GameObject: {fileID: 7855876306134900396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.19129515, y: 0.49999905, z: 2.8419867}
-  m_LocalScale: {x: 1, y: 1, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1945176939070198920}
@@ -534,7 +534,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!95 &6470557776872107281
 Animator:
@@ -643,7 +643,7 @@ MonoBehaviour:
   rigid: {fileID: 7527399381784831653}
   dash_force: 0
   jump_force: 0
-  pmr: {fileID: 6396095984657942138}
+  pmr: {fileID: 0}
 --- !u!114 &6396095984657942138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,7 +658,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 0
+  mainCamera: {fileID: 0}
 --- !u!1 &7967630379981022908
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,37 +757,6 @@ Transform:
   m_Father: {fileID: 8711798893486802975}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8664029039875250260
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7471673387226608471}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7471673387226608471
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8664029039875250260}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.71}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2613640573918750784}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4243521244331523391
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -808,7 +778,7 @@ PrefabInstance:
         type: 3}
       propertyPath: firePosition
       value: 
-      objectReference: {fileID: 8664029039875250260}
+      objectReference: {fileID: 0}
     - target: {fileID: 2207186406622467455, guid: 4e3892db34bd0264b9b0010c55704d9f,
         type: 3}
       propertyPath: m_RootOrder
@@ -863,6 +833,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2505990915175256820, guid: 4e3892db34bd0264b9b0010c55704d9f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e3892db34bd0264b9b0010c55704d9f, type: 3}

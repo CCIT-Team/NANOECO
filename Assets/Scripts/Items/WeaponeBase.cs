@@ -12,9 +12,7 @@ public abstract class WeaponeBase : MonoBehaviour
     public bool isdelay = false;    //딜레이 확인용
     public float knockback = 0; //공격시 적을 밀쳐내는 정도
 
-    public int ammo = 0;    //최대 탄수
-    public int currentammo = 0; //현재 탄수
-    public GameObject firePosition;
+
 
 
     IEnumerator AttackDelay() //공격 딜레이용 코루틴
