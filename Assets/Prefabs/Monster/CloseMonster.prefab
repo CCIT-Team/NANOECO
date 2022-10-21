@@ -221,10 +221,10 @@ MonoBehaviour:
   _current_hp: 0
   _damage: 0
   _defense: 0
-  _move_speed: 0
   _light_armor_percent: 0
   _heavy_armor_percent: 0
   _is_dead: 0
+  nav: {fileID: 8235777505056674391}
   target: {fileID: 0}
   locktarget: {fileID: 0}
   locktargetpos: {x: 0, y: 0, z: 0}

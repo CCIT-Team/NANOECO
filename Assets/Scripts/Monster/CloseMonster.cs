@@ -1,23 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.AI;
 
 public class CloseMonster : MonsterBase
 {
+    Action test;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(CheckState());
+        _wait_time = 5f;
+        test += Check_State;
+        test += Current_State;
+        test += Check_Isdead;
     }
 
-    IEnumerator CheckState()
+    void Check_State() //1번만 실행
     {//최대, 현재, 공격력, 방어력, 순찰속도, 순찰범위, 쫒아 범위,쫒는 속도, 공격 속도, 사정거리, 죽었는지
         if (!_is_dead)
         {
-            _wait_time = 5f;
-            yield return new WaitForSeconds(_wait_time);
-            nav = GetComponent<NavMeshAgent>();
+            //yield return new WaitForSeconds(_wait_time);
             _max_hp = 150;
             _current_hp = 150;
             _damage = 15;
@@ -39,17 +42,18 @@ public class CloseMonster : MonsterBase
 
     private void Update()
     {
-        //StartCoroutine(Non_State());
-        StartCoroutine(Current_State());
-        StartCoroutine(Check_Isdead());
-
+        current_time += Time.deltaTime;
+        if(current_time >= wait_time)
+        {
+            test();
+            test -= Check_State;
+        }
     }
 
-    IEnumerator Non_State()
+    void Non_State()
     {
         if(!_is_dead)
         {
-            yield return new WaitForSeconds(_wait_time);
             switch(non_combet_state)
             {
                 case NonCombetState.ETHINK:
@@ -59,11 +63,10 @@ public class CloseMonster : MonsterBase
         }
     }
     
-    IEnumerator Current_State()
+    void Current_State() //계속 확인
     {
         if(!_is_dead)
         {
-                yield return new WaitForSeconds(_wait_time);
                 switch (current_state)
                 {
                     case CurrentState.EIDLE:
@@ -86,9 +89,9 @@ public class CloseMonster : MonsterBase
         }
         
     }
-    IEnumerator Check_Isdead()
+    void Check_Isdead() //계속 확인
     {
-        yield return new WaitForSeconds(_wait_time);
+        
         Is_Dead();
     }
     protected override void Patrol()
