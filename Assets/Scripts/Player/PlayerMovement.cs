@@ -4,30 +4,31 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PlayerMovement : Character
 {
+    public GameManager gm;
     public Rigidbody rigid;
-    Animator ani;
+    public Animator ani;
     public float dash_force;
     bool isdash = false;
     public float jump_force;
     bool isjump = false;
     public PlayerMouseRotate pmr;
+    public GameObject[] item;
     // public Camera maincamera;
 
     void Start()
     {
-        ani = gameObject.GetComponent<Animator>();
         is_dead = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(is_dead == false)
+        if (is_dead == false)
         {
             Movement();
         }
         Dead();
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             current_hp -= 10;
         }
@@ -37,17 +38,20 @@ public class PlayerMovement : Character
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-       
-        if (horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0) {  ani.SetBool("Run", true); }
-        else {ani.SetBool("Run", false);}
+
+        if (horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0) { ani.SetBool("Run", true); }
+        else { ani.SetBool("Run", false); }
         Vector3 move = new Vector3(-horizontal * move_speed, 0f, -vertical * move_speed);
         rigid.velocity = move; Jump(); Dash();
     }
     void Jump()
     {
-        float jump = Input.GetAxisRaw("Jump");
-        rigid.AddForce(Vector3.up * jump * jump_force);
-        if (jump > 0)  { isjump = true;}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rigid.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
+            isjump = true;
+        }
+        else { isjump = false; /*rigid.*/}
     }
     void Dash()
     {
@@ -60,7 +64,7 @@ public class PlayerMovement : Character
     }
     void Dead()
     {
-        if(current_hp <= 0)
+        if (current_hp <= 0)
         {
             is_dead = true;
             pmr.enabled = false;
@@ -79,7 +83,7 @@ public class PlayerMovement : Character
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Monster") { current_hp -= col.gameObject.GetComponent<Character>().damage;}
+        if (col.gameObject.tag == "Monster") { current_hp -= col.gameObject.GetComponent<Character>().damage; }
     }
 }
 

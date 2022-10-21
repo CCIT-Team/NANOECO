@@ -14,7 +14,7 @@ public class Melee : WeaponeBase
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.Q)&&!isdelay)
+        if(Input.GetMouseButton(0)&&!isdelay)
         {
             isdelay = true;
             Attack();
@@ -28,6 +28,7 @@ public class Melee : WeaponeBase
         {
             other.gameObject.GetComponent<Rigidbody>().AddForce(knockback*Vector3.Normalize(other.transform.position - player.position),ForceMode.Impulse);
             other.gameObject.GetComponent<Character>().current_hp -= damage;
+            Debug.Log(other.gameObject.name);
         }
     }
 
