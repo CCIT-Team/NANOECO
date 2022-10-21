@@ -9,6 +9,8 @@ public class CloseMonster : MonsterBase
     void Start()
     {
         StartCoroutine(CheckState());
+        StartCoroutine(Current_State());
+        StartCoroutine(Check_Isdead());
     }
 
     IEnumerator CheckState()
@@ -39,9 +41,8 @@ public class CloseMonster : MonsterBase
 
     private void Update()
     {
-        StartCoroutine(Non_State());
-        StartCoroutine(Current_State());
-        StartCoroutine(Check_Isdead());
+        //StartCoroutine(Non_State());
+
     }
 
     IEnumerator Non_State()
@@ -60,32 +61,36 @@ public class CloseMonster : MonsterBase
     
     IEnumerator Current_State()
     {
-        if(!is_dead)
+        while(!is_dead)
         {
-            yield return new WaitForSeconds(_wait_time);
-            switch(current_state)
+            if(current_hp == 150)
             {
-                case CurrentState.EIDLE:
-                    Idle();
-                    break;
-                case CurrentState.EPATROL:
-                    Patrol();
-                    break;
-                case CurrentState.ECHASE:
-                    Chase();
-                    break;
-                case CurrentState.EATTACK:
-                    Attack();
-                    break;
-                case CurrentState.ESKILL:
-                    Skill();
-                    break;
+                yield return new WaitForSeconds(0.1f);
+                switch (current_state)
+                {
+                    case CurrentState.EIDLE:
+                        Idle();
+                        break;
+                    case CurrentState.EPATROL:
+                        Patrol();
+                        break;
+                    case CurrentState.ECHASE:
+                        Chase();
+                        break;
+                    case CurrentState.EATTACK:
+                        Attack();
+                        break;
+                    case CurrentState.ESKILL:
+                        Skill();
+                        break;
+                }
             }
         }
+        
     }
     IEnumerator Check_Isdead()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(_wait_time);
         Is_Dead();
     }
     protected override void Patrol()
