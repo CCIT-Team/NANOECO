@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.AI;
 
 public class MonsterBase : Character
 {
-    
-    protected NavMeshAgent nav;
+    [Space(10f)]
+    public NavMeshAgent nav;
     [SerializeField]
     protected GameObject target;
     [SerializeField]
@@ -16,6 +17,7 @@ public class MonsterBase : Character
     [SerializeField]
     protected Transform playertransform;
 
+    [Space(10f)]
     [Header("STATS")]
     [SerializeField]
     protected float _patrol_speed; //¼øÂû¼Óµµ
@@ -38,16 +40,18 @@ public class MonsterBase : Character
     [SerializeField]
     protected float _attack_cool_time;
 
+    [Space(10f)]
     [Header("STATE")]
     [SerializeField]
     protected NonCombetState non_combet_state = new NonCombetState();
     [SerializeField]
     protected CurrentState current_state = new CurrentState();
 
+    [Space(10f)]
     [Header("LodingTime")]
     [SerializeField]
     protected float _wait_time;
-
+    public float current_time = 0;
     
 
     public float patrol_speed { get => _patrol_speed;  set => _patrol_speed = value; }
@@ -213,7 +217,7 @@ public class MonsterBase : Character
 
         for (int i = 0; i < 30; i++)
         {
-            Vector3 randomPoint = center + Random.insideUnitSphere * range;
+            Vector3 randomPoint = center + UnityEngine.Random.insideUnitSphere * range;
             NavMeshHit hit;
             if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
             {
