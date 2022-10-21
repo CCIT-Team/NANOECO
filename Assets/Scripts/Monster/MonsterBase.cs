@@ -50,17 +50,17 @@ public class MonsterBase : Character
 
     
 
-    public float patrol_speed { get { return _patrol_speed; } set { _patrol_speed = value; } }
-    public float patrol_dist { get { return _patrol_dist; } set { _patrol_dist = value; } }
-    public float chase_dist { get { return _chase_dist; } set { _chase_dist = value; } }
-    public float chase_speed { get { return _chase_speed; } set { _chase_speed = value; } }
-    public float attack_speed { get { return _attack_speed; } set { _attack_speed = value; } }
-    public float attack_dist { get { return _attack_dist; } set { _attack_dist = value; } }
-    public float move_range { get { return _move_range; } set { _move_range = value; } }
-    public float wait_time { get { return _wait_time; } set { _wait_time = value; } }
-    public float idle_cool_time { get { return _idle_cool_time; } set { _idle_cool_time = value; } }
-    public float chase_cool_time { get { return _chase_cool_time; } set { _chase_cool_time = value; } }
-    public float attack_cool_time { get { return _attack_cool_time; } set { _attack_cool_time = value; } }
+    public float patrol_speed { get => _patrol_speed;  set => _patrol_speed = value; }
+    public float patrol_dist { get => _patrol_dist;  set => _patrol_dist = value;  }
+    public float chase_dist { get => _chase_dist;  set => _chase_dist = value;  }
+    public float chase_speed { get =>  _chase_speed;  set => _chase_speed = value;  }
+    public float attack_speed { get => _attack_speed;  set => _attack_speed = value;  }
+    public float attack_dist { get => _attack_dist;  set => _attack_dist = value;  }
+    public float move_range { get => _move_range;  set => _move_range = value;  }
+    public float wait_time { get => _wait_time;  set => _wait_time = value;  }
+    public float idle_cool_time { get =>  _idle_cool_time;  set => _idle_cool_time = value;  }
+    public float chase_cool_time { get => _chase_cool_time;  set => _chase_cool_time = value;  }
+    public float attack_cool_time { get => _attack_cool_time;  set => _attack_cool_time = value;  }
 
 
 

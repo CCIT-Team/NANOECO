@@ -1,27 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
-public class Sington : MonoBehaviour
+public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    public Sington instance = null;
+    private static T _instance;
 
-    private void Awake()
+    public static T Instance
     {
-        if(null == instance)
+        get
         {
-            instance = this;
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType(typeof(T)) as T;
+
+                if (_instance == null)
+                {
+                    Debug.LogError("There's no active " + typeof(T) + " in this scene");
+                }
+            }
+
+            return _instance;
         }
-    }
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
