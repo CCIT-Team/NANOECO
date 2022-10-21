@@ -4,16 +4,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PlayerMovement : Character
 {
-    public GameManager gm;
-    public Rigidbody rigid;
-    public Animator ani;
-    public float dash_force;
-    bool isdash = false;
-    public float jump_force;
-    bool isjump = false;
     public PlayerMouseRotate pmr;
     public GameObject[] item;
-    // public Camera maincamera;
+    public Rigidbody rigid;
+    public Animator ani;
+    public CharacterController cc; 
+
+    public float jump_force;
+    public float dash_force;
+
+    bool isdash = false;
+    bool isjump = false;
+    
 
     void Start()
     {
@@ -23,10 +25,7 @@ public class PlayerMovement : Character
     // Update is called once per frame
     void Update()
     {
-        if (is_dead == false)
-        {
-            Movement();
-        }
+        Movement();
         Dead();
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -39,10 +38,21 @@ public class PlayerMovement : Character
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        if (horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0) { ani.SetBool("Run", true); }
-        else { ani.SetBool("Run", false); }
-        Vector3 move = new Vector3(-horizontal * move_speed, 0f, -vertical * move_speed);
-        rigid.velocity = move; Jump(); Dash();
+        Vector3 move = new Vector3(-Input.GetAxis("Horizontal"),0, -Input.GetAxis("Vertical"));
+        cc.Move(move * Time.deltaTime * move_speed);
+        if (horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0) 
+        { 
+            ani.SetBool("Run", true);
+        }
+        else 
+        { 
+            ani.SetBool("Run", false);
+        } 
+        //rigid.velocity = move * move_speed * Time.deltaTime; 
+
+        Jump(); 
+
+        Dash();
     }
     void Jump()
     {
@@ -51,7 +61,10 @@ public class PlayerMovement : Character
             rigid.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
             isjump = true;
         }
-        else { isjump = false; /*rigid.*/}
+        //if(Input.GetKeyUp(KeyCode.Space))
+        //{
+        //    rigid.AddForceAtPosition(Vector3.down * 400, Vector3.down);
+        //}
     }
     void Dash()
     {
@@ -83,21 +96,9 @@ public class PlayerMovement : Character
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Monster") { current_hp -= col.gameObject.GetComponent<Character>().damage; }
+        if (col.gameObject.layer == 8) { current_hp -= col.gameObject.GetComponent<Character>().damage; }
+        if (col.gameObject.layer == 7) { isjump = false; }
     }
 }
 
-public interface IPlayer
-{
-    void Connect()
-    {
-        Debug.Log("Connect");
-        SceneManager.LoadScene(1);//플레이어들이 연결되어 시작 버튼을 누르면 게임 씬으로 이동
-    }
-    void Disconnect()
-    {
-        Debug.Log("DisConnect");
-        SceneManager.LoadScene(0);//연결이 끊기면 대기실로 돌아감
-    }
-}
 

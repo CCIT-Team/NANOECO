@@ -511,7 +511,7 @@ Transform:
   m_GameObject: {fileID: 7855876306134900396}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.19129515, y: 0.49999905, z: 2.8419867}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: -1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1945176939070198920}
@@ -534,7 +534,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!95 &6470557776872107281
 Animator:
@@ -632,18 +632,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: 
-  _max_hp: 0
-  _current_hp: 0
+  _max_hp: 100
+  _current_hp: 100
   _damage: 0
   _defense: 0
-  _move_speed: 0
+  _move_speed: 20
   _light_armor_percent: 0
   _heavy_armor_percent: 0
   _is_dead: 0
   rigid: {fileID: 7527399381784831653}
-  dash_force: 0
-  jump_force: 0
-  pmr: {fileID: 0}
+  ani: {fileID: 6470557776872107281}
+  dash_force: 300
+  jump_force: 300
+  pmr: {fileID: 6396095984657942138}
+  item: []
 --- !u!114 &6396095984657942138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,7 +660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483647
   mainCamera: {fileID: 0}
 --- !u!1 &7967630379981022908
 GameObject:
