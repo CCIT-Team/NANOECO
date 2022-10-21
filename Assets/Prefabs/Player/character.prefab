@@ -495,6 +495,7 @@ GameObject:
   - component: {fileID: 5463062671331414382}
   - component: {fileID: 5939051507432723657}
   - component: {fileID: 6396095984657942138}
+  - component: {fileID: 4652860432222076600}
   m_Layer: 0
   m_Name: character
   m_TagString: Untagged
@@ -663,6 +664,24 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483647
   mainCamera: {fileID: 0}
+--- !u!143 &4652860432222076600
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7855876306134900396}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 0.01568973
+  m_Radius: 0.020778764
+  m_SlopeLimit: 45
+  m_StepOffset: 0
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7967630379981022908
 GameObject:
   m_ObjectHideFlags: 0
