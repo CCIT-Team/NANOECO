@@ -11,11 +11,11 @@ public class MonsterBase : Character
     [SerializeField]
     protected GameObject target;
     [SerializeField]
-    protected GameObject locktarget;
+    protected GameObject lock_target;
     [SerializeField]
-    protected Vector3 locktargetpos;
+    protected Vector3 lock_target_pos;
     [SerializeField]
-    protected Transform playertransform;
+    protected Transform player_transform;
 
     [Space(10f)]
     [Header("STATS")]
@@ -38,7 +38,7 @@ public class MonsterBase : Character
     [SerializeField]
     protected float _chase_cool_time;
     [SerializeField]
-    protected float _attack_cool_time;
+    protected float _skill_cool_time;
 
     [Space(10f)]
     [Header("STATE")]
@@ -64,11 +64,11 @@ public class MonsterBase : Character
     public float wait_time { get => _wait_time;  set => _wait_time = value;  }
     public float idle_cool_time { get =>  _idle_cool_time;  set => _idle_cool_time = value;  }
     public float chase_cool_time { get => _chase_cool_time;  set => _chase_cool_time = value;  }
-    public float attack_cool_time { get => _attack_cool_time;  set => _attack_cool_time = value;  }
+    public float skill_cool_time { get => _skill_cool_time;  set => _skill_cool_time = value;  }
 
 
 
-    float currnetcool = 0f;
+    protected float currnetcool = 0f;
     
 
     //패트롤
@@ -88,13 +88,13 @@ public class MonsterBase : Character
     //플레이어 찾기
     protected virtual void Update_Patrol()
     {
-        target = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag("Player"); //레이어로 찾는 걸로 변경 필요
         if (target == null)
             return;
         float distance = (target.transform.position - transform.position).magnitude;
         if (distance <= patrol_dist)
         {
-            locktarget = target;
+            lock_target = target;
             current_state = CurrentState.ECHASE;
             return;
         }
@@ -105,11 +105,11 @@ public class MonsterBase : Character
     {
         currnetcool += Time.deltaTime;
         
-        if (locktarget != null)
+        if (lock_target != null)
         {
             current_state = CurrentState.ECHASE;
         }
-        if(locktarget == null)
+        if(lock_target == null)
         {
             if (currnetcool >= idle_cool_time)
             {
@@ -127,11 +127,11 @@ public class MonsterBase : Character
     //체이싱
     protected virtual void Chase()
     {
-        if (locktarget != null)
+        if (lock_target != null)
         {
             currnetcool += Time.deltaTime;
-            locktargetpos = locktarget.transform.position;
-            float dist = (locktargetpos - transform.position).magnitude;
+            lock_target_pos = lock_target.transform.position;
+            float dist = (lock_target_pos - transform.position).magnitude;
             //공격 볌위
             if (dist <= attack_dist)
             {
@@ -141,7 +141,7 @@ public class MonsterBase : Character
             if (dist <= chase_dist)
             {
                 nav.speed = chase_speed;
-                nav.SetDestination(locktargetpos);
+                nav.SetDestination(lock_target_pos);
             }
 
             if(dist > chase_dist)
@@ -149,7 +149,7 @@ public class MonsterBase : Character
                 if(currnetcool >= chase_cool_time)
                 {
                     
-                    locktarget = null;
+                    lock_target = null;
                     current_state = CurrentState.EIDLE;
                     currnetcool = 0f;
                 }
@@ -159,18 +159,18 @@ public class MonsterBase : Character
 
     protected virtual void Attack()
     {
-        if (locktarget != null)
+        if (lock_target != null)
         {
-            Character character = locktarget.GetComponent<Character>();
+            Character character = lock_target.GetComponent<Character>();
             //데미지 수식이 들어가야 됨
             currnetcool += Time.deltaTime;
 
             if (character.current_hp > 0)
             {
-                float distance = (locktarget.transform.position - transform.position).magnitude;
+                float distance = (lock_target.transform.position - transform.position).magnitude;
                 if (distance <= attack_dist)
                 {
-                    if (currnetcool >= attack_cool_time)
+                    if (currnetcool >= attack_speed)
                     {
                         character.current_hp -= damage;
                         currnetcool = 0f;
