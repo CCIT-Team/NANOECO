@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : Character
 {
     public PlayerMouseRotate pmr;
-    public GameObject[] item;
+    public GameObject[] item = new GameObject[2];
     public Rigidbody rigid;
     public Animator ani;
     public CharacterController cc; 
@@ -50,19 +50,19 @@ public class PlayerMovement : Character
         { 
             ani.SetBool("Run", false);
         }
-        //rigid.velocity = move * move_speed * Time.deltaTime; 
 
         if (Input.GetKeyDown(KeyCode.Space))//점프
         { 
-            move. y = jump_force;
+            //move. y = jump_force;
+            rigid.AddForce(Vector3.up * jump_force,ForceMode.Impulse);
             isjump = true;
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))//대쉬
         {
-            move = Vector3.forward * dash_force;
+            move =  dash_force * move;    
             isdash = true;
         }
-        else { isdash = false; }
+        else { isdash = false; move = move_force * move; }
         cc.Move(move);
     }
     
