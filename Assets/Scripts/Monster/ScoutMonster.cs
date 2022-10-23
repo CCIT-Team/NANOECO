@@ -7,6 +7,12 @@ using UnityEngine.AI;
 public class ScoutMonster : MonsterBase
 {
     Action test;
+
+    [Header("이벤트 세팅")]
+    public EventData event_data;
+    public List<GameObject> event_point;
+    public bool is_run;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +20,7 @@ public class ScoutMonster : MonsterBase
         test += Check_State;
         test += Current_State;
         test += Check_Isdead;
+        Skill();
     }
 
     void Check_State() //1번만 실행
@@ -91,7 +98,9 @@ public class ScoutMonster : MonsterBase
 
     void Skill()
     {
-
+        event_data.event_point = event_point;
+        event_data.Send_Event();
+        is_run = true;
     }
 
     private void OnDrawGizmos()
