@@ -95,7 +95,7 @@ public class SimpleFarMon : MonsterBase
                 if (currnetcool >= attack_speed)
                 {
                     nav.stoppingDistance = 15f;
-                    Instantiate(bullets, lock_target_pos, Quaternion.identity);
+                    Instantiate(bullets, shot_pos.position, Quaternion.identity);
                     //var bullet = bullet_pool.Get();
                     //bullet.Shoot();
                     currnetcool = 0f;
