@@ -13,6 +13,10 @@ public class MonsterBase : Character
     [SerializeField]
     protected GameObject target;
     [SerializeField]
+    protected GameObject[] test_target;
+    [SerializeField]
+    protected LayerMask target_mask;
+    [SerializeField]
     protected GameObject lock_target;
     [SerializeField]
     protected Vector3 lock_target_pos;
@@ -97,6 +101,20 @@ public class MonsterBase : Character
         }
     }
 
+    protected virtual void Get_Targets()//포톤 적용후 사용 예정
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, patrol_dist, target_mask);
+        for(int i = 0; i < colliders.Length; i++)
+        {
+            test_target = colliders[i].GetComponents<GameObject>();
+            if (test_target != null && !is_dead)
+            {
+                current_state = CurrentState.ECHASE;
+                break;
+            }
+        }
+    }
+
     protected virtual void Idle()
     {
         currnetcool += Time.deltaTime;
@@ -151,6 +169,7 @@ public class MonsterBase : Character
     {
         if (lock_target != null)
         {
+            lock_target_pos = lock_target.transform.position;
             Character character = lock_target.GetComponent<Character>();
             //데미지 수식이 들어가야 됨
             currnetcool += Time.deltaTime;
@@ -158,6 +177,7 @@ public class MonsterBase : Character
             if (character.current_hp > 0)
             {
                 float distance = (lock_target.transform.position - transform.position).magnitude;
+                transform.LookAt(lock_target_pos);
                 if (distance <= attack_dist)
                 {
                     if (currnetcool >= attack_speed)
