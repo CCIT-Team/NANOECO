@@ -40,7 +40,7 @@ public class PlayerMouseRotate : MonoBehaviour
         var (success, position) = GetMousePosition();
         if (success)
         {
-            var direction = position - transform.position;
+            var direction = transform.position - position;
             direction.y = 0;
             transform.forward = direction;
         }

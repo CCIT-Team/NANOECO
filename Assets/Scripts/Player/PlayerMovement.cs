@@ -30,7 +30,7 @@ public class PlayerMovement : Character
     // Update is called once per frame
     void Update()
     {
-            Movement();
+        Movement();
         ItemChange();
         Dead();
         if (Input.GetKeyDown(KeyCode.P))

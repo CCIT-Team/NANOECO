@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3edb25a0ab632749974f190ccbc337b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1865884276}
   smooth_speed: 0.125
   offset: {x: 0, y: 28.759998, z: 23.161987}
 --- !u!1 &340454340
@@ -1465,10 +1465,15 @@ PrefabInstance:
       propertyPath: groundMask.m_Bits
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 6470557776872107281, guid: f5d340f340cf72f4bbd16d23f9e4624c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6753345542122495657, guid: f5d340f340cf72f4bbd16d23f9e4624c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6753345542122495660, guid: f5d340f340cf72f4bbd16d23f9e4624c,
         type: 3}
@@ -1626,6 +1631,12 @@ GameObject:
 --- !u!143 &1865884268 stripped
 CharacterController:
   m_CorrespondingSourceObject: {fileID: 4652860432222076600, guid: f5d340f340cf72f4bbd16d23f9e4624c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1644953946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1865884276 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7371967406633403414, guid: f5d340f340cf72f4bbd16d23f9e4624c,
     type: 3}
   m_PrefabInstance: {fileID: 1644953946}
   m_PrefabAsset: {fileID: 0}
