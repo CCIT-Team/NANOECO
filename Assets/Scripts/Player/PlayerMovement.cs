@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : Character
 {
     public PlayerMouseRotate pmr;
-    public GameObject[] item = new GameObject[2];
+    public GameObject[] item;
     public Rigidbody rigid;
     public Animator ani;
     public CharacterController cc; 
@@ -14,6 +14,7 @@ public class PlayerMovement : Character
     public float dash_force;
     public float move_force;
 
+    int current_item = 0;
     bool isdash = false;
     bool isjump = false;
     
@@ -21,12 +22,16 @@ public class PlayerMovement : Character
     void Start()
     {
         is_dead = false;
+        item[0].SetActive(true);
+        item[1].SetActive(false);
+        item[2].SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
             Movement();
+        ItemChange();
         Dead();
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -42,14 +47,8 @@ public class PlayerMovement : Character
         Vector3 move = new Vector3(-Input.GetAxis("Horizontal"),0, -Input.GetAxis("Vertical"));
         move *= move_force;
         if (!cc.isGrounded) { move.y -= 9.81f * Time.deltaTime; }
-        if (horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0) 
-        { 
-            ani.SetBool("Run", true);
-        }
-        else 
-        { 
-            ani.SetBool("Run", false);
-        }
+        if (horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0) { ani.SetBool("Run", true);}
+        else  { ani.SetBool("Run", false);}
 
         if (Input.GetKeyDown(KeyCode.Space))//점프
         { 
@@ -64,6 +63,7 @@ public class PlayerMovement : Character
         }
         else { isdash = false; move = move_force * move; }
         cc.Move(move);
+        AttackAnimation();
     }
     
     void Dead()
@@ -83,6 +83,45 @@ public class PlayerMovement : Character
         //부활 애니메이션 추가
         //transform.position = //스폰 위치
 
+    }
+
+    public void AttackAnimation()
+    {
+        if (current_item  == 0 && item[0].name == "Melee1" && Input.GetMouseButtonDown(0))
+        {
+            ani.SetBool("Close Attack", true);
+        }
+        else { ani.SetBool("Close Attack", false); }
+
+        if (current_item == 1 && Input.GetMouseButtonDown(0))
+        {
+            ani.SetBool("Bomb", true);
+        }
+        else { ani.SetBool("Bomb", false); }
+    }
+    public void ItemChange()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            item[0].SetActive(true);//주무기
+            item[1].SetActive(false);//아이템1
+            item[2].SetActive(false);//아이템2
+            current_item = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            item[0].SetActive(false);
+            item[1].SetActive(true);
+            item[2].SetActive(false);
+            current_item = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            item[0].SetActive(false);
+            item[1].SetActive(false);
+            item[2].SetActive(true);
+            current_item = 2;
+        }
     }
 
     private void OnCollisionEnter(Collision col)
