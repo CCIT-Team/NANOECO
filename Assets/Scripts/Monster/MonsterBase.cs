@@ -216,6 +216,7 @@ public class MonsterBase : Character
                 current_state = CurrentState.EIDLE;
                 _ManagedPool.Release(this);
                 Init_Mon();
+                Destroy(gameObject);
             }
         }
     }

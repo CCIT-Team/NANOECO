@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af614cea3c1314b41976651c8668c8de, type: 3}
+  m_Name: ScoutEventData
+  m_EditorClassIdentifier: 
+  map: 0
+  event_num: 3
+  event_object:
+  - {fileID: 1053922221722007807, guid: 70cd8b5846d93c247a305b33b939eca5, type: 3}
+  - {fileID: 2550191083299411361, guid: 7d2a0d81ab1e5f545a22af2d86645b23, type: 3}
+  event_point: []
