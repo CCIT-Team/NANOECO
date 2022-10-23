@@ -100,7 +100,6 @@ public class ScoutMonster : MonsterBase
     {
         event_data.event_point = event_point;
         event_data.Send_Event();
-        is_run = true;
     }
 
     private void OnDrawGizmos()

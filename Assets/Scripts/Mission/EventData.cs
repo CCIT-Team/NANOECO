@@ -68,6 +68,7 @@ class Map_Kitchen : ABMap
                 test_event_1();
                 break;
             case 2:
+                test_event_2();
                 break;
             case 3:
                 break;

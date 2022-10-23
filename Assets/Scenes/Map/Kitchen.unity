@@ -2000,6 +2000,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoutMonster (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8235777505056674389, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8235777505056674390, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
       propertyPath: event_data
@@ -2925,6 +2930,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoutMonster (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8235777505056674389, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8235777505056674390, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
       propertyPath: event_data
@@ -3263,10 +3273,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4031956079804804048, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235777503417674249, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8235777504511648059, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8235777505056674385, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
@@ -3327,6 +3347,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ScoutMonster
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235777505056674389, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8235777505056674390, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
@@ -3983,6 +4008,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoutMonster (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8235777505056674389, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8235777505056674390, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
       propertyPath: event_data
@@ -4091,6 +4121,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ScoutMonster (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235777505056674389, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8235777505056674390, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
@@ -5083,6 +5118,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ScoutMonster (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235777505056674389, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8235777505056674390, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
@@ -6199,10 +6239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3395d650f34b5d4bb658bc57405cf40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monters:
-  - {fileID: 1053922221722007807, guid: 70cd8b5846d93c247a305b33b939eca5, type: 3}
-  - {fileID: 2550191083299411361, guid: 7d2a0d81ab1e5f545a22af2d86645b23, type: 3}
-  par: {fileID: 2118262329}
 --- !u!1001 &5849970608289130438
 PrefabInstance:
   m_ObjectHideFlags: 0
