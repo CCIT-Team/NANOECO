@@ -76,7 +76,7 @@ class Map_Kitchen : ABMap
 
     void test_event_0()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 50; i++)
         {
             float x = Random.Range(event_point[0].transform.position.x - 5, event_point[0].transform.position.x + 5);
             float z = Random.Range(event_point[0].transform.position.z - 5, event_point[0].transform.position.z + 5);
@@ -88,7 +88,7 @@ class Map_Kitchen : ABMap
 
     void test_event_1()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 50; i++)
         {
             float x = Random.Range(event_point[0].transform.position.x - 5, event_point[0].transform.position.x + 5);
             float z = Random.Range(event_point[0].transform.position.z - 5, event_point[0].transform.position.z + 5);
