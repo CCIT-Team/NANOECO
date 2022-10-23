@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
+using Photon.Pun.Demo.PunBasics;
 
 public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -14,6 +15,7 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public TextMeshProUGUI nickname;
     public CharacterController cc;
 
+    Vector3 curPos;
     public float move_force;
     public float dash_force;
     public float jump_force;
@@ -25,7 +27,7 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-
+            curPos = (Vector3)stream.ReceiveNext();
         }
     }
 
@@ -34,20 +36,21 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
         nickname.text = pv.IsMine ? PhotonNetwork.NickName : pv.Owner.NickName;
         nickname.color = pv.IsMine ? Color.green : Color.red;
 
-        this.enabled = true;
+        //this.enabled = true;
     }
 
     void Start()
     {
-        enabled = true;
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-        enabled = true;
-        if(pv.IsMine){Move();}
+        //enabled = true;
+        if(pv.IsMine && PhotonNetwork.IsConnected){Move();}
         if(Input.GetKeyDown(KeyCode.Alpha1)){Application.Quit();}
+        pv.RPC("DestroyRPC", RpcTarget.AllBuffered);
     }
 
     void Move()
@@ -79,6 +82,7 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
         else { move = move_force * move; }
         cc.Move(move);
     }
-
+    //[PunRPC]
+    //void DestroyRPC() => Destroy(gameObject);
 
 }
