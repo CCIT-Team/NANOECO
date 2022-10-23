@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17357825, g: 0.21699902, b: 0.2991029, a: 1}
+  m_IndirectSpecularColor: {r: 0.17357852, g: 0.21699947, b: 0.2991036, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2000,6 +2000,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoutMonster (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8235777505056674389, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8235777505056674390, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
       propertyPath: event_data
@@ -2459,7 +2464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 210672220}
   smooth_speed: 0.125
-  offset: {x: 0, y: 42.2, z: 50.5}
+  offset: {x: 0, y: 40, z: 30}
 --- !u!114 &764309331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2551,14 +2556,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 764309329}
-  m_LocalRotation: {x: 0, y: 0.9139072, z: -0.4059233, w: 0}
+  m_LocalRotation: {x: 0, y: 0.8870109, z: -0.46174863, w: 0}
   m_LocalPosition: {x: -1.1873486, y: 10.660012, z: 24.958559}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 47.898, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 55, y: 180, z: 0}
 --- !u!1001 &764403009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2925,6 +2930,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoutMonster (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8235777505056674389, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8235777505056674390, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
       propertyPath: event_data
@@ -3263,10 +3273,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4031956079804804048, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235777503417674249, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8235777504511648059, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8235777505056674385, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
@@ -3327,6 +3347,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ScoutMonster
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235777505056674389, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8235777505056674390, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
@@ -3983,6 +4008,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoutMonster (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8235777505056674389, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8235777505056674390, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
       propertyPath: event_data
@@ -4091,6 +4121,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ScoutMonster (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8235777505056674389, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8235777505056674390, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
@@ -4526,6 +4561,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3142368286397287290, guid: f5d340f340cf72f4bbd16d23f9e4624c,
+        type: 3}
+      propertyPath: damage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142368286397287290, guid: f5d340f340cf72f4bbd16d23f9e4624c,
+        type: 3}
+      propertyPath: realdelay
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 5939051507432723657, guid: f5d340f340cf72f4bbd16d23f9e4624c,
         type: 3}
       propertyPath: _max_hp
@@ -4536,6 +4581,11 @@ PrefabInstance:
       propertyPath: _current_hp
       value: 10100
       objectReference: {fileID: 0}
+    - target: {fileID: 5939051507432723657, guid: f5d340f340cf72f4bbd16d23f9e4624c,
+        type: 3}
+      propertyPath: item.Array.data[0]
+      value: 
+      objectReference: {fileID: 1662970516}
     - target: {fileID: 6396095984657942138, guid: f5d340f340cf72f4bbd16d23f9e4624c,
         type: 3}
       propertyPath: mainCamera
@@ -4545,6 +4595,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6753345542122495661, guid: f5d340f340cf72f4bbd16d23f9e4624c,
+        type: 3}
+      propertyPath: damage
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6753345542122495661, guid: f5d340f340cf72f4bbd16d23f9e4624c,
+        type: 3}
+      propertyPath: knockback
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6753345542122495661, guid: f5d340f340cf72f4bbd16d23f9e4624c,
+        type: 3}
+      propertyPath: realdelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6753345542122495661, guid: f5d340f340cf72f4bbd16d23f9e4624c,
+        type: 3}
+      propertyPath: attackspeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7371967406633403414, guid: f5d340f340cf72f4bbd16d23f9e4624c,
         type: 3}
@@ -5084,6 +5154,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoutMonster (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8235777505056674389, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8235777505056674390, guid: 3cfe1fe2d974e5f469f520026c3bd09a,
         type: 3}
       propertyPath: event_data
@@ -5173,6 +5248,12 @@ MonoBehaviour:
   _light_armor_percent: 0
   _heavy_armor_percent: 0
   _is_dead: 0
+--- !u!1 &1662970516 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6753345542122495660, guid: f5d340f340cf72f4bbd16d23f9e4624c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1486055324}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1706273685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6199,10 +6280,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3395d650f34b5d4bb658bc57405cf40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monters:
-  - {fileID: 1053922221722007807, guid: 70cd8b5846d93c247a305b33b939eca5, type: 3}
-  - {fileID: 2550191083299411361, guid: 7d2a0d81ab1e5f545a22af2d86645b23, type: 3}
-  par: {fileID: 2118262329}
 --- !u!1001 &5849970608289130438
 PrefabInstance:
   m_ObjectHideFlags: 0
