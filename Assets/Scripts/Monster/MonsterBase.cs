@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.AI;
-using UnityEngine.Pool;
 
 public class MonsterBase : Character
 {
-    protected IObjectPool<MonsterBase> _ManagedPool;
     [Space(10f)]
     public NavMeshAgent nav;
     [SerializeField]
@@ -213,10 +211,9 @@ public class MonsterBase : Character
             is_dead = true;
             if (is_dead)
             {
-                current_state = CurrentState.EIDLE;
-                _ManagedPool.Release(this);
-                Init_Mon();
                 Destroy(gameObject);
+                current_state = CurrentState.EIDLE;
+                Init_Mon();
             }
         }
     }
@@ -262,8 +259,4 @@ public class MonsterBase : Character
         return point == null ? Vector3.zero : point.position;
     }
 
-    public void Set_Managed_Pool(IObjectPool<MonsterBase> pool)
-    {
-        _ManagedPool = pool;
-    }
 }
