@@ -51,9 +51,9 @@ public class PlayerMovement : Character
         else  { ani.SetBool("Run", false);}
 
         if (Input.GetKeyDown(KeyCode.Space))//점프
-        { 
+        {
             //move. y = jump_force;
-            rigid.AddForce(Vector3.up * jump_force,ForceMode.Impulse);
+            move = jump_force * move;
             isjump = true;
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))//대쉬
