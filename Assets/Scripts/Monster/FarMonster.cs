@@ -50,19 +50,6 @@ public class FarMonster : MonsterBase
         }
     }
 
-    void Non_State()
-    {
-        if (!_is_dead)
-        {
-            switch (non_combet_state)
-            {
-                case NonCombetState.ETHINK:
-                    Think();
-                    break;
-            }
-        }
-    }
-
     void Current_State() //계속 확인
     {
         if (!_is_dead)

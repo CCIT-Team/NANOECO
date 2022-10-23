@@ -10,7 +10,7 @@ public class SimpleFarMon : MonsterBase
     public GameObject bullets;
     private void Start()
     {
-        _wait_time = 5f;
+        _wait_time = 0.5f;
         test += Check_State;
         test += Simple_State;
         test += Check_Isdead;
@@ -56,6 +56,9 @@ public class SimpleFarMon : MonsterBase
         {
             switch (current_state)
             {
+                case CurrentState.EIDLE:
+                    Idle();
+                    break;
                 case CurrentState.ECHASE:
                     Chase();
                     break;
@@ -114,5 +117,10 @@ public class SimpleFarMon : MonsterBase
         {
             current_state = CurrentState.EATTACK;
         }
+    }
+
+    protected override void Idle()
+    {
+        current_state = CurrentState.ECHASE;
     }
 }

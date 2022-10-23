@@ -537,9 +537,10 @@ MonoBehaviour:
   _is_dead: 0
   nav: {fileID: 1053922221722007805}
   target: {fileID: 0}
-  locktarget: {fileID: 0}
-  locktargetpos: {x: 0, y: 0, z: 0}
-  playertransform: {fileID: 0}
+  lock_target: {fileID: 0}
+  lock_target_pos: {x: 0, y: 0, z: 0}
+  player_transform: {fileID: 0}
+  init_pos: {x: 0, y: 0, z: 0}
   _patrol_speed: 0
   _patrol_dist: 0
   _chase_dist: 0
@@ -550,7 +551,6 @@ MonoBehaviour:
   _idle_cool_time: 0
   _chase_cool_time: 0
   _skill_cool_time: 0
-  non_combet_state: 0
   current_state: 0
   _wait_time: 0
   current_time: 0
@@ -567,7 +567,7 @@ NavMeshAgent:
   m_Speed: 10
   m_Acceleration: 20
   avoidancePriority: 50
-  m_AngularSpeed: 480
+  m_AngularSpeed: 560
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1

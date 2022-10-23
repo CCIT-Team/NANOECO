@@ -5,7 +5,7 @@ using UnityEngine;
 public class MonsterTakeDamage : MonoBehaviour
 {
     public MonsterBase monbase;
-    public CloseMonster closemonster;
+    public ScoutMonster closemonster;
 
     private void Start()
     {

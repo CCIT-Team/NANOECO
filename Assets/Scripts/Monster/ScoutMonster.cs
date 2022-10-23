@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.AI;
 
-public class CloseMonster : MonsterBase
+public class ScoutMonster : MonsterBase
 {
     Action test;
     // Start is called before the first frame update
@@ -49,19 +49,6 @@ public class CloseMonster : MonsterBase
             test -= Check_State;
         }
     }
-
-    void Non_State()
-    {
-        if(!_is_dead)
-        {
-            switch(non_combet_state)
-            {
-                case NonCombetState.ETHINK:
-                    Think();
-                    break;
-            }
-        }
-    }
     
     void Current_State() //계속 확인
     {
@@ -91,7 +78,6 @@ public class CloseMonster : MonsterBase
     }
     void Check_Isdead() //계속 확인
     {
-        
         Is_Dead();
     }
     protected override void Patrol()
