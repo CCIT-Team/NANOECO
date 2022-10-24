@@ -6,6 +6,10 @@ public class Melee : WeaponeBase
 {
     public Transform player;
     public GameObject center;
+    bool isattack = false;
+
+    Animator ani;
+
 
     void Start()
     {
@@ -14,17 +18,12 @@ public class Melee : WeaponeBase
 
     void Update()
     {
-        if(Input.GetMouseButton(0)&&!isdelay)
-        {
-            isdelay = true;
-            Attack();
-            StartCoroutine("AttackDelay");
-        }
+        isattack = ani.GetBool("Close Attack");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 8)
+        if (other.gameObject.layer == 8 && isattack)
         {
             other.gameObject.GetComponent<Rigidbody>().AddForce(knockback*Vector3.Normalize(other.transform.position - player.position),ForceMode.Impulse);
             other.gameObject.GetComponent<Character>().current_hp -= damage;
