@@ -20,7 +20,6 @@ public class ScoutMonster : MonsterBase
         test += Check_State;
         test += Current_State;
         test += Check_Isdead;
-        Skill();
     }
 
     void Check_State() //1번만 실행
@@ -37,7 +36,8 @@ public class ScoutMonster : MonsterBase
             _chase_dist = 60f;
             _chase_speed = 20f;
             _attack_speed = 3f;
-            _attack_dist = 5f;
+            _attack_dist = 15f;
+            _skill_dist = 15f;
             _move_range = 100f;
             _idle_cool_time = 1f;
             _chase_cool_time = 3f;
@@ -72,10 +72,10 @@ public class ScoutMonster : MonsterBase
                     case CurrentState.ECHASE:
                         Chase();
                         break;
-                    case CurrentState.EATTACK:
+                case CurrentState.EATTACK:
                         Attack();
                         break;
-                    case CurrentState.ESKILL:
+                case CurrentState.ESKILL:
                         Skill();
                         break;
                 }
@@ -93,13 +93,40 @@ public class ScoutMonster : MonsterBase
     }
     protected override void Attack()
     {
-        base.Attack();
+        if (lock_target != null)
+        {
+            lock_target_pos = lock_target.transform.position;
+            currnetcool += Time.deltaTime;
+
+
+            float distance = (lock_target.transform.position - transform.position).magnitude;
+            transform.LookAt(lock_target_pos);
+            if (distance <= skill_dist)
+            {
+                if (current_time >= skill_cool_time)
+                {
+                    nav.stoppingDistance = (skill_dist - 1f);
+                    current_state = CurrentState.ESKILL;
+                    current_time = 0f;
+                }
+                else
+                {
+                    current_state = CurrentState.ECHASE;
+                }
+            }
+            else
+            {
+                current_state = CurrentState.ECHASE;
+            }
+        }
     }
 
     void Skill()
     {
         event_data.event_point = event_point;
         event_data.Send_Event();
+        is_run = true;
+
     }
 
     private void OnDrawGizmos()
