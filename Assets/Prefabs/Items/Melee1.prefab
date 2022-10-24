@@ -192,7 +192,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7065196574166785829}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -210,10 +210,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: -1
-  damage: 0
+  damage: 40
   attackspeed: 2
-  realdelay: 2
+  realdelay: 1
   isdelay: 0
   knockback: 5
   player: {fileID: 0}
-  center: {fileID: 0}

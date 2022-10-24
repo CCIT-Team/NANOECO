@@ -46,7 +46,8 @@ public class PlayerMovement : Character
 
         Vector3 move = new Vector3(-Input.GetAxis("Horizontal"),0, -Input.GetAxis("Vertical"));
         move *= move_force;
-        //if (!cc.isGrounded) { move.y -= 9.81f * Time.deltaTime; }
+        if (!cc.isGrounded) { move.y -= 9.81f * Time.deltaTime; }
+        else { move.y = 0; }
         if (horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0) { ani.SetBool("Run", true);}
         else  { ani.SetBool("Run", false);}
 
