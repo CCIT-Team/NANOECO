@@ -24,7 +24,7 @@ public class Melee : WeaponeBase
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Monster")
+        if (other.gameObject.layer == 8)
         {
             other.gameObject.GetComponent<Rigidbody>().AddForce(knockback*Vector3.Normalize(other.transform.position - player.position),ForceMode.Impulse);
             other.gameObject.GetComponent<Character>().current_hp -= damage;
