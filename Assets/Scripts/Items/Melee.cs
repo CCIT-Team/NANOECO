@@ -8,7 +8,7 @@ public class Melee : WeaponeBase
     public GameObject center;
     bool isattack = false;
 
-    Animator ani;
+   public Animator ani;
 
 
     void Start()
