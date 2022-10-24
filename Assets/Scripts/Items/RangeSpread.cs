@@ -21,35 +21,33 @@ public class RangeSpread : WeaponeBase
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-            //StartCoroutine("AttackDelay");
-            
         if (Input.GetMouseButton(0))
         {
             switch (currentammo)
             {
                 case 0:
-                    StartCoroutine("Reloading");
+                    if(!isdelay)
+                        StartCoroutine("Reloading");
                     break;
                 default:
                     Attack();
+                    isdelay = true;
                     break;
             }
         }
-
-        if(Input.GetMouseButtonUp(0))
-        {
-            new WaitForSecondsRealtime(0.5f);
-            bullet.SetActive(false);
-        }
-
         if (Input.GetKeyDown(KeyCode.R) && !isdelay)
             StartCoroutine("Reloading");
     }
 
     new void Attack()
     {
-        bullet.SetActive(true);
+        if (!isdelay)
+        {
+            GameObject chargedbullet = Instantiate(bullet);
+            chargedbullet.transform.position = firePosition.transform.position;
+            chargedbullet.transform.rotation = firePosition.transform.rotation;
+            StartCoroutine("AttackDelay");
+        }
         p.Emit(15);
         currentammo--;
     }
@@ -60,13 +58,5 @@ public class RangeSpread : WeaponeBase
         yield return new WaitForSecondsRealtime(2);
         currentammo = ammo;
         isdelay = false;
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if(!isdelay&&other.tag == "Monster")
-        {
-            other.GetComponent<Character>().current_hp -= damage;
-        }
     }
 }
