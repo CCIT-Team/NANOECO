@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 4720161324325813839}
   - component: {fileID: 4820149005735638166}
   - component: {fileID: 5302269009553925801}
+  - component: {fileID: 7385194654324007495}
   m_Layer: 0
   m_Name: HealDummy
   m_TagString: Untagged
@@ -196,6 +197,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &7385194654324007495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4065306939797495791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c58927ba2c06d44cb57c18d28a37d9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 20
+  cooldowncounting: 0
+  iscooldown: 0
+  maxcount: 3
+  count: 3
+  itemprefab: {fileID: 4065306939797495791, guid: eb565618e10a34a4fb9771520ca5bbd5,
+    type: 3}
+  useditem: {fileID: 0}
 --- !u!1 &6142659002680335836
 GameObject:
   m_ObjectHideFlags: 0

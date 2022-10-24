@@ -71,7 +71,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: 'Bomb '
+    m_ConditionEvent: Bomb
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: Run
@@ -155,7 +155,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Run
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: 'Bomb '
+    m_ConditionEvent: Bomb
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2254400438946161987}
@@ -208,7 +208,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: 'Bomb '
+    m_ConditionEvent: Bomb
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7555320206107373942}
@@ -286,7 +286,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: 'Bomb '
+  - m_Name: Bomb
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -482,7 +482,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Run
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: 'Bomb '
+    m_ConditionEvent: Bomb
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: Run
@@ -513,7 +513,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Run
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: 'Bomb '
+    m_ConditionEvent: Bomb
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5067971344748446394}
