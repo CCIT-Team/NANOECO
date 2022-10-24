@@ -5,10 +5,6 @@ using UnityEngine;
 public class Melee : WeaponeBase
 {
     public Transform player;
-    public GameObject center;
-    bool isattack = false;
-
-   public Animator ani;
 
 
     void Start()
@@ -18,22 +14,21 @@ public class Melee : WeaponeBase
 
     void Update()
     {
-        isattack = ani.GetBool("Close Attack");
+        if (Input.GetMouseButtonDown(0)&&!isdelay)
+        {
+            isdelay = true;
+            StartCoroutine("AttackDelay");
+        }
+            
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 8 && isattack)
+        if (other.gameObject.layer == 8 && isdelay)
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(knockback*Vector3.Normalize(other.transform.position - player.position),ForceMode.Impulse);
+            other.gameObject.GetComponent<Rigidbody>().AddForce(knockback * Vector3.Normalize(other.transform.position - player.position), ForceMode.Impulse);
             other.gameObject.GetComponent<Character>().current_hp -= damage;
             Debug.Log(other.gameObject.name);
         }
     }
-
-    new void Attack()
-    {
-
-    }
-
 }
