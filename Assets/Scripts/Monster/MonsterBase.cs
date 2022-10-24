@@ -59,7 +59,8 @@ public class MonsterBase : Character
     protected float _wait_time;
     protected float currnetcool = 0f;
     public float current_time = 0;
-    
+    public GameObject partest;
+
     public float patrol_speed { get => _patrol_speed;  set => _patrol_speed = value; }
     public float patrol_dist { get => _patrol_dist;  set => _patrol_dist = value;  }
     public float chase_dist { get => _chase_dist;  set => _chase_dist = value;  }
@@ -216,7 +217,8 @@ public class MonsterBase : Character
             is_dead = true;
             if (is_dead)
             {
-                Destroy(gameObject);
+                Instantiate(partest, transform.position, Quaternion.identity);
+                Destroy(gameObject, 0.2f);
                 current_state = CurrentState.EIDLE;
                 Init_Mon();
             }
