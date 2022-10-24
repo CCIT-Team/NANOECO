@@ -22,7 +22,7 @@ public class ItemControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(1)&&!iscooldown)
+        if(Input.GetMouseButtonDown(0)&&!iscooldown)
         {
             if (count == 0)
                 Debug.Log("∫Œ¡∑");
