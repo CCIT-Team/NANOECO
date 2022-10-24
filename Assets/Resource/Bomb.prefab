@@ -114,3 +114,7 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   flyingtime: 1
   reduceheight: 1
+  damage: 20
+  isboom: 0
+  destroytime: 0.1
+  knockback: 300

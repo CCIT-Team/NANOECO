@@ -12,6 +12,7 @@ public class Setter : ItemControler
     public override void Useitem()
     {
         useditem = Instantiate(itemprefab);
-        useditem.transform.position = target;
+        useditem.transform.position = this.transform.position;
+        count--;
     }
 }

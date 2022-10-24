@@ -18,7 +18,7 @@ public class Totem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.gameObject.layer == 6)
         {
             other.gameObject.GetComponent<Character>().current_hp += effectamount;
         }

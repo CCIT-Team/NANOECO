@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Bomber : ItemControler
 {
-
+    int layerMask;
     void Start()
     {
         count = maxcount;
+        layerMask  = 1 << LayerMask.NameToLayer("Ground");
     }
     public override void Useitem()
     {
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, layerMask))
         {
             target = hit.point;
         }

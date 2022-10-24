@@ -12,9 +12,8 @@ GameObject:
   - component: {fileID: 5082337188932917527}
   - component: {fileID: 5082337188932917544}
   - component: {fileID: 5082337188932917545}
-  - component: {fileID: 5082337188932917546}
   m_Layer: 0
-  m_Name: Bomb
+  m_Name: BombDummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,23 +97,3 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5082337188932917546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5082337188932917547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c07f84daa66a72741b808cbf0f74ce77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  start: {x: 0, y: 0, z: 0}
-  target: {x: 0, y: 0, z: 0}
-  flyingtime: 1
-  reduceheight: 1
-  damage: 20
-  isboom: 0
-  destroytime: 0.1
-  knockback: 10
