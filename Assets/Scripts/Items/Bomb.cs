@@ -10,12 +10,14 @@ public class Bomb : MonoBehaviour
     private float starttime;
     public float reduceheight = 1f; //높이 감소
 
+    public ParticleSystem ps;
     SphereCollider col;
     public float damage = 20;
     public bool isboom = false;
 
     public float destroytime = 0.1f;
     public float knockback = 1;
+    bool is_play = false;
     void Start()
     {
         starttime = Time.time;
@@ -31,11 +33,20 @@ public class Bomb : MonoBehaviour
         float fracComplete = (Time.time - starttime) / flyingtime;
         transform.position = Vector3.Slerp(startRelCenter, targetRelCenter, fracComplete);
         transform.position += center;
-        if (Time.time - starttime >= 1)
+        if (Time.time - starttime >= 1 )
         {
             isboom = true;
             col.radius = 10;
-            Destroy(this.gameObject,destroytime);
+            if(!is_play)
+            {
+                ps.Play();
+                is_play = true;
+            }
+            if (!ps.isPlaying)
+            {
+                Destroy(this.gameObject, destroytime);
+            }
+            //Destroy(this.gameObject,destroytime);
         }     
     }
 
