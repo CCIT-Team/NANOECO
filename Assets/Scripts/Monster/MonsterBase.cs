@@ -40,6 +40,8 @@ public class MonsterBase : Character
     [SerializeField]
     protected float _move_range; //범위 내 움직임
     [SerializeField]
+    protected float _skill_dist;
+    [SerializeField]
     protected float _idle_cool_time; //통합 쿨타임은 안될듯
     [SerializeField]
     protected float _chase_cool_time;
@@ -64,6 +66,7 @@ public class MonsterBase : Character
     public float chase_speed { get =>  _chase_speed;  set => _chase_speed = value;  }
     public float attack_speed { get => _attack_speed;  set => _attack_speed = value;  }
     public float attack_dist { get => _attack_dist;  set => _attack_dist = value;  }
+    public float skill_dist { get => _skill_dist; set => _skill_dist = value; }
     public float move_range { get => _move_range;  set => _move_range = value;  }
     public float wait_time { get => _wait_time;  set => _wait_time = value;  }
     public float idle_cool_time { get =>  _idle_cool_time;  set => _idle_cool_time = value;  }
@@ -147,6 +150,7 @@ public class MonsterBase : Character
             if (dist <= chase_dist)
             {
                 nav.speed = chase_speed;
+                nav.stoppingDistance = 3f;
                 nav.SetDestination(lock_target_pos);
             }
 
@@ -180,6 +184,7 @@ public class MonsterBase : Character
                 {
                     if (currnetcool >= attack_speed)
                     {
+                        nav.stoppingDistance = 3f;
                         character.current_hp -= damage;
                         currnetcool = 0f;
                     }
