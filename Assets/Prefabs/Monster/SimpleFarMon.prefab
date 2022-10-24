@@ -863,7 +863,7 @@ GameObject:
   - component: {fileID: 2550191083299411363}
   - component: {fileID: 2550191083299411360}
   - component: {fileID: 2550191083299411364}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SimpleFarMon
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -910,9 +910,14 @@ MonoBehaviour:
   _is_dead: 0
   nav: {fileID: 0}
   target: {fileID: 0}
+  test_target: []
+  target_mask:
+    serializedVersion: 2
+    m_Bits: 0
   lock_target: {fileID: 0}
   lock_target_pos: {x: 0, y: 0, z: 0}
   player_transform: {fileID: 0}
+  init_pos: {x: 0, y: 0, z: 0}
   _patrol_speed: 0
   _patrol_dist: 0
   _chase_dist: 0
@@ -923,12 +928,11 @@ MonoBehaviour:
   _idle_cool_time: 0
   _chase_cool_time: 0
   _skill_cool_time: 0
-  non_combet_state: 0
   current_state: 0
   _wait_time: 0
   current_time: 0
   shot_pos: {fileID: 3703209427331499957}
-  bullets: {fileID: 0}
+  bullets: {fileID: 7263270026204661956, guid: 14844231901c0f84cbe9265858136677, type: 3}
 --- !u!195 &2550191083299411363
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -942,7 +946,7 @@ NavMeshAgent:
   m_Speed: 10
   m_Acceleration: 30
   avoidancePriority: 50
-  m_AngularSpeed: 1200
+  m_AngularSpeed: 560
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1

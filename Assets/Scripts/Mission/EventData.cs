@@ -68,6 +68,7 @@ class Map_Kitchen : ABMap
                 test_event_1();
                 break;
             case 2:
+                test_event_2();
                 break;
             case 3:
                 break;
@@ -76,7 +77,7 @@ class Map_Kitchen : ABMap
 
     void test_event_0()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 50; i++)
         {
             float x = Random.Range(event_point[0].transform.position.x - 5, event_point[0].transform.position.x + 5);
             float z = Random.Range(event_point[0].transform.position.z - 5, event_point[0].transform.position.z + 5);
@@ -88,13 +89,25 @@ class Map_Kitchen : ABMap
 
     void test_event_1()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 50; i++)
         {
             float x = Random.Range(event_point[0].transform.position.x - 5, event_point[0].transform.position.x + 5);
             float z = Random.Range(event_point[0].transform.position.z - 5, event_point[0].transform.position.z + 5);
             Vector3 spawnposition = new Vector3(x, event_point[0].transform.position.y, z);
 
             Instantiate(event_object[0], spawnposition, Quaternion.identity);
+        }
+    }
+
+    void test_event_2()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            float x = Random.Range(event_point[0].transform.position.x - 5, event_point[0].transform.position.x + 5);
+            float z = Random.Range(event_point[0].transform.position.z - 5, event_point[0].transform.position.z + 5);
+            Vector3 spawnposition = new Vector3(x, event_point[0].transform.position.y, z);
+
+            Instantiate(event_object[Random.Range(0, event_object.Count)], spawnposition, Quaternion.identity);
         }
     }
 }

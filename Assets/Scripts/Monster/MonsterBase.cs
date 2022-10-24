@@ -11,11 +11,17 @@ public class MonsterBase : Character
     [SerializeField]
     protected GameObject target;
     [SerializeField]
+    protected GameObject[] test_target;
+    [SerializeField]
+    protected LayerMask target_mask;
+    [SerializeField]
     protected GameObject lock_target;
     [SerializeField]
     protected Vector3 lock_target_pos;
     [SerializeField]
     protected Transform player_transform;
+    [SerializeField]
+    protected Vector3 init_pos = new Vector3(0,0,0);
 
     [Space(10f)]
     [Header("STATS")]
@@ -43,17 +49,15 @@ public class MonsterBase : Character
     [Space(10f)]
     [Header("STATE")]
     [SerializeField]
-    protected NonCombetState non_combet_state = new NonCombetState();
-    [SerializeField]
     protected CurrentState current_state = new CurrentState();
 
     [Space(10f)]
     [Header("LodingTime")]
     [SerializeField]
     protected float _wait_time;
+    protected float currnetcool = 0f;
     public float current_time = 0;
     
-
     public float patrol_speed { get => _patrol_speed;  set => _patrol_speed = value; }
     public float patrol_dist { get => _patrol_dist;  set => _patrol_dist = value;  }
     public float chase_dist { get => _chase_dist;  set => _chase_dist = value;  }
@@ -67,17 +71,12 @@ public class MonsterBase : Character
     public float skill_cool_time { get => _skill_cool_time;  set => _skill_cool_time = value;  }
 
 
-
-    protected float currnetcool = 0f;
-    
-
-    //패트롤
     protected virtual void Patrol()
     {
         nav.speed = patrol_speed;
         if (!nav.hasPath)
         {
-            nav.SetDestination(GetRandomPoint(transform, move_range));
+            nav.SetDestination(Get_Random_Point(transform, move_range));
         }
         if (current_hp < max_hp)
         {
@@ -85,7 +84,7 @@ public class MonsterBase : Character
         }
         Update_Patrol();
     }
-    //플레이어 찾기
+
     protected virtual void Update_Patrol()
     {
         target = GameObject.FindGameObjectWithTag("Player"); //레이어로 찾는 걸로 변경 필요
@@ -100,7 +99,20 @@ public class MonsterBase : Character
         }
     }
 
-    //아이들 추격에 실패할때 이쪽으로
+    protected virtual void Get_Targets()//포톤 적용후 사용 예정
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, patrol_dist, target_mask);
+        for(int i = 0; i < colliders.Length; i++)
+        {
+            test_target = colliders[i].GetComponents<GameObject>();
+            if (test_target != null && !is_dead)
+            {
+                current_state = CurrentState.ECHASE;
+                break;
+            }
+        }
+    }
+
     protected virtual void Idle()
     {
         currnetcool += Time.deltaTime;
@@ -118,13 +130,7 @@ public class MonsterBase : Character
             }
         }
     }
-    //생각
-    protected virtual void Think()
-    {
-        
-    }
 
-    //체이싱
     protected virtual void Chase()
     {
         if (lock_target != null)
@@ -161,6 +167,7 @@ public class MonsterBase : Character
     {
         if (lock_target != null)
         {
+            lock_target_pos = lock_target.transform.position;
             Character character = lock_target.GetComponent<Character>();
             //데미지 수식이 들어가야 됨
             currnetcool += Time.deltaTime;
@@ -168,6 +175,7 @@ public class MonsterBase : Character
             if (character.current_hp > 0)
             {
                 float distance = (lock_target.transform.position - transform.position).magnitude;
+                transform.LookAt(lock_target_pos);
                 if (distance <= attack_dist)
                 {
                     if (currnetcool >= attack_speed)
@@ -196,8 +204,6 @@ public class MonsterBase : Character
         }
     }
  
-
-    //죽음
     protected virtual void Is_Dead()
     {
         if(current_hp <= 0)
@@ -205,14 +211,22 @@ public class MonsterBase : Character
             is_dead = true;
             if (is_dead)
             {
-                current_state = CurrentState.EIDLE;
                 Destroy(gameObject);
+                current_state = CurrentState.EIDLE;
+                Init_Mon();
             }
         }
     }
 
-    //랜덤 페트롤
-    bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    protected virtual void Init_Mon()
+    {
+        transform.position = init_pos;
+        current_hp = max_hp;
+        is_dead = false;
+        current_state = CurrentState.EIDLE;
+    }
+
+    bool Random_Point(Vector3 center, float range, out Vector3 result)
     {
 
         for (int i = 0; i < 30; i++)
@@ -231,11 +245,11 @@ public class MonsterBase : Character
         return false;
     }
 
-    public Vector3 GetRandomPoint(Transform point = null, float radius = 0)
+    private Vector3 Get_Random_Point(Transform point = null, float radius = 0)
     {
         Vector3 _point;
 
-        if (RandomPoint(point == null ? transform.position : point.position, radius == 0 ? move_range : radius, out _point))
+        if (Random_Point(point == null ? transform.position : point.position, radius == 0 ? move_range : radius, out _point))
         {
             Debug.DrawRay(_point, Vector3.up, Color.black, 1);
 
@@ -244,4 +258,5 @@ public class MonsterBase : Character
 
         return point == null ? Vector3.zero : point.position;
     }
+
 }

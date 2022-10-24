@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af614cea3c1314b41976651c8668c8de, type: 3}
-  m_Name: TestData
+  m_Name: ScoutEventData
   m_EditorClassIdentifier: 
   map: 0
-  event_num: 0
+  event_num: 2
   event_object:
   - {fileID: 1053922221722007807, guid: 70cd8b5846d93c247a305b33b939eca5, type: 3}
-  - {fileID: 8235777505056674389, guid: 3cfe1fe2d974e5f469f520026c3bd09a, type: 3}
+  - {fileID: 2550191083299411361, guid: 7d2a0d81ab1e5f545a22af2d86645b23, type: 3}
   event_point:
   - {fileID: 0}

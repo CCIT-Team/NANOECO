@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Pool;
 
 public class SimpleCloseMon : MonsterBase
 {
-    Action test;
+    private Action test;
     private void Start()
     {
-        _wait_time = 5f;
+        _wait_time = 0.5f;
         test += Check_State;
         test += Simple_State;
         test += Check_Isdead;
     }
 
     void Check_State() //1번만 실행
-    {//최대, 현재, 공격력, 방어력, 순찰속도, 순찰범위, 쫒아 범위,쫒는 속도, 공격 속도, 사정거리, 죽었는지
+    {
         if (!_is_dead)
         {
-            //yield return new WaitForSeconds(_wait_time);
             _max_hp = 50;
             _current_hp = 50;
             _damage = 5;
@@ -54,6 +54,9 @@ public class SimpleCloseMon : MonsterBase
         {
             switch (current_state)
             {
+                case CurrentState.EIDLE:
+                    Idle();
+                    break;
                 case CurrentState.ECHASE:
                     Chase();
                     break;
@@ -112,5 +115,10 @@ public class SimpleCloseMon : MonsterBase
         {
             current_state = CurrentState.EATTACK;
         }  
+    }
+
+    protected override void Idle()
+    {
+        current_state = CurrentState.ECHASE;
     }
 }

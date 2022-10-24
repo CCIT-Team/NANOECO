@@ -25,7 +25,10 @@ public class Bullet : MonoBehaviourPunCallbacks
         {
             other.gameObject.GetComponent<Rigidbody>().AddForce(knockback * Vector3.Normalize(other.transform.position - this.transform.position), ForceMode.Impulse);
             other.gameObject.GetComponent<Character>().current_hp -= damage;
+            pv.RPC("DestroyRPC", RpcTarget.AllBuffered);
             Destroy(gameObject);
         }
     }
+    [PunRPC]
+    void DestroyRPC() => Destroy(gameObject);
 }

@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+//using UnityEngine.Pool;
 
 public class SimpleFarMon : MonsterBase
 {
     Action test;
     public Transform shot_pos;
     public GameObject bullets;
+    //private IObjectPool<SimpleMonBullet> bullet_pool;
+    [SerializeField]
+    private Transform par;
+
     private void Start()
     {
-        _wait_time = 5f;
+        _wait_time = 0.5f;
         test += Check_State;
         test += Simple_State;
         test += Check_Isdead;
@@ -29,14 +34,15 @@ public class SimpleFarMon : MonsterBase
             _patrol_dist = 0f;
             _chase_dist = 0f;
             _chase_speed = 15f;
-            _attack_speed = 5f;
-            _attack_dist = 10f;
+            _attack_speed = 3f;
+            _attack_dist = 14f;
             _move_range = 0f;
             _idle_cool_time = 0f;
             _chase_cool_time = 0f;
             _skill_cool_time = 0f;
             _is_dead = false;
             current_state = CurrentState.ECHASE;
+            //bullet_pool = new ObjectPool<SimpleMonBullet>(Create_Bullets, Get_Bullets, Release_Bullets, Destroy_Bullets, maxSize: 40);
         }
     }
 
@@ -56,6 +62,9 @@ public class SimpleFarMon : MonsterBase
         {
             switch (current_state)
             {
+                case CurrentState.EIDLE:
+                    Idle();
+                    break;
                 case CurrentState.ECHASE:
                     Chase();
                     break;
@@ -73,23 +82,23 @@ public class SimpleFarMon : MonsterBase
 
     protected override void Attack()
     {
+        lock_target_pos = lock_target.transform.position;
         Character character = lock_target.GetComponent<Character>();
         //데미지 수식이 들어가야 됨
         currnetcool += Time.deltaTime;
-
         if (character.current_hp > 0)
         {
             float distance = (lock_target.transform.position - transform.position).magnitude;
             if (distance <= attack_dist)
             {
+                transform.LookAt(lock_target_pos);
                 if (currnetcool >= attack_speed)
                 {
-                    Instantiate(bullets, lock_target_pos, Quaternion.identity);
+                    nav.stoppingDistance = 15f;
+                    Instantiate(bullets, shot_pos.position, Quaternion.identity);
+                    //var bullet = bullet_pool.Get();
+                    //bullet.Shoot();
                     currnetcool = 0f;
-                }
-                else
-                {
-                    current_state = CurrentState.ECHASE;
                 }
             }
             else
@@ -107,6 +116,7 @@ public class SimpleFarMon : MonsterBase
         currnetcool += Time.deltaTime;
         lock_target_pos = lock_target.transform.position;
         nav.speed = chase_speed;
+        nav.stoppingDistance = 10f;
         nav.SetDestination(lock_target_pos);
         float dist = (lock_target_pos - transform.position).magnitude;
         //공격 볌위
@@ -115,4 +125,32 @@ public class SimpleFarMon : MonsterBase
             current_state = CurrentState.EATTACK;
         }
     }
+
+    protected override void Idle()
+    {
+        current_state = CurrentState.ECHASE;
+    }
+
+    //private SimpleMonBullet Create_Bullets()
+    //{
+    //    SimpleMonBullet pool_bullets = Instantiate(bullets, par).GetComponent<SimpleMonBullet>();
+    //    pool_bullets.SetManagedBulletPool(bullet_pool);
+    //    return pool_bullets;
+    //}
+
+    //private void Get_Bullets(SimpleMonBullet bullet)
+    //{
+    //    bullet.gameObject.SetActive(true);
+    //}
+
+    //private void Release_Bullets(SimpleMonBullet bullet)
+    //{
+    //    bullet.gameObject.SetActive(false);
+    //}
+
+    //private void Destroy_Bullets(SimpleMonBullet bullet)
+    //{
+    //    Destroy(bullet.gameObject);
+    //}
+
 }
