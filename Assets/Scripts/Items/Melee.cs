@@ -5,7 +5,7 @@ using UnityEngine;
 public class Melee : WeaponeBase
 {
     public Transform player;
-    public GameObject center;
+
 
     void Start()
     {
@@ -14,27 +14,21 @@ public class Melee : WeaponeBase
 
     void Update()
     {
-        if(Input.GetMouseButton(0)&&!isdelay)
+        if (Input.GetMouseButtonDown(0)&&!isdelay)
         {
             isdelay = true;
-            Attack();
             StartCoroutine("AttackDelay");
         }
+            
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Monster")
+        if (other.gameObject.layer == 8 && isdelay)
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(knockback*Vector3.Normalize(other.transform.position - player.position),ForceMode.Impulse);
+            other.gameObject.GetComponent<Rigidbody>().AddForce(knockback * Vector3.Normalize(other.transform.position - player.position), ForceMode.Impulse);
             other.gameObject.GetComponent<Character>().current_hp -= damage;
             Debug.Log(other.gameObject.name);
         }
     }
-
-    new void Attack()
-    {
-
-    }
-
 }

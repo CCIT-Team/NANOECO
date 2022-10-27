@@ -67,10 +67,8 @@ public class SimpleCloseMon : MonsterBase
         }
     }
 
-    void Check_Isdead()
-    {
-        Is_Dead();
-    }
+    void Check_Isdead() => Is_Dead();
+    
 
     protected override void Attack()
     {
@@ -117,8 +115,6 @@ public class SimpleCloseMon : MonsterBase
         }  
     }
 
-    protected override void Idle()
-    {
+    protected override void Idle() =>
         current_state = CurrentState.ECHASE;
-    }
 }

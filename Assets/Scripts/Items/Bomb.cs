@@ -10,9 +10,14 @@ public class Bomb : MonoBehaviour
     private float starttime;
     public float reduceheight = 1f; //높이 감소
 
+    public ParticleSystem ps;
     SphereCollider col;
     public float damage = 20;
     public bool isboom = false;
+
+    public float destroytime = 0.1f;
+    public float knockback = 1;
+    bool is_play = false;
     void Start()
     {
         starttime = Time.time;
@@ -28,19 +33,28 @@ public class Bomb : MonoBehaviour
         float fracComplete = (Time.time - starttime) / flyingtime;
         transform.position = Vector3.Slerp(startRelCenter, targetRelCenter, fracComplete);
         transform.position += center;
-        if (Time.time - starttime >= 1)
+        if (Time.time - starttime >= 1 )
         {
             isboom = true;
             col.radius = 10;
-            Destroy(this.gameObject,0.1f);
+            if(!is_play)
+            {
+                ps.Play();
+                is_play = true;
+            }
+            if (!ps.isPlaying)
+            {
+                Destroy(this.gameObject, destroytime);
+            }
+            //Destroy(this.gameObject,destroytime);
         }     
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if ((other.tag == "Monster" || other.tag == "Player") && isboom)
+        if (other.gameObject.layer == 8 && isboom)
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(10 * Vector3.Normalize(other.transform.position - this.transform.position), ForceMode.Impulse);
+            other.gameObject.GetComponent<Rigidbody>().AddForce(knockback*Vector3.Normalize(other.transform.position - this.transform.position), ForceMode.Impulse);
             other.gameObject.GetComponent<Character>().current_hp -= damage;
         }
     }

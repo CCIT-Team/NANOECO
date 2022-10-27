@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9176385548683151485}
   - component: {fileID: 9176385548683151484}
   m_Layer: 0
-  m_Name: Bomber
+  m_Name: SubItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9b6c73112ac07943a650f836386d68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 5
+  cooldown: 1
   cooldowncounting: 0
   iscooldown: 0
-  maxcount: 5
-  count: 0
+  maxcount: 9999
+  count: 9999
   itemprefab: {fileID: 5082337188932917547, guid: 53e9affcdc9e71243ae67be878b19b64,
     type: 3}
   useditem: {fileID: 0}

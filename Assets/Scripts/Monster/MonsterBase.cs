@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.AI;
-using UnityEngine.Pool;
 
 public class MonsterBase : Character
 {
-    protected IObjectPool<MonsterBase> _ManagedPool;
     [Space(10f)]
     public NavMeshAgent nav;
     [SerializeField]
@@ -42,6 +40,8 @@ public class MonsterBase : Character
     [SerializeField]
     protected float _move_range; //범위 내 움직임
     [SerializeField]
+    protected float _skill_dist;
+    [SerializeField]
     protected float _idle_cool_time; //통합 쿨타임은 안될듯
     [SerializeField]
     protected float _chase_cool_time;
@@ -59,13 +59,15 @@ public class MonsterBase : Character
     protected float _wait_time;
     protected float currnetcool = 0f;
     public float current_time = 0;
-    
+    public GameObject partest;
+
     public float patrol_speed { get => _patrol_speed;  set => _patrol_speed = value; }
     public float patrol_dist { get => _patrol_dist;  set => _patrol_dist = value;  }
     public float chase_dist { get => _chase_dist;  set => _chase_dist = value;  }
     public float chase_speed { get =>  _chase_speed;  set => _chase_speed = value;  }
     public float attack_speed { get => _attack_speed;  set => _attack_speed = value;  }
     public float attack_dist { get => _attack_dist;  set => _attack_dist = value;  }
+    public float skill_dist { get => _skill_dist; set => _skill_dist = value; }
     public float move_range { get => _move_range;  set => _move_range = value;  }
     public float wait_time { get => _wait_time;  set => _wait_time = value;  }
     public float idle_cool_time { get =>  _idle_cool_time;  set => _idle_cool_time = value;  }
@@ -149,6 +151,7 @@ public class MonsterBase : Character
             if (dist <= chase_dist)
             {
                 nav.speed = chase_speed;
+                nav.stoppingDistance = 3f;
                 nav.SetDestination(lock_target_pos);
             }
 
@@ -182,6 +185,7 @@ public class MonsterBase : Character
                 {
                     if (currnetcool >= attack_speed)
                     {
+                        nav.stoppingDistance = 3f;
                         character.current_hp -= damage;
                         currnetcool = 0f;
                     }
@@ -213,8 +217,9 @@ public class MonsterBase : Character
             is_dead = true;
             if (is_dead)
             {
+                Instantiate(partest, transform.position, Quaternion.identity);
+                Destroy(gameObject, 0.2f);
                 current_state = CurrentState.EIDLE;
-                _ManagedPool.Release(this);
                 Init_Mon();
             }
         }
@@ -261,8 +266,4 @@ public class MonsterBase : Character
         return point == null ? Vector3.zero : point.position;
     }
 
-    public void Set_Managed_Pool(IObjectPool<MonsterBase> pool)
-    {
-        _ManagedPool = pool;
-    }
 }

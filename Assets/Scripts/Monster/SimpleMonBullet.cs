@@ -2,29 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.Pool;
-public class SimpleMonBullet : Character
+public class SimpleMonBullet : MonoBehaviour
 {
     [SerializeField]
-    private LayerMask target_mask;
-    [SerializeField]
     private float bullet_speed;
+    Vector3 dir;
+    public Rigidbody rd;
+    [SerializeField]
+    GameObject Player_pos;
 
     //private IObjectPool<SimpleMonBullet> managed_bullet_pool;
     private void Start()
     {
-    }
-
-    private void Update()
-    {
-        transform.Translate(Vector3.forward * Time.deltaTime * bullet_speed);
-
+        Player_pos = GameObject.FindGameObjectWithTag("Player");
+        dir = Player_pos.transform.position - transform.position;
+        rd.AddForce(dir * Time.deltaTime * bullet_speed);
+        Shoot();
     }
 
     private void OnTriggerEnter(Collider collider)
     {
-        if(target_mask == 6)
+        if(collider.tag == "Player")
         {
-            collider.GetComponent<Character>().current_hp -= damage;
+            collider.GetComponent<Character>().current_hp -= 5;
             Destroy(gameObject);
         }
     }

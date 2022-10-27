@@ -11,7 +11,7 @@ public class PlayerMouseRotate : MonoBehaviour
     #endregion
     #region Private Fields
 
-    public Camera mainCamera;
+    public Camera cam;
 
     #endregion
 
@@ -24,8 +24,7 @@ public class PlayerMouseRotate : MonoBehaviour
 
     private void Start()
     {
-        // Cache the camera, Camera.main is an expensive operation.
-        //mainCamera = Camera.main;
+        cam = gameObject.GetComponent<PlayerMouseRotate>().cam;
     }
 
     private void Update()
@@ -40,7 +39,7 @@ public class PlayerMouseRotate : MonoBehaviour
         var (success, position) = GetMousePosition();
         if (success)
         {
-            var direction = position - transform.position;
+            var direction = transform.position - position;
             direction.y = 0;
             transform.forward = direction;
         }
@@ -48,7 +47,7 @@ public class PlayerMouseRotate : MonoBehaviour
 
     private (bool success, Vector3 position) GetMousePosition()
     {
-        var ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        var ray = cam.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
         {
