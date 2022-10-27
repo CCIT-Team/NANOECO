@@ -17,23 +17,23 @@ public class SimpleCloseMon : MonsterBase
 
     void Check_State() //1번만 실행
     {
-        if (!_is_dead)
+        if (!is_dead)
         {
-            _max_hp = 50;
-            _current_hp = 50;
-            _damage = 5;
-            _defense = 11;
-            _patrol_speed = 0f;
-            _patrol_dist = 0f;
-            _chase_dist = 0f;
-            _chase_speed = 25f;
-            _attack_speed = 3f;
-            _attack_dist = 5f;
-            _move_range = 0f;
-            _idle_cool_time = 0f;
-            _chase_cool_time = 0f;
-            _skill_cool_time = 0f;
-            _is_dead = false;
+            max_hp = 50;
+            current_hp = 50;
+            damage = 5;
+            defense = 11;
+            patrol_speed = 0f;
+            patrol_dist = 0f;
+            chase_dist = 0f;
+            chase_speed = 25f;
+            attack_speed = 3f;
+            attack_dist = 5f;
+            move_range = 0f;
+            idle_cool_time = 0f;
+            chase_cool_time = 0f;
+            skill_cool_time = 0f;
+            is_dead = false;
             current_state = CurrentState.ECHASE;
         }
     }
@@ -50,7 +50,7 @@ public class SimpleCloseMon : MonsterBase
 
     void Simple_State()
     {
-        if (!_is_dead)
+        if (!is_dead)
         {
             switch (current_state)
             {

@@ -318,12 +318,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14886617}
   m_CullTransparentMesh: 1
---- !u!1 &22493016 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1886267566512559684, guid: f5d340f340cf72f4bbd16d23f9e4624c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1486055324}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &28487099
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,7 +423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 99.6, y: -500}
+  m_AnchoredPosition: {x: 99.6001, y: -500}
   m_SizeDelta: {x: 500, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &33668040
@@ -7135,7 +7129,7 @@ PrefabInstance:
     - target: {fileID: 1886267566512559684, guid: f5d340f340cf72f4bbd16d23f9e4624c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1945176939070198920, guid: f5d340f340cf72f4bbd16d23f9e4624c,
         type: 3}
@@ -7251,7 +7245,7 @@ PrefabInstance:
         type: 3}
       propertyPath: item.Array.data[0]
       value: 
-      objectReference: {fileID: 22493016}
+      objectReference: {fileID: 1486055325}
     - target: {fileID: 6396095984657942138, guid: f5d340f340cf72f4bbd16d23f9e4624c,
         type: 3}
       propertyPath: mainCamera
@@ -7354,6 +7348,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5d340f340cf72f4bbd16d23f9e4624c, type: 3}
+--- !u!1 &1486055325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5041889536672338519, guid: f5d340f340cf72f4bbd16d23f9e4624c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1486055324}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1519856887 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8479e53e4326b4948b37d2d151f4e6ee,

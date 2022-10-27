@@ -23,24 +23,24 @@ public class SimpleFarMon : MonsterBase
 
     void Check_State() //1번만 실행
     {//최대, 현재, 공격력, 방어력, 순찰속도, 순찰범위, 쫒아 범위,쫒는 속도, 공격 속도, 사정거리, 죽었는지
-        if (!_is_dead)
+        if (!is_dead)
         {
             //yield return new WaitForSeconds(_wait_time);
-            _max_hp = 50;
-            _current_hp = 50;
-            _damage = 5;
-            _defense = 11;
-            _patrol_speed = 0f;
-            _patrol_dist = 0f;
-            _chase_dist = 0f;
-            _chase_speed = 15f;
-            _attack_speed = 3f;
-            _attack_dist = 14f;
-            _move_range = 0f;
-            _idle_cool_time = 0f;
-            _chase_cool_time = 0f;
-            _skill_cool_time = 0f;
-            _is_dead = false;
+            max_hp = 50;
+            current_hp = 50;
+            damage = 5;
+            defense = 11;
+            patrol_speed = 0f;
+            patrol_dist = 0f;
+            chase_dist = 0f;
+            chase_speed = 15f;
+            attack_speed = 3f;
+            attack_dist = 14f;
+            move_range = 0f;
+            idle_cool_time = 0f;
+            chase_cool_time = 0f;
+            skill_cool_time = 0f;
+            is_dead = false;
             current_state = CurrentState.ECHASE;
             //bullet_pool = new ObjectPool<SimpleMonBullet>(Create_Bullets, Get_Bullets, Release_Bullets, Destroy_Bullets, maxSize: 40);
         }
@@ -58,7 +58,7 @@ public class SimpleFarMon : MonsterBase
 
     void Simple_State()
     {
-        if (!_is_dead)
+        if (!is_dead)
         {
             switch (current_state)
             {
