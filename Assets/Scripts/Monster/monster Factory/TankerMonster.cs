@@ -7,6 +7,7 @@ using Photon.Realtime;
 
 class TankerMonster : Monster
 {
+    Action mon_action;
     public TankerMonster()
     {
         type = UnitType.ETankerMonster;
@@ -103,6 +104,10 @@ class TankerMonster : Monster
     }
 
     public void Skill()
+    {
+
+    }
+    public void Is_Dead()
     {
 
     }

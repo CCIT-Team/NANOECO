@@ -82,10 +82,10 @@ class NomalMonster : Monster, IMonsterBase
 
             for(int i = 0; i < targets.Length; i++)
             {
-                PhotonTestPlayer character = targets[i].GetComponent<PhotonTestPlayer>();
-                if(character != null)
+                player = targets[i].GetComponent<PhotonTestPlayer>();
+                if(player != null)
                 {
-                    lock_target = character.gameObject;
+                    lock_target = player.gameObject;
                     current_state = CurrentState.ECHASE;
                     break;
                 }
@@ -125,7 +125,7 @@ class NomalMonster : Monster, IMonsterBase
         if (lock_target != null)
         {
             lock_target_pos = lock_target.transform.position;
-            currnet_state_cool += Time.deltaTime;
+            current_time += Time.deltaTime;
             float distance = (lock_target.transform.position - transform.position).magnitude;
             //transform.LookAt(lock_target_pos);
             transform.rotation.SetLookRotation(lock_target_pos);
@@ -135,8 +135,7 @@ class NomalMonster : Monster, IMonsterBase
                 if (current_time >= attack_cool_time)
                 {
                     nav.stoppingDistance = (attack_dist - 1f);
-                    PhotonTestPlayer player;
-                    //player.currnet_hp -= damage; 현재 포톤 테스트 플레이어 체력이 없어서 이렇게 둠
+                    player.current_hp -= damage;
                     current_time = 0f;
                 }
                 else

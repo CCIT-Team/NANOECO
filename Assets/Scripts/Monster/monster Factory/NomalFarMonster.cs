@@ -8,6 +8,8 @@ using Photon.Realtime;
 class NomalFarMonster : Monster, IMonsterBase
 {
     Action mon_action;
+    [SerializeField]
+    private GameObject bullets;
     public NomalFarMonster()
     {
         type = UnitType.ENomalFarMonster;
@@ -133,8 +135,7 @@ class NomalFarMonster : Monster, IMonsterBase
                 if (current_time >= attack_cool_time)
                 {
                     nav.stoppingDistance = (attack_dist - 1f);
-                    PhotonTestPlayer player;
-                    //player.currnet_hp -= damage; 현재 포톤 테스트 플레이어 체력이 없어서 이렇게 둠
+                    Instantiate(bullets, transform);
                     current_time = 0f;
                 }
                 else

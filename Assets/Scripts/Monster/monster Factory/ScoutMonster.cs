@@ -4,9 +4,11 @@ using UnityEngine;
 using System;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.AI;
 
 class ScoutMonster : Monster, IMonsterBase
 {
+    Action mon_action;
     public ScoutMonster()
     {
         type = UnitType.EScoutMonster;
@@ -16,20 +18,20 @@ class ScoutMonster : Monster, IMonsterBase
             max_hp = 50f;
             damage = 1f;
             defense = 0.5f;
-            patrol_speed = 0f;
-            chase_speed = 10f;
+            patrol_speed = 12f;
+            chase_speed = 15f;
             //범위
-            move_range = 0;
-            patrol_dist = 0;
-            chase_dist = 100f;
-            attack_dist = 10f;
-            skill_dist = 0;
+            move_range = 20f;
+            patrol_dist = 15f;
+            chase_dist = 20f;
+            attack_dist = 3f;
+            skill_dist = 10f;
             //쿨타임
-            wait_time = 0f;
-            idle_cool_time = 0;
+            wait_time = 5f;
+            idle_cool_time = 2f;
             chase_cool_time = 2f;
             attack_cool_time = 3f;
-            skill_cool_time = 0;
+            skill_cool_time = 60f;
             //상태
             is_dead = false;
             current_state = CurrentState.EIDLE;
@@ -84,12 +86,41 @@ class ScoutMonster : Monster, IMonsterBase
     }
     public void Idle()
     {
-        
+        currnet_state_cool += Time.deltaTime;
+        if (lock_target == null)
+        {
+            if(currnet_state_cool >= idle_cool_time)
+            {
+                current_state = CurrentState.EPATROL;
+            }
+        }
+        if (lock_target != null)
+        {
+            current_state = CurrentState.ECHASE;
+        }
     }
 
     public void Patrol()
     {
-        
+        nav.speed = patrol_speed;
+        if (!nav.hasPath)
+        {
+            nav.SetDestination(Get_Random_Point(transform, move_range));
+        }
+        if(!is_dead)
+        {
+            Collider[] targets = Physics.OverlapSphere(transform.position, chase_dist, target_mask);
+            for (int i = 0; i < targets.Length; i++)
+            {
+                player = targets[i].GetComponent<PhotonTestPlayer>();
+                if (player != null)
+                {
+                    lock_target = player.gameObject;
+                    current_state = CurrentState.ECHASE;
+                    break;
+                }
+            }
+        }
     }
 
     public void Chase()
@@ -97,18 +128,26 @@ class ScoutMonster : Monster, IMonsterBase
         if (lock_target != null)
         {
             currnet_state_cool += Time.deltaTime;
+            current_time += Time.deltaTime;
             lock_target_pos = lock_target.transform.position;
             float dist = (lock_target_pos - transform.position).magnitude;
-            //공격 볌위
             if (dist <= attack_dist)
             {
                 current_state = CurrentState.EATTACK;
+            }
+            if(dist <= skill_dist)
+            {
+                if (current_time >= skill_cool_time)
+                {
+                    current_state = CurrentState.ESKILL;
+                    current_time = 0;
+                }
             }
 
             if (dist <= chase_dist)
             {
                 nav.speed = chase_speed;
-                nav.stoppingDistance = (attack_dist - 1f);
+                nav.stoppingDistance = (skill_dist - 3f);
                 nav.SetDestination(lock_target_pos);
             }
 
@@ -127,13 +166,55 @@ class ScoutMonster : Monster, IMonsterBase
 
     public void Attack()
     {
-        
+        if(lock_target != null)
+        {
+            lock_target_pos = lock_target.transform.position;
+            current_time += Time.deltaTime;
+            float distance = (lock_target.transform.position - transform.position).magnitude;
+            //transform.LookAt(lock_target_pos);
+            transform.rotation.SetLookRotation(lock_target_pos);
+            if (distance <= attack_dist)
+            {
+                if (current_time >= attack_cool_time)
+                {
+                    nav.stoppingDistance = (attack_dist - 1f);
+                    player.current_hp -= damage;
+                    current_time = 0f;
+                }
+                else
+                {
+                    current_state = CurrentState.ECHASE;
+                }
+            }
+            else
+            {
+                current_state = CurrentState.ECHASE;
+            }
+        }
     }
 
     public void Skill()
     {
-        
+        lock_target_pos = lock_target.transform.position;
+        current_time += Time.deltaTime;
+        float distance = (lock_target.transform.position - transform.position).magnitude;
+        //transform.LookAt(lock_target_pos);
+        transform.rotation.SetLookRotation(lock_target_pos);
+        if (distance <= skill_dist)
+        {
+            nav.stoppingDistance = (skill_dist - 1f);
+            if (current_time >= skill_cool_time)
+            {
+                //해성이 이벤트 받기
+                current_time = 0;
+            }
+        }
+        else
+        {
+            current_state = CurrentState.ECHASE;
+        }
     }
+
     public void Is_Dead()
     {
         if (is_dead)
@@ -142,5 +223,37 @@ class ScoutMonster : Monster, IMonsterBase
             Destroy(gameObject, 0.2f);
             current_state = CurrentState.EIDLE;
         }
+    }
+    bool Random_Point(Vector3 center, float range, out Vector3 result)
+    {
+
+        for (int i = 0; i < 30; i++)
+        {
+            Vector3 randomPoint = center + UnityEngine.Random.insideUnitSphere * range;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                result = hit.position;
+                return true;
+            }
+        }
+
+        result = Vector3.zero;
+
+        return false;
+    }
+
+    private Vector3 Get_Random_Point(Transform point = null, float radius = 0)
+    {
+        Vector3 _point;
+
+        if (Random_Point(point == null ? transform.position : point.position, radius == 0 ? move_range : radius, out _point))
+        {
+            Debug.DrawRay(_point, Vector3.up, Color.black, 1);
+
+            return _point;
+        }
+
+        return point == null ? Vector3.zero : point.position;
     }
 }

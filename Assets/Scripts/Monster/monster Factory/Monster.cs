@@ -19,17 +19,14 @@ public enum UnitType
 
 abstract class Monster : MonoBehaviourPunCallbacks
 {
+    protected PhotonTestPlayer player;
     protected UnitType type;
     [SerializeField]
     protected NavMeshAgent nav;
     [SerializeField]
     protected GameObject[] Particles;
-    protected GameObject target;
-    protected GameObject[] test_target;
     protected GameObject lock_target;
-    protected Transform player_transform;
     protected Vector3 lock_target_pos;
-    protected Vector3 init_pos = new Vector3(0, 0, 0);
     protected LayerMask target_mask;
     [SerializeField]
     protected float max_hp = 0f;
