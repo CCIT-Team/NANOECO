@@ -16,6 +16,8 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public CharacterController cc;
 
     Vector3 curPos;
+    public float max_hp;
+    public float current_hp;
     public float move_force;
     public float dash_force;
     public float jump_force;
