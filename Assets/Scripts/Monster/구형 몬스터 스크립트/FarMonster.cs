@@ -18,24 +18,24 @@ public class FarMonster : MonsterBase
 
     void Check_State() //1번만 실행
     {//최대, 현재, 공격력, 방어력, 순찰속도, 순찰범위, 쫒아 범위,쫒는 속도, 공격 속도, 사정거리, 죽었는지
-        if (!_is_dead)
+        if (!is_dead)
         {
             //yield return new WaitForSeconds(_wait_time);
-            _max_hp = 100;
-            _current_hp = 100;
-            _damage = 10;
-            _defense = 11;
-            _patrol_speed = 15f;
-            _patrol_dist = 25f;
-            _chase_dist = 70f;
-            _chase_speed = 20f;
-            _attack_speed = 3f;
-            _attack_dist = 15f;
-            _move_range = 100f;
-            _idle_cool_time = 1f;
-            _chase_cool_time = 3f;
-            _skill_cool_time = 15f;
-            _is_dead = false;
+            max_hp = 100;
+            current_hp = 100;
+            damage = 10;
+            defense = 11;
+            patrol_speed = 15f;
+            patrol_dist = 25f;
+            chase_dist = 70f;
+            chase_speed = 20f;
+            attack_speed = 3f;
+            attack_dist = 15f;
+            move_range = 100f;
+            idle_cool_time = 1f;
+            chase_cool_time = 3f;
+            skill_cool_time = 15f;
+            is_dead = false;
             current_state = CurrentState.EPATROL;
         }
     }
@@ -52,7 +52,7 @@ public class FarMonster : MonsterBase
 
     void Current_State() //계속 확인
     {
-        if (!_is_dead)
+        if (!is_dead)
         {
             switch (current_state)
             {
