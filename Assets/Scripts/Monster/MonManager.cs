@@ -5,11 +5,16 @@ using UnityEngine;
 public class MonManager : MonoBehaviour
 {
     [SerializeField]
-    List<AbsMonsterBase> mon_data = new List<AbsMonsterBase>();
+    List<NomalMonster> nomalMonsters = new List<NomalMonster>();
+    NomalMonster nomalmonster;
+    [SerializeField]
+    List<NomalFarMonster> nomalFarMonsters = new List<NomalFarMonster>();
+    NomalFarMonster NomalFarMonster;
 
-    NomalMonster nomalMonster;
+
     private void Start()
     {
-        
+        nomalMonsters.Add(nomalmonster);
+        nomalFarMonsters.Add(NomalFarMonster);
     }
 }

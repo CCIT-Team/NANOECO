@@ -4,9 +4,9 @@ using UnityEngine;
 using System;
 using UnityEngine.AI;
 
-class NomalMonster : AbsMonsterBase, IMonsterBase
+class TNomalMonster : AbsMonsterBase, IMonsterBase
 {
-    public NomalMonster Mn;
+    public TNomalMonster Mn;
     Action mon_action;
     private void Awake()
     {
@@ -112,12 +112,16 @@ class NomalMonster : AbsMonsterBase, IMonsterBase
     {
 
     }
-    protected override void Is_daed()
+    public void Is_Dead()
     {
         if (is_dead)
         {
 
         }
+    }
+    protected override void Is_daed()
+    {
+        //
     }
     protected override void Init_Mon()
     {

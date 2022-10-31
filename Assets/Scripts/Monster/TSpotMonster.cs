@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using System;
 
-class SpotMonster : AbsMonsterBase, IMonsterBase
-{
-    public NomalMonster Mn;
+class TSpotMonster : AbsMonsterBase, IMonsterBase
+{ 
     Action mon_action;
     public GameObject particles;
 
@@ -196,5 +195,10 @@ class SpotMonster : AbsMonsterBase, IMonsterBase
         current_hp = max_hp;
         is_dead = false;
         current_state = CurrentState.EIDLE;
+    }
+
+    public void Is_Dead()
+    {
+
     }
 }
