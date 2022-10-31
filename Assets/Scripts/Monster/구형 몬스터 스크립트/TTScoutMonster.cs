@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.AI;
 
-public class ScoutMonster : MonsterBase
+public class TTScoutMonster : MonsterBase
 {
     Action test;
 
