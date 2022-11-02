@@ -38,23 +38,29 @@ class WideFarMonster : Monster
     }
     private void Awake()
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
-        else
-        {
-            mon_action += Currnet_State;
-            mon_action += Is_Dead;
-        }
+        //if (!PhotonNetwork.IsMasterClient) 포톤 테스트 전
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    mon_action += Currnet_State;
+        //    mon_action += Is_Dead;
+        //}
+        mon_action += Currnet_State;
+        mon_action += Is_Dead;
     }
     private void FixedUpdate()
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
-        else
+        //if (!PhotonNetwork.IsMasterClient) 포톤 테스트 전
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    mon_action();
+        //}
+        if (!is_dead)
         {
             mon_action();
         }

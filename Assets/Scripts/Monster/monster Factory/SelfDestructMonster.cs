@@ -18,19 +18,14 @@ class SelfDestructMonster : Monster, IMonsterBase
             damage = 1f;
             defense = 0.5f;
             patrol_speed = 15f;
-            chase_speed = 0;
+            chase_speed = 30f;
             //범위
-            move_range = 0;
-            patrol_dist = 0;
-            chase_dist = 0;
-            attack_dist = 0;
-            skill_dist = 0;
+            move_range = 30f;
+            patrol_dist = 25f;
+            skill_dist = 10f;
             //쿨타임
-            wait_time = 0f;
-            idle_cool_time = 0;
-            chase_cool_time = 0;
-            attack_cool_time = 0;
-            skill_cool_time = 0;
+            wait_time = 2f;
+            idle_cool_time = 2f;
             //상태
             is_dead = false;
             current_state = CurrentState.EIDLE;
@@ -38,23 +33,29 @@ class SelfDestructMonster : Monster, IMonsterBase
     }
     private void Awake()
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
-        else
-        {
-            mon_action += Currnet_State;
-            mon_action += Is_Dead;
-        }
+        //if (!PhotonNetwork.IsMasterClient) 포톤 테스트 전
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    mon_action += Currnet_State;
+        //    mon_action += Is_Dead;
+        //}
+        mon_action += Currnet_State;
+        mon_action += Is_Dead;
     }
     private void FixedUpdate()
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
-        else
+        //if (!PhotonNetwork.IsMasterClient) 포톤 테스트 전
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    mon_action();
+        //}
+        if (!is_dead)
         {
             mon_action();
         }
@@ -71,12 +72,6 @@ class SelfDestructMonster : Monster, IMonsterBase
                 case CurrentState.EPATROL:
                     Patrol();
                     break;
-                case CurrentState.ECHASE:
-                    Chase();
-                    break;
-                case CurrentState.EATTACK:
-                    Attack();
-                    break;
                 case CurrentState.ESKILL:
                     Skill();
                     break;
@@ -85,27 +80,80 @@ class SelfDestructMonster : Monster, IMonsterBase
     }
     public void Idle()
     {
-
+        if(!is_dead)
+        {
+            currnet_state_cool += Time.deltaTime;
+            if(lock_target == null)
+            {
+                if(currnet_state_cool >= idle_cool_time)
+                {
+                    current_state = CurrentState.EPATROL;
+                }
+            }
+            if(lock_target != null)
+            {
+                current_state = CurrentState.ESKILL;
+            }
+        }
     }
 
     public void Patrol()
     {
-
+        if(!is_dead)
+        {
+            nav.speed = patrol_speed;
+            if(lock_target == null)
+            {
+                Collider[] targets = Physics.OverlapSphere(transform.position, patrol_dist, target_mask);
+                for(int i=0; i < targets.Length; i++)
+                {
+                    player = targets[i].GetComponent<PhotonTestPlayer>();
+                    if(player != null)
+                    {
+                        lock_target = player.gameObject;
+                        current_state = CurrentState.ESKILL;
+                        break;
+                    }
+                    if (player == null)
+                        return;
+                }
+            }
+        }
     }
 
     public void Chase()
     {
-
+        //none
     }
 
     public void Attack()
     {
-
+        //none
     }
 
     public void Skill()
     {
-
+        if (lock_target != null)
+        {
+            nav.speed = chase_speed;
+            lock_target_pos = lock_target.transform.position;
+            nav.SetDestination(lock_target_pos);
+            float dist = (transform.position - lock_target_pos).magnitude;
+            if(dist >= skill_dist)
+            {
+                Collider[] collider = Physics.OverlapSphere(transform.position, 20f, target_mask);
+                for(int i = 0; i < collider.Length; i++)
+                {
+                    player = collider[i].GetComponent<PhotonTestPlayer>();
+                    if(player != null)
+                    {
+                        player.current_hp -= damage;
+                    }
+                    if (player == null)
+                        return;
+                }
+            }
+        }
     }
     public void Is_Dead()
     {

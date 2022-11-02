@@ -39,26 +39,30 @@ class ScoutMonster : Monster, IMonsterBase
     }
     private void Awake()
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
-        else
-        {
-            mon_action += Currnet_State;
-            mon_action += Is_Dead;
-        }
+        //if (!PhotonNetwork.IsMasterClient)
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    mon_action += Currnet_State;
+        //    mon_action += Is_Dead;
+        //}
+        mon_action += Currnet_State;
+        mon_action += Is_Dead;
     }
     private void FixedUpdate()
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
-        else
-        {
-            mon_action();
-        }
+        //if (!PhotonNetwork.IsMasterClient)
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    mon_action();
+        //}
+        if(!is_dead)
+        mon_action();
     }
     public void Currnet_State()
     {
@@ -75,9 +79,6 @@ class ScoutMonster : Monster, IMonsterBase
                 case CurrentState.ECHASE:
                     Chase();
                     break;
-                case CurrentState.EATTACK:
-                    Attack();
-                    break;
                 case CurrentState.ESKILL:
                     Skill();
                     break;
@@ -92,6 +93,7 @@ class ScoutMonster : Monster, IMonsterBase
             if(currnet_state_cool >= idle_cool_time)
             {
                 current_state = CurrentState.EPATROL;
+                currnet_state_cool = 0f;
             }
         }
         if (lock_target != null)
@@ -102,13 +104,15 @@ class ScoutMonster : Monster, IMonsterBase
 
     public void Patrol()
     {
-        nav.speed = patrol_speed;
-        if (!nav.hasPath)
-        {
-            nav.SetDestination(Get_Random_Point(transform, move_range));
-        }
+
         if(!is_dead)
         {
+            nav.speed = patrol_speed;
+            if (!nav.hasPath)
+            {
+                nav.SetDestination(Get_Random_Point(transform, move_range));
+            }
+
             Collider[] targets = Physics.OverlapSphere(transform.position, chase_dist, target_mask);
             for (int i = 0; i < targets.Length; i++)
             {
@@ -119,6 +123,8 @@ class ScoutMonster : Monster, IMonsterBase
                     current_state = CurrentState.ECHASE;
                     break;
                 }
+                if (targets == null)
+                    return;
             }
         }
     }
@@ -131,11 +137,8 @@ class ScoutMonster : Monster, IMonsterBase
             current_time += Time.deltaTime;
             lock_target_pos = lock_target.transform.position;
             float dist = (lock_target_pos - transform.position).magnitude;
-            if (dist <= attack_dist)
-            {
-                current_state = CurrentState.EATTACK;
-            }
-            if(dist <= skill_dist)
+
+            if (dist <= skill_dist)
             {
                 if (current_time >= skill_cool_time)
                 {
@@ -143,19 +146,22 @@ class ScoutMonster : Monster, IMonsterBase
                     current_time = 0;
                 }
             }
-
-            if (dist <= chase_dist)
+            else
             {
                 nav.speed = chase_speed;
                 nav.stoppingDistance = (skill_dist - 3f);
                 nav.SetDestination(lock_target_pos);
             }
 
+            if (dist <= attack_dist)
+            {
+                current_state = CurrentState.EATTACK;
+            }
+
             if (dist > chase_dist)
             {
                 if (currnet_state_cool >= chase_cool_time)
                 {
-
                     lock_target = null;
                     current_state = CurrentState.EIDLE;
                     currnet_state_cool = 0f;
@@ -205,6 +211,7 @@ class ScoutMonster : Monster, IMonsterBase
             nav.stoppingDistance = (skill_dist - 1f);
             if (current_time >= skill_cool_time)
             {
+                Debug.Log("스킬사용");
                 //해성이 이벤트 받기
                 current_time = 0;
             }

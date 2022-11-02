@@ -34,23 +34,29 @@ class NomalFarMonster : Monster, IMonsterBase
     }
     private void Awake()
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
-        else
-        {
-            mon_action += Currnet_State;
-            mon_action += Is_Dead;
-        }
+        //if (!PhotonNetwork.IsMasterClient) 포톤 테스트 전
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    mon_action += Currnet_State;
+        //    mon_action += Is_Dead;
+        //}
+        mon_action += Currnet_State;
+        mon_action += Is_Dead;
     }
     private void FixedUpdate()
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
-        else
+        //if (!PhotonNetwork.IsMasterClient) 포톤 테스트 전
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    mon_action();
+        //}
+        if(!is_dead)
         {
             mon_action();
         }
@@ -102,7 +108,6 @@ class NomalFarMonster : Monster, IMonsterBase
     {
         if (lock_target != null)
         {
-            currnet_state_cool += Time.deltaTime;
             lock_target_pos = lock_target.transform.position;
             float dist = (lock_target_pos - transform.position).magnitude;
             //공격 볌위
@@ -110,8 +115,7 @@ class NomalFarMonster : Monster, IMonsterBase
             {
                 current_state = CurrentState.EATTACK;
             }
-
-            if (dist <= chase_dist)
+            else
             {
                 nav.speed = chase_speed;
                 nav.stoppingDistance = (attack_dist - 1f);
@@ -124,8 +128,8 @@ class NomalFarMonster : Monster, IMonsterBase
     {
         if (lock_target != null)
         {
+            current_time += Time.deltaTime;
             lock_target_pos = lock_target.transform.position;
-            currnet_state_cool += Time.deltaTime;
             float distance = (lock_target.transform.position - transform.position).magnitude;
             //transform.LookAt(lock_target_pos);
             transform.rotation.SetLookRotation(lock_target_pos);
