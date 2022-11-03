@@ -1,7 +1,10 @@
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class PlayerMouseRotate : MonoBehaviour
+public class PlayerMouseRotate : MonoBehaviourPunCallbacks
 {
+    
     #region Datamembers
 
     #region Editor Settings
@@ -24,7 +27,7 @@ public class PlayerMouseRotate : MonoBehaviour
 
     private void Start()
     {
-        cam = gameObject.GetComponent<PlayerMouseRotate>().cam;
+        cam = PhotonTestPlayer.instance.cam;
     }
 
     private void Update()
