@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using Photon.Pun;
 using Photon.Realtime;
 public enum UnitType
 {
-    //µ¿ÀÏ ¸ðµ¨ »ç¿ë
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
     ENomalMonster,
     ENomalFarMonster,
     EScoutMonster,
@@ -19,6 +20,8 @@ public enum UnitType
 
 abstract class Monster : MonoBehaviourPunCallbacks
 {
+    [SerializeField]
+    protected Collider[] targets;
     protected PhotonTestPlayer player;
     protected UnitType type;
     [SerializeField]
@@ -27,6 +30,7 @@ abstract class Monster : MonoBehaviourPunCallbacks
     protected GameObject[] Particles;
     protected GameObject lock_target;
     protected Vector3 lock_target_pos;
+    [SerializeField]
     protected LayerMask target_mask;
     [SerializeField]
     protected float max_hp = 0f;
@@ -55,4 +59,6 @@ abstract class Monster : MonoBehaviourPunCallbacks
 
     [SerializeField]
     protected CurrentState current_state = new CurrentState();
+    
+    
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using Photon.Pun;
 using Photon.Realtime;
+
 class NomalMonster : Monster, IMonsterBase
 {
     Action mon_action;
@@ -19,8 +20,7 @@ class NomalMonster : Monster, IMonsterBase
             chase_speed = 15f;
             //범위
             chase_dist = 100f;
-            attack_dist = 3f;
-            skill_dist = 0;
+            attack_dist = 10f;
             //쿨타임
             wait_time = 0f;
             chase_cool_time = 2f;
@@ -31,27 +31,30 @@ class NomalMonster : Monster, IMonsterBase
     }
     private void Awake()
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
-        else
-        {
-            mon_action += Currnet_State;
-            mon_action += Is_Dead;
-        }
+        //if (!PhotonNetwork.IsMasterClient)
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    mon_action += Currnet_State;
+        //    mon_action += Is_Dead;
+        //}
+        mon_action += Currnet_State;
+        mon_action += Is_Dead;
     }
 
     private void FixedUpdate()
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
-        else
-        {
-            mon_action();
-        }
+        //if (!PhotonNetwork.IsMasterClient)
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    mon_action();
+        //}
+        mon_action();
     }
 
     public void Currnet_State()
@@ -78,7 +81,7 @@ class NomalMonster : Monster, IMonsterBase
         //노말 몬스터에서는 find player로 사용
         if(!is_dead)
         {
-            Collider[] targets = Physics.OverlapSphere(transform.position, chase_dist, target_mask);
+            targets = Physics.OverlapSphere(transform.position, chase_dist, target_mask);
 
             for(int i = 0; i < targets.Length; i++)
             {
@@ -162,5 +165,10 @@ class NomalMonster : Monster, IMonsterBase
             Destroy(gameObject, 0.2f);
             current_state = CurrentState.EIDLE;
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, chase_dist);
     }
 }
