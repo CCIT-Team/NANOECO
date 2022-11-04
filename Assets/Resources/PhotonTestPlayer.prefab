@@ -446,14 +446,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b739e424bb1522488ba922677ba13fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 7539424324287599628}
   rigid: {fileID: 3286243947600506088}
   ani: {fileID: 2027093367004637020}
   pv: {fileID: 9106411674449154674}
   nickname: {fileID: 1116164387767026983}
   cc: {fileID: 396285190002439413}
-  move_force: 1
-  dash_force: 1
+  max_hp: 0
+  current_hp: 0
+  damage: 0
+  defense: 0
   jump_force: 1
+  dash_force: 1
+  move_force: 1
 --- !u!114 &2102859721174158391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,8 +786,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000200124782619549}
-  - component: {fileID: 4517336724645152420}
-  - component: {fileID: 1630641934319462435}
   m_Layer: 6
   m_Name: PhotonTestPlayer
   m_TagString: Player
@@ -807,45 +810,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4517336724645152420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3852311470324869386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents:
-  - {fileID: 1630641934319462435}
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &1630641934319462435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3852311470324869386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!1 &3937450624929333778
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,6 +889,7 @@ GameObject:
   - component: {fileID: 3660607045650079847}
   - component: {fileID: 8051956459268306898}
   - component: {fileID: 6437714399354107734}
+  - component: {fileID: 2377547285483791321}
   m_Layer: 6
   m_Name: Camera
   m_TagString: Untagged
@@ -1046,6 +1011,28 @@ MonoBehaviour:
   player: {fileID: 2568135780839099995}
   smooth_speed: 0.125
   offset: {x: 0, y: 28.759998, z: 23.161987}
+--- !u!114 &2377547285483791321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4841792330604280846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &5011599161875633295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,14 +1257,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6570902814157811488}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.512}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7036910630871196173}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6761245666582392257
 GameObject:
   m_ObjectHideFlags: 0

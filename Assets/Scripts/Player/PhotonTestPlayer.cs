@@ -9,6 +9,11 @@ using Photon.Pun.Demo.PunBasics;
 
 public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
 {
+    public static PhotonTestPlayer instance;
+
+
+    public Camera cam;
+    int targetdisplay = 0;
     public Rigidbody rigid;
     public Animator ani;
     public PhotonView pv;
@@ -16,11 +21,20 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public CharacterController cc;
 
     Vector3 curPos;
-    public float max_hp;
-    public float current_hp;
-    public float move_force;
-    public float dash_force;
-    public float jump_force;
+    [Header("Status")]
+    [SerializeField] private float max_hp;
+    [SerializeField] private float current_hp;
+    [SerializeField] private float damage;
+    [SerializeField] private float defense;
+    [SerializeField] private float jump_force;
+    [SerializeField] private float dash_force;
+    [SerializeField] private float move_force;
+    [SerializeField] private bool _is_dead;
+
+    public GameObject[] item;
+    int current_item = 0;
+    bool isdash = false;
+    
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if(stream.IsWriting)
@@ -37,13 +51,22 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         nickname.text = pv.IsMine ? PhotonNetwork.NickName : pv.Owner.NickName;
         nickname.color = pv.IsMine ? Color.green : Color.red;
+        cam.gameObject.name = nickname.text;
 
-        //this.enabled = true;
+        if (pv.IsMine)
+        {
+            cam = GameObject.Find(nickname.text).GetComponent<Camera>();
+            cam.targetDisplay = targetdisplay++;
+        }
+        instance = this;
     }
 
     void Start()
     {
-      
+        _is_dead = false;
+        item[0].SetActive(true);
+        item[1].SetActive(false);
+        item[2].SetActive(false);
     }
 
     // Update is called once per frame
@@ -51,7 +74,7 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         //enabled = true;
         if(pv.IsMine && PhotonNetwork.IsConnected){Move();}
-        if(Input.GetKeyDown(KeyCode.Alpha1)){Application.Quit();}
+        if(Input.GetKeyDown(KeyCode.Escape)){Application.Quit();}
         pv.RPC("DestroyRPC", RpcTarget.AllBuffered);
     }
 
@@ -84,7 +107,48 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
         else { move = move_force * move; }
         cc.Move(move);
     }
-    //[PunRPC]
-    //void DestroyRPC() => Destroy(gameObject);
+    public void AttackAnimation()
+    {
+        if (current_item == 0 && item[0].name == "Melee1" && Input.GetMouseButtonDown(0))
+        {
+            ani.SetBool("Close Attack", true);
+        }
+        else { ani.SetBool("Close Attack", false); }
+
+        if (current_item == 1 && Input.GetMouseButtonDown(0))
+        {
+            ani.SetBool("Bomb", true);
+        }
+        else { ani.SetBool("Bomb", false); }
+    }
+    public void ItemChange()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            item[0].SetActive(true);//주무기
+            item[1].SetActive(false);//아이템1
+            item[2].SetActive(false);//아이템2
+            current_item = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            item[0].SetActive(false);
+            item[1].SetActive(true);
+            item[2].SetActive(false);
+            current_item = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            item[0].SetActive(false);
+            item[1].SetActive(false);
+            item[2].SetActive(true);
+            current_item = 2;
+        }
+    }
+
+    private void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.layer == 8) { current_hp -= col.gameObject.GetComponent<Character>().damage; }  
+    }
 
 }

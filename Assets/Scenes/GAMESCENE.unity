@@ -329,7 +329,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46343934}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3edb25a0ab632749974f190ccbc337b, type: 3}
   m_Name: 
@@ -1854,102 +1854,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121102218}
   m_CullTransparentMesh: 1
---- !u!1001 &3753178543643948729
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 208899377514375991, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: sceneViewId
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3852311470324869386, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000200124782619549, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4517336724645152420, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: sceneViewId
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6083897475982863780, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6083897475982863780, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6856035721097705246, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6856035721097705246, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6856035721097705246, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6856035721097705246, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6856035721097705246, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6856035721097705246, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6856035721097705246, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6856035721097705246, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6856035721097705246, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6856035721097705246, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6856035721097705246, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9106411674449154674, guid: 8ffec7edeedd7d24e86349ee3ac5df2b,
-        type: 3}
-      propertyPath: sceneViewId
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8ffec7edeedd7d24e86349ee3ac5df2b, type: 3}
