@@ -6,7 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.AI;
 
-class WideCloseMonster : Monster
+class WideCloseMonster : Monster, IMonsterBase, IMonsterAttack, IMonsterIdle, IMonsterChase, IMonsterPatrol
 {
     Action mon_action;
     public WideCloseMonster()
@@ -84,9 +84,6 @@ class WideCloseMonster : Monster
                 case CurrentState.EATTACK:
                     Attack();
                     break;
-                case CurrentState.ESKILL:
-                    Skill();
-                    break;
             }
         }
     }
@@ -123,11 +120,6 @@ class WideCloseMonster : Monster
     }
 
     public void Attack()
-    {
-
-    }
-
-    public void Skill()
     {
 
     }

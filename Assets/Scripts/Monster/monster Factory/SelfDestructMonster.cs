@@ -5,7 +5,7 @@ using System;
 using Photon.Pun;
 using Photon.Realtime;
 
-class SelfDestructMonster : Monster, IMonsterBase
+class SelfDestructMonster : Monster, IMonsterBase, IMonsterSkill, IMonsterIdle
 {
     Action mon_action;
     public SelfDestructMonster()
@@ -119,16 +119,6 @@ class SelfDestructMonster : Monster, IMonsterBase
                 }
             }
         }
-    }
-
-    public void Chase()
-    {
-        //none
-    }
-
-    public void Attack()
-    {
-        //none
     }
 
     public void Skill()

@@ -6,7 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.AI;
 
-class TankerMonster : Monster
+class TankerMonster : Monster, IMonsterBase, IMonsterAttack, IMonsterIdle, IMonsterChase, IMonsterPatrol
 {
     Action mon_action;
     public TankerMonster()
@@ -79,9 +79,6 @@ class TankerMonster : Monster
                 break;
             case CurrentState.EATTACK:
                 Attack();
-                break;
-            case CurrentState.ESKILL:
-                Skill();
                 break;
         }
     }
@@ -191,10 +188,6 @@ class TankerMonster : Monster
         }
     }
 
-    public void Skill()
-    {
-        //none
-    }
     public void Is_Dead()
     {
         if(is_dead)

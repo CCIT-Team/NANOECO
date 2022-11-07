@@ -5,7 +5,7 @@ using System;
 using Photon.Pun;
 using Photon.Realtime;
 
-class NomalMonster : Monster, IMonsterBase
+class NomalMonster : Monster, IMonsterBase, IMonsterAttack, IMonsterIdle, IMonsterChase
 {
     Action mon_action;
     public NomalMonster()
@@ -96,11 +96,6 @@ class NomalMonster : Monster, IMonsterBase
         }
     }
 
-    public void Patrol()
-    {
-        //none
-    }
-
     public void Chase()
     {
         if (lock_target != null)
@@ -151,11 +146,6 @@ class NomalMonster : Monster, IMonsterBase
                 current_state = CurrentState.ECHASE;
             }
         }
-    }
-
-    public void Skill()
-    {
-        //none
     }
     public void Is_Dead()
     {

@@ -6,7 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.AI;
 
-class ScoutMonster : Monster, IMonsterBase
+class ScoutMonster : Monster, IMonsterBase, IMonsterAttack, IMonsterIdle, IMonsterChase
 {
     Action mon_action;
     public ScoutMonster()

@@ -6,7 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.AI;
 
-class WideFarMonster : Monster
+class WideFarMonster : Monster, IMonsterBase, IMonsterAttack, IMonsterIdle, IMonsterChase, IMonsterPatrol
 {
     Action mon_action;
     public WideFarMonster()
@@ -84,9 +84,6 @@ class WideFarMonster : Monster
                 case CurrentState.EATTACK:
                     Attack();
                     break;
-                case CurrentState.ESKILL:
-                    Skill();
-                    break;
             }
         }
     }
@@ -110,10 +107,6 @@ class WideFarMonster : Monster
 
     }
 
-    public void Skill()
-    {
-
-    }
     public void Is_Dead()
     {
 
