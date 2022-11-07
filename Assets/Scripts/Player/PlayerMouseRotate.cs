@@ -40,7 +40,7 @@ public class PlayerMouseRotate : MonoBehaviourPunCallbacks
     private void Aim()
     {
         var (success, position) = GetMousePosition();
-        if (success)
+        if (success && PhotonTestPlayer.instance.pv.IsMine)
         {
             var direction = transform.position - position;
             direction.y = 0;
@@ -52,7 +52,7 @@ public class PlayerMouseRotate : MonoBehaviourPunCallbacks
     {
         var ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
+        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask) && PhotonTestPlayer.instance.pv.IsMine)
         {
             return (success: true, position: hitInfo.point);
         }

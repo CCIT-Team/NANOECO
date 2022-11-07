@@ -459,6 +459,8 @@ MonoBehaviour:
   jump_force: 1
   dash_force: 1
   move_force: 1
+  _is_dead: 0
+  item: []
 --- !u!114 &2102859721174158391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -889,7 +891,6 @@ GameObject:
   - component: {fileID: 3660607045650079847}
   - component: {fileID: 8051956459268306898}
   - component: {fileID: 6437714399354107734}
-  - component: {fileID: 2377547285483791321}
   m_Layer: 6
   m_Name: Camera
   m_TagString: Untagged
@@ -1011,28 +1012,6 @@ MonoBehaviour:
   player: {fileID: 2568135780839099995}
   smooth_speed: 0.125
   offset: {x: 0, y: 28.759998, z: 23.161987}
---- !u!114 &2377547285483791321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4841792330604280846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &5011599161875633295
 GameObject:
   m_ObjectHideFlags: 0

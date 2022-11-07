@@ -20,30 +20,38 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public TextMeshProUGUI nickname;
     public CharacterController cc;
 
-    Vector3 curPos;
     [Header("Status")]
-    [SerializeField] private float max_hp;
-    [SerializeField] private float current_hp;
-    [SerializeField] private float damage;
-    [SerializeField] private float defense;
-    [SerializeField] private float jump_force;
-    [SerializeField] private float dash_force;
-    [SerializeField] private float move_force;
-    [SerializeField] private bool _is_dead;
+    public float max_hp;
+    public float current_hp;
+    public float damage;
+    public float defense;
+    public float jump_force;
+    public float dash_force;
+    public float move_force;
+    public bool _is_dead;
 
     public GameObject[] item;
     int current_item = 0;
     bool isdash = false;
-    
+
+
+    Vector3 curPos;
+    Quaternion curRot;
+    Camera curcam;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if(stream.IsWriting)
+        if (stream.IsWriting)
         {
             stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+            stream.SendNext(cam);
+            
         }
         else
         {
             curPos = (Vector3)stream.ReceiveNext();
+            curRot = (Quaternion)stream.ReceiveNext();
+            curcam = (Camera)stream.ReceiveNext();
         }
     }
 
@@ -51,12 +59,13 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         nickname.text = pv.IsMine ? PhotonNetwork.NickName : pv.Owner.NickName;
         nickname.color = pv.IsMine ? Color.green : Color.red;
-        cam.gameObject.name = nickname.text;
-
+        //cam.gameObject.name = nickname.text;
         if (pv.IsMine)
         {
-            cam = GameObject.Find(nickname.text).GetComponent<Camera>();
-            cam.targetDisplay = targetdisplay++;
+            gameObject.name = nickname.text;
+            cam.gameObject.name = nickname.text + "cam";
+            cam = GameObject.Find(nickname.text + "cam").GetComponent<Camera>();
+           // cam.targetDisplay = targetdisplay++;
         }
         instance = this;
     }
@@ -73,9 +82,9 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
     void Update()
     {
         //enabled = true;
-        if(pv.IsMine && PhotonNetwork.IsConnected){Move();}
-        if(Input.GetKeyDown(KeyCode.Escape)){Application.Quit();}
-        pv.RPC("DestroyRPC", RpcTarget.AllBuffered);
+        if (pv.IsMine && PhotonNetwork.IsConnected) { Move(); }
+        if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
+        //pv.RPC("DestroyRPC", RpcTarget.AllBuffered);
     }
 
     void Move()
@@ -148,7 +157,7 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.layer == 8) { current_hp -= col.gameObject.GetComponent<Character>().damage; }  
+        if (col.gameObject.layer == 8) { current_hp -= col.gameObject.GetComponent<Character>().damage; }
     }
 
 }
