@@ -5,7 +5,7 @@ using System;
 using Photon.Pun;
 using Photon.Realtime;
 
-class NomalFarMonster : Monster, IMonsterBase
+class NomalFarMonster : Monster, IMonsterBase, IMonsterAttack, IMonsterIdle, IMonsterChase
 {
     Action mon_action;
     [SerializeField]
@@ -99,11 +99,6 @@ class NomalFarMonster : Monster, IMonsterBase
         }
     }
 
-    public void Patrol()
-    {
-        //none
-    }
-
     public void Chase()
     {
         if (lock_target != null)
@@ -153,12 +148,6 @@ class NomalFarMonster : Monster, IMonsterBase
             }
         }
     }
-
-    public void Skill()
-    {
-        //none
-    }
-
     public void Is_Dead()
     {
         if (is_dead)

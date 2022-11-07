@@ -4,8 +4,9 @@ using UnityEngine;
 using System;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.AI;
 
-class WideFarMonster : Monster
+class WideFarMonster : Monster, IMonsterBase, IMonsterAttack, IMonsterIdle, IMonsterChase, IMonsterPatrol
 {
     Action mon_action;
     public WideFarMonster()
@@ -83,9 +84,6 @@ class WideFarMonster : Monster
                 case CurrentState.EATTACK:
                     Attack();
                     break;
-                case CurrentState.ESKILL:
-                    Skill();
-                    break;
             }
         }
     }
@@ -109,12 +107,40 @@ class WideFarMonster : Monster
 
     }
 
-    public void Skill()
-    {
-
-    }
     public void Is_Dead()
     {
 
+    }
+    bool Random_Point(Vector3 center, float range, out Vector3 result)
+    {
+
+        for (int i = 0; i < 30; i++)
+        {
+            Vector3 randomPoint = center + UnityEngine.Random.insideUnitSphere * range;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            {
+                result = hit.position;
+                return true;
+            }
+        }
+
+        result = Vector3.zero;
+
+        return false;
+    }
+
+    private Vector3 Get_Random_Point(Transform point = null, float radius = 0)
+    {
+        Vector3 _point;
+
+        if (Random_Point(point == null ? transform.position : point.position, radius == 0 ? move_range : radius, out _point))
+        {
+            Debug.DrawRay(_point, Vector3.up, Color.black, 1);
+
+            return _point;
+        }
+
+        return point == null ? Vector3.zero : point.position;
     }
 }

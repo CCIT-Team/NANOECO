@@ -39,5 +39,6 @@ public class UseFactory : MonoBehaviour
     {
         Make_TypeA();
         Make_TypeB();
+        
     }
 }

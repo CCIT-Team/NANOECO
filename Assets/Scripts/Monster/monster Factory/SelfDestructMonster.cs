@@ -5,7 +5,7 @@ using System;
 using Photon.Pun;
 using Photon.Realtime;
 
-class SelfDestructMonster : Monster, IMonsterBase
+class SelfDestructMonster : Monster, IMonsterBase, IMonsterSkill, IMonsterIdle
 {
     Action mon_action;
     public SelfDestructMonster()
@@ -13,27 +13,27 @@ class SelfDestructMonster : Monster, IMonsterBase
         type = UnitType.ESelfDestructMonster;
         if (!is_dead)
         {
-            //½ºÅ×ÀÌÅÍ½º
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í½ï¿½
             max_hp = 50f;
             damage = 1f;
             defense = 0.5f;
             patrol_speed = 15f;
             chase_speed = 30f;
-            //¹üÀ§
+            //ï¿½ï¿½ï¿½ï¿½
             move_range = 30f;
             patrol_dist = 25f;
             skill_dist = 10f;
-            //ÄðÅ¸ÀÓ
+            //ï¿½ï¿½Å¸ï¿½ï¿½
             wait_time = 2f;
             idle_cool_time = 2f;
-            //»óÅÂ
+            //ï¿½ï¿½ï¿½ï¿½
             is_dead = false;
             current_state = CurrentState.EIDLE;
         }
     }
     private void Awake()
     {
-        //if (!PhotonNetwork.IsMasterClient) Æ÷Åæ Å×½ºÆ® Àü
+        //if (!PhotonNetwork.IsMasterClient) ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ® ï¿½ï¿½
         //{
         //    return;
         //}
@@ -47,7 +47,7 @@ class SelfDestructMonster : Monster, IMonsterBase
     }
     private void FixedUpdate()
     {
-        //if (!PhotonNetwork.IsMasterClient) Æ÷Åæ Å×½ºÆ® Àü
+        //if (!PhotonNetwork.IsMasterClient) ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ® ï¿½ï¿½
         //{
         //    return;
         //}
@@ -121,16 +121,6 @@ class SelfDestructMonster : Monster, IMonsterBase
         }
     }
 
-    public void Chase()
-    {
-        //none
-    }
-
-    public void Attack()
-    {
-        //none
-    }
-
     public void Skill()
     {
         if (lock_target != null)
@@ -157,6 +147,9 @@ class SelfDestructMonster : Monster, IMonsterBase
     }
     public void Is_Dead()
     {
-
+        if(is_dead)
+        {
+            
+        }
     }
 }
