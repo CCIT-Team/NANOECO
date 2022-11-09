@@ -4,43 +4,27 @@ using Photon.Realtime;
 
 public class PlayerMouseRotate : MonoBehaviourPunCallbacks
 {
-    
-    #region Datamembers
-
-    #region Editor Settings
-
     [SerializeField] private LayerMask groundMask;
-
-    #endregion
-    #region Private Fields
 
     public Camera cam;
 
-    #endregion
-
-    #endregion
-
-
-    #region Methods
-
-    #region Unity Callbacks
+    public PhotonView pv;
 
     private void Start()
     {
-        cam = PhotonTestPlayer.instance.cam;
+        //cam = PhotonTestPlayer.instance.cam;
+        cam = Camera.main;
     }
 
     private void Update()
     {
-        Aim();
+        if (pv.IsMine) { Aim();}
     }
-
-    #endregion
 
     private void Aim()
     {
         var (success, position) = GetMousePosition();
-        if (success && PhotonTestPlayer.instance.pv.IsMine)
+        if (success)
         {
             var direction = transform.position - position;
             direction.y = 0;
@@ -52,14 +36,14 @@ public class PlayerMouseRotate : MonoBehaviourPunCallbacks
     {
         var ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask) && PhotonTestPlayer.instance.pv.IsMine)
+        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
         {
             return (success: true, position: hitInfo.point);
         }
         else
         {
-            return (success: false, position: Vector3.zero);
+            //return (success: false, position: Vector3.zero);
+            return (success: false, position: hitInfo.point);
         }
     }
-    #endregion
 }

@@ -24,26 +24,19 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LocalPlayer.NickName = nick_name_input.text;
         PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions { MaxPlayers = 4 }, null);
-       // PhotonNetwork.JoinLobby();
-    }
-
-    public override void OnJoinedLobby()
-    {
-        base.OnJoinedLobby();
     }
 
     public override void OnJoinedRoom()
     {
+        PhotonNetwork.LocalPlayer.NickName = nick_name_input.text;
         disconnectpanel.SetActive(false);
         Spawn();
     }
 
     public void Spawn()
     {
-        PhotonNetwork.Instantiate("PhotonTestPlayer", new Vector3(Random.Range(-4, 4), Random.Range(3,6), Random.Range(-4, 4)), Quaternion.identity);
-
+        PhotonNetwork.Instantiate("Player", new Vector3(Random.Range(-4, 4), Random.Range(3,6), Random.Range(-4, 4)), Quaternion.identity);
         connectpanel.SetActive(false);
-
     }
 
     private void Update()
