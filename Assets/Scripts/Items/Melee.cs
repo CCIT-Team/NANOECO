@@ -28,7 +28,6 @@ public class Melee : WeaponeBase
         {
             other.gameObject.GetComponent<Rigidbody>().AddForce(knockback * Vector3.Normalize(other.transform.position - player.position), ForceMode.Impulse);
             other.gameObject.GetComponent<Character>().current_hp -= damage;
-            Debug.Log(other.gameObject.name);
         }
     }
 }
