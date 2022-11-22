@@ -9753,14 +9753,14 @@ GameObject:
   - component: {fileID: 5082337188932917544}
   - component: {fileID: 5082337188932917545}
   - component: {fileID: 5082337188932917546}
-  - component: {fileID: -8104852980533298276}
+  - component: {fileID: -6758076449470848297}
   m_Layer: 0
-  m_Name: Bomb
+  m_Name: HealingBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5082337188932917526
 Transform:
   m_ObjectHideFlags: 0
@@ -9805,7 +9805,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 63062f91a77ff09469c9d9d5babbe9b5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9852,18 +9852,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c07f84daa66a72741b808cbf0f74ce77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pv: {fileID: -8104852980533298276}
+  pv: {fileID: -6758076449470848297}
   start: {x: 0, y: 0, z: 0}
   target: {x: 0, y: 0, z: 0}
   flyingtime: 1
   reduceheight: 1
   ps: {fileID: 29643055028391192}
-  damage: 20
+  damage: -10
   isboom: 0
   destroytime: 0.1
-  knockback: 10
-  targetLayer: 8
---- !u!114 &-8104852980533298276
+  knockback: 0
+  targetLayer: 7
+--- !u!114 &-6758076449470848297
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

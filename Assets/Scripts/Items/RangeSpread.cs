@@ -2,26 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangeSpread : WeaponeBase
+public class RangeSpread : Range
 {
 
-    public int ammo = 0;    //ÃÖ´ë Åº¼ö
-    public int currentammo = 0; //ÇöÀç Åº¼ö
-    public GameObject firePosition;
-    public GameObject bullet;
     ParticleSystem p;
+    public int spreadamunt = 15;
     
 
     void Start()
     {
-        type = Type.ERANGE;
+        pv = PhotonTestPlayer.instance.pv;
         currentammo = ammo;
+        bullet.GetComponent<Bullet>().damage = damage;
+        bullet.GetComponent<Bullet>().knockback = knockback;
         p = firePosition.GetComponent<ParticleSystem>();
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && pv.IsMine)
         {
             switch (currentammo)
             {
@@ -35,11 +34,11 @@ public class RangeSpread : WeaponeBase
                     break;
             }
         }
-        if (Input.GetKeyDown(KeyCode.R) && !isdelay)
+        if (Input.GetKeyDown(KeyCode.R) && !isdelay && pv.IsMine)
             StartCoroutine("Reloading");
     }
 
-    new void Attack()
+    public override void Attack()
     {
         if (!isdelay)
         {
@@ -48,7 +47,7 @@ public class RangeSpread : WeaponeBase
             chargedbullet.transform.rotation = firePosition.transform.rotation;
             StartCoroutine("AttackDelay");
         }
-        p.Emit(15);
+        p.Emit(spreadamunt);
         currentammo--;
     }
 

@@ -139,7 +139,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2873508997859594072}
   serializedVersion: 8
-  lengthInSec: 5
+  lengthInSec: 6
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -5125,7 +5125,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7811284691870994587}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 4.05, y: 0.85, z: 2.91}
   m_LocalScale: {x: 0.3, y: 1.2, z: 0.3}
   m_ConstrainProportionsScale: 0
@@ -5135,7 +5135,7 @@ Transform:
   - {fileID: 1882454916731326479}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &1065713896729373702
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5213,11 +5213,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: -1
   damage: 5
-  attackspeed: 2
-  realdelay: 2
+  attackspeed: 5
+  realdelay: 5
   isdelay: 0
   knockback: 0.1
+  pv: {fileID: 0}
   ammo: 9999999
   currentammo: 9999999
   firePosition: {fileID: 2873508997859594072}
   bullet: {fileID: 3541248617947914737, guid: 6ce8368ae82b20c4ea5fee56ea10a122, type: 3}
+  spreadamunt: 15

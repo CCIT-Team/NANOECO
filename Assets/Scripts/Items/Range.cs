@@ -11,7 +11,7 @@ public class Range : WeaponeBase
     public GameObject bullet;
     void Start()
     {
-        type = Type.ERANGE;
+        pv = PhotonTestPlayer.instance.pv;
         currentammo = ammo;
         bullet.GetComponent<Bullet>().damage = damage;
         bullet.GetComponent<Bullet>().knockback = knockback;
@@ -19,7 +19,7 @@ public class Range : WeaponeBase
 
     void Update()
     {
-        if (Input.GetMouseButton(0)&& !isdelay)
+        if (Input.GetMouseButton(0)&& !isdelay && pv.IsMine)
         {
             switch (currentammo)
             {
@@ -33,11 +33,11 @@ public class Range : WeaponeBase
                     break;
             }
         }
-        if(Input.GetKeyDown(KeyCode.R) && !isdelay)
+        if(Input.GetKeyDown(KeyCode.R) && !isdelay && pv.IsMine)
             StartCoroutine("Reloading");
     }
 
-    new void Attack()
+    public override void Attack()
     {
         GameObject chargedbullet = Instantiate(bullet);
         chargedbullet.transform.position = firePosition.transform.position;
