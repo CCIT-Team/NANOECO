@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public abstract class WeaponeBase : MonoBehaviour
+public abstract class WeaponeBase : MonoBehaviourPunCallbacks
 {
     public enum Type { ENONE = -1, EMELEE, ERANGE, ESUPPORT }
     public Type type = Type.ENONE;
@@ -12,18 +14,21 @@ public abstract class WeaponeBase : MonoBehaviour
     public bool isdelay = false;    //딜레이 확인용
     public float knockback = 0; //공격시 적을 밀쳐내는 정도
 
-
-
+    public PhotonView pv;
+    private void Start()
+    {
+        pv = PhotonTestPlayer.instance.pv;
+    }
 
     IEnumerator AttackDelay() //공격 딜레이용 코루틴
     {
-        yield return new WaitForSeconds(realdelay/attackspeed);
+        yield return new WaitForSeconds(realdelay / attackspeed);
         isdelay = false;
     }
 
-    public void Attack()  //실험용,재정의해서 사용
+    public virtual void Attack()  //재정의해서 사용
     {
-        Debug.Log("샷");
+
     }
 }
 
