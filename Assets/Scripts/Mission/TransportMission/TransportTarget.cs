@@ -8,11 +8,11 @@ public class TransportTarget : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        path.Mission_Event();
+        path._active_count++;
     }
 
     void OnTriggerExit(Collider other)
     {
-        path.StopAllCoroutines();
+        path._active_count--;
     }
 }

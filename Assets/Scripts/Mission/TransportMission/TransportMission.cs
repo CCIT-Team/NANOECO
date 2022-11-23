@@ -4,14 +4,32 @@ using UnityEngine;
 
 public class TransportMission : MissionBase
 {
-    public MissionSystem ms;
-
     public List<TransportPoint> path;
     public TransportTarget target;
     public float speed;
     public int current_point = 0;
     [Range(0, 1)]
     public float t = 0;
+    bool is_active = false;
+    public int active_count;
+    public int _active_count
+    {
+        get { return active_count; }
+        set
+        {
+            active_count = value;
+            if(!is_active && active_count > 0)
+            {
+                is_active = true;
+                Mission_Event();
+            }
+            else if(is_active && active_count == 0)
+            {
+                is_active = false;
+                StopAllCoroutines();
+            }
+        }
+    }
 
     public override void Mission_Event()
     {
