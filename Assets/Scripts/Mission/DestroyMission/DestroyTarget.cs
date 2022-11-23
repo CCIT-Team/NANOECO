@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class DestroyTarget : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public DestroyMission dm;
+    public float hp;
+    public float _hp
     {
-        
+        get { return hp; }
+        set
+        {
+            hp = value;
+            if(hp <= 0) { Destroy_Object(); }
+
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void Destroy_Object()
     {
-        
+        int i = dm.target.IndexOf(this);
+        dm.target.RemoveAt(i);
+
+        if(dm.target.Count == 0)
+        {
+            dm.StopAllCoroutines();
+            dm.Clear();
+        }
+
+        Destroy(gameObject);
     }
 }

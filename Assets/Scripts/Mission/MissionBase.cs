@@ -7,7 +7,8 @@ public abstract class MissionBase : MonoBehaviour
     [Header("미션 데이터")]
     public string mission_name;
     public string mission_info;
-    public bool clear;
+
+    public MissionSystem ms;
 
     public abstract void Mission_Event();
 
