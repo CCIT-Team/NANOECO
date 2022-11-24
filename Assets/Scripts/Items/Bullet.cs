@@ -6,7 +6,6 @@ using Photon.Realtime;
 
 public class Bullet : MonoBehaviourPunCallbacks
 {
-    public PhotonView pv;
     public float damage = 0;
     public float knockback = 0;
     public float speed = 500;
@@ -25,10 +24,7 @@ public class Bullet : MonoBehaviourPunCallbacks
         {
             other.gameObject.GetComponent<Rigidbody>().AddForce(knockback * Vector3.Normalize(other.transform.position - this.transform.position), ForceMode.Impulse);
             other.gameObject.GetComponent<Character>().current_hp -= damage;
-            pv.RPC("DestroyRPC", RpcTarget.AllBuffered);
             Destroy(gameObject);
         }
     }
-    [PunRPC]
-    void DestroyRPC() => Destroy(gameObject);
 }
