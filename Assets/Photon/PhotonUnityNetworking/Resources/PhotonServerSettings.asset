@@ -39,9 +39,15 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+<<<<<<< HEAD
   - DestroyRPC
   - Aim
   - GetMousePosition
+=======
+  - Test
+  - Player_Number_Check
+  - NickName_Check
+>>>>>>> JUN
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1
   DevRegionSetOnce: 1

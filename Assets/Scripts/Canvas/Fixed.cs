@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ public class Fixed : MonoBehaviour
 {
     private void Start()
     {
-        SetResolution(); // 초기에 게임 해상도 고정
+        //SetResolution(); // 초기에 게임 해상도 고정
     }
 
     /* 해상도 설정하는 함수 */

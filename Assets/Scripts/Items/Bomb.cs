@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class Bomb : MonoBehaviour
+public class Bomb : MonoBehaviourPunCallbacks
 {
+    public PhotonView pv;
+
     public Vector3 start;
     public Vector3 target;
     public float flyingtime = 5;
@@ -18,6 +22,9 @@ public class Bomb : MonoBehaviour
     public float destroytime = 0.1f;
     public float knockback = 1;
     bool is_play = false;
+
+    [Range(0,8)]
+    public int targetLayer = 8;
     void Start()
     {
         starttime = Time.time;
@@ -44,18 +51,21 @@ public class Bomb : MonoBehaviour
             }
             if (!ps.isPlaying)
             {
+                pv.RPC("DestroyRPC", RpcTarget.AllBuffered);
                 Destroy(this.gameObject, destroytime);
             }
-            //Destroy(this.gameObject,destroytime);
         }     
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.layer == 8 && isboom)
+        if (other.gameObject.layer == targetLayer && isboom)
         {
             other.gameObject.GetComponent<Rigidbody>().AddForce(knockback*Vector3.Normalize(other.transform.position - this.transform.position), ForceMode.Impulse);
             other.gameObject.GetComponent<Character>().current_hp -= damage;
         }
     }
+
+    [PunRPC]
+    void DestroyRPC() => Destroy(gameObject);
 }

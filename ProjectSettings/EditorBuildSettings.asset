@@ -8,10 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/WaitingRoom/Login.unity
+    guid: d5c83c27f4ee74943abbb34f5f6f19d4
+  - enabled: 1
     path: Assets/Scenes/WaitingRoom/Waiting Room.unity
     guid: 84f8ac49eeb82c24d94ef1d9d09472fe
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GAMESCENE.unity
     guid: 9f292fcc3d332464b94f2f94d823357f
   - enabled: 0
