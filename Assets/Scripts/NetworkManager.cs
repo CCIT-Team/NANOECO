@@ -13,6 +13,10 @@ using TMPro;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
+    //public InputField nick_name_input;
+    //public GameObject disconnctpanel;
+    //public GameObject connectpanel;
+
     public PhotonView pv;
     public TMP_Text test_nickname; 
 
@@ -38,10 +42,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnConnectedToMaster()
     {
-<<<<<<< HEAD
-        PhotonNetwork.LocalPlayer.NickName = nick_name_input.text;
+        //PhotonNetwork.LocalPlayer.NickName = nick_name_input.text;
         PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions { MaxPlayers = 4 }, null);
-=======
+
         PhotonNetwork.LocalPlayer.NickName = Utils.nickname;
 
         PhotonNetwork.JoinLobby();
@@ -66,7 +69,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log(PhotonNetwork.CurrentLobby.Name);
         if (PhotonNetwork.InRoom)
             Debug.Log(PhotonNetwork.CurrentRoom.Name);
->>>>>>> JUN
     }
 
 
@@ -75,30 +77,25 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnJoinedRoom()
     {
-<<<<<<< HEAD
-        PhotonNetwork.LocalPlayer.NickName = nick_name_input.text;
-        disconnectpanel.SetActive(false);
+        //PhotonNetwork.LocalPlayer.NickName = nick_name_input.text;
+        //disconnectpanel.SetActive(false);
         Spawn();
-=======
         Player_Number_Check();
        // Debug.Log(2);
         
->>>>>>> JUN
     }
 
 
     public void Spawn()
     {
-<<<<<<< HEAD
-        PhotonNetwork.Instantiate("Player", new Vector3(Random.Range(-4, 4), Random.Range(3,6), Random.Range(-4, 4)), Quaternion.identity);
-        connectpanel.SetActive(false);
-=======
+        //PhotonNetwork.Instantiate("Player", new Vector3(Random.Range(-4, 4), Random.Range(3,6), Random.Range(-4, 4)), Quaternion.identity);
+        //connectpanel.SetActive(false);
+
         //PhotonNetwork.Instantiate("PhotonTestPlayer", new Vector3(Random.Range(-4, 4), Random.Range(3,6), Random.Range(-4, 4)), Quaternion.identity);
         //오류나서 지움
 
         //connectpanel.SetActive(false);
 
->>>>>>> JUN
     }
 
     private void Update()
