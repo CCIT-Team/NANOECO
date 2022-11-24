@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
+using Photon.Realtime;
 public class RangeSpread : Range
 {
 
@@ -42,9 +43,10 @@ public class RangeSpread : Range
     {
         if (!isdelay)
         {
-            GameObject chargedbullet = Instantiate(bullet);
+            PhotonNetwork.Instantiate("SprayBullet", firePosition.transform.position, firePosition.transform.rotation);
+            /*GameObject chargedbullet = Instantiate(bullet);
             chargedbullet.transform.position = firePosition.transform.position;
-            chargedbullet.transform.rotation = firePosition.transform.rotation;
+            chargedbullet.transform.rotation = firePosition.transform.rotation;*/
             StartCoroutine("AttackDelay");
         }
         p.Emit(spreadamunt);

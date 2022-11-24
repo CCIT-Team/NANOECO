@@ -22,7 +22,14 @@ public class ItemControler : MonoBehaviourPunCallbacks
         pv = PhotonTestPlayer.instance.pv;
         count = maxcount;
     }
-
+    override public void OnEnable()
+    {
+        if(iscooldown)
+        {
+            PhotonNetwork.AddCallbackTarget(this);
+            StartCoroutine("Cooling");
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -53,8 +60,7 @@ public class ItemControler : MonoBehaviourPunCallbacks
 
     public virtual void Useitem()
     {
-        useditem = Instantiate(itemprefab);
-        useditem.transform.position = this.transform.position;
+        PhotonNetwork.Instantiate(itemprefab.name, this.transform.position, this.transform.rotation);
         count--;
     }
 }

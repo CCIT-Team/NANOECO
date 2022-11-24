@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class Bomber : ItemControler
 {
@@ -21,8 +23,9 @@ public class Bomber : ItemControler
         }
         else
             return;
-        useditem = Instantiate(itemprefab);
-        useditem.transform.position = this.transform.position;
+        /*useditem = Instantiate(itemprefab);
+        useditem.transform.position = this.transform.position;*/
+        useditem = PhotonNetwork.Instantiate("Bomb", this.transform.position, this.transform.rotation);
         useditem.GetComponent<Bomb>().target = target;
         useditem.SetActive(true);
 

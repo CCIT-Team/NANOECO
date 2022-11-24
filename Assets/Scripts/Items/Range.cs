@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class Range : WeaponeBase
 {
@@ -9,12 +11,14 @@ public class Range : WeaponeBase
     public int currentammo = 0; //ÇöÀç Åº¼ö
     public GameObject firePosition;
     public GameObject bullet;
+    string bulletname;
     void Start()
     {
         pv = PhotonTestPlayer.instance.pv;
         currentammo = ammo;
         bullet.GetComponent<Bullet>().damage = damage;
         bullet.GetComponent<Bullet>().knockback = knockback;
+        bulletname = bullet.name;
     }
 
     void Update()
@@ -39,9 +43,11 @@ public class Range : WeaponeBase
 
     public override void Attack()
     {
+        /*
         GameObject chargedbullet = Instantiate(bullet);
         chargedbullet.transform.position = firePosition.transform.position;
-        chargedbullet.transform.rotation = firePosition.transform.rotation;
+        chargedbullet.transform.rotation = firePosition.transform.rotation;*/
+        PhotonNetwork.Instantiate(bulletname, firePosition.transform.position, firePosition.transform.rotation);
         currentammo--;
     }
 

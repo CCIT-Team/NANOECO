@@ -446,12 +446,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b739e424bb1522488ba922677ba13fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 7539424324287599628}
   rigid: {fileID: 3286243947600506088}
   ani: {fileID: 2027093367004637020}
   pv: {fileID: 3494191406881131422}
   nickname: {fileID: 1116164387767026983}
   cc: {fileID: 396285190002439413}
+  camera_shaking_num: 0
   max_hp: 0
   current_hp: 0
   damage: 0
@@ -460,6 +460,7 @@ MonoBehaviour:
   dash_force: 1
   move_force: 0.4
   _is_dead: 0
+  skil_num: 0
   item:
   - {fileID: 8195359582666470447}
   - {fileID: 5082337188932917547, guid: f1f7f9f3783f1b342b55865084ab76af, type: 3}
@@ -479,6 +480,8 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 151
+  cam: {fileID: 0}
+  pv: {fileID: 0}
 --- !u!143 &396285190002439413
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1646,6 +1649,7 @@ MonoBehaviour:
   realdelay: 0.2
   isdelay: 0
   knockback: 0
+  pv: {fileID: 0}
   ammo: 2147483647
   currentammo: 2147483647
   firePosition: {fileID: 6570902814157811488}
