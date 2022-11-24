@@ -8,11 +8,13 @@ public class TransportTarget : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        path._active_count++;
+        if(other.gameObject.layer == 6)
+            path._active_count++;
     }
 
     void OnTriggerExit(Collider other)
     {
-        path._active_count--;
+        if (other.gameObject.layer == 6)
+            path._active_count--;
     }
 }
