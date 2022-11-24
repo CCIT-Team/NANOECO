@@ -20,7 +20,20 @@ public class Fade : MonoBehaviour
     {
         if(SceneFunction.game_map_name != "")
         SceneFunction.Load_Scene(SceneFunction.game_map_name);
+        else
+        {
+            int current_scene_index = SceneManager.sceneCount;
+            SceneFunction.Load_Scene();
+        }
     }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+
+
+
 
     void Start()
     {
