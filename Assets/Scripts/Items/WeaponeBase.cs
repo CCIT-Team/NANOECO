@@ -17,7 +17,7 @@ public abstract class WeaponeBase : MonoBehaviourPunCallbacks
     public PhotonView pv;
     private void Start()
     {
-        pv = PhotonTestPlayer.instance.pv;
+        
     }
 
     IEnumerator AttackDelay() //공격 딜레이용 코루틴

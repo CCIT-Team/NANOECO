@@ -61,7 +61,8 @@ public class Bomb : MonoBehaviourPunCallbacks
     {
         if (other.gameObject.layer == targetLayer && isboom)
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(knockback*Vector3.Normalize(other.transform.position - this.transform.position), ForceMode.Impulse);
+            if(targetLayer != 7)
+                other.gameObject.GetComponent<Rigidbody>().AddForce(knockback*Vector3.Normalize(other.transform.position - this.transform.position), ForceMode.Impulse);
             other.gameObject.GetComponent<Character>().current_hp -= damage;
         }
     }

@@ -9,7 +9,6 @@ public class Bomber : ItemControler
     int layerMask;
     void Start()
     {
-        pv = PhotonTestPlayer.instance.pv;
         count = maxcount;
         layerMask  = 1 << LayerMask.NameToLayer("Ground");
     }

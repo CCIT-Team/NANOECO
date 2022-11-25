@@ -12,7 +12,7 @@ public class RangeSpread : Range
 
     void Start()
     {
-        pv = PhotonTestPlayer.instance.pv;
+        
         currentammo = ammo;
         bullet.GetComponent<Bullet>().damage = damage;
         bullet.GetComponent<Bullet>().knockback = knockback;

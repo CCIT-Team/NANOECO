@@ -19,7 +19,7 @@ public class ItemControler : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        pv = PhotonTestPlayer.instance.pv;
+        
         count = maxcount;
     }
     override public void OnEnable()

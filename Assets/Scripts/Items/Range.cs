@@ -14,7 +14,6 @@ public class Range : WeaponeBase
     string bulletname;
     void Start()
     {
-        pv = PhotonTestPlayer.instance.pv;
         currentammo = ammo;
         bullet.GetComponent<Bullet>().damage = damage;
         bullet.GetComponent<Bullet>().knockback = knockback;
