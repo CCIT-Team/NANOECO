@@ -28,21 +28,6 @@ public static class SceneFunction
         anim.Play();
     }
 
-    /// <summary>
-    /// 다음 INDEX 씬으로 이동
-    /// </summary>
-    /// 
-    public static void Load_Scene()
-    {
-        var current_scene_number = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(current_scene_number + 1);
-    }
-
-    public static void Load_Scene(string scene_name)
-    {
-        SceneManager.LoadScene(scene_name);
-    }
-
     #region
     public static void Object_Check()
     {
