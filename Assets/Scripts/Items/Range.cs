@@ -9,14 +9,16 @@ public class Range : WeaponeBase
     public int maxAmmo = 0;    //ÃÖ´ë Åº¼ö
     public int ammo = 0; //ÇöÀç Åº¼ö
     public GameObject firePosition;
-    public GameObject bullet;
+    public Bullet bullet;
     string bulletname;
+    public bool explosion = false;
     void Start()
     {
         ammo = maxAmmo;
-        bullet.GetComponent<Bullet>().damage = damage;
-        bullet.GetComponent<Bullet>().knockback = knockback;
-        bulletname = bullet.name;
+        bullet.damage = damage;
+        bullet.knockback = knockback;
+        bullet.explosive = explosion;
+        bulletname = bullet.gameObject.name;
     }
 
     void Update()
