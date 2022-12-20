@@ -72,6 +72,7 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
         item[0].SetActive(true);
         item[1].SetActive(false);
         item[2].SetActive(false);
+        pv.RPC("ActiveRPC", RpcTarget.AllBuffered, current_item);
     }
 
     void Update()
@@ -79,6 +80,7 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
         if (pv.IsMine && PhotonNetwork.IsConnected) { Move(); }
         if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
         //pv.RPC("DestroyRPC", RpcTarget.AllBuffered);
+        ItemChange();
     }
 
     void Move()
@@ -132,6 +134,7 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
             item[1].SetActive(false);//아이템1
             item[2].SetActive(false);//아이템2
             current_item = 0;
+            pv.RPC("ActiveRPC", RpcTarget.AllBuffered, current_item);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -139,6 +142,7 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
             item[1].SetActive(true);
             item[2].SetActive(false);
             current_item = 1;
+            pv.RPC("ActiveRPC", RpcTarget.AllBuffered, current_item);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
@@ -146,6 +150,7 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
             item[1].SetActive(false);
             item[2].SetActive(true);
             current_item = 2;
+            pv.RPC("ActiveRPC", RpcTarget.AllBuffered, current_item);
         }
     }
 
@@ -187,5 +192,14 @@ public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
         EAdd_AttackPoint,
         EAdd_Vision,
         EAdd_DashForce
+    }
+
+    [PunRPC]
+    void ActiveRPC(int a)
+    {
+        item[0].SetActive(false);
+        item[1].SetActive(false);
+        item[2].SetActive(false);
+        item[a].SetActive(true);
     }
 }

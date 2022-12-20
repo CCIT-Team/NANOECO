@@ -18,9 +18,26 @@ public class Fade : MonoBehaviour
 
     public void Load_Scene()//Fade Out
     {
-        if(SceneFunction.game_map_name != "")
-        SceneFunction.Load_Scene(SceneFunction.game_map_name);
+        if (SceneFunction.game_map_name != "")
+        {
+            SceneManager.LoadScene(SceneFunction.game_map_name);
+            //Debug.Log(23);
+            SceneFunction.game_map_name = string.Empty;
+        }
+        else
+        {
+            var current_scene_index = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(current_scene_index + 1);
+        }
     }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+
+
+
 
     void Start()
     {
