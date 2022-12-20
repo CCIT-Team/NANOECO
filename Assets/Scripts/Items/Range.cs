@@ -6,15 +6,14 @@ using Photon.Realtime;
 
 public class Range : WeaponeBase
 {
-
-    public int ammo = 0;    //譆渠 驕熱
-    public int currentammo = 0; //⑷營 驕熱
+    public int maxAmmo = 0;    //譆渠 驕熱
+    public int ammo = 0; //⑷營 驕熱
     public GameObject firePosition;
     public GameObject bullet;
     string bulletname;
     void Start()
     {
-        currentammo = ammo;
+        ammo = maxAmmo;
         bullet.GetComponent<Bullet>().damage = damage;
         bullet.GetComponent<Bullet>().knockback = knockback;
         bulletname = bullet.name;
@@ -24,7 +23,7 @@ public class Range : WeaponeBase
     {
         if (Input.GetMouseButton(0)&& !isdelay && pv.IsMine)
         {
-            switch (currentammo)
+            switch (ammo)
             {
                 case 0:
                     StartCoroutine("Reloading");
@@ -45,16 +44,17 @@ public class Range : WeaponeBase
         /*
         GameObject chargedbullet = Instantiate(bullet);
         chargedbullet.transform.position = firePosition.transform.position;
-        chargedbullet.transform.rotation = firePosition.transform.rotation;*/
+        chargedbullet.transform.rotation = firePosition.transform.rotation;
+        */
         PhotonNetwork.Instantiate(bulletname, firePosition.transform.position, firePosition.transform.rotation);
-        currentammo--;
+        ammo--;
     }
 
     IEnumerator Reloading()
     {
         isdelay = true;
         yield return new WaitForSecondsRealtime(2);
-        currentammo = ammo;
+        ammo = maxAmmo;
         isdelay = false;
     }
 }

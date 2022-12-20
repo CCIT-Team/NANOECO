@@ -16,7 +16,7 @@ public class Bomber : ItemControler
     {
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, layerMask))
+        if (Physics.Raycast(ray, out hit,100f, layerMask))
         {
             target = hit.point;
         }

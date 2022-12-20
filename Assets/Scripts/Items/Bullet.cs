@@ -26,9 +26,10 @@ public class Bullet : MonoBehaviourPunCallbacks
     {
         if (other.gameObject.layer == 8)
         {
-            if (explosive && sp.radius == 0.5)
+            if (explosive)
             {
-                sp.radius = 3;
+                Debug.Log("Æã");
+                //sp.radius = 3;
                 ps.Play();
             }
             if(knockback != 0)
