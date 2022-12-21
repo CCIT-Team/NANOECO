@@ -90,7 +90,8 @@ public class NdestructMonster : NewMonster
             Collider[] targets = Physics.OverlapSphere(transform.position, data.patrol_dist, target_mask);
             for (int i = 0; i < targets.Length; i++)
             {
-                player = targets[i].GetComponent<PhotonTestPlayer>();
+                //player = targets[i].GetComponent<PhotonTestPlayer>(); 실제 사용용
+                player = targets[i].GetComponent<MonTestPlayer>();   //테스트용
                 if (player != null)
                 {
                     lock_target = player.gameObject;
@@ -115,7 +116,9 @@ public class NdestructMonster : NewMonster
                 Collider[] collider = Physics.OverlapSphere(transform.position, 20f, target_mask);
                 for (int i = 0; i < collider.Length; i++)
                 {
-                    player = collider[i].GetComponent<PhotonTestPlayer>();
+                    //player = collider[i].GetComponent<PhotonTestPlayer>();  //실제 사용용
+                    player = targets[i].GetComponent<MonTestPlayer>();   //테스트용
+
                     if (player != null)
                     {
                         player.current_hp -= data.damage;
