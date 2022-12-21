@@ -47,7 +47,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         PhotonNetwork.LocalPlayer.NickName = Utils.nickname;
 
-        PhotonNetwork.JoinLobby();
+       // PhotonNetwork.JoinLobby();
 
 
         //PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions { MaxPlayers = 4 }, null);

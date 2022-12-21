@@ -15,10 +15,6 @@ public abstract class WeaponeBase : MonoBehaviourPunCallbacks
     public float knockback = 0; //공격시 적을 밀쳐내는 정도
 
     public PhotonView pv;
-    private void Start()
-    {
-        pv = PhotonTestPlayer.instance.pv;
-    }
 
     IEnumerator AttackDelay() //공격 딜레이용 코루틴
     {

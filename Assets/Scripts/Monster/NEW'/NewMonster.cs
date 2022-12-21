@@ -51,7 +51,7 @@ public struct Data
     public float state_time;
 }
 
-public abstract class NewMonster : MonoBehaviour
+public abstract class NewMonster : MonoBehaviourPunCallbacks
 {
     public Data data;
     [SerializeField]
@@ -210,6 +210,28 @@ public abstract class NewMonster : MonoBehaviour
             Instantiate(Particles[0], transform.position, Quaternion.identity);
             Destroy(gameObject);
             current_state = CURRNET_STATE.EIdle;
+        }
+    }
+
+    public virtual void Monster_State()
+    {
+        if (!is_dead)
+        {
+            switch (current_state)
+            {
+                case CURRNET_STATE.EIdle:
+                    Idle();
+                    break;
+                case CURRNET_STATE.EPatrol:
+                    Patrol();
+                    break;
+                case CURRNET_STATE.EChase:
+                    Chase();
+                    break;
+                case CURRNET_STATE.EAttack:
+                    Attack();
+                    break;
+            }
         }
     }
 
