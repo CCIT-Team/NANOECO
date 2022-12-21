@@ -28,6 +28,7 @@ public class NnomalMonster : NewMonster
 
         data.current_time = 0f;
         data.state_time = 0f;
+        
     }
 
     public override void Init()
@@ -56,6 +57,7 @@ public class NnomalMonster : NewMonster
     private void Awake()
     {
         mon_action += Monster_State;
+        Debug.Log(target_mask);
     }
 
     private void FixedUpdate()
