@@ -12,8 +12,7 @@ public class RangeSpread : Range
 
     void Start()
     {
-        
-        currentammo = ammo;
+        ammo = maxAmmo;
         bullet.GetComponent<Bullet>().damage = damage;
         bullet.GetComponent<Bullet>().knockback = knockback;
         p = firePosition.GetComponent<ParticleSystem>();
@@ -23,7 +22,7 @@ public class RangeSpread : Range
     {
         if (Input.GetMouseButton(0) && pv.IsMine)
         {
-            switch (currentammo)
+            switch (ammo)
             {
                 case 0:
                     if(!isdelay)
@@ -50,14 +49,14 @@ public class RangeSpread : Range
             StartCoroutine("AttackDelay");
         }
         p.Emit(spreadamunt);
-        currentammo--;
+        ammo--;
     }
 
     IEnumerator Reloading()
     {
         isdelay = true;
         yield return new WaitForSecondsRealtime(2);
-        currentammo = ammo;
+        ammo = maxAmmo;
         isdelay = false;
     }
 }

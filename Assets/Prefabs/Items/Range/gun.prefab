@@ -47,16 +47,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  damage: 0
-  attackspeed: 5
+  damage: 5
+  attackspeed: 2
   realdelay: 0.5
   isdelay: 0
   knockback: 0.1
   pv: {fileID: 0}
-  ammo: 999999
-  currentammo: 999999
+  maxAmmo: 500
+  ammo: 500
   firePosition: {fileID: 2610163585536448594}
-  bullet: {fileID: 7167444510161355727, guid: a3a81992d99288f4bbf5e4e697bdff57, type: 3}
+  bullet: {fileID: -4316363247423991619, guid: 66730fb6a4bf0144cb61d28681ef01a5, type: 3}
+  explosion: 0
 --- !u!1 &2610163585536448594
 GameObject:
   m_ObjectHideFlags: 0

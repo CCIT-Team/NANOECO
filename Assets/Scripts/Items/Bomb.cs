@@ -16,6 +16,7 @@ public class Bomb : MonoBehaviourPunCallbacks
 
     public ParticleSystem ps;
     SphereCollider col;
+    MeshRenderer mesh;
     public float damage = 20;
     public bool isboom = false;
 
@@ -30,10 +31,11 @@ public class Bomb : MonoBehaviourPunCallbacks
         starttime = Time.time;
         start = this.transform.position;
         col = GetComponent<SphereCollider>();
+        mesh = GetComponent<MeshRenderer>();
     }
     void Update()
     {
-        Vector3 center = (start + target) * 0.5F;
+        Vector3 center = (start + target) * 0.5f;
         center -= new Vector3(0, reduceheight, 0);
         Vector3 startRelCenter = start - center;
         Vector3 targetRelCenter = target - center;
@@ -43,6 +45,7 @@ public class Bomb : MonoBehaviourPunCallbacks
         if (Time.time - starttime >= 1 )
         {
             isboom = true;
+            Destroy(mesh);
             col.radius = 10;
             if(!is_play)
             {

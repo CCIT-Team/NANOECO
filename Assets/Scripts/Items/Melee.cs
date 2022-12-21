@@ -7,8 +7,6 @@ using Photon.Realtime;
 public class Melee : WeaponeBase
 {
     public Transform player;
-
-
     void Start()
     {
         type = Type.EMELEE;
@@ -21,7 +19,6 @@ public class Melee : WeaponeBase
             isdelay = true;
             StartCoroutine("AttackDelay");
         }
-            
     }
 
     private void OnTriggerEnter(Collider other)
