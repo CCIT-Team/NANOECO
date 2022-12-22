@@ -57,7 +57,6 @@ public class NnomalMonster : NewMonster
     private void Awake()
     {
         mon_action += Monster_State;
-        Debug.Log(target_mask);
     }
 
     private void FixedUpdate()
