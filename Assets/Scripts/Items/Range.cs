@@ -1,27 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class Range : WeaponeBase
 {
-
-    public int ammo = 0;    //譆渠 驕熱
-    public int currentammo = 0; //⑷營 驕熱
+    public int maxAmmo = 0;    //譆渠 驕熱
+    public int ammo = 0; //⑷營 驕熱
     public GameObject firePosition;
-    public GameObject bullet;
+    public Bullet bullet;
+    string bulletname;
+    public bool explosion = false;
     void Start()
     {
-        pv = PhotonTestPlayer.instance.pv;
-        currentammo = ammo;
-        bullet.GetComponent<Bullet>().damage = damage;
-        bullet.GetComponent<Bullet>().knockback = knockback;
+        ammo = maxAmmo;
+        bullet.damage = damage;
+        bullet.knockback = knockback;
+        bullet.explosive = explosion;
+        bulletname = bullet.gameObject.name;
     }
 
     void Update()
     {
         if (Input.GetMouseButton(0)&& !isdelay && pv.IsMine)
         {
-            switch (currentammo)
+            switch (ammo)
             {
                 case 0:
                     StartCoroutine("Reloading");
@@ -39,17 +43,20 @@ public class Range : WeaponeBase
 
     public override void Attack()
     {
+        /*
         GameObject chargedbullet = Instantiate(bullet);
         chargedbullet.transform.position = firePosition.transform.position;
         chargedbullet.transform.rotation = firePosition.transform.rotation;
-        currentammo--;
+        */
+        PhotonNetwork.Instantiate(bulletname, firePosition.transform.position, firePosition.transform.rotation);
+        ammo--;
     }
 
     IEnumerator Reloading()
     {
         isdelay = true;
         yield return new WaitForSecondsRealtime(2);
-        currentammo = ammo;
+        ammo = maxAmmo;
         isdelay = false;
     }
 }

@@ -65,28 +65,6 @@ public class NnomalFMonster : NewMonster
         mon_action();
     }
 
-    private void Monster_State()
-    {
-        if (!is_dead)
-        {
-            switch (current_state)
-            {
-                case CURRNET_STATE.EIdle:
-                    Idle();
-                    break;
-                case CURRNET_STATE.EPatrol:
-                    Patrol();
-                    break;
-                case CURRNET_STATE.EChase:
-                    Chase();
-                    break;
-                case CURRNET_STATE.EAttack:
-                    Attack();
-                    break;
-            }
-        }
-    }
-
     public override void Attack()
     {
         if (lock_target != null)

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NsocutMomster : NewMonster
+public class NsocutMonster : NewMonster
 {
     System.Action mon_action;
 
     #region 초기값
-    public NsocutMomster()
+    public NsocutMonster()
     {
         data.max_hp = 50f;
         data.current_hp = data.max_hp;
@@ -63,7 +63,7 @@ public class NsocutMomster : NewMonster
         mon_action();
     }
 
-    private void Monster_State()
+    public override void Monster_State()
     {
         if (!is_dead)
         {
@@ -90,9 +90,17 @@ public class NsocutMomster : NewMonster
 
     public override void Skill()
     {
-        //플레이어를 바라보며 자리에 멈추어 스킬 사용
-        agent.SetDestination(transform.position);
-        //몬스터 생성
+        float dist = (lock_target.transform.position - transform.position).magnitude;
+        transform.rotation = Quaternion.Lerp(transform.rotation, lock_target.transform.rotation, Time.deltaTime);
+        if(dist <= data.skill_dist)
+        {
+            agent.SetDestination(transform.position);
+            //몬스터 생성 메서드 필요
+        }
+        else
+        {
+            current_state = CURRNET_STATE.EChase;
+        }
 
     }
 }
