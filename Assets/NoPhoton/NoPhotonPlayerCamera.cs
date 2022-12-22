@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PlayerCamera : MonoBehaviourPunCallbacks
+public class NoPhotonPlayerCamera : MonoBehaviourPunCallbacks
 {
     public Transform player;
     public float smooth_speed = 0.125f;
@@ -31,7 +31,7 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        //CameraEvent();
+        CameraEvent();
     }
 
     void CameraEvent()
