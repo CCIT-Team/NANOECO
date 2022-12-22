@@ -33,6 +33,7 @@ public class NoPhotonPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject[] item;
     int current_item = 0;
     bool isdash = false;
+    int dontfall = 0;
 
 
     Vector3 curPos;
@@ -81,6 +82,7 @@ public class NoPhotonPlayer : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
         //pv.RPC("DestroyRPC", RpcTarget.AllBuffered);
         ItemChange();
+
     }
 
     void Move()
@@ -90,7 +92,19 @@ public class NoPhotonPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
         Vector3 move = new Vector3(-Input.GetAxis("Horizontal"), 0, -Input.GetAxis("Vertical"));
         move *= move_force;
-        if (!cc.isGrounded) { move.y -= 9.81f * Time.deltaTime; }
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            dontfall = 1;
+        }
+        else if(Input.GetKeyDown(KeyCode.Y))
+        {
+            dontfall = 0;
+        }
+        else if(Input.GetKeyDown(KeyCode.I))
+        {
+            move.y += 50.81f * Time.deltaTime;
+        }
+        if (!cc.isGrounded && dontfall == 0) { move.y -= 9.81f * Time.deltaTime; }
         if (horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0)
         {
             ani.SetBool("Run", true);
