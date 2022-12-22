@@ -119,13 +119,10 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
             agent.SetDestination(Get_Random_Point(transform, data.patrol_dist));
         }
         Collider[] targets = Physics.OverlapSphere(transform.position, data.chase_dist, target_mask); //정상 작동 되지만 현재 PhotonTestPlayer가 없어서 따라가서 공격이 안됨
-        Debug.Log("처음으로 확인 : " + targets.Length);
         for (int i = 0; i < targets.Length; i++)
         {
-            Debug.Log("반복으로 확인 : " + targets.Length);
             //player = targets[i].GetComponent<PhotonTestPlayer>();  //실제 사용용
             player = targets[i].GetComponent<MonTestPlayer>();   //테스트용
-            Debug.Log("플레이어 확인 : " + player);
             if (player != null)
             {
                 lock_target = player.gameObject;
