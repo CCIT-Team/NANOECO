@@ -29,20 +29,16 @@ MonoBehaviour:
     EnableLobbyStatistics: 0
     NetworkLogging: 1
   DevRegion: kr
-  PunLogging: 2
+  PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
-  - ActiveRPC
   - ClickRpc
   - DestroyRpc
-  - DestroyRPC
   - DestroySpaceship
   - Fire
-  - NickName_Check
-  - Player_Number_Check
   - RespawnSpaceship
   DisableAutoOpenWizard: 1
   ShowSettings: 0
-  DevRegionSetOnce: 0
+  DevRegionSetOnce: 1
