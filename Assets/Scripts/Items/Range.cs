@@ -48,7 +48,7 @@ public class Range : WeaponeBase
     public override void PreSetting()
     {
         type = Type.ERANGE;
-        skil = pv.GetComponent<PhotonTestPlayer>().skil_num;
+        skil = pv.GetComponent<Player>().skil_num;
         switch (skil)
         {
             case (0):
