@@ -12,7 +12,9 @@ public class RangeSpread : Range
 
     void Start()
     {
-        PreSetting();
+        ammo = maxAmmo;
+        bullet.GetComponent<Bullet>().damage = damage;
+        bullet.GetComponent<Bullet>().knockback = knockback;
         p = firePosition.GetComponent<ParticleSystem>();
     }
 
