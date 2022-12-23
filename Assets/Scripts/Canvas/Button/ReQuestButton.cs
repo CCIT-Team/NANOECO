@@ -18,6 +18,9 @@ public class ReQuestButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             buttons[i].image.color = new Color(1, 1, 1, 1);
             buttons[i].transform.GetChild(0).gameObject.SetActive(false);
+
+
+            Utils.is_select_room = false;
         }
 
         ///
@@ -25,13 +28,17 @@ public class ReQuestButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             image.color = new Color(1, 1, 1, 0);
             transform.GetChild(0).gameObject.SetActive(true);
-            SceneFunction.game_map_name = "Kitchen";
+            SceneFunction.game_map_name = "FastfoodKitchen";
+
+            Utils.is_select_room = true;
         }
         else
         {
             image.color = new Color(1, 1, 1, 1);
             transform.GetChild(0).gameObject.SetActive(false);
             SceneFunction.game_map_name = "";
+
+            Utils.is_select_room = false;
         }
     }
 

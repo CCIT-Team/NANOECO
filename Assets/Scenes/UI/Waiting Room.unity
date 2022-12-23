@@ -1013,9 +1013,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 299406889}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 069826f635cd7994e836e175d19f7cdc, type: 3}
+  m_Script: {fileID: 11500000, guid: fcfaa78ab5427394591f18fdb2d4e996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Room_Code: {fileID: 290414329}
 --- !u!1 &337967750
 GameObject:
   m_ObjectHideFlags: 0
@@ -3569,7 +3570,7 @@ MonoBehaviour:
   pv: {fileID: 1938811879}
   test_nickname: {fileID: 128066760}
   connected_player_number: 0
-  make_room_panel: {fileID: 0}
+  Canvas: {fileID: 299406889}
 --- !u!4 &1938811878
 Transform:
   m_ObjectHideFlags: 0
