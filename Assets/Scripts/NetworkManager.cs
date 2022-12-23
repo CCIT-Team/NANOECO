@@ -62,8 +62,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             make_room_panel.SetActive(false);
         }
 
-        if(PhotonNetwork.InRoom)
-        Debug.Log(PhotonNetwork.CurrentRoom.Players.Count);
+        if (PhotonNetwork.PlayerList.Length >= 2)
+        {
+            Debug.Log(PhotonNetwork.CurrentRoom.Players[0].NickName);
+            Debug.Log(PhotonNetwork.CurrentRoom.Players[1].NickName);
+        }
+
+        Debug.Log(PhotonNetwork.PlayerList.Length);
     }
     /// <summary>
     /// //////////////////////////////////////////////////////////////////////
