@@ -227,6 +227,7 @@ public class GoogleSheetManager : MonoBehaviour
 
                 Utils.nickname = GD.msg;
                 SceneFunction.Fade_Out();
+               
             }
         }
 
@@ -242,8 +243,6 @@ public class GoogleSheetManager : MonoBehaviour
             for_the_text_obj.SetActive(true);
             text_message.text = "게임을 시작할 준비가 완료되었습니다!";
         }
-
-       
     }
 
     //

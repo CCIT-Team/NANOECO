@@ -49,9 +49,10 @@ MonoBehaviour:
   type: 1
   damage: 5
   attackspeed: 2
+  realdelay: 0.5
   isdelay: 0
   knockback: 0.1
-  pv: {fileID: 1567939649194598680, guid: 29360832715727c4783d13fd0ffb52b3, type: 3}
+  pv: {fileID: 0}
   maxAmmo: 500
   ammo: 500
   firePosition: {fileID: 2610163585536448594}
