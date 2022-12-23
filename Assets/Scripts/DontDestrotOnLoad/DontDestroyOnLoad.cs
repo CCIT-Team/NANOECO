@@ -9,7 +9,7 @@ using UnityEngine;
 public class DontDestroyOnLoad : MonoBehaviour
 {
     public bool dont_destroy_check;
-    void Awake()
+    void Start()
     {
         if(dont_destroy_check)
         {
