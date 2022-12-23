@@ -6,6 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using Newtonsoft.Json.Bson;
+using static System.Net.Mime.MediaTypeNames;
 
 /// <summary>
 /// This friend is only for connecting to the Photon server and checking the connection.
@@ -19,12 +20,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [SerializeField]
     PhotonView pv;
-    [SerializeField]
-    TMP_Text test_nickname;
 
-
-    [Header("1")]
-    public int connected_player_number;
+    
 
 
     private void Awake()
@@ -42,15 +39,30 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Connect();
     }
 
+    private void Start()
+    {
+        Utils.is_findroom = false;
+    }
+
     public void Connect() => PhotonNetwork.ConnectUsingSettings();
     public override void OnConnectedToMaster()
     {
+        if(!Utils.is_findroom)
         PhotonNetwork.JoinLobby();
+        else if(Utils.is_findroom)
+        PhotonNetwork.JoinRandomRoom();
     }
     public override void OnJoinedLobby()
     {
         Debug.Log("로비 연결 완료");
         SceneFunction.loading_canvas.SetActive(false);
+        Utils.Ran();
+        string num_code = Utils.room_number.ToString();
+        Canvas.GetComponent<WRCanvas>().Room_Code.text = num_code.Substring(0, 4) + " " + num_code.Substring(4);
+
+        ros.MaxPlayers = 4;
+        ros.IsVisible = true;
+        PhotonNetwork.JoinOrCreateRoom(Canvas.GetComponent<WRCanvas>().Room_Code.text, ros, null);
     }
 
 
@@ -64,11 +76,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.PlayerList.Length >= 2)
         {
-            Debug.Log(PhotonNetwork.CurrentRoom.Players[0].NickName);
-            Debug.Log(PhotonNetwork.CurrentRoom.Players[1].NickName);
-        }
 
-        Debug.Log(PhotonNetwork.PlayerList.Length);
+            Debug.Log(PhotonNetwork.PlayerListOthers[0].ToStringFull());
+        }
+        //Debug.Log(PhotonNetwork.PlayerListOthers[0].ToStringFull());
     }
     /// <summary>
     /// //////////////////////////////////////////////////////////////////////
@@ -84,37 +95,17 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     //
     public void Make_Room_Panel(TMP_Text text)
     {
-        if (!Utils.is_inRoom)
-        {
-            SceneFunction.loading_canvas.SetActive(true);
-            Utils.Ran();
-            string num_code = Utils.room_number.ToString();
-            
-            text.text = num_code.Substring(0,4) + " " + num_code.Substring(4);
-            
-            Utils.is_inRoom = true;
-            ros.MaxPlayers = 4;
-            ros.IsVisible = true;
-            PhotonNetwork.JoinOrCreateRoom(text.text, ros, null);
-        }
-        else if(Utils.is_inRoom) 
-        {
-            SceneFunction.loading_canvas.SetActive(true);
-            PhotonNetwork.Disconnect();
-            Utils.is_inRoom = false;
-            text.text = "...";
-            Utils.room_number= 0;
-        }
+         SceneFunction.loading_canvas.SetActive(true);
+         PhotonNetwork.Disconnect();
+         text.text = "...";
+         Utils.room_number = 0;
     }
 
     public void Join_Random_Room()
     {
-        if(!Utils.is_inRoom) 
-        {
-            PhotonNetwork.JoinRandomRoom();
-            Utils.is_inRoom = true;
-            SceneFunction.loading_canvas.SetActive(true);
-        }
+        Utils.is_findroom = true;
+         PhotonNetwork.LeaveRoom();
+         SceneFunction.loading_canvas.SetActive(true);
     }
 
 /// <summary>
@@ -133,12 +124,20 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     private GameObject Canvas;
     public override void OnJoinedRoom()
     {
-        SceneFunction.loading_canvas.SetActive(false);
-        Canvas.GetComponent<WRCanvas>().Room_Code.text = PhotonNetwork.CurrentRoom.Name;
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            SceneFunction.loading_canvas.SetActive(false);
+            Canvas.GetComponent<WRCanvas>().Room_Code.text = PhotonNetwork.CurrentRoom.Name;
+        }
 
+        //Debug.Log(PhotonNetwork.CurrentRoom.Name);
     }
 
 
+    public override void OnLeftRoom()
+    {
+        Debug.Log(25);
+    }
 
     public override void OnDisconnected(DisconnectCause cause)
     {
@@ -148,14 +147,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         SceneFunction.loading_canvas.SetActive(false);
-        Debug.Log(2424);
+        Debug.Log("존재하는 방이 없어요~");
     }
 
     [PunRPC]
     private void Player_Number_Check()
     {
-        connected_player_number = PhotonNetwork.PlayerList.Length;
-        test_nickname.text = connected_player_number.ToString();
     }
 
     [PunRPC]
