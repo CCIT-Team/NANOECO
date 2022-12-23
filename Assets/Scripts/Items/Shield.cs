@@ -7,7 +7,7 @@ using Photon.Realtime;
 public class Shield : ItemControler
 {
     public Material a;
-    Player player;
+    PhotonTestPlayer player;
     float currenthp = 0;
     float stack = 0;
     bool shieldon = false;
@@ -15,7 +15,7 @@ public class Shield : ItemControler
     // Start is called before the first frame update
     void Start()
     {
-        player = pv.GetComponent<Player>();
+        player = pv.GetComponent<PhotonTestPlayer>();
         currenthp = player.current_hp;
     }
 

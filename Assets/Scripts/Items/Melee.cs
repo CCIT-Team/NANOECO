@@ -7,6 +7,10 @@ using Photon.Realtime;
 public class Melee : WeaponeBase
 {
     public Transform player;
+    void Start()
+    {
+        type = Type.EMELEE;
+    }
 
     void Update()
     {
@@ -24,10 +28,5 @@ public class Melee : WeaponeBase
             other.gameObject.GetComponent<Rigidbody>().AddForce(knockback * Vector3.Normalize(other.transform.position - player.position), ForceMode.Impulse);
             other.gameObject.GetComponent<Character>().current_hp -= damage;
         }
-    }
-
-    public override void PreSetting()
-    {
-        type = Type.EMELEE;
     }
 }

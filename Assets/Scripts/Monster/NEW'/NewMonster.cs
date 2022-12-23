@@ -58,8 +58,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     protected MONSTER_TYPE monster_type;
     [SerializeField]
     protected Collider[] targets;
-    //protected PhotonTestPlayer player;  //실제 사용용
-    protected MonTestPlayer player;
+    protected PhotonTestPlayer player;
     [SerializeField]
     protected NavMeshAgent agent;
     [SerializeField]
@@ -118,21 +117,17 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         {
             agent.SetDestination(Get_Random_Point(transform, data.patrol_dist));
         }
-        Collider[] targets = Physics.OverlapSphere(transform.position, data.chase_dist, target_mask); //정상 작동 되지만 현재 PhotonTestPlayer가 없어서 따라가서 공격이 안됨
-        Debug.Log("처음으로 확인 : " + targets.Length);
-        for (int i = 0; i < targets.Length; i++)
+        Collider[] targats = Physics.OverlapSphere(transform.position, data.chase_dist, target_mask);
+        for(int i = 0; i < targets.Length; i++)
         {
-            Debug.Log("반복으로 확인 : " + targets.Length);
-            //player = targets[i].GetComponent<PhotonTestPlayer>();  //실제 사용용
-            player = targets[i].GetComponent<MonTestPlayer>();   //테스트용
-            Debug.Log("플레이어 확인 : " + player);
-            if (player != null)
+            player = targets[i].GetComponent<PhotonTestPlayer>();
+            if(player != null)
             {
                 lock_target = player.gameObject;
                 current_state = CURRNET_STATE.EChase;
                 break;
             }
-            if (targets == null)
+            if (targats == null)
                 return;
         }
     }
@@ -272,9 +267,5 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
 
         return point == null ? Vector3.zero : point.position;
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, data.chase_dist);
-    }
+
 }

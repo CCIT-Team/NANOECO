@@ -31,12 +31,12 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        //CameraEvent();
+        CameraEvent();
     }
 
     void CameraEvent()
     {
-        switch(Player.instance.camera_shaking_num)
+        switch(PhotonTestPlayer.instance.camera_shaking_num)
         {
             case 0:
                 StopCoroutine(CameraShaking(0, 0));
@@ -74,7 +74,7 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
             yield return null;
 
             Camera.main.transform.localPosition = originpos;
-            Player.instance.camera_shaking_num = 0;
+            PhotonTestPlayer.instance.camera_shaking_num = 0;
         }
     }
 }

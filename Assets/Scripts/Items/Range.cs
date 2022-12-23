@@ -12,7 +12,14 @@ public class Range : WeaponeBase
     public Bullet bullet;
     string bulletname;
     public bool explosion = false;
-    float reloadtime = 0;
+    void Start()
+    {
+        ammo = maxAmmo;
+        bullet.damage = damage;
+        bullet.knockback = knockback;
+        bullet.explosive = explosion;
+        bulletname = bullet.gameObject.name;
+    }
 
     void Update()
     {
@@ -43,35 +50,6 @@ public class Range : WeaponeBase
         */
         PhotonNetwork.Instantiate(bulletname, firePosition.transform.position, firePosition.transform.rotation);
         ammo--;
-    }
-
-    public override void PreSetting()
-    {
-        type = Type.ERANGE;
-        skil = pv.GetComponent<Player>().skil_num;
-        switch (skil)
-        {
-            case (0):
-                maxAmmo = Mathf.CeilToInt((float)maxAmmo * 1.3f);
-                break;
-            case (1):
-                attackspeed *= 1.25f;
-                break;
-            case (2):
-                break;
-            case (3):
-                damage *= 1.5f;
-                break;
-            case (4):
-                break;
-            case (5):
-                break;
-        }
-        ammo = maxAmmo;
-        bullet.damage = damage;
-        bullet.knockback = knockback;
-        bullet.explosive = explosion;
-        bulletname = bullet.gameObject.name;
     }
 
     IEnumerator Reloading()
