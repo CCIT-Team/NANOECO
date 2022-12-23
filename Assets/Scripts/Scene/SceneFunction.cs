@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 public static class SceneFunction
 {
     public static GameObject fade;
+
+    public static GameObject loading_canvas;
+
     public static string game_map_name = "";
 
     public static Animation anim;
@@ -37,4 +40,8 @@ public static class SceneFunction
             anim = fade.GetComponent<Animation>();
     }
     #endregion
+
+
+
+
 }

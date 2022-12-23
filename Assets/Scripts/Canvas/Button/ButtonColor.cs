@@ -11,6 +11,7 @@ public class ButtonColor : MonoBehaviour , IPointerEnterHandler, IPointerExitHan
     void Start()
     {
         image = GetComponent<Image>();  
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -23,5 +24,10 @@ public class ButtonColor : MonoBehaviour , IPointerEnterHandler, IPointerExitHan
         image.color = new Color(1, 1, 1, 0.04f);
     }
 
-   
+   public void SceneChange()
+    {
+        SceneFunction.fade.GetComponent<Fade>().Load_Scene();
+        //Debug.Log(23);
+    }
+
 }
