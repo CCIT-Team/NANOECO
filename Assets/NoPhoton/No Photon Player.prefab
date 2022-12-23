@@ -475,7 +475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483647
   cam: {fileID: 0}
   pv: {fileID: 1567939649194598680}
 --- !u!143 &2359973170061385331
