@@ -56,7 +56,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if(!make_room_panel)
+        if(make_room_panel != null)
         if (Input.GetKeyDown(KeyCode.Escape) && make_room_panel.activeSelf)
         {
             make_room_panel.SetActive(false);
@@ -69,7 +69,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     /// //////////////////////////////////////////////////////////////////////
     /// </summary>
     /// <param name="Make_Room_Panel"></param>
-    public GameObject make_room_panel;
+    private GameObject make_room_panel;
     public void Active_Room_Panel(GameObject Make_Room_Panel)
     {
         this.make_room_panel = Make_Room_Panel;
@@ -90,13 +90,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             Utils.is_inRoom = true;
             ros.MaxPlayers = 4;
             ros.IsVisible = true;
-            PhotonNetwork.JoinOrCreateRoom(Utils.room_number.ToString(), ros, null);
+            PhotonNetwork.JoinOrCreateRoom(text.text, ros, null);
         }
         else if(Utils.is_inRoom) 
         {
             SceneFunction.loading_canvas.SetActive(true);
             PhotonNetwork.Disconnect();
-            text.text = ". . .";
+            text.text = "...";
             Utils.room_number= 0;
         }
     }
@@ -106,6 +106,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         if(!Utils.is_inRoom) 
         {
             PhotonNetwork.JoinRandomRoom();
+            SceneFunction.loading_canvas.SetActive(true);
         }
     }
 
@@ -121,20 +122,25 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
     }
 
+    [SerializeField]
+    private GameObject Canvas;
     public override void OnJoinedRoom()
     {
-        Player_Number_Check();
+        SceneFunction.loading_canvas.SetActive(false);
+        Canvas.GetComponent<WRCanvas>().Room_Code.text = PhotonNetwork.CurrentRoom.Name;
+
     }
 
 
 
     public override void OnDisconnected(DisconnectCause cause)
     {
-        SceneFunction.loading_canvas.SetActive(true);
+        SceneFunction.loading_canvas.SetActive(false);
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
+        SceneFunction.loading_canvas.SetActive(false);
         Debug.Log(2424);
     }
 

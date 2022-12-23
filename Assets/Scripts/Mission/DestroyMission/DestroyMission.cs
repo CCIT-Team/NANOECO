@@ -14,11 +14,6 @@ public class DestroyMission : MissionBase
         get { return Target_Hp(); }
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A)) { target[0]._hp -= 5; print(hp); }
-    }
-
     void OnTriggerEnter(Collider other)
     {
         Mission_Event();

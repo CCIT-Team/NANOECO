@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Utils 
 {
-    public static bool is_inRoom;
+    public static bool is_select_room; //맵을 선택 했는지?
 
-    public static int room_number;
+    public static bool is_inRoom; // 룸에 진입 했는지?
+     
+    public static int room_number; // 방제
 
     public static string nickname;//NetWorkManager NickName;
 
