@@ -28,7 +28,6 @@ public class NnomalMonster : NewMonster
 
         data.current_time = 0f;
         data.state_time = 0f;
-        
     }
 
     public override void Init()

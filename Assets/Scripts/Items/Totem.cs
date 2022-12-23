@@ -43,8 +43,8 @@ public class Totem : MonoBehaviourPunCallbacks
     {
         if (other.gameObject.layer == 6)
         {
-            Player chr;
-            chr = other.gameObject.GetComponent<Player>();
+            PhotonTestPlayer chr;
+            chr = other.gameObject.GetComponent<PhotonTestPlayer>();
             Mathf.Clamp(chr.current_hp, 0, chr.max_hp);
             chr.current_hp += effectamount;
         }

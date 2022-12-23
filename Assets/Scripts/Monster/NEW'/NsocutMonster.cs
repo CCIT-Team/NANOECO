@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NsocutMonster : NewMonster
+public class NsocutMomster : NewMonster
 {
     System.Action mon_action;
 
     #region �ʱⰪ
-    public NsocutMonster()
+    public NsocutMomster()
     {
         data.max_hp = 50f;
         data.current_hp = data.max_hp;
