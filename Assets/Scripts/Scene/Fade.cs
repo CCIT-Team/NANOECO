@@ -29,7 +29,6 @@ public class Fade : MonoBehaviour
         }
         else
         {
-            Debug.Log(2425);
             var current_scene_index = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(current_scene_index + 1);
         }
