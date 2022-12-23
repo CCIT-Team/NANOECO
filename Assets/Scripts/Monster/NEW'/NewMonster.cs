@@ -58,7 +58,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     protected MONSTER_TYPE monster_type;
     [SerializeField]
     protected Collider[] targets;
-    protected PhotonTestPlayer player;
+    protected Player player;
     [SerializeField]
     protected NavMeshAgent agent;
     [SerializeField]
