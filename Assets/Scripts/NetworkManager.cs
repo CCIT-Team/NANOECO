@@ -101,6 +101,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             SceneFunction.loading_canvas.SetActive(true);
             PhotonNetwork.Disconnect();
+            Utils.is_inRoom = false;
             text.text = "...";
             Utils.room_number= 0;
         }
@@ -111,6 +112,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         if(!Utils.is_inRoom) 
         {
             PhotonNetwork.JoinRandomRoom();
+            Utils.is_inRoom = true;
             SceneFunction.loading_canvas.SetActive(true);
         }
     }
