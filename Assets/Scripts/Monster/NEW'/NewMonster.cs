@@ -30,6 +30,7 @@ public enum CURRNET_STATE
 
 public struct Data
 {
+    [SerializeField]
     public float max_hp;
     public float current_hp;
     public float damage;
@@ -95,6 +96,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     public virtual void Idle()
     {
         data.state_time += Time.deltaTime;
+        Init();
         if(lock_target == null)
         {
             if(data.state_time >= data.idle_cool_time)
@@ -181,8 +183,8 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
             {
                 if (data.current_time >= data.attack_cool_time)
                 {
-                    agent.stoppingDistance = (data.attack_dist - 1f);
-                    player.current_hp -= data.damage;
+                    agent.stoppingDistance = (data.attack_dist - 1f); 
+                    player.current_hp -= data.damage;   //데미지 주는 부분 변경 필요
                     data.current_time = 0;
                 }
                 else
@@ -272,6 +274,8 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, data.chase_dist);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, data.attack_dist);
     }
 
 }
