@@ -12,8 +12,24 @@ public class Range : WeaponeBase
     public Bullet bullet;
     string bulletname;
     public bool explosion = false;
+    int skill;
     void Start()
     {
+        skill = pv.GetComponent<Player>().skil_num;
+        switch (skill)
+        {
+            default:
+                break;
+            case 0:
+                maxAmmo = Mathf.CeilToInt((float)maxAmmo * 1.5f);
+                break;
+            case 1:
+                attackspeed *= 1.3f;
+                break;
+            case 3:
+                damage *= 1.5f;
+                break;
+        }
         ammo = maxAmmo;
         bullet.damage = damage;
         bullet.knockback = knockback;
