@@ -14,7 +14,7 @@ public class RangeSpread : Range
     {
         ammo = maxAmmo;
         bullet.GetComponent<Bullet>().damage = damage;
-        bullet.GetComponent<Bullet>().knockback = knockback;
+        //bullet.GetComponent<Bullet>().knockback = knockback;
         p = firePosition.GetComponent<ParticleSystem>();
     }
 

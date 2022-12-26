@@ -25,8 +25,8 @@ public class Melee : WeaponeBase
     {
         if (other.gameObject.layer == 8 && isdelay)
         {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(knockback * Vector3.Normalize(other.transform.position - player.position), ForceMode.Impulse);
-            other.gameObject.GetComponent<Character>().current_hp -= damage;
+            //other.gameObject.GetComponent<Rigidbody>().AddForce(knockback * Vector3.Normalize(other.transform.position - player.position), ForceMode.Impulse);
+            other.gameObject.GetComponent<NewMonster>().data.current_hp -= damage;
         }
     }
 }
