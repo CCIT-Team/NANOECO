@@ -7,7 +7,7 @@ using Photon.Realtime;
 public class Bullet : MonoBehaviourPunCallbacks
 {
     public float damage = 0;
-    public float knockback = 0;
+    //public float knockback = 0;
     public float speed = 500;
     public bool explosive = false;
     public ParticleSystem ps;
@@ -33,10 +33,10 @@ public class Bullet : MonoBehaviourPunCallbacks
                 ps.Play();
                 transform.GetChild(1).gameObject.SetActive(false);
             }
-            if(knockback != 0)
-                other.gameObject.GetComponent<Rigidbody>().AddForce(knockback * Vector3.Normalize(other.transform.position - this.transform.position), ForceMode.Impulse);
-            //other.gameObject.GetComponent<Character>().current_hp -= damage;
-            if(!ps.isPlaying)
+            //if(knockback != 0)
+                //other.gameObject.GetComponent<Rigidbody>().AddForce(knockback * Vector3.Normalize(other.transform.position - this.transform.position), ForceMode.Impulse);
+            other.gameObject.GetComponent<NewMonster>().data.current_hp -= damage;
+            if (!ps.isPlaying)
                 Destroy(this.gameObject);
         }
     }
