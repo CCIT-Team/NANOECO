@@ -32,7 +32,7 @@ public class Range : WeaponeBase
         }
         ammo = maxAmmo;
         bullet.damage = damage;
-        bullet.knockback = knockback;
+        //bullet.knockback = knockback;
         bullet.explosive = explosion;
         bulletname = bullet.gameObject.name;
     }
