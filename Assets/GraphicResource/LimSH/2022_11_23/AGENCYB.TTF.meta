@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1166ccf7ecd3d8b449b524323f4e89a9
+guid: 1878d1fabd601f142b2fe0bd7ec076c2
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -10,7 +10,8 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - Agency FB
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 021337b46689f5d4fb11272769a7bc0c, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
