@@ -18,21 +18,20 @@ public class GoogleData
 
 public class GoogleSheetManager : MonoBehaviour
 {
-    const string URL = "https://script.google.com/macros/s/AKfycbx9EZ6CqrTPLPgpOZh0IFewhLZkAldcT9baNwSdQeiOOBWmhIK28ay4ddqW3jw6vUrCCQ/exec";
+    const string URL = "https://script.google.com/macros/s/AKfycbxv9uFXeLUGgSBG10kIGoDcMi2efxYOu-ZoP2Z7hfBsjjcaymw4I9ZnU8VAXfc9STxaMw/exec";
     public GoogleData GD;
 
     [Header("Login")]
-    public InputField IDInput, PassInput;
+    public TMP_InputField IDInput, PassInput;
 
     [Space(5)]
 
     [Header("Register")]
-    public InputField IDInput_Register, PassInput_Register;
+    public TMP_InputField IDInput_Register, PassInput_Register;
+    public TMP_InputField NICKNAMEInput_Register;
     [Space(5)]
-    [Header("NickName_Input")]
-    public InputField ValueInput;
+    string id, pass, id_re, pass_re, nickname_re;
     [Space(5)]
-    string id, pass, id_re, pass_re;
     public TMP_Text text_message;
 
     [Space]
@@ -45,8 +44,9 @@ public class GoogleSheetManager : MonoBehaviour
     [Header("login or register")]
     [SerializeField] GameObject loading_circle;
 
-    [SerializeField] GameObject for_the_text_obj;//완료 및 알림 텍스트 오브젝
-    
+    [SerializeField] GameObject info_canvas;//완료 및 알림 텍스트 오브젝
+
+
 
     bool[] asd;
     bool nickname_exist;
@@ -88,8 +88,9 @@ public class GoogleSheetManager : MonoBehaviour
     {
         id_re = IDInput_Register.text.Trim();
         pass_re = PassInput_Register.text.Trim();
+        nickname_re = NICKNAMEInput_Register.text.Trim();
 
-        if (id_re == "" || pass_re == "") return false;
+        if (id_re == "" || pass_re == "" || nickname_re == "") return false;
         else return true;
     }
 
@@ -98,7 +99,7 @@ public class GoogleSheetManager : MonoBehaviour
     {
         if (!SetIDPass_Register())
         {
-            print("아이디 또는 비밀번호가 비어있습니다");
+            print("아이디 또는 비밀번호 또는 닉네임이 비어있습니다");
             return;
         }
 
@@ -106,6 +107,7 @@ public class GoogleSheetManager : MonoBehaviour
         form.AddField("order", "register");
         form.AddField("id", id_re);
         form.AddField("pass", pass_re);
+        form.AddField("value", nickname_re);
 
         StartCoroutine(Post(form));
     }
@@ -142,9 +144,9 @@ public class GoogleSheetManager : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField("order", "setValue");
-        form.AddField("value", ValueInput.text);
+        form.AddField("value", NICKNAMEInput_Register.text);
 
-        Debug.Log(ValueInput.text);
+        //Debug.Log(NICKNAMEInput_Register.text);
         StartCoroutine(Post(form));
     }
 
@@ -184,13 +186,7 @@ public class GoogleSheetManager : MonoBehaviour
 
         if (GD.result == "ERROR")
         {
-            if (GD.order == "setValue")
-            {
-                for_the_text_obj.SetActive(true);
-                text_message.text = "이미 존재하는 닉네임입니다.";
-            }
-
-            else if (GD.order == "register")
+            if (GD.order == "register")
             {
                 NickName_Input.SetActive(true);
                 id_re = "";
@@ -211,6 +207,7 @@ public class GoogleSheetManager : MonoBehaviour
             sign_obj.SetActive(true);
             id_re = "";
             pass_re = "";
+            //SetValue();
         }
 
 
@@ -231,16 +228,9 @@ public class GoogleSheetManager : MonoBehaviour
             }
         }
 
-        if(GD.order == "setValue")
-        {
-            nickname_exist = true;
-            for_the_text_obj.SetActive(true);
-            text_message.text = "닉네임 생성 완료!";
-        }
-
         if (GD.order == "getValue")
         {
-            for_the_text_obj.SetActive(true);
+            info_canvas.SetActive(true);
             text_message.text = "게임을 시작할 준비가 완료되었습니다!";
         }
     }
@@ -250,7 +240,7 @@ public class GoogleSheetManager : MonoBehaviour
     public void SetActive_False(GameObject a)
     {
         a.SetActive(false);
-        ValueInput.text = "";
+        NICKNAMEInput_Register.text = "";
 
         if (nickname_exist)
         {
