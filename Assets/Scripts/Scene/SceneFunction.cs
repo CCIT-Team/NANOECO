@@ -19,14 +19,12 @@ public static class SceneFunction
 
     public static void Fade_Out()
     {
-        //Object_Check();
         anim.clip = fade.GetComponent<Fade>().fade_out;
         anim.Play();
     }
 
     public static void Fade_In()
     {
-        //Object_Check();
         anim.clip = fade.GetComponent<Fade>().fade_in;
         anim.Play();
     }
