@@ -6,6 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using Newtonsoft.Json.Bson;
+using static System.Net.Mime.MediaTypeNames;
 
 /// <summary>
 /// This friend is only for connecting to the Photon server and checking the connection.
@@ -19,12 +20,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [SerializeField]
     PhotonView pv;
-    [SerializeField]
-    TMP_Text test_nickname;
 
-
-    [Header("1")]
-    public int connected_player_number;
+    
 
 
     private void Awake()
@@ -42,34 +39,53 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Connect();
     }
 
+    private void Start()
+    {
+        Utils.is_findroom = false;
+    }
+
     public void Connect() => PhotonNetwork.ConnectUsingSettings();
     public override void OnConnectedToMaster()
     {
+        if(!Utils.is_findroom)
         PhotonNetwork.JoinLobby();
+        else if(Utils.is_findroom)
+        PhotonNetwork.JoinRandomRoom();
     }
     public override void OnJoinedLobby()
     {
         Debug.Log("로비 연결 완료");
         SceneFunction.loading_canvas.SetActive(false);
+        Utils.Ran();
+        string num_code = Utils.room_number.ToString();
+        Canvas.GetComponent<WRCanvas>().Room_Code.text = num_code.Substring(0, 4) + " " + num_code.Substring(4);
+
+        ros.MaxPlayers = 4;
+        ros.IsVisible = true;
+        PhotonNetwork.JoinOrCreateRoom(Canvas.GetComponent<WRCanvas>().Room_Code.text, ros, null);
     }
 
 
     private void Update()
     {
-        if(!make_room_panel)
+        if(make_room_panel != null)
         if (Input.GetKeyDown(KeyCode.Escape) && make_room_panel.activeSelf)
         {
             make_room_panel.SetActive(false);
         }
 
-        if(PhotonNetwork.InRoom)
-        Debug.Log(PhotonNetwork.CurrentRoom.Players.Count);
+        if (PhotonNetwork.PlayerList.Length >= 2)
+        {
+
+            Debug.Log(PhotonNetwork.PlayerListOthers[0].ToStringFull());
+        }
+        //Debug.Log(PhotonNetwork.PlayerListOthers[0].ToStringFull());
     }
     /// <summary>
     /// //////////////////////////////////////////////////////////////////////
     /// </summary>
     /// <param name="Make_Room_Panel"></param>
-    public GameObject make_room_panel;
+    private GameObject make_room_panel;
     public void Active_Room_Panel(GameObject Make_Room_Panel)
     {
         this.make_room_panel = Make_Room_Panel;
@@ -79,34 +95,17 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     //
     public void Make_Room_Panel(TMP_Text text)
     {
-        if (!Utils.is_inRoom)
-        {
-            SceneFunction.loading_canvas.SetActive(true);
-            Utils.Ran();
-            string num_code = Utils.room_number.ToString();
-            
-            text.text = num_code.Substring(0,4) + " " + num_code.Substring(4);
-            
-            Utils.is_inRoom = true;
-            ros.MaxPlayers = 4;
-            ros.IsVisible = true;
-            PhotonNetwork.JoinOrCreateRoom(Utils.room_number.ToString(), ros, null);
-        }
-        else if(Utils.is_inRoom) 
-        {
-            SceneFunction.loading_canvas.SetActive(true);
-            PhotonNetwork.Disconnect();
-            text.text = ". . .";
-            Utils.room_number= 0;
-        }
+         SceneFunction.loading_canvas.SetActive(true);
+         PhotonNetwork.Disconnect();
+         text.text = "...";
+         Utils.room_number = 0;
     }
 
     public void Join_Random_Room()
     {
-        if(!Utils.is_inRoom) 
-        {
-            PhotonNetwork.JoinRandomRoom();
-        }
+        Utils.is_findroom = true;
+         PhotonNetwork.LeaveRoom();
+         SceneFunction.loading_canvas.SetActive(true);
     }
 
 /// <summary>
@@ -121,28 +120,39 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
     }
 
+    [SerializeField]
+    private GameObject Canvas;
     public override void OnJoinedRoom()
     {
-        Player_Number_Check();
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            SceneFunction.loading_canvas.SetActive(false);
+            Canvas.GetComponent<WRCanvas>().Room_Code.text = PhotonNetwork.CurrentRoom.Name;
+        }
+
+        //Debug.Log(PhotonNetwork.CurrentRoom.Name);
     }
 
 
+    public override void OnLeftRoom()
+    {
+        Debug.Log(25);
+    }
 
     public override void OnDisconnected(DisconnectCause cause)
     {
-        SceneFunction.loading_canvas.SetActive(true);
+        SceneFunction.loading_canvas.SetActive(false);
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        Debug.Log(2424);
+        SceneFunction.loading_canvas.SetActive(false);
+        Debug.Log("존재하는 방이 없어요~");
     }
 
     [PunRPC]
     private void Player_Number_Check()
     {
-        connected_player_number = PhotonNetwork.PlayerList.Length;
-        test_nickname.text = connected_player_number.ToString();
     }
 
     [PunRPC]

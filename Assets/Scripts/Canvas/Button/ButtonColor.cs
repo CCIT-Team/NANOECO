@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,7 @@ public class ButtonColor : MonoBehaviour , IPointerEnterHandler, IPointerExitHan
 
     void Start()
     {
-        image = GetComponent<Image>();  
-
+        image = GetComponent<Image>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -26,7 +26,24 @@ public class ButtonColor : MonoBehaviour , IPointerEnterHandler, IPointerExitHan
 
    public void SceneChange()
     {
-        SceneFunction.fade.GetComponent<Fade>().Load_Scene();
+        if (PhotonNetwork.InRoom) 
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                if (Utils.is_select_room)
+                    SceneFunction.fade.GetComponent<Fade>().Load_Scene();
+            }
+            else
+            {
+                //
+            }
+        }
+        else
+        {
+            if (Utils.is_select_room)
+                SceneFunction.fade.GetComponent<Fade>().Load_Scene();
+        }
+       
         //Debug.Log(23);
     }
 

@@ -58,7 +58,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     protected MONSTER_TYPE monster_type;
     [SerializeField]
     protected Collider[] targets;
-    protected PhotonTestPlayer player;
+    protected Player player;
     [SerializeField]
     protected NavMeshAgent agent;
     [SerializeField]
@@ -120,7 +120,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         Collider[] targats = Physics.OverlapSphere(transform.position, data.chase_dist, target_mask);
         for(int i = 0; i < targets.Length; i++)
         {
-            player = targets[i].GetComponent<PhotonTestPlayer>();
+            player = targets[i].GetComponent<Player>();
             if(player != null)
             {
                 lock_target = player.gameObject;

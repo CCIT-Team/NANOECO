@@ -7,9 +7,9 @@ using Photon.Pun;
 using Photon.Realtime;
 using Photon.Pun.Demo.PunBasics;
 
-public class PhotonTestPlayer : MonoBehaviourPunCallbacks, IPunObservable
+public class Player : MonoBehaviourPunCallbacks, IPunObservable
 {
-    public static PhotonTestPlayer instance;
+    public static Player instance;
 
     //public Camera cam;
     int targetdisplay = 0;
