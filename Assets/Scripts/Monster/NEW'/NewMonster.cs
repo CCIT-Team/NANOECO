@@ -117,7 +117,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         {
             agent.SetDestination(Get_Random_Point(transform, data.patrol_dist));
         }
-        Collider[] targats = Physics.OverlapSphere(transform.position, data.chase_dist, target_mask);
+        Collider[] targets = Physics.OverlapSphere(transform.position, data.chase_dist, target_mask);
         for(int i = 0; i < targets.Length; i++)
         {
             player = targets[i].GetComponent<Player>();
@@ -127,7 +127,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
                 current_state = CURRNET_STATE.EChase;
                 break;
             }
-            if (targats == null)
+            if (targets == null)
                 return;
         }
     }
@@ -268,4 +268,12 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         return point == null ? Vector3.zero : point.position;
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, data.chase_dist);
+    }
+
 }
+
+
