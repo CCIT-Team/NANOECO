@@ -96,7 +96,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     public virtual void Idle()
     {
         data.state_time += Time.deltaTime;
-        Init();
+        
         if(lock_target == null)
         {
             if(data.state_time >= data.idle_cool_time)
@@ -211,6 +211,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         {
             Instantiate(Particles[0], transform.position, Quaternion.identity);
             Destroy(gameObject);
+            Init();
             current_state = CURRNET_STATE.EIdle;
         }
     }
