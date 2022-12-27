@@ -1102,10 +1102,11 @@ MonoBehaviour:
   isdelay: 0
   knockback: 0
   pv: {fileID: 1567939649194598680}
+  maxAmmo: 0
   ammo: 2147483647
-  currentammo: 2147483647
   firePosition: {fileID: 9119548540163212710}
-  bullet: {fileID: 7167444510161355727, guid: 66730fb6a4bf0144cb61d28681ef01a5, type: 3}
+  bullet: {fileID: -4316363247423991619, guid: 66730fb6a4bf0144cb61d28681ef01a5, type: 3}
+  explosion: 0
 --- !u!1 &6932001613366165001
 GameObject:
   m_ObjectHideFlags: 0

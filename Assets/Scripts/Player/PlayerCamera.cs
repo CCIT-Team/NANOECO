@@ -31,36 +31,36 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        CameraEvent();
+        //CameraEvent();
     }
 
-    void CameraEvent()
-    {
-        switch(Player.instance.camera_shaking_num)
-        {
-            case 0:
-                StopCoroutine(CameraShaking(0, 0));
-                break;
-            case 1://무기 사격시 근거리
-                StartCoroutine(CameraShaking(0.25f, 0.5f));
-                break;
-            case 2://무기 사격시 원거리
-                StartCoroutine(CameraShaking(0.3f, 1f));
-                break;
-            case 3://몬스터에게 피격 
-                StartCoroutine(CameraShaking(0.2f, 0.175f));
-                break;
-            case 4://폭탄
-                StartCoroutine(CameraShaking(0.5f, 4f));
-                break;
-            case 5://이벤트 스폰
-                StartCoroutine(CameraShaking(0.5f, 0.3f));
-                break;
-            case 6://이벤트 보스 출현
-                StartCoroutine(CameraShaking(0.35f, 1f));
-                break;
-        }
-    }
+    //void CameraEvent()
+    //{
+    //    switch(Player.instance.camera_shaking_num)
+    //    {
+    //        case 0:
+    //            StopCoroutine(CameraShaking(0, 0));
+    //            break;
+    //        case 1://무기 사격시 근거리
+    //            StartCoroutine(CameraShaking(0.25f, 0.5f));
+    //            break;
+    //        case 2://무기 사격시 원거리
+    //            StartCoroutine(CameraShaking(0.3f, 1f));
+    //            break;
+    //        case 3://몬스터에게 피격 
+    //            StartCoroutine(CameraShaking(0.2f, 0.175f));
+    //            break;
+    //        case 4://폭탄
+    //            StartCoroutine(CameraShaking(0.5f, 4f));
+    //            break;
+    //        case 5://이벤트 스폰
+    //            StartCoroutine(CameraShaking(0.5f, 0.3f));
+    //            break;
+    //        case 6://이벤트 보스 출현
+    //            StartCoroutine(CameraShaking(0.35f, 1f));
+    //            break;
+    //    }
+    //}
 
     IEnumerator CameraShaking(float duration, float manitude)
     {
