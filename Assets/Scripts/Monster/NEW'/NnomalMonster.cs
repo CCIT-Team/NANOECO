@@ -18,7 +18,7 @@ public class NnomalMonster : NewMonster
 
         data.patrol_dist = 20f;
         data.chase_dist = 25f;
-        data.attack_dist = 2f;
+        data.attack_dist = 4f; //몬스터가 크다면 공격 범위도 커야 할 듯
         data.skill_dist = 0f;
 
         data.idle_cool_time = 2f;
@@ -41,7 +41,7 @@ public class NnomalMonster : NewMonster
 
         data.patrol_dist = 20f;
         data.chase_dist = 25f;
-        data.attack_dist = 2f;
+        data.attack_dist = 4f;
         data.skill_dist = 0f;
 
         data.idle_cool_time = 2f;

@@ -88,7 +88,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 move = new Vector3(-Input.GetAxis("Horizontal"), 0, -Input.GetAxis("Vertical"));
+        Vector3 move = new(-Input.GetAxis("Horizontal"), 0, -Input.GetAxis("Vertical"));
         move *= move_force;
         if (!cc.isGrounded) { move.y -= 9.81f * Time.deltaTime; }
         if (horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0)
