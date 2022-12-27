@@ -63,31 +63,6 @@ public class NsocutMomster : NewMonster
         mon_action();
     }
 
-    public override void Monster_State()
-    {
-        if (!is_dead)
-        {
-            switch (current_state)
-            {
-                case CURRNET_STATE.EIdle:
-                    Idle();
-                    break;
-                case CURRNET_STATE.EPatrol:
-                    Patrol();
-                    break;
-                case CURRNET_STATE.EChase:
-                    Chase();
-                    break;
-                case CURRNET_STATE.EAttack:
-                    Attack();
-                    break;
-                case CURRNET_STATE.ESkill:
-                    Skill();
-                    break;
-            }
-        }
-    }
-
     public override void Skill()
     {
         float dist = (lock_target.transform.position - transform.position).magnitude;

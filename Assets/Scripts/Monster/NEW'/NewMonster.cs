@@ -67,8 +67,21 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     protected GameObject lock_target;
     [SerializeField]
     protected LayerMask target_mask;
+
+
     [SerializeField]
     protected Animator animator;
+    [SerializeField]
+    protected AudioClip attack_clip;
+    [SerializeField]
+    protected AudioClip hit_clip;
+    [SerializeField]
+    protected AudioClip chase_clip;
+    [SerializeField]
+    protected AudioClip _clip;
+
+
+    public bool hit_true = false;
 
 
     protected bool _is_dead = false;
@@ -214,7 +227,6 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         {
             Instantiate(Particles[0], transform.position, Quaternion.identity);
             Destroy(gameObject);
-            Init();
             current_state = CURRNET_STATE.EIdle;
         }
     }
@@ -236,6 +248,9 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
                     break;
                 case CURRNET_STATE.EAttack:
                     Attack();
+                    break;
+                case CURRNET_STATE.ESkill:
+                    Skill();
                     break;
             }
         }
@@ -272,6 +287,16 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         }
 
         return point == null ? Vector3.zero : point.position;
+    }
+    //몬스터 피격
+    private void Hit_Mon()
+    {
+        if(hit_true == true)
+        {
+            //피격 애니메이션 작동
+            //사운드 재생
+        }
+
     }
 
     private void OnDrawGizmos()
