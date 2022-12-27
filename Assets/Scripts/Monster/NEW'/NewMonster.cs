@@ -67,6 +67,9 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     protected GameObject lock_target;
     [SerializeField]
     protected LayerMask target_mask;
+    [SerializeField]
+    protected Animator animator;
+
 
     protected bool _is_dead = false;
     public bool is_dead
