@@ -26,5 +26,12 @@ public abstract class WeaponeBase : MonoBehaviourPunCallbacks
     {
 
     }
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        if(isdelay)
+            StartCoroutine("AttackDelay");
+    }
 }
 

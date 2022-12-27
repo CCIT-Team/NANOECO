@@ -8,6 +8,7 @@ public class Shield : MonoBehaviourPunCallbacks
 {
     Material shieldM;
     Player player;
+    float mHpRec;
     float hpRec;
 
     // Start is called before the first frame update
@@ -49,9 +50,14 @@ public class Shield : MonoBehaviourPunCallbacks
 
     IEnumerator OnShield()
     {
+        mHpRec = player.max_hp;
+        player.max_hp += 50;
         player.current_hp += 50;
         hpRec = player.current_hp;
         yield return new WaitForSeconds(10);
+        player.max_hp = mHpRec;
+        if (player.current_hp > mHpRec)
+            player.current_hp = player.max_hp;
         Destroy(this.gameObject);
     }
 }
