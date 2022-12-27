@@ -34,8 +34,10 @@ public class Bullet : MonoBehaviourPunCallbacks
                 transform.GetChild(1).gameObject.SetActive(false);
             }
             //if(knockback != 0)
-                //other.gameObject.GetComponent<Rigidbody>().AddForce(knockback * Vector3.Normalize(other.transform.position - this.transform.position), ForceMode.Impulse);
-            other.gameObject.GetComponent<NewMonster>().data.current_hp -= damage;
+            //other.gameObject.GetComponent<Rigidbody>().AddForce(knockback * Vector3.Normalize(other.transform.position - this.transform.position), ForceMode.Impulse);
+            var monster = other.gameObject.GetComponent<NewMonster>();
+            monster.data.current_hp -= damage;
+            monster.hit_true = true;
             if (!ps.isPlaying)
                 Destroy(this.gameObject);
         }
