@@ -31,6 +31,20 @@ public class TransportMission : MissionBase
         }
     }
 
+    [Space][Header("Çï±â")]
+    public GameObject heli;
+    public GameObject heli_rope;
+    public Transform rotor;
+    public Transform tail_rotor;
+    public float rotor_speed;
+    public float tail_rotor_speed;
+
+    void Update()
+    {
+        rotor.eulerAngles = new Vector3(rotor.eulerAngles.x, rotor.eulerAngles.y + Time.deltaTime * rotor_speed, rotor.eulerAngles.z);
+        tail_rotor.eulerAngles = new Vector3(tail_rotor.eulerAngles.x, tail_rotor.eulerAngles.y, tail_rotor.eulerAngles.z + Time.deltaTime * tail_rotor_speed);
+    }
+
     public override void Mission_Event()
     {
         Transfort_Move();
@@ -51,14 +65,19 @@ public class TransportMission : MissionBase
         Vector3 p2 = point2.position;
         Vector3 p3 = point1.curve_point.transform.position;
         if (t >= 1) { t = 0; }
-        StartCoroutine(Curve_Move(p1, p2, p3));
+        StartCoroutine(Curve_Move(point1, point2, p3));
     }
 
-    IEnumerator Curve_Move(Vector3 p1, Vector3 p2, Vector3 p3)
+    IEnumerator Curve_Move(TransportPoint p1, TransportPoint p2, Vector3 p3)
     {
-        Vector3 p4 = Vector3.Lerp(p1, p3, t);
-        Vector3 p5 = Vector3.Lerp(p3, p2, t);
+        Vector3 p4 = Vector3.Lerp(p1.position, p3, t);
+        Vector3 p5 = Vector3.Lerp(p3, p2.position, t);
         target.transform.position = Vector3.Lerp(p4, p5, t);
+
+        Vector3 p1_rotate = new Vector3(p1.transform.eulerAngles.x, p1.transform.eulerAngles.y, p1.transform.eulerAngles.z);
+        Vector3 p2_rotate = new Vector3(p2.transform.eulerAngles.x, p2.transform.eulerAngles.y, p2.transform.eulerAngles.z);
+        target.transform.eulerAngles = Vector3.Lerp(p1_rotate, p2_rotate, t);
+
         yield return new WaitForSeconds(speed);
         if(t < 1)
         {
@@ -77,12 +96,15 @@ public class TransportMission : MissionBase
     void Straight_Movement(TransportPoint point1, TransportPoint point2)
     {
         if (t >= 1) { t = 0; }
-        StartCoroutine(Straight_Move(point1.position, point2.position));
+        StartCoroutine(Straight_Move(point1, point2));
     }
 
-    IEnumerator Straight_Move(Vector3 p1, Vector3 p2)
+    IEnumerator Straight_Move(TransportPoint p1, TransportPoint p2)
     {
-        target.transform.position = Vector3.Lerp(p1, p2, t);
+        target.transform.position = Vector3.Lerp(p1.position, p2.position, t);
+        Vector3 p1_rotate = new Vector3(p1.transform.eulerAngles.x, p1.transform.eulerAngles.y, p1.transform.eulerAngles.z);
+        Vector3 p2_rotate = new Vector3(p2.transform.eulerAngles.x, p2.transform.eulerAngles.y, p2.transform.eulerAngles.z);
+        target.transform.eulerAngles = Vector3.Lerp(p1_rotate, p2_rotate, t * 5);
         yield return new WaitForSeconds(speed);
         if (t < 1)
         {
@@ -100,6 +122,8 @@ public class TransportMission : MissionBase
 
     public override void Clear()
     {
+        target.transform.SetParent(heli_rope.transform);
+        heli.SetActive(true);
         ms.mission_0_clear = true;
     }
 
