@@ -17,7 +17,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public Animator ani;
     public PhotonView pv;
     public TextMeshProUGUI nickname;
-    public CharacterController cc;
     EPlayer_Skil eps;
     public int camera_shaking_num;
     [Header("Status")]
@@ -33,7 +32,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject[] item;
     int current_item = 0;
     bool isdash = false;
-
+    public bool isGrounded = true;
 
     Vector3 curPos;
     Quaternion curRot;
@@ -85,12 +84,13 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void Move()
     {
+        Debug.Log(isGrounded);
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 move = new(-Input.GetAxis("Horizontal"), 0, -Input.GetAxis("Vertical"));
-        move *= move_force;
-        if (!cc.isGrounded) { move.y *= -9.81f * Time.deltaTime; }
+        Vector3 move = new Vector3(-horizontal * move_force * Time.deltaTime, 0, -vertical * move_force * Time.deltaTime);
+
+        transform.position += move;
         if (horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0)
         {
             ani.SetBool("Run", true);
@@ -99,19 +99,27 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             ani.SetBool("Run", false);
         }
+        Jump(); Dash();
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space))//점프
+    void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)//점프
         {
-            //move. y = jump_force;
+            Debug.Log("Jump!!!!!!!!");
             rigid.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))//대쉬
-        {
-            move = dash_force * move; ;
-        }
-        else { move = move_force * move; }
-        cc.Move(move);
     }
+
+    void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded == true)//대쉬
+        {
+            Debug.Log("Dash!!!!!!!!");
+            rigid.AddForce(Vector3.forward * dash_force, ForceMode.Acceleration);
+        }
+    }
+
     public void AttackAnimation()
     {
         if (current_item == 0 && item[0].name == "Melee1" && Input.GetMouseButtonDown(0))
