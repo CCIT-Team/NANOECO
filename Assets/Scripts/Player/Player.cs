@@ -17,23 +17,22 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public Animator ani;
     public PhotonView pv;
     public TextMeshProUGUI nickname;
-    public CharacterController cc;
     EPlayer_Skil eps;
     public int camera_shaking_num;
     [Header("Status")]
     public float max_hp;
     public float current_hp;
-    public float damage;
-    public float defense;
     public float jump_force;
     public float dash_force;
     public float move_force;
-    public bool _is_dead;
+    public bool is_dead;
+    public float respawn_time = 5;
     public int skil_num;
     public GameObject[] item;
+    public Transform spawn_point;
     int current_item = 0;
     bool isdash = false;
-
+    public bool isGrounded = true;
 
     Vector3 curPos;
     Quaternion curRot;
@@ -63,12 +62,13 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             Camera.main.GetComponent<PlayerCamera>().player = gameObject.transform;
         }
         instance = this;
+        spawn_point = GameObject.FindGameObjectWithTag("Spawn").transform;
     }
 
     void Start()
     {
         Skil();
-        _is_dead = false;
+        is_dead = false;
         item[0].SetActive(true);
         item[1].SetActive(false);
         item[2].SetActive(false);
@@ -77,20 +77,44 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void Update()
     {
-        if (pv.IsMine && PhotonNetwork.IsConnected) { Move(); }
+        if (pv.IsMine && PhotonNetwork.IsConnected && !is_dead) { Move(); }
         if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
         //pv.RPC("DestroyRPC", RpcTarget.AllBuffered);
         ItemChange();
+        Dead();
+    }
+
+    void Dead()
+    {
+        if(current_hp <= 0)
+        {
+            is_dead = true;
+            //애니메이션
+            StartCoroutine(ReSpawn());
+        }
+        else
+        {
+            StopCoroutine(ReSpawn());
+        }
+    }
+
+    IEnumerator ReSpawn()
+    {
+        yield return new WaitForSecondsRealtime(respawn_time);
+        is_dead = false;
+        current_hp = max_hp;
+        transform.position = spawn_point.position;
     }
 
     void Move()
     {
+        Debug.Log(isGrounded);
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 move = new(-Input.GetAxis("Horizontal"), 0, -Input.GetAxis("Vertical"));
-        move *= move_force;
-        if (!cc.isGrounded) { move.y -= 9.81f * Time.deltaTime; }
+        Vector3 move = new Vector3(-horizontal * move_force * Time.deltaTime, 0, -vertical * move_force * Time.deltaTime);
+
+        transform.position += move;
         if (horizontal > 0 || horizontal < 0 || vertical > 0 || vertical < 0)
         {
             ani.SetBool("Run", true);
@@ -99,19 +123,27 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             ani.SetBool("Run", false);
         }
+        Jump(); Dash();
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space))//점프
+    void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)//점프
         {
-            //move. y = jump_force;
+            Debug.Log("Jump!!!!!!!!");
             rigid.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))//대쉬
-        {
-            move = dash_force * move; ;
-        }
-        else { move = move_force * move; }
-        cc.Move(move);
     }
+
+    void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded == true)//대쉬
+        {
+            Debug.Log("Dash!!!!!!!!");
+            rigid.AddForce(Vector3.forward * dash_force, ForceMode.Acceleration);
+        }
+    }
+
     public void AttackAnimation()
     {
         if (current_item == 0 && item[0].name == "Melee1" && Input.GetMouseButtonDown(0))

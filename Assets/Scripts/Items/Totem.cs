@@ -45,8 +45,10 @@ public class Totem : MonoBehaviourPunCallbacks
         {
             Player chr;
             chr = other.gameObject.GetComponent<Player>();
-            Mathf.Clamp(chr.current_hp, 0, chr.max_hp);
-            chr.current_hp += effectamount;
+            if(chr.max_hp <= chr.current_hp + effectamount)
+                chr.current_hp = chr.max_hp;
+            else if(chr.max_hp > chr.current_hp)
+                chr.current_hp += effectamount;
         }
     }
 
