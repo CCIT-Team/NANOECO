@@ -442,9 +442,9 @@ MonoBehaviour:
   current_hp: 0
   damage: 0
   defense: 0
-  jump_force: 10
-  dash_force: 10
-  move_force: 10
+  jump_force: 1000
+  dash_force: 1000
+  move_force: 15
   _is_dead: 0
   skil_num: 0
   item:
@@ -990,6 +990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54f7a1cf2d686b048893a2582544151a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &6054078429359005353
 GameObject:
   m_ObjectHideFlags: 0
