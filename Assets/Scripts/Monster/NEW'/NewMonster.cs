@@ -174,6 +174,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     {
         if(lock_target != null)
         {
+            animator.SetBool(hash_walk, false);
             audioplayer.PlayOneShot(chase_clip);
             animator.SetBool(hash_chase, true);
             agent.speed = data.chase_speed;
@@ -200,10 +201,12 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
 
             if(dist > data.chase_dist)
             {
+                agent.SetDestination(transform.position);
                 if(data.state_time >= data.chase_cool_time)
                 {
                     lock_target = null;
-                    animator.SetBool(hash_idle, true);
+                    animator.SetTrigger(hash_idle);
+                    animator.SetBool(hash_chase, false);
                     current_state = CURRNET_STATE.EIdle;
                     data.state_time = 0f;
                 }
@@ -241,6 +244,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         else
         {
             current_state = CURRNET_STATE.EIdle;
+            animator.SetBool(hash_chase, false);
         }
     }
 
@@ -252,6 +256,8 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         {
             audioplayer.PlayOneShot(dead_clip);
             animator.SetTrigger(hash_dead);
+            animator.SetBool(hash_walk, false);
+            animator.SetBool(hash_chase, false);
             Instantiate(Particles[0], transform.position, Quaternion.identity);
             Destroy(gameObject, 2f);
             current_state = CURRNET_STATE.EIdle;

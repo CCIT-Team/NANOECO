@@ -578,8 +578,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4490321538366526496}
-  - component: {fileID: 2810701795766894830}
-  - component: {fileID: 4168761883818760918}
+  - component: {fileID: 583857238}
   m_Layer: 0
   m_Name: Ant(fixed)
   m_TagString: Untagged
@@ -612,22 +611,7 @@ Transform:
   m_Father: {fileID: 4168761883600027696}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!111 &2810701795766894830
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3826655647302094490}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 1
---- !u!95 &4168761883818760918
+--- !u!95 &583857238
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -765,7 +749,7 @@ MonoBehaviour:
   target_mask:
     serializedVersion: 2
     m_Bits: 64
-  animator: {fileID: 4168761883600027702}
+  animator: {fileID: 583857238}
   attack_clip: {fileID: 0}
   hit_clip: {fileID: 0}
   chase_clip: {fileID: 0}
@@ -783,7 +767,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4168761883600027850}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f967f0819be06b34a812db8ce5b8d03f, type: 2}
   m_CullingMode: 0
