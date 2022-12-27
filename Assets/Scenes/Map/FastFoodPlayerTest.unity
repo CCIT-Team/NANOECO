@@ -1335,7 +1335,7 @@ GameObject:
   - component: {fileID: 169232904}
   m_Layer: 0
   m_Name: 3
-  m_TagString: Untagged
+  m_TagString: Spawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1366,7 +1366,7 @@ GameObject:
   - component: {fileID: 173264185}
   m_Layer: 0
   m_Name: 1
-  m_TagString: Untagged
+  m_TagString: Spawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3078,7 +3078,7 @@ GameObject:
   - component: {fileID: 421637857}
   m_Layer: 0
   m_Name: 4
-  m_TagString: Untagged
+  m_TagString: Spawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4398,7 +4398,7 @@ GameObject:
   - component: {fileID: 623058122}
   m_Layer: 0
   m_Name: 2
-  m_TagString: Untagged
+  m_TagString: Spawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8696,6 +8696,7 @@ MonoBehaviour:
   player: {fileID: 440356319204173021, guid: 29360832715727c4783d13fd0ffb52b3, type: 3}
   smooth_speed: 0.125
   offset: {x: 0, y: 28.76, z: 23.1619}
+  rotate_speed: 5
 --- !u!1001 &1294157420
 PrefabInstance:
   m_ObjectHideFlags: 0
