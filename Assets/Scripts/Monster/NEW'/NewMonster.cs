@@ -78,7 +78,9 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     [SerializeField]
     protected AudioClip chase_clip;
     [SerializeField]
-    protected AudioClip _clip;
+    protected AudioClip always_clip; //Å°¤ÓÅ°Ä¼Ä¼¤Á ÇÏ´Â °Íµé..
+    [SerializeField]
+    protected AudioSource audioSource;
 
 
     public bool hit_true = false;
