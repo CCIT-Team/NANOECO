@@ -68,6 +68,29 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     [SerializeField]
     protected LayerMask target_mask;
 
+
+    [SerializeField]
+    protected Animator animator;
+
+    [SerializeField]
+    protected AudioClip attack_clip;
+    [SerializeField]
+    protected AudioClip hit_clip;
+    [SerializeField]
+    protected AudioClip chase_clip;
+    [SerializeField]
+    protected AudioClip dead_clip;
+    [SerializeField]
+    protected AudioClip skill_clip;
+    [SerializeField]
+    protected AudioClip always_clip; //키ㅣ키캬캬ㅑ 하는 것들..
+    [SerializeField]
+    protected AudioSource audioplayer;
+
+
+    public bool hit_true = false;
+
+
     protected bool _is_dead = false;
     public bool is_dead
     {
@@ -95,6 +118,8 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
 
     public virtual void Idle()
     {
+        //애니메이션 초기화 + 사운드 상태 초기화 == init에 넣어도 될듯
+        //idle 애니메이션
         data.state_time += Time.deltaTime;
         
         if(lock_target == null)
@@ -114,6 +139,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
 
     public virtual void Patrol()
     {
+        //패트롤 애니메이션
         agent.speed = data.patrol_speed;
         if(!agent.hasPath)
         {
@@ -138,6 +164,8 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     {
         if(lock_target != null)
         {
+            audioplayer.PlayOneShot(chase_clip);
+            //chase 애니메이션
             agent.speed = data.chase_speed;
             data.state_time += Time.deltaTime;
             data.current_time += Time.deltaTime;
@@ -183,6 +211,8 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
             {
                 if (data.current_time >= data.attack_cool_time)
                 {
+                    audioplayer.PlayOneShot(attack_clip);
+                    //공격 애니메이션
                     agent.stoppingDistance = (data.attack_dist - 1f); 
                     player.current_hp -= data.damage;   //데미지 주는 부분 변경 필요
                     data.current_time = 0;
@@ -209,9 +239,9 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     {
         if (is_dead)
         {
+            audioplayer.PlayOneShot(dead_clip);
             Instantiate(Particles[0], transform.position, Quaternion.identity);
-            Destroy(gameObject);
-            Init();
+            Destroy(gameObject, 2f);
             current_state = CURRNET_STATE.EIdle;
         }
     }
@@ -233,6 +263,9 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
                     break;
                 case CURRNET_STATE.EAttack:
                     Attack();
+                    break;
+                case CURRNET_STATE.ESkill:
+                    Skill();
                     break;
             }
         }
@@ -269,6 +302,16 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         }
 
         return point == null ? Vector3.zero : point.position;
+    }
+    //몬스터 피격
+    private void Hit_Mon()
+    {
+        if(hit_true == true)
+        {
+            //피격 애니메이션 작동
+            audioplayer.PlayOneShot(hit_clip);
+        }
+
     }
 
     private void OnDrawGizmos()
