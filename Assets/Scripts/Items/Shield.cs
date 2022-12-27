@@ -4,52 +4,54 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class Shield : ItemControler
+public class Shield : MonoBehaviourPunCallbacks
 {
-    public Material a;
+    Material shieldM;
     Player player;
-    float currenthp = 0;
-    float stack = 0;
-    bool shieldon = false;
+    float hpRec;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = pv.GetComponent<Player>();
-        currenthp = player.current_hp;
+        shieldM = GetComponent<Material>();
+        StartCoroutine("DelayDestroy");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(currenthp > player.current_hp && shieldon)
+        if (player = null)
+            transform.Translate(Vector3.forward * Time.deltaTime);
+        else
         {
-            stack += (currenthp - player.current_hp);
-            a.color += new Color(stack, -stack, 0, 0);
-            currenthp = player.current_hp;
+            transform.position = player.transform.position;
+            if (hpRec - 50 >= player.current_hp)
+            {
+                Destroy(this.gameObject);
+            }
         }
-        if (Input.GetMouseButtonDown(0) && pv.IsMine && !shieldon && !iscooldown)
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == 6)
         {
-            currenthp = player.current_hp;
-            shieldon = true;
+            StopCoroutine("DelayDestroy");
+            player = other.GetComponent<Player>();
             StartCoroutine("OnShield");
-            StartCoroutine("AttackDelay");
         }
+    }
+    IEnumerator DelayDestroy()
+    {
+        yield return new WaitForSecondsRealtime(10);
+        Destroy(this.gameObject);
     }
 
     IEnumerator OnShield()
     {
+        player.current_hp += 50;
+        hpRec = player.current_hp;
         yield return new WaitForSeconds(10);
-        shieldon = false;
-        player.current_hp += stack;
+        Destroy(this.gameObject);
     }
-
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 8 && isdelay)
-        {
-            other.gameObject.GetComponent<Rigidbody>().AddForce(knockback * Vector3.Normalize(other.transform.position - player.transform.position), ForceMode.Impulse);
-            other.gameObject.GetComponent<Character>().current_hp -= stack;
-        }
-    }*/
 }

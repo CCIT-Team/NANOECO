@@ -19,7 +19,6 @@ public class ItemControler : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        
         count = maxcount;
     }
     override public void OnEnable()

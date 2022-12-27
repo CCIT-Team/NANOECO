@@ -11,8 +11,7 @@ public class ButtonColor : MonoBehaviour , IPointerEnterHandler, IPointerExitHan
 
     void Start()
     {
-        image = GetComponent<Image>();  
-
+        image = GetComponent<Image>();
     }
 
     public void OnPointerEnter(PointerEventData eventData)

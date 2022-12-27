@@ -21,7 +21,7 @@ public class Bomb : MonoBehaviourPunCallbacks
     public bool isboom = false;
 
     public float destroytime = 0.1f;
-    public float knockback = 1;
+    //public float knockback = 1;
     bool is_play = false;
 
     [Range(0,8)]
@@ -65,8 +65,8 @@ public class Bomb : MonoBehaviourPunCallbacks
         if (other.gameObject.layer == targetLayer && isboom)
         {
             if(targetLayer != 7)
-                other.gameObject.GetComponent<Rigidbody>().AddForce(knockback*Vector3.Normalize(other.transform.position - this.transform.position), ForceMode.Impulse);
-            other.gameObject.GetComponent<Character>().current_hp -= damage;
+                //other.gameObject.GetComponent<Rigidbody>().AddForce(knockback*Vector3.Normalize(other.transform.position - this.transform.position), ForceMode.Impulse);
+                other.gameObject.GetComponent<NewMonster>().data.current_hp -= damage;
         }
     }
 

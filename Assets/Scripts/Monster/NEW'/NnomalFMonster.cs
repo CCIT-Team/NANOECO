@@ -77,7 +77,7 @@ public class NnomalFMonster : NewMonster
                 if (data.current_time >= data.attack_cool_time)
                 {
                     agent.stoppingDistance = (data.attack_dist - 1f);
-                    Instantiate(mon_bullet, transform);
+                    Instantiate(mon_bullet, transform);  //아마 몬스터 총알도 변경해야 될듯 포톤 연동할때
                     data.current_time = 0;
                 }
                 else

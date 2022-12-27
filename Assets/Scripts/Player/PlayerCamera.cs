@@ -60,7 +60,7 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
     //            StartCoroutine(CameraShaking(0.35f, 1f));
     //            break;
     //    }
-    //}
+   //}
 
     IEnumerator CameraShaking(float duration, float manitude)
     {
