@@ -65,6 +65,8 @@ public class NsocutMomster : NewMonster
 
     public override void Skill()
     {
+        audioplayer.PlayOneShot(skill_clip);
+        //스킬 애니메이션 작동
         float dist = (lock_target.transform.position - transform.position).magnitude;
         transform.rotation = Quaternion.Lerp(transform.rotation, lock_target.transform.rotation, Time.deltaTime);
         if(dist <= data.skill_dist)
