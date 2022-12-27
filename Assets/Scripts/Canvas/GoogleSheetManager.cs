@@ -18,7 +18,7 @@ public class GoogleData
 
 public class GoogleSheetManager : MonoBehaviour
 {
-    const string URL = "https://script.google.com/macros/s/AKfycbxv9uFXeLUGgSBG10kIGoDcMi2efxYOu-ZoP2Z7hfBsjjcaymw4I9ZnU8VAXfc9STxaMw/exec";
+    const string URL = "https://script.google.com/macros/s/AKfycbxSdZgxBLpXoTW-wH_ZgR1_neJnleyJuay2mx5CNs4d1LO3VzYnwZvC6oqjGmx92f-02w/exec";
     public GoogleData GD;
 
     [Header("Login")]
@@ -38,12 +38,10 @@ public class GoogleSheetManager : MonoBehaviour
     [Header("login or register or NickName")]
     [SerializeField] GameObject sign_obj;
     [SerializeField] GameObject sign_up_panel;
-    [SerializeField] GameObject NickName_Input;
 
     [Space]
     [Header("login or register")]
     [SerializeField] GameObject loading_circle;
-
     [SerializeField] GameObject info_canvas;//완료 및 알림 텍스트 오브젝
 
 
@@ -100,6 +98,8 @@ public class GoogleSheetManager : MonoBehaviour
         if (!SetIDPass_Register())
         {
             print("아이디 또는 비밀번호 또는 닉네임이 비어있습니다");
+            text_message.text = "Please Fill in All the Blanks!";
+            info_canvas.SetActive(true);
             return;
         }
 
@@ -118,6 +118,8 @@ public class GoogleSheetManager : MonoBehaviour
         if (!SetIDPass_Login())
         {
             print("아이디 또는 비밀번호가 비어있습니다");
+            text_message.text = "Please Write ID or Password.";
+            info_canvas.SetActive(true);
             return;
         }
 
@@ -173,7 +175,12 @@ public class GoogleSheetManager : MonoBehaviour
             yield return www.SendWebRequest();
 
             if (www.isDone) { Response(www.downloadHandler.text); loading_circle.SetActive(false); }
-            else print("웹의 응답이 없습니다.");
+            else
+            {
+                print("웹의 응답이 없습니다.");
+                text_message.text = "웹의 응답이 없습니다.";
+                info_canvas.SetActive(true);
+            }
         }
     }
 
@@ -188,13 +195,17 @@ public class GoogleSheetManager : MonoBehaviour
         {
             if (GD.order == "register")
             {
-                NickName_Input.SetActive(true);
                 id_re = "";
                 pass_re = "";
+                nickname_re = "";
             }
 
             else
+            {
                 print(GD.order + "을 실행할 수 없습니다. 에러 메시지 : " + GD.msg);
+                text_message.text = GD.msg;
+                info_canvas.SetActive(true);
+            }
 
             return;
         }
@@ -216,7 +227,6 @@ public class GoogleSheetManager : MonoBehaviour
             if(GD.msg == "닉네임 없음")
             {
                 sign_obj.SetActive(false);
-                NickName_Input.SetActive(true);
             }
             else// 닉네임 있음
             {
