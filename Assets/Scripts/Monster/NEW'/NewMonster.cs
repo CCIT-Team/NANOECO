@@ -54,6 +54,14 @@ public struct Data
 
 public abstract class NewMonster : MonoBehaviourPunCallbacks
 {
+    private readonly int hash_walk = Animator.StringToHash("Walk");
+    private readonly int hash_attack = Animator.StringToHash("Attack");
+    private readonly int hash_chase = Animator.StringToHash("Chase");
+    private readonly int hash_hit = Animator.StringToHash("Hit");
+    private readonly int hash_dead = Animator.StringToHash("Dead");
+    protected readonly int hash_skill = Animator.StringToHash("Skill");
+    private readonly int hash_idle = Animator.StringToHash("Idle");
+
     public Data data;
     [SerializeField]
     protected MONSTER_TYPE monster_type;
@@ -120,6 +128,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     {
         //애니메이션 초기화 + 사운드 상태 초기화 == init에 넣어도 될듯
         //idle 애니메이션
+        
         data.state_time += Time.deltaTime;
         
         if(lock_target == null)
@@ -139,7 +148,8 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
 
     public virtual void Patrol()
     {
-        //패트롤 애니메이션
+        //패트롤 애니메이
+        animator.SetBool(hash_walk, true);
         agent.speed = data.patrol_speed;
         if(!agent.hasPath)
         {
@@ -164,8 +174,9 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     {
         if(lock_target != null)
         {
+            animator.SetBool(hash_walk, false);
             audioplayer.PlayOneShot(chase_clip);
-            //chase 애니메이션
+            animator.SetBool(hash_chase, true);
             agent.speed = data.chase_speed;
             data.state_time += Time.deltaTime;
             data.current_time += Time.deltaTime;
@@ -190,9 +201,12 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
 
             if(dist > data.chase_dist)
             {
+                agent.SetDestination(transform.position);
                 if(data.state_time >= data.chase_cool_time)
                 {
                     lock_target = null;
+                    animator.SetTrigger(hash_idle);
+                    animator.SetBool(hash_chase, false);
                     current_state = CURRNET_STATE.EIdle;
                     data.state_time = 0f;
                 }
@@ -212,7 +226,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
                 if (data.current_time >= data.attack_cool_time)
                 {
                     audioplayer.PlayOneShot(attack_clip);
-                    //공격 애니메이션
+                    animator.SetTrigger(hash_attack);
                     agent.stoppingDistance = (data.attack_dist - 1f); 
                     player.current_hp -= data.damage;   //데미지 주는 부분 변경 필요
                     data.current_time = 0;
@@ -230,6 +244,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         else
         {
             current_state = CURRNET_STATE.EIdle;
+            animator.SetBool(hash_chase, false);
         }
     }
 
@@ -240,6 +255,9 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         if (is_dead)
         {
             audioplayer.PlayOneShot(dead_clip);
+            animator.SetTrigger(hash_dead);
+            animator.SetBool(hash_walk, false);
+            animator.SetBool(hash_chase, false);
             Instantiate(Particles[0], transform.position, Quaternion.identity);
             Destroy(gameObject, 2f);
             current_state = CURRNET_STATE.EIdle;
@@ -308,7 +326,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     {
         if(hit_true == true)
         {
-            //피격 애니메이션 작동
+            animator.SetTrigger(hash_hit);
             audioplayer.PlayOneShot(hit_clip);
         }
 

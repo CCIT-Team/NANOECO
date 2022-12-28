@@ -13,6 +13,7 @@ public class Range : WeaponeBase
     string bulletname;
     public bool explosion = false;
     int skill;
+    bool isreloading = false;
     void Start()
     {
         skill = pv.GetComponent<Player>().skil_num;
@@ -71,8 +72,19 @@ public class Range : WeaponeBase
     IEnumerator Reloading()
     {
         isdelay = true;
+        isreloading = true;
         yield return new WaitForSecondsRealtime(2);
         ammo = maxAmmo;
         isdelay = false;
+        isreloading = false;
+    }
+
+    public override void OnEnable()
+    {
+        PhotonNetwork.AddCallbackTarget(this);
+        if (isreloading)
+            StartCoroutine("Reloading");
+        else if (isdelay)
+            StartCoroutine("AttackDelay");
     }
 }

@@ -438,19 +438,19 @@ MonoBehaviour:
   pv: {fileID: 1567939649194598680}
   nickname: {fileID: 3081242554518892449}
   camera_shaking_num: 0
-  max_hp: 0
-  current_hp: 0
-  damage: 0
-  defense: 0
+  max_hp: 100
+  current_hp: 100
   jump_force: 1000
   dash_force: 1000
   move_force: 15
-  _is_dead: 0
+  is_dead: 0
+  respawn_time: 5
   skil_num: 0
   item:
   - {fileID: 6054078429359005353}
   - {fileID: 8911248076378328467}
   - {fileID: 736217809237007197}
+  spawn_point: {fileID: 0}
   isGrounded: 1
 --- !u!114 &4076170639146346161
 MonoBehaviour:
@@ -1018,8 +1018,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6054078429359005353}
-  m_LocalRotation: {x: 0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 2.4507337, y: 0.7880001, z: -1.0488653}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 2.4507337, y: 0.7880001, z: 0.67}
   m_LocalScale: {x: 0.5, y: 0.5, z: 2.88}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   realdelay: 0.2
   isdelay: 0
   pv: {fileID: 1567939649194598680}
-  maxAmmo: 0
+  maxAmmo: 2147483647
   ammo: 2147483647
   firePosition: {fileID: 9119548540163212710}
   bullet: {fileID: -4316363247423991619, guid: 66730fb6a4bf0144cb61d28681ef01a5, type: 3}
@@ -1138,7 +1138,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6932001613366165001}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.45, y: 0.00071281195, z: -0.3972185}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
@@ -1148,7 +1148,7 @@ Transform:
   - {fileID: 7536920539889432308}
   m_Father: {fileID: 440356319204173021}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &7452446028088094093
 GameObject:
   m_ObjectHideFlags: 0
