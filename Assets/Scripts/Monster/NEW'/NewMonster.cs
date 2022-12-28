@@ -30,7 +30,6 @@ public enum CURRNET_STATE
 
 public struct Data
 {
-    [SerializeField]
     public float max_hp;
     public float current_hp;
     public float damage;
@@ -54,9 +53,9 @@ public struct Data
 
 public abstract class NewMonster : MonoBehaviourPunCallbacks
 {
-    private readonly int hash_walk = Animator.StringToHash("Walk");
-    private readonly int hash_attack = Animator.StringToHash("Attack");
-    private readonly int hash_chase = Animator.StringToHash("Chase");
+    protected readonly int hash_walk = Animator.StringToHash("Walk");
+    protected readonly int hash_attack = Animator.StringToHash("Attack");
+    protected readonly int hash_chase = Animator.StringToHash("Chase");
     private readonly int hash_hit = Animator.StringToHash("Hit");
     private readonly int hash_dead = Animator.StringToHash("Dead");
     protected readonly int hash_skill = Animator.StringToHash("Skill");
@@ -97,26 +96,9 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
 
 
     public bool hit_true = false;
+    [SerializeField]
+    protected bool is_dead = false;
 
-
-    protected bool _is_dead = false;
-    public bool is_dead
-    {
-        get => _is_dead;
-        set
-        {
-            if (data.current_hp <= 0)
-            {
-                _is_dead = true;
-                Is_Dead();
-                Init();
-            }
-            else
-            {
-                _is_dead = false;
-            }
-        }
-    }
     [SerializeField]
     protected CURRNET_STATE current_state = new CURRNET_STATE();
 
@@ -250,6 +232,16 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
 
     public virtual void Skill() { }
     
+    public virtual void Hp_Check()
+    {
+        if(data.current_hp <= 0)
+        {
+            is_dead = true;
+            Is_Dead();
+            is_dead = false;
+        }
+    }
+
     public virtual void Is_Dead() 
     {
         if (is_dead)
@@ -259,7 +251,9 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
             animator.SetBool(hash_walk, false);
             animator.SetBool(hash_chase, false);
             Instantiate(Particles[0], transform.position, Quaternion.identity);
+            agent.SetDestination(transform.position);
             Destroy(gameObject, 2f);
+            Init();
             current_state = CURRNET_STATE.EIdle;
         }
     }

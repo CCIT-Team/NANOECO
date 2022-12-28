@@ -20,10 +20,10 @@ public class NnomalFMonster : NewMonster
 
         data.patrol_dist = 20f;
         data.chase_dist = 30f;
-        data.attack_dist = 5f;
+        data.attack_dist = 15f;
         data.skill_dist = 0f;
 
-        data.idle_cool_time = 2f;
+        data.idle_cool_time = 3f;
         data.chase_cool_time = 2f;
         data.attack_cool_time = 2f;
         data.skill_cool_time = 1000f;
@@ -43,10 +43,10 @@ public class NnomalFMonster : NewMonster
 
         data.patrol_dist = 20f;
         data.chase_dist = 30f;
-        data.attack_dist = 5f;
+        data.attack_dist = 15f;
         data.skill_dist = 0f;
 
-        data.idle_cool_time = 2f;
+        data.idle_cool_time = 3f;
         data.chase_cool_time = 2f;
         data.attack_cool_time = 2f;
         data.skill_cool_time = 1000f;
@@ -76,7 +76,9 @@ public class NnomalFMonster : NewMonster
             {
                 if (data.current_time >= data.attack_cool_time)
                 {
-                    agent.stoppingDistance = (data.attack_dist - 1f);
+                    audioplayer.PlayOneShot(attack_clip);
+                    animator.SetTrigger(hash_attack);
+                    agent.stoppingDistance = (data.attack_dist - 5f);
                     Instantiate(mon_bullet, transform);  //아마 몬스터 총알도 변경해야 될듯 포톤 연동할때
                     data.current_time = 0;
                 }
@@ -93,6 +95,7 @@ public class NnomalFMonster : NewMonster
         else
         {
             current_state = CURRNET_STATE.EIdle;
+            animator.SetBool(hash_chase, false);
         }
     }
 }
