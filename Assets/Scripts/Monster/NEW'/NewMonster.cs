@@ -53,6 +53,7 @@ public struct Data
 
 public abstract class NewMonster : MonoBehaviourPunCallbacks
 {
+    #region 파라미터
     protected readonly int hash_walk = Animator.StringToHash("Walk");
     protected readonly int hash_attack = Animator.StringToHash("Attack");
     protected readonly int hash_chase = Animator.StringToHash("Chase");
@@ -101,7 +102,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
 
     [SerializeField]
     protected CURRNET_STATE current_state = new CURRNET_STATE();
-
+    #endregion
     //애니메이션 관련 컴포넌트
 
     public abstract void Init();
@@ -258,6 +259,27 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         }
     }
 
+    //몬스터 피격
+    //몬스터 피격시 dead랑 중첩되는 문제가 있는데 이 부분을 공격하는 무기에서 미리 걸러주면 좋을거 같음
+    public virtual void Hit_Mon()
+    {
+        if (hit_true == true)
+        {
+            if (data.current_hp <= 20f)
+            {
+                audioplayer.PlayOneShot(hit_clip);
+                hit_true = false;
+            }
+            else
+            {
+                animator.SetTrigger(hash_hit);
+                audioplayer.PlayOneShot(hit_clip);
+                hit_true = false;
+            }
+        }
+
+    }
+
     public virtual void Monster_State()
     {
         if (!is_dead)
@@ -314,16 +336,6 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         }
 
         return point == null ? Vector3.zero : point.position;
-    }
-    //몬스터 피격
-    private void Hit_Mon()
-    {
-        if(hit_true == true)
-        {
-            animator.SetTrigger(hash_hit);
-            audioplayer.PlayOneShot(hit_clip);
-        }
-
     }
 
     private void OnDrawGizmos()

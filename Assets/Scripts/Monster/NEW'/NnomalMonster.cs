@@ -57,6 +57,7 @@ public class NnomalMonster : NewMonster
     {
         mon_action += Monster_State;
         mon_action += Hp_Check;
+        mon_action += Hit_Mon;
     }
 
     private void FixedUpdate()
@@ -70,6 +71,7 @@ public class NnomalMonster : NewMonster
 
         if(Input.GetKeyDown(KeyCode.L))
         {
+            hit_true = true;
             data.current_hp -= 5f;
         }
     }
