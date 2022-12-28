@@ -9,7 +9,7 @@ public class NtankerMonster : NewMonster
     #region
     public NtankerMonster()
     {
-        data.max_hp = 150f;
+        data.max_hp = 200f;
         data.current_hp = data.max_hp;
         data.damage = 10f;
         data.defense = 5f;
@@ -18,10 +18,10 @@ public class NtankerMonster : NewMonster
 
         data.patrol_dist = 15f;
         data.chase_dist = 20f;
-        data.attack_dist = 1f;
+        data.attack_dist = 4f;
         data.skill_dist = 0f;
 
-        data.idle_cool_time = 2f;
+        data.idle_cool_time = 3f;
         data.chase_cool_time = 2f;
         data.attack_cool_time = 5f;
         data.skill_cool_time = 1000f;
@@ -32,7 +32,7 @@ public class NtankerMonster : NewMonster
 
     public override void Init()
     {
-        data.max_hp = 150f;
+        data.max_hp = 200f;
         data.current_hp = data.max_hp;
         data.damage = 10f;
         data.defense = 5f;
@@ -41,10 +41,10 @@ public class NtankerMonster : NewMonster
 
         data.patrol_dist = 15f;
         data.chase_dist = 20f;
-        data.attack_dist = 1f;
+        data.attack_dist = 4f;
         data.skill_dist = 0f;
 
-        data.idle_cool_time = 2f;
+        data.idle_cool_time = 3f;
         data.chase_cool_time = 2f;
         data.attack_cool_time = 5f;
         data.skill_cool_time = 1000f;

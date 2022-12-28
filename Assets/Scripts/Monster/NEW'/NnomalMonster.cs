@@ -18,10 +18,10 @@ public class NnomalMonster : NewMonster
 
         data.patrol_dist = 20f;
         data.chase_dist = 25f;
-        data.attack_dist = 4f; //몬스터가 크다면 공격 범위도 커야 할 듯
+        data.attack_dist = 2f; //몬스터가 크다면 공격 범위도 커야 할 듯
         data.skill_dist = 0f;
 
-        data.idle_cool_time = 2f;
+        data.idle_cool_time = 3f;
         data.chase_cool_time = 2f;
         data.attack_cool_time = 1f;
         data.skill_cool_time = 100f;
@@ -41,7 +41,7 @@ public class NnomalMonster : NewMonster
 
         data.patrol_dist = 20f;
         data.chase_dist = 25f;
-        data.attack_dist = 4f;
+        data.attack_dist = 2f;
         data.skill_dist = 0f;
 
         data.idle_cool_time = 2f;
@@ -56,10 +56,23 @@ public class NnomalMonster : NewMonster
     private void Awake()
     {
         mon_action += Monster_State;
+        mon_action += Hp_Check;
+        mon_action += Hit_Mon;
     }
 
     private void FixedUpdate()
     {
         mon_action();
+    }
+
+    private void Update()
+    {
+        Debug.Log(data.current_hp);
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            hit_true = true;
+            data.current_hp -= 5f;
+        }
     }
 }
