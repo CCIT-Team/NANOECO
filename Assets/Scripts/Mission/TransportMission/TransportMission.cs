@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TransportMission : MissionBase
 {
+    [Header("미션 세팅")]
     public List<TransportPoint> path;
     public TransportTarget target;
     public float speed;
@@ -30,6 +31,9 @@ public class TransportMission : MissionBase
             }
         }
     }
+
+    [Space][Header("스폰 세팅")]
+    public List<GameObject> monster_groups;
 
     [Space][Header("헬기")]
     public GameObject heli;
@@ -117,6 +121,15 @@ public class TransportMission : MissionBase
             if (current_point != path.Count - 1)
                 Transfort_Move();
             else { Clear(); }
+        }
+    }
+
+    public void Spawn_Monster(List<Transform> col)
+    {
+        for(int i = 0; i < col.Count; i++)
+        {
+            int m = Random.Range(0, monster_groups.Count);
+            Instantiate(monster_groups[i], col[i].position, Quaternion.identity);
         }
     }
 
