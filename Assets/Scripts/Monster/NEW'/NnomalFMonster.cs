@@ -76,7 +76,7 @@ public class NnomalFMonster : NewMonster
         {
             data.current_time += Time.deltaTime;
             float dist = (lock_target.transform.position - transform.position).magnitude;
-            transform.rotation = Quaternion.Lerp(transform.rotation, lock_target.transform.rotation, Time.deltaTime);
+            transform.LookAt(lock_target.transform);
             if (dist <= data.attack_dist)
             {
                 if (data.current_time >= data.attack_cool_time)

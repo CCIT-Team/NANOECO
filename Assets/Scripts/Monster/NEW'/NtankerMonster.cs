@@ -16,9 +16,9 @@ public class NtankerMonster : NewMonster
         data.patrol_speed = 4f;
         data.chase_speed = 8f;
 
-        data.patrol_dist = 15f;
-        data.chase_dist = 20f;
-        data.attack_dist = 6f;
+        data.patrol_dist = 31f;
+        data.chase_dist = 30f;
+        data.attack_dist = 5f;
         data.skill_dist = 0f;
         data.event_chase_dist = 1000f;
 
@@ -40,9 +40,9 @@ public class NtankerMonster : NewMonster
         data.patrol_speed = 4f;
         data.chase_speed = 8f;
 
-        data.patrol_dist = 15f;
-        data.chase_dist = 20f;
-        data.attack_dist = 6f;
+        data.patrol_dist = 31f;
+        data.chase_dist = 30f;
+        data.attack_dist = 5f;
         data.skill_dist = 0f;
         data.event_chase_dist = 1000f;
 
