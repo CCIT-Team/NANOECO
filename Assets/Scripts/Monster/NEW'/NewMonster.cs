@@ -105,6 +105,9 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
 
     [SerializeField]
     protected CURRNET_STATE current_state = new CURRNET_STATE();
+
+    float testTime = 5;
+    
     #endregion
     //애니메이션 관련 컴포넌트
 
@@ -135,13 +138,22 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     public virtual void Patrol()
     {
         //패트롤 애니메이
+        Debug.Log("1");
         animator.SetBool(hash_walk, true);
         agent.speed = data.patrol_speed;
+        testTime -= Time.deltaTime;
         if(!agent.hasPath)
         {
+            Debug.Log("2");
             agent.SetDestination(Get_Random_Point(transform, data.patrol_dist));
         }
-        if(on_event ==true)
+        //몇 초뒤에 확인 했는데 똑같은 자리라면 다시 랜덤으로 돌려보리기
+        if (testTime <= 0)
+        {
+            agent.SetDestination(Get_Random_Point(transform, data.patrol_dist));
+            testTime = Random.Range(1f,4f);
+        }
+        if (on_event ==true)
         {
             Collider[] targets = Physics.OverlapSphere(transform.position, data.event_chase_dist, target_mask);
             for (int i = 0; i < targets.Length; i++)
@@ -207,9 +219,9 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
             {
                 if (dist > data.event_chase_dist)
                 {
-                    agent.SetDestination(transform.position);
                     if (data.state_time >= data.chase_cool_time)
                     {
+                        agent.SetDestination(transform.position);
                         lock_target = null;
                         animator.SetTrigger(hash_idle);
                         animator.SetBool(hash_chase, false);
@@ -222,9 +234,9 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
             {
                 if (dist > data.chase_dist)
                 {
-                    agent.SetDestination(transform.position);
                     if (data.state_time >= data.chase_cool_time)
                     {
+                        agent.SetDestination(transform.position);
                         lock_target = null;
                         animator.SetTrigger(hash_idle);
                         animator.SetBool(hash_chase, false);
@@ -249,7 +261,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
                 {
                     audioplayer.PlayOneShot(attack_clip);
                     animator.SetTrigger(hash_attack);
-                    agent.stoppingDistance = (data.attack_dist - 1f); 
+                    agent.stoppingDistance = (data.attack_dist-0.5f); 
                     player.current_hp -= data.damage;   //데미지 주는 부분 변경 필요
                     data.current_time = 0;
                 }
@@ -286,13 +298,14 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     {
         if (is_dead)
         {
+            //콜라이더 disable
+            agent.SetDestination(transform.position);
             audioplayer.PlayOneShot(dead_clip);
             animator.SetTrigger(hash_dead);
             animator.SetBool(hash_walk, false);
             animator.SetBool(hash_chase, false);
             Instantiate(Particles[0], transform.position, Quaternion.identity);
-            agent.SetDestination(transform.position);
-            Destroy(gameObject, 2f);
+            Destroy(gameObject, 1f);
             Init();
             current_state = CURRNET_STATE.EIdle;
         }

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class NnomalFMonster : NewMonster
 {
@@ -10,9 +9,7 @@ public class NnomalFMonster : NewMonster
     private GameObject mon_bullet;
     [SerializeField]
     private GameObject shot_pos;
-    bool test = true;
 
-    private IObjectPool<NmonsterBullet> pool;
     #region 초기값
     public NnomalFMonster()
     {
@@ -66,7 +63,6 @@ public class NnomalFMonster : NewMonster
     private void Awake()
     {
         mon_action += Monster_State;
-        pool = new ObjectPool<NmonsterBullet>(Creat_Bullet, Get_Bullet, Release_Bullet, Destroy_Bullet, maxSize: 50);
     }
 
     private void FixedUpdate()
@@ -80,15 +76,15 @@ public class NnomalFMonster : NewMonster
         {
             data.current_time += Time.deltaTime;
             float dist = (lock_target.transform.position - transform.position).magnitude;
-            transform.rotation = Quaternion.Lerp(transform.rotation, lock_target.transform.rotation, Time.deltaTime);
+            transform.LookAt(lock_target.transform);
             if (dist <= data.attack_dist)
             {
                 if (data.current_time >= data.attack_cool_time)
                 {
                     audioplayer.PlayOneShot(attack_clip);
                     animator.SetTrigger(hash_attack);
-                    agent.stoppingDistance = (data.attack_dist - 5f);
-                    var bullet = pool.Get();  //아마 몬스터 총알도 변경해야 될듯 포톤 연동할때
+                    agent.stoppingDistance = (data.attack_dist - 2f);
+                    Instantiate(mon_bullet, transform.position, transform.rotation);
                     data.current_time = 0;
                 }
                 else
@@ -106,28 +102,6 @@ public class NnomalFMonster : NewMonster
             current_state = CURRNET_STATE.EIdle;
             animator.SetBool(hash_chase, false);
         }
-    }
-
-    private NmonsterBullet Creat_Bullet()
-    {
-        NmonsterBullet bullet = Instantiate(mon_bullet, shot_pos.transform, test).GetComponent<NmonsterBullet>();
-        bullet.Set_Target_Pool(pool);
-        return bullet;
-    }
-
-    private void Get_Bullet(NmonsterBullet bullet)
-    {
-        bullet.gameObject.SetActive(true);
-    }
-
-    private void Release_Bullet(NmonsterBullet bullet)
-    {
-        bullet.gameObject.SetActive(false);
-    }
-
-    private void Destroy_Bullet(NmonsterBullet bullet)
-    {
-        Destroy(bullet.gameObject);
     }
 
 }
