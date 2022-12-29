@@ -41,14 +41,14 @@ public class LoginManager : Singleton<LoginManager>
     {
         if (is_login)
         {
-            if(tmp_id_login.text.Length == 8 && tmp_pw_login.text.Length == 8)
+            if(tmp_id_login.text.Length == 8 && tmp_pw_login.text.Length >= 8)
             {
                 lock_image_login.gameObject.SetActive(false);
             }
         }
         else
         {
-            if(tmp_id_re.text.Length == 8 && tmp_pw_re.text.Length == 8)
+            if(tmp_id_re.text.Length == 8 && tmp_pw_re.text.Length >= 8)
             {
                 lock_image_register.gameObject.SetActive(false);
             }

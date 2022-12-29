@@ -64,18 +64,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if(make_room_panel != null)
-        if (Input.GetKeyDown(KeyCode.Escape) && make_room_panel.activeSelf)
-        {
-            make_room_panel.SetActive(false);
-        }
-
-        if (PhotonNetwork.PlayerList.Length >= 2)
-        {
-
-            Debug.Log(PhotonNetwork.PlayerListOthers[0].ToStringFull());
-        }
-        //Debug.Log(PhotonNetwork.PlayerListOthers[0].ToStringFull());
     }
     /// <summary>
     /// //////////////////////////////////////////////////////////////////////
