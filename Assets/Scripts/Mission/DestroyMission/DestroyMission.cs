@@ -8,6 +8,7 @@ public class DestroyMission : MissionBase
     public List<GameObject> monster_group = new List<GameObject>();
     public List<GameObject> spawn_point = new List<GameObject>();
     public float wave_time;
+    public bool started = false;
 
     public float hp
     {
@@ -16,7 +17,11 @@ public class DestroyMission : MissionBase
 
     void OnTriggerEnter(Collider other)
     {
-        Mission_Event();
+        if(!started)
+        {
+            Mission_Event();
+            started = true;
+        }
     }
 
     public override void Clear()

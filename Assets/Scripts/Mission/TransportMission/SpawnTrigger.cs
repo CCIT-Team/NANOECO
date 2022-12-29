@@ -12,6 +12,7 @@ public class SpawnTrigger : MonoBehaviour
     {
         if(!spawned)
         {
+            print(123);
             mb.Spawn_Monster(spawn_points);
             spawned = true;
         }
