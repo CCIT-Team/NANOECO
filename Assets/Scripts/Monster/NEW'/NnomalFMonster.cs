@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class NnomalFMonster : NewMonster
 {
     System.Action mon_action;
     [SerializeField]
     private GameObject mon_bullet;
+    [SerializeField]
+    private GameObject shot_pos;
+    bool test = true;
 
+    private IObjectPool<NmonsterBullet> pool;
     #region 초기값
     public NnomalFMonster()
     {
@@ -20,8 +25,9 @@ public class NnomalFMonster : NewMonster
 
         data.patrol_dist = 20f;
         data.chase_dist = 30f;
-        data.attack_dist = 15f;
+        data.attack_dist = 20f;
         data.skill_dist = 0f;
+        data.event_chase_dist = 1000f;
 
         data.idle_cool_time = 3f;
         data.chase_cool_time = 2f;
@@ -43,8 +49,9 @@ public class NnomalFMonster : NewMonster
 
         data.patrol_dist = 20f;
         data.chase_dist = 30f;
-        data.attack_dist = 15f;
+        data.attack_dist = 20f;
         data.skill_dist = 0f;
+        data.event_chase_dist = 1000f;
 
         data.idle_cool_time = 3f;
         data.chase_cool_time = 2f;
@@ -53,11 +60,13 @@ public class NnomalFMonster : NewMonster
 
         data.current_time = 0f;
         data.state_time = 0f;
+        on_event = false;
     }
     #endregion
     private void Awake()
     {
         mon_action += Monster_State;
+        pool = new ObjectPool<NmonsterBullet>(Creat_Bullet, Get_Bullet, Release_Bullet, Destroy_Bullet, maxSize: 50);
     }
 
     private void FixedUpdate()
@@ -79,7 +88,7 @@ public class NnomalFMonster : NewMonster
                     audioplayer.PlayOneShot(attack_clip);
                     animator.SetTrigger(hash_attack);
                     agent.stoppingDistance = (data.attack_dist - 5f);
-                    Instantiate(mon_bullet, transform);  //아마 몬스터 총알도 변경해야 될듯 포톤 연동할때
+                    var bullet = pool.Get();  //아마 몬스터 총알도 변경해야 될듯 포톤 연동할때
                     data.current_time = 0;
                 }
                 else
@@ -98,4 +107,27 @@ public class NnomalFMonster : NewMonster
             animator.SetBool(hash_chase, false);
         }
     }
+
+    private NmonsterBullet Creat_Bullet()
+    {
+        NmonsterBullet bullet = Instantiate(mon_bullet, shot_pos.transform, test).GetComponent<NmonsterBullet>();
+        bullet.Set_Target_Pool(pool);
+        return bullet;
+    }
+
+    private void Get_Bullet(NmonsterBullet bullet)
+    {
+        bullet.gameObject.SetActive(true);
+    }
+
+    private void Release_Bullet(NmonsterBullet bullet)
+    {
+        bullet.gameObject.SetActive(false);
+    }
+
+    private void Destroy_Bullet(NmonsterBullet bullet)
+    {
+        Destroy(bullet.gameObject);
+    }
+
 }

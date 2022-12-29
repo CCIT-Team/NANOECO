@@ -20,6 +20,7 @@ public class NnomalMonster : NewMonster
         data.chase_dist = 25f;
         data.attack_dist = 2f; //몬스터가 크다면 공격 범위도 커야 할 듯
         data.skill_dist = 0f;
+        data.event_chase_dist = 1000f;
 
         data.idle_cool_time = 3f;
         data.chase_cool_time = 2f;
@@ -43,6 +44,7 @@ public class NnomalMonster : NewMonster
         data.chase_dist = 25f;
         data.attack_dist = 2f;
         data.skill_dist = 0f;
+        data.event_chase_dist = 1000f;
 
         data.idle_cool_time = 2f;
         data.chase_cool_time = 2f;
@@ -51,6 +53,7 @@ public class NnomalMonster : NewMonster
 
         data.current_time = 0f;
         data.state_time = 0f;
+        on_event = false;
     }
     #endregion
     private void Awake()

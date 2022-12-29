@@ -326,9 +326,9 @@ GameObject:
   - component: {fileID: 2112509909748419476}
   - component: {fileID: 2112509909748419477}
   - component: {fileID: 2112509909748419434}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NomalMonster
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1456,7 +1456,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 824015559753126921, guid: 5020f11b463c1e845ba5ff45f80cb44a, type: 3}
+  - {fileID: 2100000, guid: 53740ccf54f7c1641863123a4da7ae37, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
