@@ -41,6 +41,7 @@ public struct Data
     public float chase_dist;
     public float attack_dist;
     public float skill_dist;
+    public float event_chase_dist;
 
     public float idle_cool_time;
     public float chase_cool_time;
@@ -100,6 +101,8 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     [SerializeField]
     protected bool is_dead = false;
 
+    public bool on_event = false;  //捞亥飘肺 积己等 各
+
     [SerializeField]
     protected CURRNET_STATE current_state = new CURRNET_STATE();
     #endregion
@@ -138,18 +141,37 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         {
             agent.SetDestination(Get_Random_Point(transform, data.patrol_dist));
         }
-        Collider[] targets = Physics.OverlapSphere(transform.position, data.chase_dist, target_mask);
-        for(int i = 0; i < targets.Length; i++)
+        if(on_event ==true)
         {
-            player = targets[i].GetComponent<Player>();
-            if(player != null)
+            Collider[] targets = Physics.OverlapSphere(transform.position, data.event_chase_dist, target_mask);
+            for (int i = 0; i < targets.Length; i++)
             {
-                lock_target = player.gameObject;
-                current_state = CURRNET_STATE.EChase;
-                break;
+                player = targets[i].GetComponent<Player>();
+                if (player != null)
+                {
+                    lock_target = player.gameObject;
+                    current_state = CURRNET_STATE.EChase;
+                    break;
+                }
+                if (targets == null)
+                    return;
             }
-            if (targets == null)
-                return;
+        }
+        else
+        {
+            Collider[] targets = Physics.OverlapSphere(transform.position, data.chase_dist, target_mask);
+            for (int i = 0; i < targets.Length; i++)
+            {
+                player = targets[i].GetComponent<Player>();
+                if (player != null)
+                {
+                    lock_target = player.gameObject;
+                    current_state = CURRNET_STATE.EChase;
+                    break;
+                }
+                if (targets == null)
+                    return;
+            }
         }
     }
 
@@ -181,17 +203,34 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
             if(dist <= data.attack_dist)
                 current_state = CURRNET_STATE.EAttack;
             
-
-            if(dist > data.chase_dist)
+            if(on_event == true)
             {
-                agent.SetDestination(transform.position);
-                if(data.state_time >= data.chase_cool_time)
+                if (dist > data.event_chase_dist)
                 {
-                    lock_target = null;
-                    animator.SetTrigger(hash_idle);
-                    animator.SetBool(hash_chase, false);
-                    current_state = CURRNET_STATE.EIdle;
-                    data.state_time = 0f;
+                    agent.SetDestination(transform.position);
+                    if (data.state_time >= data.chase_cool_time)
+                    {
+                        lock_target = null;
+                        animator.SetTrigger(hash_idle);
+                        animator.SetBool(hash_chase, false);
+                        current_state = CURRNET_STATE.EIdle;
+                        data.state_time = 0f;
+                    }
+                }
+            }
+            else
+            {
+                if (dist > data.chase_dist)
+                {
+                    agent.SetDestination(transform.position);
+                    if (data.state_time >= data.chase_cool_time)
+                    {
+                        lock_target = null;
+                        animator.SetTrigger(hash_idle);
+                        animator.SetBool(hash_chase, false);
+                        current_state = CURRNET_STATE.EIdle;
+                        data.state_time = 0f;
+                    }
                 }
             }
         }
@@ -344,6 +383,8 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         Gizmos.DrawWireSphere(transform.position, data.chase_dist);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, data.attack_dist);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, data.event_chase_dist);
     }
 
 }

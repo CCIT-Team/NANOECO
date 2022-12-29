@@ -20,6 +20,7 @@ public class NwideFMonster : NewMonster
         data.chase_dist = 25f;
         data.attack_dist = 2f;
         data.skill_dist = 0f;
+        data.event_chase_dist = 1000f;
 
         data.idle_cool_time = 2f;
         data.chase_cool_time = 2f;
@@ -43,6 +44,7 @@ public class NwideFMonster : NewMonster
         data.chase_dist = 25f;
         data.attack_dist = 2f;
         data.skill_dist = 0f;
+        data.event_chase_dist = 1000f;
 
         data.idle_cool_time = 2f;
         data.chase_cool_time = 2f;
@@ -51,6 +53,7 @@ public class NwideFMonster : NewMonster
 
         data.current_time = 0f;
         data.state_time = 0f;
+        on_event = false;
     }
     #endregion
     private void Awake()

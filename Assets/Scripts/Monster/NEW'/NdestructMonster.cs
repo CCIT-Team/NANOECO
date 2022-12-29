@@ -51,6 +51,7 @@ public class NdestructMonster : NewMonster
 
         data.current_time = 0f;
         data.state_time = 0f;
+        on_event = false;
     }
     #endregion
     private void Awake()

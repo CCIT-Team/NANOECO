@@ -10,6 +10,7 @@ public class NnomalFMonster : NewMonster
     private GameObject mon_bullet;
     [SerializeField]
     private GameObject shot_pos;
+    bool test = true;
 
     private IObjectPool<NmonsterBullet> pool;
     #region �ʱⰪ
@@ -26,6 +27,7 @@ public class NnomalFMonster : NewMonster
         data.chase_dist = 30f;
         data.attack_dist = 20f;
         data.skill_dist = 0f;
+        data.event_chase_dist = 1000f;
 
         data.idle_cool_time = 3f;
         data.chase_cool_time = 2f;
@@ -49,6 +51,7 @@ public class NnomalFMonster : NewMonster
         data.chase_dist = 30f;
         data.attack_dist = 20f;
         data.skill_dist = 0f;
+        data.event_chase_dist = 1000f;
 
         data.idle_cool_time = 3f;
         data.chase_cool_time = 2f;
@@ -57,6 +60,7 @@ public class NnomalFMonster : NewMonster
 
         data.current_time = 0f;
         data.state_time = 0f;
+        on_event = false;
     }
     #endregion
     private void Awake()
@@ -106,7 +110,7 @@ public class NnomalFMonster : NewMonster
 
     private NmonsterBullet Creat_Bullet()
     {
-        NmonsterBullet bullet = Instantiate(mon_bullet, shot_pos.transform, gameObject.transform).GetComponent<NmonsterBullet>();
+        NmonsterBullet bullet = Instantiate(mon_bullet, shot_pos.transform, test).GetComponent<NmonsterBullet>();
         bullet.Set_Target_Pool(pool);
         return bullet;
     }

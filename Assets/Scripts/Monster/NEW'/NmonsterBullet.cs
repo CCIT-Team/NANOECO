@@ -12,6 +12,10 @@ public class NmonsterBullet : MonoBehaviour
     [SerializeField]
     private float speed = 0f;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        gameObject.transform.position = new Vector3(0, 0, 0);
+    }
     void Start()
     {
         Invoke("Destroy_Bullet", 3f);
