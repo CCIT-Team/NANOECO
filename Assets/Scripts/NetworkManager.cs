@@ -20,10 +20,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [SerializeField]
     PhotonView pv;
-
-    
-
-
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject); 

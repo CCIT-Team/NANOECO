@@ -4,21 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class LoginManager : MonoBehaviour
+public class LoginManager : Singleton<LoginManager>
 {
     [SerializeField]
     private GameObject loading_canvas;
-
-    public TMP_InputField[] tmp_if;
 
     void Start()
     {
         SceneFunction.loading_canvas = this.loading_canvas;
 
-        for(int i=0;i < tmp_if.Length;i++) 
-        {
-            tmp_if[i].characterLimit = 8;
-        }
     }
 
 
@@ -32,5 +26,33 @@ public class LoginManager : MonoBehaviour
                 text.characterLimit = 8;
             }
         }
+    }
+
+    public TMP_InputField tmp_id_re;
+    public TMP_InputField tmp_pw_re;
+    public TMP_InputField tmp_id_login;
+    public TMP_InputField tmp_pw_login;
+
+
+    public Image lock_image_login;
+    public Image lock_image_register;
+
+    public void Value_Change_Check(bool is_login)
+    {
+        if (is_login)
+        {
+            if(tmp_id_login.text.Length == 8 && tmp_pw_login.text.Length == 8)
+            {
+                lock_image_login.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            if(tmp_id_re.text.Length == 8 && tmp_pw_re.text.Length == 8)
+            {
+                lock_image_register.gameObject.SetActive(false);
+            }
+        }
+
     }
 }
