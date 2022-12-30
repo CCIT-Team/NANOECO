@@ -92,7 +92,7 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
         Debug.DrawRay(transform.position, player.position - transform.position, Color.red);
         if(Physics.Raycast(transform.position, player.position, out playerRay, player.position.z - transform.position.z))
         {
-           if (!playerRay.transform.CompareTag("player"))
+           if (!playerRay.transform.CompareTag("Player"))
             {
                 offset.y -= playerRay.distance;
             }
