@@ -14,11 +14,14 @@ public class ToolBtn : MonoBehaviour
 
     public GameObject[] all_canvas;
 
+    public GameObject[] requests;
+
     public void Join_Panel(GameObject joinPanel)//방 찾기 패널 찾기
     {
         joinPanel.SetActive(true);
     }
 
+    //Toolbar에서 Canvas Switch 역할 함수
     public void Active_Canvas(float btn_index)
     {
         for(int i = 0; i < all_canvas.Length; i++)
@@ -65,9 +68,14 @@ public class ToolBtn : MonoBehaviour
         }
     }
 
+    public void Select_Request(GameObject request) 
+    {
+
+    }
+
     public void Test_Start()
     {
-        SceneFunction.game_map_name = "FastFoodPlayerTest";
-        SceneFunction.fade.GetComponent<Fade>().Load_Scene();
+        //SceneFunction.game_map_name = "FastFoodPlayerTest";
+        //SceneFunction.fade.GetComponent<Fade>().Load_Scene();
     }
 }
