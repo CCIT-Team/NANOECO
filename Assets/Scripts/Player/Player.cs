@@ -82,6 +82,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         //pv.RPC("DestroyRPC", RpcTarget.AllBuffered);
         ItemChange();
         Dead();
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            current_hp = -100;
+        }
     }
 
     void Dead()
@@ -89,7 +93,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if(current_hp <= 0)
         {
             is_dead = true;
-            //애니메이션
+            ani.SetBool("Dead", true);
             StartCoroutine(ReSpawn());
         }
         else
@@ -101,9 +105,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     IEnumerator ReSpawn()
     {
         yield return new WaitForSecondsRealtime(respawn_time);
-        is_dead = false;
         current_hp = max_hp;
         transform.position = spawn_point.position;
+        is_dead = false;
+        ani.SetBool("Dead", false);
     }
 
     void Move()
@@ -130,7 +135,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)//점프
         {
-            Debug.Log("Jump!!!!!!!!");
+            isGrounded = false;
             rigid.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
         }
     }
