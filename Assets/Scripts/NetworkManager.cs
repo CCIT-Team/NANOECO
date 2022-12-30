@@ -76,7 +76,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Make_Room_Panel.SetActive(true);
     }
 
-    //
     public void Make_Room_Panel(TMP_Text text)
     {
          SceneFunction.loading_canvas.SetActive(true);
