@@ -5,6 +5,7 @@ using UnityEngine;
 public class PartsItem : WeaponeBase
 {
     public Transform player;
+    public FinalMission fm;
 
     void Start()
     {
@@ -13,6 +14,7 @@ public class PartsItem : WeaponeBase
 
     private void OnTriggerEnter(Collider other)
     {
-
+        fm._current_parts++;
+        Destroy(gameObject);
     }
 }
