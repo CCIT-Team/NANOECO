@@ -18,15 +18,15 @@ public class ToolBtn : MonoBehaviour
     public Sprite requestBox;
     public Sprite requestsBox_check;
     public GameObject[] requests;
-    
 
+
+    public GameObject join_panel;
     public GameObject[] join_panel_text;
-
-    public void Join_Panel(GameObject joinPanel)//방 찾기 패널
+    public void Join_Panel(GameObject joinPanel)//방 찾기 패널 && Text_SetActiveOn
     {
         joinPanel.SetActive(true);
+        Invoke("Turn_Text_Obj", 0.5f);//31
     }
-
     void Turn_Text_Obj()
     {
         for(int i = 0;i < join_panel_text.Length;i++)
@@ -104,5 +104,17 @@ public class ToolBtn : MonoBehaviour
     {
         SceneFunction.game_map_name = "FastFoodPlayerTest";
         SceneFunction.fade.GetComponent<Fade>().Load_Scene();
+    }
+
+    private void Update()
+    {
+        if (join_panel.activeSelf && Input.GetKeyDown(KeyCode.End))
+        {
+            for (int i = 0; i < join_panel_text.Length; i++)
+            {
+                join_panel_text[i].SetActive(false);
+            }
+            join_panel.SetActive(false);
+        }
     }
 }
