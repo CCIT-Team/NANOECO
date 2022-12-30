@@ -98,10 +98,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if(current_hp <= 0)
         {
             is_dead = true;
-            ani.SetBool("Dead", true);
             helicopter.SetActive(true);
             helicopterplayerbody.transform.parent = helicopterrope.transform;
-            //StartCoroutine(ReSpawn());
+            StartCoroutine(ReSpawn());
         }
         else
         {
@@ -115,8 +114,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         current_hp = max_hp;
         transform.position = spawn_point.position;
         is_dead = false;
-        ani.SetBool("Dead", false);
-        helicopterplayerbody.transform.parent = this.transform;
+        helicopterplayerbody.transform.parent = transform;
         helicopter.SetActive(false);
     }
 
