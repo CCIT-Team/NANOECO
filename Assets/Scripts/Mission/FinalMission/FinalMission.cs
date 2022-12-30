@@ -6,14 +6,14 @@ public class FinalMission : MissionBase
 {
     [Header("미션 세팅")]
     public int goal_parts;
-    public int current_parts
+    public int current_parts = 0;
+    public int _current_parts
     {
         get { return current_parts; }
         set
         {
             current_parts = value;
-            if (current_parts == goal_parts)
-                Clear();
+            if (current_parts >= goal_parts) { Clear(); }
         }
     }
 
@@ -30,7 +30,7 @@ public class FinalMission : MissionBase
 
     void Update()
     {
-        
+
     }
 
     public override void Mission_Event()
