@@ -63,6 +63,8 @@ public class NnomalFMonster : NewMonster
     private void Awake()
     {
         mon_action += Monster_State;
+        mon_action += Hp_Check;
+        mon_action += Hit_Mon;
     }
 
     private void FixedUpdate()

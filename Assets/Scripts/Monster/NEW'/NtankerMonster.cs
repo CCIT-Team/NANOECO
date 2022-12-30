@@ -14,7 +14,7 @@ public class NtankerMonster : NewMonster
         data.damage = 10f;
         data.defense = 5f;
         data.patrol_speed = 4f;
-        data.chase_speed = 8f;
+        data.chase_speed = 10f;
 
         data.patrol_dist = 31f;
         data.chase_dist = 30f;
@@ -38,7 +38,7 @@ public class NtankerMonster : NewMonster
         data.damage = 10f;
         data.defense = 5f;
         data.patrol_speed = 4f;
-        data.chase_speed = 8f;
+        data.chase_speed = 10f;
 
         data.patrol_dist = 31f;
         data.chase_dist = 30f;
@@ -60,6 +60,8 @@ public class NtankerMonster : NewMonster
     private void Awake()
     {
         mon_action += Monster_State;
+        mon_action += Hp_Check;
+        mon_action += Hit_Mon;
     }
 
     private void FixedUpdate()
