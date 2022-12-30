@@ -13,8 +13,8 @@ public class NnomalMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 5f;
         data.defense = 1f;
-        data.patrol_speed = 6f;
-        data.chase_speed = 10f;
+        data.patrol_speed = 8f;
+        data.chase_speed = 13f;
 
         data.patrol_dist = 21f;
         data.chase_dist = 25f;
@@ -37,8 +37,8 @@ public class NnomalMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 5f;
         data.defense = 1f;
-        data.patrol_speed = 6f;
-        data.chase_speed = 10f;
+        data.patrol_speed = 8f;
+        data.chase_speed = 13f;
 
         data.patrol_dist = 21f;
         data.chase_dist = 25f;
