@@ -33,6 +33,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     int current_item = 0;
     bool isdash = false;
     public bool isGrounded = true;
+    public GameObject helicopter;
+    public GameObject helicopterplayerbody;
 
     Vector3 curPos;
     Quaternion curRot;
@@ -73,6 +75,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         item[1].SetActive(false);
         item[2].SetActive(false);
         pv.RPC("ActiveRPC", RpcTarget.AllBuffered, current_item);
+        helicopter.SetActive(false);
     }
 
     void Update()
@@ -94,7 +97,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             is_dead = true;
             ani.SetBool("Dead", true);
-            StartCoroutine(ReSpawn());
+            helicopter.SetActive(true);
+            helicopterplayerbody.transform.parent = helicopter.transform;
+            //StartCoroutine(ReSpawn());
         }
         else
         {
@@ -109,6 +114,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         transform.position = spawn_point.position;
         is_dead = false;
         ani.SetBool("Dead", false);
+        helicopterplayerbody.transform.parent = this.transform;
+        helicopter.SetActive(false);
     }
 
     void Move()
