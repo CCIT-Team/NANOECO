@@ -138,13 +138,11 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     public virtual void Patrol()
     {
         //패트롤 애니메이
-        Debug.Log("1");
         animator.SetBool(hash_walk, true);
         agent.speed = data.patrol_speed;
         testTime -= Time.deltaTime;
         if(!agent.hasPath)
         {
-            Debug.Log("2");
             agent.SetDestination(Get_Random_Point(transform, data.patrol_dist));
         }
         //몇 초뒤에 확인 했는데 똑같은 자리라면 다시 랜덤으로 돌려보리기
@@ -396,8 +394,8 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         Gizmos.DrawWireSphere(transform.position, data.chase_dist);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, data.attack_dist);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, data.event_chase_dist);
+        //Gizmos.color = Color.green;
+        //Gizmos.DrawWireSphere(transform.position, data.event_chase_dist);
     }
 
 }
