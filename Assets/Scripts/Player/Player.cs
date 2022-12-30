@@ -33,7 +33,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     int current_item = 0;
     bool isdash = false;
     public bool isGrounded = true;
+    [Header("죽음 애니메이션")]
     public GameObject helicopter;
+    public GameObject helicopterrope;
     public GameObject helicopterplayerbody;
 
     Vector3 curPos;
@@ -98,7 +100,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             is_dead = true;
             ani.SetBool("Dead", true);
             helicopter.SetActive(true);
-            helicopterplayerbody.transform.parent = helicopter.transform;
+            helicopterplayerbody.transform.parent = helicopterrope.transform;
             //StartCoroutine(ReSpawn());
         }
         else

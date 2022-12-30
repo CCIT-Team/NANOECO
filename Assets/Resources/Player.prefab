@@ -453,6 +453,7 @@ MonoBehaviour:
   spawn_point: {fileID: 0}
   isGrounded: 1
   helicopter: {fileID: 5121980578705866901}
+  helicopterrope: {fileID: 5121980577229754427}
   helicopterplayerbody: {fileID: 6932001613366165001}
 --- !u!114 &4076170639146346161
 MonoBehaviour:
@@ -1743,6 +1744,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fa9d8a4ee8abb842b675502e4b0d2ee, type: 3}
+--- !u!1 &5121980577229754427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3133464917186857308, guid: 8fa9d8a4ee8abb842b675502e4b0d2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 7811673388738976103}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5121980578705866900 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3133464918932462067, guid: 8fa9d8a4ee8abb842b675502e4b0d2ee,
