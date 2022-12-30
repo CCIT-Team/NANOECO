@@ -12,6 +12,8 @@ public class PlayerSpawn : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        GameManager.Instance.player_count = PhotonNetwork.PlayerList.Length;
+
         CheckandSpawn();
     }
 

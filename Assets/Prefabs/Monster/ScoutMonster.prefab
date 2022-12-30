@@ -51,7 +51,8 @@ MonoBehaviour:
   monster_type: 2
   targets: []
   agent: {fileID: 1139123688582485688}
-  Particles: []
+  Particles:
+  - {fileID: 2421973375779753916, guid: 80d57da61f14baf49898e48dd5cdfbf1, type: 3}
   target_mask:
     serializedVersion: 2
     m_Bits: 64
