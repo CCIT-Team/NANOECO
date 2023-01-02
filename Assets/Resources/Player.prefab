@@ -433,7 +433,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigid: {fileID: 586797443335620206}
-  ani: {fileID: 4151759147202596314}
   pv: {fileID: 1567939649194598680}
   nickname: {fileID: 3081242554518892449}
   camera_shaking_num: 0
@@ -442,7 +441,7 @@ MonoBehaviour:
   jump_force: 1000
   dash_force: 1000
   move_force: 15
-  is_dead: 0
+  is_dead: 1
   respawn_time: 5
   skil_num: 0
   item:
@@ -451,6 +450,8 @@ MonoBehaviour:
   - {fileID: 736217809237007197}
   spawn_point: {fileID: 0}
   isGrounded: 1
+  ani: {fileID: 4151759147202596314}
+  helicopterAni: {fileID: 5121980578705866899}
   helicopter: {fileID: 5121980578705866901}
   helicopterrope: {fileID: 5121980577229754427}
   helicopterplayerbody: {fileID: 6932001613366165001}
@@ -1838,11 +1839,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3133464918932462068, guid: 8fa9d8a4ee8abb842b675502e4b0d2ee,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b88ecc10cb8215048affd099b1ff2ea2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fa9d8a4ee8abb842b675502e4b0d2ee, type: 3}
 --- !u!1 &5121980577229754427 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3133464917186857308, guid: 8fa9d8a4ee8abb842b675502e4b0d2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 7811673388738976103}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5121980578705866899 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3133464918932462068, guid: 8fa9d8a4ee8abb842b675502e4b0d2ee,
     type: 3}
   m_PrefabInstance: {fileID: 7811673388738976103}
   m_PrefabAsset: {fileID: 0}

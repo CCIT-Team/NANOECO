@@ -14,7 +14,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     //public Camera cam;
     int targetdisplay = 0;
     public Rigidbody rigid;
-    public Animator ani;
     public PhotonView pv;
     public TextMeshProUGUI nickname;
     EPlayer_Skil eps;
@@ -33,10 +32,15 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     int current_item = 0;
     bool isdash = false;
     public bool isGrounded = true;
+    public GameObject hand;//아이템 줍기용
+    [Header("애니메이션 관련")]
+    public Animator ani;
+    public Animator helicopterAni;
     [Header("죽음 애니메이션")]
     public GameObject helicopter;
     public GameObject helicopterrope;
     public GameObject helicopterplayerbody;
+
 
     Vector3 curPos;
     Quaternion curRot;
@@ -58,7 +62,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         nickname.text = pv.IsMine ? PhotonNetwork.NickName : pv.Owner.NickName;
         nickname.color = pv.IsMine ? Color.green : Color.red;
-        if(pv.IsMine)
+        if (pv.IsMine)
         {
             gameObject.name = nickname.text;
             //cam.gameObject.name = nickname.text + "cam";
@@ -87,7 +91,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         //pv.RPC("DestroyRPC", RpcTarget.AllBuffered);
         ItemChange();
         Dead();
-        if(Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             current_hp = -100;
         }
@@ -95,27 +99,34 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void Dead()
     {
-        if(current_hp <= 0)
+        if (current_hp <= 0)
         {
             is_dead = true;
             helicopter.SetActive(true);
             helicopterplayerbody.transform.parent = helicopterrope.transform;
-            StartCoroutine(ReSpawn());
-        }
-        else
-        {
-            StopCoroutine(ReSpawn());
+            ReSpawn();
         }
     }
 
-    IEnumerator ReSpawn()
+    void ReSpawn()
     {
-        yield return new WaitForSecondsRealtime(respawn_time);
-        current_hp = max_hp;
-        transform.position = spawn_point.position;
-        is_dead = false;
-        helicopterplayerbody.transform.parent = transform;
-        helicopter.SetActive(false);
+        if (is_dead)
+        {
+            respawn_time -= Time.deltaTime;
+            if (respawn_time <= 0) 
+            {
+                is_dead = false; 
+                helicopterAni.SetBool("Respawn", true);
+                if (helicopterAni.GetBool("HliEnd"))
+                {
+                    transform.position = spawn_point.position;
+                    helicopterplayerbody.transform.parent = transform;
+                    helicopter.SetActive(false);
+                    current_hp = max_hp;
+                    respawn_time = 3;
+                }
+            }
+        }
     }
 
     void Move()
@@ -200,10 +211,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     public void Skil()
     {
-        switch(skil_num)
+        switch (skil_num)
         {
             case 0:
-                eps =  EPlayer_Skil.EAdd_Ammo;
+                eps = EPlayer_Skil.EAdd_Ammo;
                 break;
             case 1:
                 eps = EPlayer_Skil.ETurbo_Pump;

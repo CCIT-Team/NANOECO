@@ -10,7 +10,7 @@ public class PlayerAnimationMethod : MonoBehaviour
     }
     void UnRideHelicopter()
     {
-        Player.instance.helicopterplayerbody.SetActive(false);
+        Player.instance.helicopterplayerbody.SetActive(true);
     }
 
     void PlayerDead()
@@ -21,6 +21,12 @@ public class PlayerAnimationMethod : MonoBehaviour
     void PlayerRespawn()
     {
         GameManager.Instance.player_count += 1;
+        Player.instance.helicopter.GetComponent<Animator>().SetBool("Respawn", true);
+    }
+
+    void HelicopterEnd()
+    {
+        Player.instance.helicopter.GetComponent<Animator>().SetBool("HliEnd", true);  
     }
 
 }
