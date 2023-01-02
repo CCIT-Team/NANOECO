@@ -5,6 +5,10 @@ using UnityEngine;
 public class NsocutMonster : NewMonster
 {
     System.Action mon_action;
+    public List<GameObject> monster_group = new List<GameObject>();
+    public List<Transform> spawn_point = new List<Transform>();
+    public int wave_count;
+    public float wave_time;
 
     #region 초기값
     public NsocutMonster()
@@ -78,11 +82,20 @@ public class NsocutMonster : NewMonster
         {
             agent.SetDestination(transform.position);
             //몬스터 생성 메서드 필요
+            StartCoroutine(Monster_Wave());
         }
         else
         {
             current_state = CURRNET_STATE.EChase;
         }
 
+    }
+
+    IEnumerator Monster_Wave()
+    {
+        wave_count--;
+        int i = Random.Range(0, monster_group.Count);
+        Instantiate(monster_group[i], spawn_point[i].position, Quaternion.identity);
+        yield return new WaitForSeconds(wave_time);
     }
 }
