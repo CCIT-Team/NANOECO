@@ -28,6 +28,8 @@ public class HelicopterEvent : MonoBehaviour
     {
         if(col.gameObject.layer == 6)
         {
+            print("enter: " + col.name);
+
             current_player_count++;
             Ride_Helicopter();
             player_list.Add(col.gameObject);
@@ -38,6 +40,7 @@ public class HelicopterEvent : MonoBehaviour
     {
         if (col.gameObject.layer == 6)
         {
+            print("exit" + col.name);
             current_player_count--;
             player_list.Remove(col.gameObject);
         }
@@ -67,5 +70,6 @@ public class HelicopterEvent : MonoBehaviour
             player_list[i].transform.localPosition = Vector3.zero;
             player_list[i].transform.SetParent(null);
         }
+        player_list.Clear();
     }
 }
