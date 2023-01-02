@@ -10414,7 +10414,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5604700467570509074}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 50, y: 1, z: 20}
@@ -10431,10 +10431,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca887f3276edd804eb943c5a9be12929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anime: {fileID: 0}
+  anime: {fileID: 5604700467735741057}
   current_player_count: 0
-  helicopter: {fileID: 0}
-  heli_player: {fileID: 0}
+  helicopter: {fileID: 5604700467735741071}
+  heli_player: {fileID: 5604700466761278102}
   rotor: {fileID: 5604700466933904159}
   tail_rotor: {fileID: 5604700466653959777}
   rotor_speed: 300
