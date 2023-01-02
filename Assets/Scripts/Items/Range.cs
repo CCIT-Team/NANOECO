@@ -14,8 +14,9 @@ public class Range : WeaponeBase
     public bool explosion = false;
     int skill;
     bool isreloading = false;
-    void Start()
+    public override void Start()
     {
+        base.Start();
         skill = pv.GetComponent<Player>().skil_num;
         switch (skill)
         {
@@ -60,12 +61,12 @@ public class Range : WeaponeBase
 
     public override void Attack()
     {
-        /*
-        GameObject chargedbullet = Instantiate(bullet);
+        
+        GameObject chargedbullet = Instantiate(bullet.gameObject);
         chargedbullet.transform.position = firePosition.transform.position;
         chargedbullet.transform.rotation = firePosition.transform.rotation;
-        */
-        PhotonNetwork.Instantiate(bulletname, firePosition.transform.position, firePosition.transform.rotation);
+        
+        //PhotonNetwork.Instantiate(bulletname, firePosition.transform.position, firePosition.transform.rotation);
         ammo--;
     }
 

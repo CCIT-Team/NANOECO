@@ -190,7 +190,6 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         if(lock_target != null)
         {
             animator.SetBool(hash_walk, false);
-            audioplayer.PlayOneShot(chase_clip);
             animator.SetBool(hash_chase, true);
             agent.speed = data.chase_speed;
             data.state_time += Time.deltaTime;
@@ -337,12 +336,15 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
             switch (current_state)
             {
                 case CURRNET_STATE.EIdle:
+                    audioplayer.clip = always_clip;
                     Idle();
                     break;
                 case CURRNET_STATE.EPatrol:
+                    audioplayer.clip = always_clip;
                     Patrol();
                     break;
                 case CURRNET_STATE.EChase:
+                    audioplayer.clip = chase_clip;
                     Chase();
                     break;
                 case CURRNET_STATE.EAttack:
