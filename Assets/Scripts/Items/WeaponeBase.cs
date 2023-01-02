@@ -22,6 +22,10 @@ public abstract class WeaponeBase : MonoBehaviourPunCallbacks
         isdelay = false;
     }
 
+    public virtual void Start()
+    {
+        GetPlayer();
+    }
     public virtual void Attack()  //재정의해서 사용
     {
 
@@ -32,6 +36,11 @@ public abstract class WeaponeBase : MonoBehaviourPunCallbacks
         base.OnEnable();
         if(isdelay)
             StartCoroutine("AttackDelay");
+    }
+
+    void GetPlayer()
+    {
+        pv = GetComponentInParent<PhotonView>();
     }
 }
 

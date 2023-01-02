@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviourPunCallbacks
     }
     private void Update()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        transform.Translate(speed * Time.deltaTime * Vector3.forward);
     }
     private void OnTriggerEnter(Collider other)
     {

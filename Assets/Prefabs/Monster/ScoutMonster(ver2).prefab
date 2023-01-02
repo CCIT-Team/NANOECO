@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3964423536984545499}
   - component: {fileID: 4803087699941845317}
   - component: {fileID: 4370602455422271360}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ScoutMonster(ver2)
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,12 +57,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   animator: {fileID: 4092237994389200836}
-  attack_clip: {fileID: 0}
-  hit_clip: {fileID: 0}
-  chase_clip: {fileID: 0}
-  dead_clip: {fileID: 0}
-  skill_clip: {fileID: 0}
-  always_clip: {fileID: 0}
+  attack_clip: {fileID: 8300000, guid: bb393a337a3af3445b8fda13bdb81888, type: 3}
+  hit_clip: {fileID: 8300000, guid: d1c87f398278d074bb1c88847f48fdb9, type: 3}
+  chase_clip: {fileID: 8300000, guid: 98e6c12d302b63e418d8d9623028d83d, type: 3}
+  dead_clip: {fileID: 8300000, guid: 54a36f2c4e090ce4d983bb03d953ede5, type: 3}
+  skill_clip: {fileID: 8300000, guid: d1e992f05821bf54aa6775ba5e8201ca, type: 3}
+  always_clip: {fileID: 8300000, guid: 827d2da4a1ff33e4495a1d4b619bc168, type: 3}
   audioplayer: {fileID: 4803087699941845317}
   hit_true: 0
   is_dead: 0

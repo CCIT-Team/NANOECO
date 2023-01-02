@@ -5436,6 +5436,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loading_canvas: {fileID: 1333150592}
+  login_check: 1
+  re:
+  - {fileID: 1390353315}
+  - {fileID: 91108920}
+  - {fileID: 1860801895}
+  tmp_nick_re: {fileID: 1390353315}
   tmp_id_re: {fileID: 91108920}
   tmp_pw_re: {fileID: 1860801895}
   tmp_id_login: {fileID: 1378270065}
