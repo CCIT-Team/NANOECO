@@ -19,7 +19,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     TypedLobby typedLobby = new TypedLobby("Lobby1", LobbyType.Default);
 
     [SerializeField]
-    PhotonView pv;
+    public PhotonView pv;
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject); 
@@ -65,6 +65,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     private void Update()
     {
         //for master check
+        if(PhotonNetwork.InRoom)
         if (PhotonNetwork.IsMasterClient)
         {
             if (PhotonNetwork.CurrentRoom.PlayerCount >= 2)
@@ -155,6 +156,24 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log("존재하는 방이 없어요~");
     }
 
+
+
+    public void Ready_Check()
+    {
+        if(PhotonNetwork.IsMasterClient)
+        {
+            if(Utils.is_select_room)
+            {
+                Utils.info_message.text = "You Should Wait All Player!";
+                Utils.info_canvas.SetActive(true);
+            }
+            else
+            {
+
+            }
+        }
+    }
+
     [PunRPC]
     private void Player_Number_Check()
     {
@@ -167,8 +186,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             tool_btn.GetComponent<ToolBtn>().user_profile_info[i].SetActive(true);
         }
-
-
     }
 
+    
 }
