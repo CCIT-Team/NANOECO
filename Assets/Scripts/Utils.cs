@@ -12,6 +12,8 @@ public class Utils
 
     public static string nickname;//NetWorkManager NickName;
 
+    public static int ready_complete_player_index; // 준비 완료한 플레이어 인덱스
+
     public static Vector3 mouse_pos//Mouse Transform
     {
         get

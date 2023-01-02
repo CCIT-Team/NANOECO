@@ -54,7 +54,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         SceneFunction.loading_canvas.SetActive(false);
         Utils.Ran();
         string num_code = Utils.room_number.ToString();
-        Canvas.GetComponent<WRCanvas>().Room_Code.text = num_code.Substring(0, 4) + " " + num_code.Substring(4);
+        Canvas.GetComponent<WRCanvas>().Room_Code.text = num_code.Substring(0, 4) + num_code.Substring(4);
 
         ros.MaxPlayers = 4;
         ros.IsVisible = true;
@@ -64,18 +64,30 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     private void Update()
     {
+        //for master check
+        if (PhotonNetwork.IsMasterClient)
+        {
+            if (PhotonNetwork.CurrentRoom.PlayerCount >= 2)
+            {
+                tool_btn.GetComponent<ToolBtn>().master_check.SetActive(true);
+            }
+            else
+            {
+                tool_btn.GetComponent<ToolBtn>().master_check.SetActive(false);
+            }
+        }
+        else
+        {
+            if(PhotonNetwork.CurrentRoom.PlayerCount >= 2)
+            {
+                tool_btn.GetComponent<ToolBtn>().master_check_for_guest.SetActive(true);
+            }
+            else
+            {
+                tool_btn.GetComponent<ToolBtn>().master_check_for_guest.SetActive(false);
+            }
+        }
     }
-    /// <summary>
-    /// //////////////////////////////////////////////////////////////////////
-    /// </summary>
-    /// <param name="Make_Room_Panel"></param>
-    private GameObject make_room_panel;
-    public void Active_Room_Panel(GameObject Make_Room_Panel)
-    {
-        this.make_room_panel = Make_Room_Panel;
-        Make_Room_Panel.SetActive(true);
-    }
-
     public void Make_Room_Panel(TMP_Text text)
     {
          SceneFunction.loading_canvas.SetActive(true);
@@ -86,7 +98,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void Join_Random_Room()
     {
-        Utils.is_findroom = true;
+         Utils.is_findroom = true;
          PhotonNetwork.LeaveRoom();
          SceneFunction.loading_canvas.SetActive(true);
     }
@@ -105,12 +117,21 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [SerializeField]
     private GameObject Canvas;
+    public GameObject tool_btn;
     public override void OnJoinedRoom()
     {
-        if (!PhotonNetwork.IsMasterClient)
+        SceneFunction.loading_canvas.SetActive(false);
+        pv.RPC("Player_Number_Check", RpcTarget.AllBuffered);
+        if (PhotonNetwork.IsMasterClient)
         {
-            SceneFunction.loading_canvas.SetActive(false);
-            Canvas.GetComponent<WRCanvas>().Room_Code.text = PhotonNetwork.CurrentRoom.Name;
+            
+            //
+            //몇명인지 확인하고 갯수대로 키고
+            //Canvas.GetComponent<WRCanvas>().Room_Code.text = PhotonNetwork.CurrentRoom.Name;
+        }
+        else
+        {
+
         }
 
         //Debug.Log(PhotonNetwork.CurrentRoom.Name);
@@ -124,6 +145,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnDisconnected(DisconnectCause cause)
     {
+        pv.RPC("Player_Number_Check", RpcTarget.AllBuffered);
         SceneFunction.loading_canvas.SetActive(false);
     }
 
@@ -136,14 +158,17 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     [PunRPC]
     private void Player_Number_Check()
     {
+        //Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
+        for(int i = 0; i < 3;i++)
+        {
+            tool_btn.GetComponent<ToolBtn>().user_profile_info[i].SetActive(false);
+        }
+        for(int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount - 1; i++)
+        {
+            tool_btn.GetComponent<ToolBtn>().user_profile_info[i].SetActive(true);
+        }
+
+
     }
 
-    [PunRPC]
-    private void NickName_Check()
-    {
-        if(PhotonNetwork.LocalPlayer.NickName == "host")
-        {
-            //
-        }
-    }
 }
