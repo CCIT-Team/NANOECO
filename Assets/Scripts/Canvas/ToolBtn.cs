@@ -19,6 +19,17 @@ public class ToolBtn : MonoBehaviour
     public Sprite requestsBox_check;
     public GameObject[] requests;
 
+    public GameObject master_check;
+    public GameObject master_check_for_guest;
+
+    [Space(10)]
+    public GameObject my_profile;
+    public Sprite ready;
+    public Sprite unready;
+    public Sprite ready_guest;
+    public Sprite unready_guest;
+    public GameObject[] user_profile_info;
+
 
     public GameObject join_panel;
     public GameObject[] join_panel_text;
@@ -34,6 +45,36 @@ public class ToolBtn : MonoBehaviour
             join_panel_text[i].SetActive(true);
         }
     }
+
+
+
+
+    /// <summary>
+    /// /
+    /// </summary>
+    /// <param name="btn_index"></param>
+    public void ReadyCheck()
+    {
+        my_profile.GetComponent<Image>().sprite = ready;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //Toolbar에서 Canvas Switch 역할 함수
     public void Active_Canvas(float btn_index)
@@ -82,21 +123,34 @@ public class ToolBtn : MonoBehaviour
         }
     }
 
+
+
+    int re_index;
     public void Select_Request(int index) 
     {
         for(int i =0; i < requests.Length;i++)
         {
             requests[i].GetComponent<Image>().sprite = requestBox;
         }
-        if (!Utils.is_select_room)
+
+        if(Utils.is_select_room == false)
         {
             requests[index].GetComponent<Image>().sprite = requestsBox_check;
+            this.re_index = index;
             Utils.is_select_room = true;
         }
-        else
+        else if(Utils.is_select_room)
         {
-            requests[index].GetComponent<Image>().sprite = requestBox;
             Utils.is_select_room = false;
+            if (re_index == index)
+            {
+                requests[index].GetComponent<Image>().sprite = requestBox;
+                re_index = 5; // 높게 설정  
+            }
+            else
+            {
+                requests[index].GetComponent<Image>().sprite = requestsBox_check;
+            }
         }
     }
 
@@ -108,7 +162,7 @@ public class ToolBtn : MonoBehaviour
 
     private void Update()
     {
-        if (join_panel.activeSelf && Input.GetKeyDown(KeyCode.End))
+        if (join_panel.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
         {
             for (int i = 0; i < join_panel_text.Length; i++)
             {
