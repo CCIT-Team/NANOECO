@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Photon.Pun;
+using Photon.Pun.Demo.Cockpit;
 
-public class ToolBtn : MonoBehaviour
+public class ToolBtn : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     private TMP_Text toptext;
@@ -30,6 +32,9 @@ public class ToolBtn : MonoBehaviour
     public Sprite unready_guest;
     public GameObject[] user_profile_info;
 
+    [SerializeField]
+    PhotonView pv;
+
 
     public GameObject join_panel;
     public GameObject[] join_panel_text;
@@ -48,16 +53,46 @@ public class ToolBtn : MonoBehaviour
 
 
 
-
-    /// <summary>
-    /// /
-    /// </summary>
-    /// <param name="btn_index"></param>
     public void ReadyCheck()
     {
-        my_profile.GetComponent<Image>().sprite = ready;
+        if (Utils.is_ready)
+        {
+            my_profile.GetComponent<Image>().sprite = unready;
+            pv.RPC("Count_Ready_Player", RpcTarget.AllBuffered , false);
+            Utils.is_ready = false;
+        }
+        else
+        {
+            my_profile.GetComponent<Image>().sprite = ready;
+            pv.RPC("Count_Ready_Player", RpcTarget.AllBuffered, true);
+            Utils.is_ready = true;
+        }
+
+        pv.RPC("Guest_Ready_Check", RpcTarget.OthersBuffered, true);
     }
 
+    [PunRPC]
+    public void Count_Ready_Player(bool updown)
+    {
+        if (updown)
+            Utils.ready_complete_player_index_inroom++;
+        else
+            Utils.ready_complete_player_index_inroom--;
+    }
+
+    [PunRPC]
+    public void Guest_Ready_Check(bool is_ready) 
+    {
+        for(int i = 0; i < user_profile_info.Length;i++)
+        {
+            user_profile_info[i].GetComponent<Image>().sprite = unready_guest;
+        }
+
+        for(int i = 0; i < Utils.ready_complete_player_index_inroom; i++)
+        {
+            user_profile_info[i].GetComponent<Image>().sprite = ready_guest;
+        }
+    }
 
 
 
@@ -156,8 +191,8 @@ public class ToolBtn : MonoBehaviour
 
     public void Test_Start()
     {
-        SceneFunction.game_map_name = "FastFoodPlayerTest";
-        SceneFunction.fade.GetComponent<Fade>().Load_Scene();
+        //SceneFunction.game_map_name = "FastFoodPlayerTest";
+        //SceneFunction.fade.GetComponent<Fade>().Load_Scene();
     }
 
     private void Update()
@@ -170,5 +205,9 @@ public class ToolBtn : MonoBehaviour
             }
             join_panel.SetActive(false);
         }
+
+        
     }
+
+    
 }
