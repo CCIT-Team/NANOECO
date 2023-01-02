@@ -33,6 +33,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     int current_item = 0;
     bool isdash = false;
     public bool isGrounded = true;
+    [Header("죽음 애니메이션")]
+    public GameObject helicopter;
+    public GameObject helicopterrope;
+    public GameObject helicopterplayerbody;
 
     Vector3 curPos;
     Quaternion curRot;
@@ -73,6 +77,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         item[1].SetActive(false);
         item[2].SetActive(false);
         pv.RPC("ActiveRPC", RpcTarget.AllBuffered, current_item);
+        helicopter.SetActive(false);
     }
 
     void Update()
@@ -82,6 +87,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         //pv.RPC("DestroyRPC", RpcTarget.AllBuffered);
         ItemChange();
         Dead();
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            current_hp = -100;
+        }
     }
 
     void Dead()
@@ -89,7 +98,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if(current_hp <= 0)
         {
             is_dead = true;
-            //애니메이션
+            helicopter.SetActive(true);
+            helicopterplayerbody.transform.parent = helicopterrope.transform;
             StartCoroutine(ReSpawn());
         }
         else
@@ -101,9 +111,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     IEnumerator ReSpawn()
     {
         yield return new WaitForSecondsRealtime(respawn_time);
-        is_dead = false;
         current_hp = max_hp;
         transform.position = spawn_point.position;
+        is_dead = false;
+        helicopterplayerbody.transform.parent = transform;
+        helicopter.SetActive(false);
     }
 
     void Move()
@@ -130,7 +142,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)//점프
         {
-            Debug.Log("Jump!!!!!!!!");
+            isGrounded = false;
             rigid.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
         }
     }

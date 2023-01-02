@@ -24,7 +24,6 @@ public class Fade : MonoBehaviour
         if (SceneFunction.game_map_name != "")
         {
             SceneManager.LoadScene(SceneFunction.game_map_name);
-            //Debug.Log(23);
             SceneFunction.game_map_name = string.Empty;
         }
         else
@@ -33,14 +32,6 @@ public class Fade : MonoBehaviour
             SceneManager.LoadScene(current_scene_index + 1);
         }
     }
-
-
-    /// <summary>
-    /// 
-    /// </summary>
-
-
-
 
     void Start()
     {

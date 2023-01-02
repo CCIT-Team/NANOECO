@@ -45,8 +45,6 @@ public class GoogleSheetManager : MonoBehaviour
     [SerializeField] GameObject info_canvas;//완료 및 알림 텍스트 오브젝
 
 
-
-    bool[] asd;
     bool nickname_exist;
 
     void Awake()
@@ -54,8 +52,6 @@ public class GoogleSheetManager : MonoBehaviour
         Screen.SetResolution(1920, 1080, false);
 
         SceneFunction.Object_Check();// Fade_Canvas 찾기용 한번
-
-        //asd[0] = nickname_exist;
     }
 
     public void Turn_Sign_Up_Panel()
@@ -63,6 +59,7 @@ public class GoogleSheetManager : MonoBehaviour
         id = string.Empty; pass = string.Empty;
         sign_obj.SetActive(false);
         sign_up_panel.SetActive(true);
+        LoginManager.Instance.login_check = false;
     }
 
     public void Turn_Sign()
@@ -70,6 +67,7 @@ public class GoogleSheetManager : MonoBehaviour
         id_re = string.Empty; pass_re = string.Empty;
         sign_obj.SetActive(true);
         sign_up_panel.SetActive(false);
+        LoginManager.Instance.login_check = true;
     }
 
 
@@ -195,13 +193,28 @@ public class GoogleSheetManager : MonoBehaviour
         {
             if (GD.order == "register")
             {
+                text_message.text = GD.msg;
+                info_canvas.SetActive(true);
+
                 id_re = "";
                 pass_re = "";
                 nickname_re = "";
+                IDInput_Register.text = "";
+                PassInput_Register.text = "";
+                NICKNAMEInput_Register.text = "";
+                LoginManager.Instance.lock_image_register.gameObject.SetActive(true);
             }
 
             else
             {
+                if(GD.order == "login")
+                {
+                    id = "";
+                    pass = "";
+                    IDInput.text = "";
+                    PassInput.text = "";
+                    LoginManager.Instance.lock_image_login.gameObject.SetActive(true);
+                }
                 print(GD.order + "을 실행할 수 없습니다. 에러 메시지 : " + GD.msg);
                 text_message.text = GD.msg;
                 info_canvas.SetActive(true);
@@ -218,6 +231,11 @@ public class GoogleSheetManager : MonoBehaviour
             sign_obj.SetActive(true);
             id_re = "";
             pass_re = "";
+            nickname_re = "";
+            IDInput_Register.text = "";
+            PassInput_Register.text = "";
+            NICKNAMEInput_Register.text = "";
+            LoginManager.Instance.lock_image_register.gameObject.SetActive(true);
             //SetValue();
         }
 

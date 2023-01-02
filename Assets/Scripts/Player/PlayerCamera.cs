@@ -37,6 +37,7 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
     private void Update()
     {
         CameraEvent();
+        CheckWall();
     }
 
     void CameraEvent()
@@ -81,6 +82,34 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
 
             Camera.main.transform.localPosition = originpos;
             Player.instance.camera_shaking_num = 0;
+        }
+    }
+
+    void CheckWall()
+    {
+        RaycastHit playerRay;
+        RaycastHit backRay;
+        Debug.DrawRay(transform.position, player.position - transform.position, Color.red);
+        if(Physics.Raycast(transform.position, player.position, out playerRay, player.position.z - transform.position.z))
+        {
+           if (!playerRay.transform.CompareTag("Player"))
+            {
+                offset.y -= playerRay.distance;
+            }
+           else
+            {
+                offset = originpos;
+            }
+
+        }
+        Debug.DrawRay(transform.position, player.position - transform.position, Color.blue);
+        if (Physics.Raycast(transform.position, Vector3.back, out backRay, 3))
+        {
+            offset.z = backRay.transform.position.z;
+        }
+        else
+        {
+            offset = originpos;
         }
     }
 }

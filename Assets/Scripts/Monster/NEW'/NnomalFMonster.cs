@@ -7,6 +7,8 @@ public class NnomalFMonster : NewMonster
     System.Action mon_action;
     [SerializeField]
     private GameObject mon_bullet;
+    [SerializeField]
+    private GameObject shot_pos;
 
     #region 초기값
     public NnomalFMonster()
@@ -20,10 +22,11 @@ public class NnomalFMonster : NewMonster
 
         data.patrol_dist = 20f;
         data.chase_dist = 30f;
-        data.attack_dist = 5f;
+        data.attack_dist = 20f;
         data.skill_dist = 0f;
+        data.event_chase_dist = 1000f;
 
-        data.idle_cool_time = 2f;
+        data.idle_cool_time = 3f;
         data.chase_cool_time = 2f;
         data.attack_cool_time = 2f;
         data.skill_cool_time = 1000f;
@@ -43,21 +46,25 @@ public class NnomalFMonster : NewMonster
 
         data.patrol_dist = 20f;
         data.chase_dist = 30f;
-        data.attack_dist = 5f;
+        data.attack_dist = 20f;
         data.skill_dist = 0f;
+        data.event_chase_dist = 1000f;
 
-        data.idle_cool_time = 2f;
+        data.idle_cool_time = 3f;
         data.chase_cool_time = 2f;
         data.attack_cool_time = 2f;
         data.skill_cool_time = 1000f;
 
         data.current_time = 0f;
         data.state_time = 0f;
+        on_event = false;
     }
     #endregion
     private void Awake()
     {
         mon_action += Monster_State;
+        mon_action += Hp_Check;
+        mon_action += Hit_Mon;
     }
 
     private void FixedUpdate()
@@ -71,13 +78,15 @@ public class NnomalFMonster : NewMonster
         {
             data.current_time += Time.deltaTime;
             float dist = (lock_target.transform.position - transform.position).magnitude;
-            transform.rotation = Quaternion.Lerp(transform.rotation, lock_target.transform.rotation, Time.deltaTime);
+            transform.LookAt(lock_target.transform);
             if (dist <= data.attack_dist)
             {
                 if (data.current_time >= data.attack_cool_time)
                 {
-                    agent.stoppingDistance = (data.attack_dist - 1f);
-                    Instantiate(mon_bullet, transform);  //아마 몬스터 총알도 변경해야 될듯 포톤 연동할때
+                    audioplayer.PlayOneShot(attack_clip);
+                    animator.SetTrigger(hash_attack);
+                    agent.stoppingDistance = (data.attack_dist - 2f);
+                    Instantiate(mon_bullet, transform.position, transform.rotation);
                     data.current_time = 0;
                 }
                 else
@@ -93,6 +102,8 @@ public class NnomalFMonster : NewMonster
         else
         {
             current_state = CURRNET_STATE.EIdle;
+            animator.SetBool(hash_chase, false);
         }
     }
+
 }
