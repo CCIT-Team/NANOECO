@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Utils 
 {
@@ -11,6 +12,13 @@ public class Utils
     public static int room_number; // 방제
 
     public static string nickname;//NetWorkManager NickName;
+
+    public static int ready_complete_player_index_inroom; // 준비 완료한 플레이어 인덱스
+
+    public static bool is_ready;//플레이어 준비 완료?
+
+    public static GameObject info_canvas;
+    public static TMP_Text info_message;
 
     public static Vector3 mouse_pos//Mouse Transform
     {

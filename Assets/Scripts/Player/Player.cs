@@ -54,8 +54,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            curPos = (Vector3)stream.ReceiveNext();
-            curRot = (Quaternion)stream.ReceiveNext();
+            //curPos = (Vector3)stream.ReceiveNext();
+            //curRot = (Quaternion)stream.ReceiveNext();
         }
     }
 
@@ -240,10 +240,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    private void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.layer == 8) { current_hp -= col.gameObject.GetComponent<Character>().damage; }
-    }
+    //private void OnCollisionEnter(Collision col)
+    //{
+    //    if (col.gameObject.layer == 8) { current_hp -= col.gameObject.GetComponent<Character>().damage; }
+    //}
 
     public enum EPlayer_Skil
     {

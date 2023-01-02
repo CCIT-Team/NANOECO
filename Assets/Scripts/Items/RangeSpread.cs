@@ -12,8 +12,7 @@ public class RangeSpread : Range
 
     void Start()
     {
-        ammo = maxAmmo;
-        bullet.GetComponent<Bullet>().damage = damage;
+        base.Start();
         //bullet.GetComponent<Bullet>().knockback = knockback;
         p = firePosition.GetComponent<ParticleSystem>();
     }
@@ -26,16 +25,21 @@ public class RangeSpread : Range
             {
                 case 0:
                     if(!isdelay)
-                        StartCoroutine("Reloading");
+                    StartCoroutine("Reloading");
+                    pv.RPC("ReloadRPC", RpcTarget.AllBuffered);
                     break;
                 default:
                     Attack();
                     isdelay = true;
+                    pv.RPC("ShotRPC", RpcTarget.AllBuffered);
                     break;
             }
         }
         if (Input.GetKeyDown(KeyCode.R) && !isdelay && pv.IsMine)
+        {
             StartCoroutine("Reloading");
+            pv.RPC("ReloadRPC", RpcTarget.AllBuffered);
+        }
     }
 
     public override void Attack()
