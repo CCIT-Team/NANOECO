@@ -22,10 +22,12 @@ public class Bullet : MonoBehaviourPunCallbacks
     {
         transform.Translate(speed * Time.deltaTime * Vector3.forward);
     }
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
+        Debug.Log("닿음");
         if (other.gameObject.layer == 8)
         {
+            Debug.Log("레이어 확인");
             if (explosive)
             {
                 speed = 0;
