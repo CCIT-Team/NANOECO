@@ -54,6 +54,12 @@ public class GoogleSheetManager : MonoBehaviour
         SceneFunction.Object_Check();// Fade_Canvas 찾기용 한번
     }
 
+    private void Start()
+    {
+        Utils.info_canvas = info_canvas;
+        Utils.info_message = text_message;
+    }
+
     public void Turn_Sign_Up_Panel()
     {
         id = string.Empty; pass = string.Empty;
