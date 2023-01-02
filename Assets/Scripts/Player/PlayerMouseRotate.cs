@@ -26,7 +26,7 @@ public class PlayerMouseRotate : MonoBehaviourPunCallbacks
         var (success, position) = GetMousePosition();
         if (success)
         {
-            var direction = transform.position - position;
+            var direction = position - transform.position;
             direction.y = 0;
             transform.forward = direction;
         }
