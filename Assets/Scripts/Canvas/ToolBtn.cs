@@ -191,8 +191,8 @@ public class ToolBtn : MonoBehaviourPunCallbacks
 
     public void Test_Start()
     {
-        //SceneFunction.game_map_name = "FastFoodPlayerTest";
-        //SceneFunction.fade.GetComponent<Fade>().Load_Scene();
+        SceneFunction.game_map_name = "FastFoodPlayerTest";
+        SceneFunction.fade.GetComponent<Fade>().Load_Scene();
     }
 
     private void Update()
