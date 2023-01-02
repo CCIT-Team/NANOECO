@@ -47,16 +47,22 @@ public class Range : WeaponeBase
             {
                 case 0:
                     StartCoroutine("Reloading");
+                    pv.RPC("ReloadRPC", RpcTarget.AllBuffered);
                     break;
                 default :
                     isdelay = true;
                     Attack();
                     StartCoroutine("AttackDelay");
+                    pv.RPC("ShotRPC", RpcTarget.AllBuffered);
                     break;
             }
         }
         if(Input.GetKeyDown(KeyCode.R) && !isdelay && pv.IsMine)
+        {
             StartCoroutine("Reloading");
+            pv.RPC("ReloadRPC", RpcTarget.AllBuffered);
+        }
+            
     }
 
     public override void Attack()
@@ -88,4 +94,15 @@ public class Range : WeaponeBase
         else if (isdelay)
             StartCoroutine("AttackDelay");
     }
+
+    [PunRPC]
+
+    void ShotRPC()
+    {
+        isdelay = true;
+        Attack();
+        StartCoroutine("AttackDelay");
+    }
+
+    void ReloadRPC() => StartCoroutine("Reloading");
 }
