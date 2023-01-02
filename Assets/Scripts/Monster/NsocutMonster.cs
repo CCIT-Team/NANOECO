@@ -29,7 +29,7 @@ public class NsocutMonster : NewMonster
         data.idle_cool_time = 2f;
         data.chase_cool_time = 2f;
         data.attack_cool_time = 2f;
-        data.skill_cool_time = 20f;
+        data.skill_cool_time = 0f;
 
         data.current_time = 0f;
         data.state_time = 0f;
@@ -53,7 +53,7 @@ public class NsocutMonster : NewMonster
         data.idle_cool_time = 2f;
         data.chase_cool_time = 2f;
         data.attack_cool_time = 2f;
-        data.skill_cool_time = 20f;
+        data.skill_cool_time = 0f;
 
         data.current_time = 0f;
         data.state_time = 0f;
@@ -83,6 +83,7 @@ public class NsocutMonster : NewMonster
             agent.SetDestination(transform.position);
             //몬스터 생성 메서드 필요
             StartCoroutine(Monster_Wave());
+            data.skill_cool_time = 100f;
         }
         else
         {

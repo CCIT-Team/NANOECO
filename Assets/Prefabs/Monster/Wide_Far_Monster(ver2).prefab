@@ -60,7 +60,7 @@ MonoBehaviour:
   attack_clip: {fileID: 8300000, guid: bb393a337a3af3445b8fda13bdb81888, type: 3}
   hit_clip: {fileID: 8300000, guid: d1c87f398278d074bb1c88847f48fdb9, type: 3}
   chase_clip: {fileID: 8300000, guid: 98e6c12d302b63e418d8d9623028d83d, type: 3}
-  dead_clip: {fileID: 8300000, guid: 98e6c12d302b63e418d8d9623028d83d, type: 3}
+  dead_clip: {fileID: 8300000, guid: 54a36f2c4e090ce4d983bb03d953ede5, type: 3}
   skill_clip: {fileID: 8300000, guid: d1e992f05821bf54aa6775ba5e8201ca, type: 3}
   always_clip: {fileID: 8300000, guid: 827d2da4a1ff33e4495a1d4b619bc168, type: 3}
   audioplayer: {fileID: 1172984598559912966}
@@ -107,13 +107,13 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 10
   MaxDistance: 60
   Pan2D: 0
   rolloffMode: 0
@@ -149,7 +149,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
