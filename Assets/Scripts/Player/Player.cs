@@ -54,8 +54,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            //curPos = (Vector3)stream.ReceiveNext();
-            //curRot = (Quaternion)stream.ReceiveNext();
+            curPos = (Vector3)stream.ReceiveNext();
+            curRot = (Quaternion)stream.ReceiveNext();
         }
     }
 
