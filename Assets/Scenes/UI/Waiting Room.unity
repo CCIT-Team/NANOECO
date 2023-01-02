@@ -1043,7 +1043,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &142601330
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3200,13 +3200,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda273856bc1eab44a30c33a168ccb3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toptext: {fileID: 0}
-  topline: {fileID: 0}
-  ready_join: {fileID: 0}
+  toptext: {fileID: 575169929}
+  topline: {fileID: 315785082}
+  ready_join: {fileID: 1499333190}
   all_canvas:
   - {fileID: 743748867}
   - {fileID: 990856605}
   - {fileID: 967796258}
+  requestBox: {fileID: 21300000, guid: f52687d032b80f343a10d9fd8c4ff5b7, type: 3}
+  requestsBox_check: {fileID: 21300000, guid: 5213bce047b104545bed273063325c7a, type: 3}
+  requests:
+  - {fileID: 1611122010}
+  - {fileID: 1750423678}
+  - {fileID: 611202938}
+  join_panel_text:
+  - {fileID: 111940424}
+  - {fileID: 1593472855}
+  - {fileID: 754940126}
+  - {fileID: 2050753839}
+  - {fileID: 1616658922}
+  - {fileID: 158068689}
 --- !u!1 &557503161
 GameObject:
   m_ObjectHideFlags: 0
@@ -4627,7 +4640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &743748868
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5494,7 +5507,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 862996072}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 525938017}
+        m_TargetAssemblyTypeName: ToolBtn, Assembly-CSharp
+        m_MethodName: Select_Request
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &862996072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6233,7 +6258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &990856606
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7403,7 +7428,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1255221598}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 525938017}
+        m_TargetAssemblyTypeName: ToolBtn, Assembly-CSharp
+        m_MethodName: Select_Request
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1255221598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9273,7 +9310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1592490303
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9423,7 +9460,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -11309,7 +11346,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1915196171}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 525938017}
+        m_TargetAssemblyTypeName: ToolBtn, Assembly-CSharp
+        m_MethodName: Select_Request
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1915196171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12135,7 +12184,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -12196,7 +12245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2060591185
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13016,6 +13065,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: character
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855876306134900396, guid: f5d340f340cf72f4bbd16d23f9e4624c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5d340f340cf72f4bbd16d23f9e4624c, type: 3}

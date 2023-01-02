@@ -994,6 +994,8 @@ MonoBehaviour:
   is_dead: 0
   on_event: 0
   current_state: 0
+  mon_bullet: {fileID: 0}
+  shot_pos: {fileID: 0}
 --- !u!195 &3668808744063252527
 NavMeshAgent:
   m_ObjectHideFlags: 0

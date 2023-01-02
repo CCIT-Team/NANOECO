@@ -672,8 +672,8 @@ GameObject:
   - component: {fileID: 1920188697191961115}
   - component: {fileID: 1920188697191961061}
   - component: {fileID: 1920188697191961063}
-  - component: {fileID: 1920188697191961056}
   - component: {fileID: 1920188697191961057}
+  - component: {fileID: 2987545094187029757}
   m_Layer: 8
   m_Name: Tanker_Monster
   m_TagString: Monster
@@ -751,19 +751,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!135 &1920188697191961056
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1920188697191961058}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.2783508
-  m_Center: {x: 0, y: 0.2704773, z: 0.02746582}
 --- !u!82 &1920188697191961057
 AudioSource:
   m_ObjectHideFlags: 0
@@ -860,6 +847,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &2987545094187029757
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920188697191961058}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9348617, y: 1.395727, z: 1.3659931}
+  m_Center: {x: 0.007749904, y: 0.7013847, z: -0.29567924}
 --- !u!1 &1920188697232822926
 GameObject:
   m_ObjectHideFlags: 0
