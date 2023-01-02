@@ -16,6 +16,8 @@ public class HelicopterEvent : MonoBehaviour
     public float rotor_speed;
     public float tail_rotor_speed;
 
+    public List<GameObject> player_list;
+
     void Update()
     {
         rotor.eulerAngles = new Vector3(rotor.eulerAngles.x, rotor.eulerAngles.y + Time.deltaTime * rotor_speed, rotor.eulerAngles.z);
@@ -28,6 +30,7 @@ public class HelicopterEvent : MonoBehaviour
         {
             current_player_count++;
             Ride_Helicopter();
+            player_list.Add(col.gameObject);
         }
     }
 
@@ -36,6 +39,7 @@ public class HelicopterEvent : MonoBehaviour
         if (col.gameObject.layer == 6)
         {
             current_player_count--;
+            player_list.Remove(col.gameObject);
         }
     }
 
@@ -49,13 +53,19 @@ public class HelicopterEvent : MonoBehaviour
 
     public void Ride_Player()
     {
-        Player.instance.transform.SetParent(heli_player);
-        Player.instance.transform.localPosition = Vector3.zero;
+        for(int i = 0; i < player_list.Count; i++)
+        {
+            player_list[i].transform.SetParent(heli_player);
+            player_list[i].transform.localPosition = Vector3.zero;
+        }
     }
 
     public void Arrived_Player()
     {
-        Player.instance.transform.localPosition = Vector3.zero;
-        Player.instance.transform.SetParent(null);
+        for (int i = 0; i < player_list.Count; i++)
+        {
+            player_list[i].transform.localPosition = Vector3.zero;
+            player_list[i].transform.SetParent(null);
+        }
     }
 }
