@@ -45,6 +45,7 @@ public class LoginManager : Singleton<LoginManager>
             {
                 lock_image_login.gameObject.SetActive(false);
             }
+            else { lock_image_login.gameObject.SetActive(true); }
         }
         else
         {
@@ -52,7 +53,7 @@ public class LoginManager : Singleton<LoginManager>
             {
                 lock_image_register.gameObject.SetActive(false);
             }
+            else { lock_image_register.gameObject.SetActive(true); }
         }
-
     }
 }
