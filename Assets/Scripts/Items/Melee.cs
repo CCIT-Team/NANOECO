@@ -7,8 +7,9 @@ using Photon.Realtime;
 public class Melee : WeaponeBase
 {
     public Transform player;
-    void Start()
+    public override void Start()
     {
+        base.Start();
         type = Type.EMELEE;
     }
 
