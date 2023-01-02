@@ -50,10 +50,12 @@ public class HelicopterEvent : MonoBehaviour
     public void Ride_Player()
     {
         Player.instance.transform.SetParent(heli_player);
+        Player.instance.transform.localPosition = Vector3.zero;
     }
 
     public void Arrived_Player()
     {
+        Player.instance.transform.localPosition = Vector3.zero;
         Player.instance.transform.SetParent(null);
     }
 }
