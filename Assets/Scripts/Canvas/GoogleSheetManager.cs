@@ -59,6 +59,7 @@ public class GoogleSheetManager : MonoBehaviour
         id = string.Empty; pass = string.Empty;
         sign_obj.SetActive(false);
         sign_up_panel.SetActive(true);
+        LoginManager.Instance.login_check = false;
     }
 
     public void Turn_Sign()
@@ -66,6 +67,7 @@ public class GoogleSheetManager : MonoBehaviour
         id_re = string.Empty; pass_re = string.Empty;
         sign_obj.SetActive(true);
         sign_up_panel.SetActive(false);
+        LoginManager.Instance.login_check = true;
     }
 
 
