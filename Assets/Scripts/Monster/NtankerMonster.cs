@@ -22,7 +22,7 @@ public class NtankerMonster : NewMonster
         data.skill_dist = 0f;
         data.event_chase_dist = 1000f;
 
-        data.idle_cool_time = 3f;
+        data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
         data.attack_cool_time = 5f;
         data.skill_cool_time = 1000f;
@@ -46,7 +46,7 @@ public class NtankerMonster : NewMonster
         data.skill_dist = 0f;
         data.event_chase_dist = 1000f;
 
-        data.idle_cool_time = 3f;
+        data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
         data.attack_cool_time = 5f;
         data.skill_cool_time = 1000f;

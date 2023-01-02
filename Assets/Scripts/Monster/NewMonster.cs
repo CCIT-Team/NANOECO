@@ -117,7 +117,6 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     {
         //애니메이션 초기화 + 사운드 상태 초기화 == init에 넣어도 될듯
         //idle 애니메이션
-        
         data.state_time += Time.deltaTime;
         
         if(lock_target == null)
