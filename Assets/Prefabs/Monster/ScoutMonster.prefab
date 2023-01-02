@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 570567531082557432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 355.03253, y: 101.29, z: 594.61975}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59,7 +59,7 @@ MonoBehaviour:
   animator: {fileID: 40703957390868139}
   attack_clip: {fileID: 8300000, guid: bb393a337a3af3445b8fda13bdb81888, type: 3}
   hit_clip: {fileID: 8300000, guid: d1c87f398278d074bb1c88847f48fdb9, type: 3}
-  chase_clip: {fileID: 8300000, guid: 98e6c12d302b63e418d8d9623028d83d, type: 3}
+  chase_clip: {fileID: 8300000, guid: ad877a7d60542ad4599510a4e9f93e17, type: 3}
   dead_clip: {fileID: 8300000, guid: 54a36f2c4e090ce4d983bb03d953ede5, type: 3}
   skill_clip: {fileID: 8300000, guid: d1e992f05821bf54aa6775ba5e8201ca, type: 3}
   always_clip: {fileID: 8300000, guid: 827d2da4a1ff33e4495a1d4b619bc168, type: 3}
@@ -68,6 +68,10 @@ MonoBehaviour:
   is_dead: 0
   on_event: 0
   current_state: 0
+  monster_group: []
+  spawn_point: []
+  wave_count: 0
+  wave_time: 0
 --- !u!195 &1139123688582485688
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -104,14 +108,14 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 10
+  MaxDistance: 60
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -146,7 +150,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
