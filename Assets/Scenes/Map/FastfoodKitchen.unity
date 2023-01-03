@@ -4584,9 +4584,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625337d1e35f1ed49a1ab0e5fba8536b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  g: {fileID: 466736934}
-  color: {r: 0.15044188, g: 1, b: 0, a: 1}
-  mat: {fileID: 2100000, guid: 6f3ee23817d2bd74681209e519f72618, type: 2}
+  color: {r: 0.28786334, g: 0.9716981, b: 0, a: 1}
+  mat: {fileID: 2100000, guid: 95be4df36eca6eb4b821dcab4acd4a1e, type: 2}
+  a: 1
 --- !u!64 &466736936
 MeshCollider:
   m_ObjectHideFlags: 0
