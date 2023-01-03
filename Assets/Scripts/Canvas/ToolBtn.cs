@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
 using Photon.Pun.Demo.Cockpit;
+using Photon.Realtime;
 
 public class ToolBtn : MonoBehaviourPunCallbacks
 {
@@ -70,8 +71,10 @@ public class ToolBtn : MonoBehaviourPunCallbacks
 
         pv.RPC("Guest_Ready_Check", RpcTarget.OthersBuffered, true);
 
-        SceneFunction.game_map_name = "FastFoodPlayerTest";
-        SceneFunction.fade.GetComponent<Fade>().Load_Scene();
+
+        
+        //SceneFunction.game_map_name = "FastFoodPlayerTest";
+        //SceneFunction.fade.GetComponent<Fade>().Load_Scene();
     }
 
     [PunRPC]
@@ -96,6 +99,7 @@ public class ToolBtn : MonoBehaviourPunCallbacks
             user_profile_info[i].GetComponent<Image>().sprite = ready_guest;
         }
     }
+
 
 
 

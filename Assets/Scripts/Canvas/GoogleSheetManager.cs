@@ -56,6 +56,7 @@ public class GoogleSheetManager : MonoBehaviour
 
     private void Start()
     {
+        DontDestroyOnLoad(info_canvas);
         Utils.info_canvas = info_canvas;
         Utils.info_message = text_message;
     }
