@@ -109,7 +109,6 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     float RandTime = 5;
     public float Rand_Chase_Time;
     #endregion
-    //애니메이션 관련 컴포넌트
 
     public abstract void Init();
 
@@ -309,8 +308,6 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         }
     }
 
-    //몬스터 피격
-    //몬스터 피격시 dead랑 중첩되는 문제가 있는데 이 부분을 공격하는 무기에서 미리 걸러주면 좋을거 같음
     public virtual void Hit_Mon()
     {
         if (hit_true == true)
