@@ -6,7 +6,7 @@ using Photon.Realtime;
 
 public class Melee : WeaponeBase
 {
-    public Transform player;
+    public Transform playerT;
     public override void Start()
     {
         base.Start();
@@ -15,7 +15,7 @@ public class Melee : WeaponeBase
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)&&!isdelay)
+        if (Input.GetMouseButtonDown(0) && !isdelay && player.is_dead)
         {
             isdelay = true;
             StartCoroutine("AttackDelay");

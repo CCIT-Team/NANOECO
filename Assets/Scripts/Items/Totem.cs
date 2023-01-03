@@ -12,7 +12,7 @@ public class Totem : MonoBehaviourPunCallbacks
     public float effectamount = 10;
     SphereCollider effectaround;
     public bool iseffect = false;
-    
+
 
     void Start()
     {

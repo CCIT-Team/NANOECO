@@ -66,39 +66,37 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     private void Update()
     {
         //for master check
-        if(PhotonNetwork.InRoom)
-        if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.InRoom)
         {
-            if (PhotonNetwork.CurrentRoom.PlayerCount >= 2)
+            if (PhotonNetwork.IsMasterClient)
             {
-                tool_btn.GetComponent<ToolBtn>().master_check.SetActive(true);
+                if (PhotonNetwork.CurrentRoom.PlayerCount >= 2)
+                {
+                    tool_btn.GetComponent<ToolBtn>().master_check.SetActive(true);
+                }
+                else
+                {
+                    tool_btn.GetComponent<ToolBtn>().master_check.SetActive(false);
+                }
             }
             else
             {
-                tool_btn.GetComponent<ToolBtn>().master_check.SetActive(false);
-
-                for(int i = 0; i < 3; i++)
+                if (PhotonNetwork.CurrentRoom.PlayerCount >= 2)
                 {
-                    tool_btn.GetComponent<ToolBtn>().user_profile_info[i].SetActive(false);
+                    tool_btn.GetComponent<ToolBtn>().master_check_for_guest.SetActive(true);
                 }
-
-            }
-        }
-        else
-        {
-            if(PhotonNetwork.CurrentRoom.PlayerCount >= 2)
-            {
-                tool_btn.GetComponent<ToolBtn>().master_check_for_guest.SetActive(true);
-            }
-            else
-            {
-                tool_btn.GetComponent<ToolBtn>().master_check_for_guest.SetActive(false);
-
-                for(int i = 0; i < 3; i++)
+                else
                 {
-                    tool_btn.GetComponent<ToolBtn>().user_profile_info[i].SetActive(false);
+                    tool_btn.GetComponent<ToolBtn>().master_check_for_guest.SetActive(false);
+
+                    //for (int i = 0; i < 3; i++)
+                    //{
+                    //    tool_btn.GetComponent<ToolBtn>().user_profile_info[i].SetActive(false);
+                    //}
                 }
             }
+
+            pv.RPC("Player_Number_Check", RpcTarget.AllBuffered);
         }
     }
     public void Make_Room_Panel(TMP_Text text)
@@ -137,7 +135,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         pv.RPC("Player_Number_Check", RpcTarget.AllBuffered);
         if (PhotonNetwork.IsMasterClient)
         {
-            
             //
             //몇명인지 확인하고 갯수대로 키고
             //Canvas.GetComponent<WRCanvas>().Room_Code.text = PhotonNetwork.CurrentRoom.Name;

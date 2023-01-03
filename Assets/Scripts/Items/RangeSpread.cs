@@ -10,7 +10,7 @@ public class RangeSpread : Range
     public int spreadamunt = 15;
     
 
-    void Start()
+    public override void Start()
     {
         base.Start();
         //bullet.GetComponent<Bullet>().knockback = knockback;
@@ -19,7 +19,7 @@ public class RangeSpread : Range
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && pv.IsMine)
+        if (Input.GetMouseButton(0) && pv.IsMine && player.is_dead)
         {
             switch (ammo)
             {
@@ -35,7 +35,7 @@ public class RangeSpread : Range
                     break;
             }
         }
-        if (Input.GetKeyDown(KeyCode.R) && !isdelay && pv.IsMine)
+        if (Input.GetKeyDown(KeyCode.R) && pv.IsMine && player.is_dead && !isdelay)
         {
             StartCoroutine("Reloading");
             pv.RPC("ReloadRPC", RpcTarget.AllBuffered);

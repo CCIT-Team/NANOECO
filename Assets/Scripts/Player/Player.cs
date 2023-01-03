@@ -41,6 +41,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject helicopterrope;
     public GameObject helicopterplayerbody;
     public GameObject originPlayer;
+    public bool isunrideheli = false;
 
     Vector3 curPos;
     Quaternion curRot;
@@ -119,16 +120,17 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             respawn_time -= Time.deltaTime;
             if (respawn_time <= 0)
             {
-                is_dead = false;
                 helicopterAni.SetBool("Respawn", true);
                 transform.position = spawn_point.position;
-                if (helicopterAni.GetBool("HliEnd"))
+                if (isunrideheli == true)
                 {
+                    helicopterrope.transform.DetachChildren();
                     helicopterplayerbody.transform.parent = originPlayer.transform;
-                    helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
-                    helicopter.SetActive(false);
+                    //helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
+                    is_dead = false;
                     current_hp = max_hp;
                     respawn_time = 3;
+                    isunrideheli = false;
                 }
             }
         }
