@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 657220794}
-  m_IndirectSpecularColor: {r: 0.17276807, g: 0.21589197, b: 0.29782572, a: 1}
+  m_IndirectSpecularColor: {r: 0.17276844, g: 0.21589246, b: 0.2978263, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1225,6 +1225,12 @@ Transform:
   m_Father: {fileID: 1925166885}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &128215768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8936953236230042151, guid: ae27a0810c1f46f49b93971dbc7d31bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2082354036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &136493077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4464,6 +4470,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8020118921547899194, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d857ef9c8bd95a4eaa43e0f75d14982, type: 3}
 --- !u!1001 &520035268
@@ -5318,6 +5329,18 @@ Transform:
   m_Father: {fileID: 1690923745}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &648756694 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5336137748936740196, guid: ae27a0810c1f46f49b93971dbc7d31bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2082354036}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b739e424bb1522488ba922677ba13fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &652070145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9795,6 +9818,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1415713295879427437, guid: 5187a8a22b5eb9f4b85d505200b13b7a,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8355990703565098825, guid: 5187a8a22b5eb9f4b85d505200b13b7a,
         type: 3}
       propertyPath: m_Name
@@ -18269,8 +18297,13 @@ PrefabInstance:
     - target: {fileID: 4958753444626218891, guid: ae27a0810c1f46f49b93971dbc7d31bb,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5336137748936740196, guid: ae27a0810c1f46f49b93971dbc7d31bb,
+        type: 3}
+      propertyPath: helicopterplayerbody
+      value: 
+      objectReference: {fileID: 128215768}
     - target: {fileID: 5336137748936740197, guid: ae27a0810c1f46f49b93971dbc7d31bb,
         type: 3}
       propertyPath: sceneViewId
@@ -18284,8 +18317,13 @@ PrefabInstance:
     - target: {fileID: 5336137748936740216, guid: ae27a0810c1f46f49b93971dbc7d31bb,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6352820097762869474, guid: ae27a0810c1f46f49b93971dbc7d31bb,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 648756694}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae27a0810c1f46f49b93971dbc7d31bb, type: 3}
 --- !u!1001 &2083039573

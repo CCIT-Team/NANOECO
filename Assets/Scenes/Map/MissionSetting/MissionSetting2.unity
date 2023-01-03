@@ -17959,6 +17959,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8020118921547899194, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8886860466047298708, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 8886860466047298708, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70710677
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d857ef9c8bd95a4eaa43e0f75d14982, type: 3}
 --- !u!1001 &8355990704055245091
@@ -17968,6 +17983,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1415713295879427437, guid: 5187a8a22b5eb9f4b85d505200b13b7a,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8355990703565098825, guid: 5187a8a22b5eb9f4b85d505200b13b7a,
         type: 3}
       propertyPath: m_Name

@@ -41,7 +41,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject helicopterrope;
     public GameObject helicopterplayerbody;
     public GameObject originPlayer;
-
+    public bool isunrideheli = false;
 
     Vector3 curPos;
     Quaternion curRot;
@@ -54,8 +54,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            //curPos = (Vector3)stream.ReceiveNext();
-            //curRot = (Quaternion)stream.ReceiveNext();
+            curPos = (Vector3)stream.ReceiveNext();
+            curRot = (Quaternion)stream.ReceiveNext();
         }
     }
 
@@ -105,7 +105,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             is_dead = true;
             helicopter.SetActive(true);
             helicopterplayerbody.transform.parent = helicopterrope.transform;
-            helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
+           // helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
             if (helicopterAni.GetBool("Respawn"))
             {
                 ReSpawn();
@@ -120,16 +120,17 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             respawn_time -= Time.deltaTime;
             if (respawn_time <= 0)
             {
-                is_dead = false;
                 helicopterAni.SetBool("Respawn", true);
-                if (helicopterAni.GetBool("HliEnd"))
+                transform.position = spawn_point.position;
+                if (isunrideheli == true)
                 {
-                    transform.position = spawn_point.position;
+                    helicopterrope.transform.DetachChildren();
                     helicopterplayerbody.transform.parent = originPlayer.transform;
-                    helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
-                    helicopter.SetActive(false);
+                    //helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
+                    is_dead = false;
                     current_hp = max_hp;
                     respawn_time = 3;
+                    isunrideheli = false;
                 }
             }
         }

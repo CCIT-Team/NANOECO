@@ -7,6 +7,7 @@ using Photon.Realtime;
 using TMPro;
 using Newtonsoft.Json.Bson;
 using static System.Net.Mime.MediaTypeNames;
+using Photon.Pun.Demo.Cockpit;
 
 /// <summary>
 /// This friend is only for connecting to the Photon server and checking the connection.
@@ -75,6 +76,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             else
             {
                 tool_btn.GetComponent<ToolBtn>().master_check.SetActive(false);
+
+                for(int i = 0; i < 3; i++)
+                {
+                    tool_btn.GetComponent<ToolBtn>().user_profile_info[i].SetActive(false);
+                }
+
             }
         }
         else
@@ -86,6 +93,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             else
             {
                 tool_btn.GetComponent<ToolBtn>().master_check_for_guest.SetActive(false);
+
+                for(int i = 0; i < 3; i++)
+                {
+                    tool_btn.GetComponent<ToolBtn>().user_profile_info[i].SetActive(false);
+                }
             }
         }
     }
@@ -122,7 +134,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         SceneFunction.loading_canvas.SetActive(false);
-        pv.RPC("Player_Number_Check", RpcTarget.AllBuffered, (int)PhotonNetwork.CurrentRoom.PlayerCount);
+        pv.RPC("Player_Number_Check", RpcTarget.AllBuffered);
         if (PhotonNetwork.IsMasterClient)
         {
             
@@ -146,7 +158,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnDisconnected(DisconnectCause cause)
     {
-        pv.RPC("Player_Number_Check", RpcTarget.AllBuffered, (int)PhotonNetwork.CurrentRoom.PlayerCount - 1);
+        pv.RPC("Player_Number_Check", RpcTarget.AllBuffered);
         SceneFunction.loading_canvas.SetActive(false);
     }
 
@@ -175,18 +187,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    private void Player_Number_Check(int num)
+    private void Player_Number_Check()
     {
         Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
         for(int i = 0; i < 3;i++)
         {
             tool_btn.GetComponent<ToolBtn>().user_profile_info[i].SetActive(false);
         }
-        for(int i = 0; i < num - 1; i++)
+        for(int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount - 1; i++)
         {
             tool_btn.GetComponent<ToolBtn>().user_profile_info[i].SetActive(true);
         }
     }
-
-    
 }
