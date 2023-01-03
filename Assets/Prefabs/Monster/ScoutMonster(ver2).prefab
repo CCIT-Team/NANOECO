@@ -54,6 +54,8 @@ MonoBehaviour:
   agent: {fileID: 3964423536984545499}
   Particles:
   - {fileID: 2421973375779753916, guid: 80d57da61f14baf49898e48dd5cdfbf1, type: 3}
+  - {fileID: 1307689207180990719, guid: d83126c7ad241fc4d93cae85e49d9b67, type: 3}
+  - {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}
   target_mask:
     serializedVersion: 2
     m_Bits: 64
@@ -304,6 +306,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spider(final)
       objectReference: {fileID: 0}
+    - target: {fileID: 1630794972795428178, guid: 4273b6f0bee5614438d45977075a34bc,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dc9f6cef95e3a7e43ad55a034942892b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4273b6f0bee5614438d45977075a34bc, type: 3}
 --- !u!1 &3750343004701374776 stripped

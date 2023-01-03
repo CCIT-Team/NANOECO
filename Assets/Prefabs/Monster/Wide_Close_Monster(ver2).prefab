@@ -54,6 +54,8 @@ MonoBehaviour:
   agent: {fileID: 6063899272140342999}
   Particles:
   - {fileID: 2421973375779753916, guid: 80d57da61f14baf49898e48dd5cdfbf1, type: 3}
+  - {fileID: 4571792055032744251, guid: 4b50102bb2415174b93864c46eaad70c, type: 3}
+  - {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}
   target_mask:
     serializedVersion: 2
     m_Bits: 64
@@ -302,7 +304,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: b2be3a01de3b4de4382f3e97262a436b, type: 2}
+      objectReference: {fileID: 2100000, guid: 8d9f23f1ca4878545b16b39f0d4dba30, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4273b6f0bee5614438d45977075a34bc, type: 3}
 --- !u!4 &6006940424981970413 stripped

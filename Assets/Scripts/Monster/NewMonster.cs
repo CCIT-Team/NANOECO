@@ -72,7 +72,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     [SerializeField]
     protected NavMeshAgent agent;
     [SerializeField]
-    protected GameObject[] Particles;
+    protected GameObject[] Particles; //1: Á×À½ ÀÌÆåÆ®, 2: Á×À½ ÀÌÆåÆ®, 3: È÷Æ® ÀÌÆåÆ®, 4: 
     protected GameObject lock_target;
     [SerializeField]
     protected LayerMask target_mask;
@@ -301,6 +301,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
             animator.SetBool(hash_walk, false);
             animator.SetBool(hash_chase, false);
             Instantiate(Particles[0], transform.position, Quaternion.identity);
+            Instantiate(Particles[1], transform.position, Quaternion.identity);
             Destroy(gameObject, 1f);
             Init();
             current_state = CURRNET_STATE.EIdle;
@@ -315,11 +316,13 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         {
             if (data.current_hp <= 20f)
             {
+                Instantiate(Particles[2], transform.position, Quaternion.identity);
                 audioplayer.PlayOneShot(hit_clip);
                 hit_true = false;
             }
             else
             {
+                Instantiate(Particles[2], transform.position, Quaternion.identity);
                 animator.SetTrigger(hash_hit);
                 audioplayer.PlayOneShot(hit_clip);
                 hit_true = false;

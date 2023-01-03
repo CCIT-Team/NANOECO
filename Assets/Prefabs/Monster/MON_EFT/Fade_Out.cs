@@ -22,6 +22,7 @@ public class Fade_Out : MonoBehaviour
             color = new(0.29f, 0.74f, 0.24f, a);
             mat.color = color;
         }
+        Destroy(gameObject, 1f);
     }
 
 }

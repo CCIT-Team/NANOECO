@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6442521181350257627}
   - component: {fileID: 5023146361004057436}
   - component: {fileID: 8967817039250092923}
-  - component: {fileID: 37276540534425119}
   - component: {fileID: 3538387936645735911}
   m_Layer: 0
   m_Name: Dead5
@@ -85,20 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &37276540534425119
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4571792055032744251}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &3538387936645735911
 MonoBehaviour:
   m_ObjectHideFlags: 0
