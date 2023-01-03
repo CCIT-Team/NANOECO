@@ -34,7 +34,7 @@ public class ItemControler : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && player.is_dead && pv.IsMine && !iscooldown)
+        if(Input.GetMouseButtonDown(0) && !player.is_dead && pv.IsMine && !iscooldown)
         {
             if (count == 0)
                 return;

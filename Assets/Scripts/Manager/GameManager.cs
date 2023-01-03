@@ -6,7 +6,8 @@ public class GameManager : Singleton<GameManager>
 {
     public Character_Info[] cc;
     public List<GameObject> testtest;
-
+    public SpawnPoint sp;
+    public Transform spawnPoint;
     public int player_count;
 
     private void Awake()
@@ -14,6 +15,15 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(this.gameObject);
     }
 
+    private void Update()
+    {
+        SpawnPointUpdate();
+    }
+
+    public void SpawnPointUpdate()
+    {
+        spawnPoint = sp.check_points[sp.current_spawn_point].transform;
+    }
 }
 
 [System.Serializable]
