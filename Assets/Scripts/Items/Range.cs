@@ -17,7 +17,7 @@ public class Range : WeaponeBase
     public override void Start()
     {
         base.Start();
-        skill = pv.GetComponent<Player>().skil_num;
+        skill = player.skil_num;
         switch (skill)
         {
             default:
@@ -41,7 +41,7 @@ public class Range : WeaponeBase
 
     void Update()
     {
-        if (Input.GetMouseButton(0)&& !isdelay && pv.IsMine)
+        if (Input.GetMouseButton(0) && pv.IsMine && player.is_dead && !isdelay)
         {
             switch (ammo)
             {
@@ -57,7 +57,7 @@ public class Range : WeaponeBase
                     break;
             }
         }
-        if(Input.GetKeyDown(KeyCode.R) && !isdelay && pv.IsMine)
+        if(Input.GetKeyDown(KeyCode.R) && pv.IsMine && player.is_dead && !isdelay)
         {
             StartCoroutine("Reloading");
             pv.RPC("ReloadRPC", RpcTarget.AllBuffered);
