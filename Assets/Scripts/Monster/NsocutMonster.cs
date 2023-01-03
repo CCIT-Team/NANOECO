@@ -83,6 +83,7 @@ public class NsocutMonster : NewMonster
         {
             Debug.Log("스킬사용");
             agent.SetDestination(transform.position);
+            Instantiate(Particles[3], transform.position, Quaternion.identity);
             //몬스터 생성 메서드 필요
             StartCoroutine(Monster_Wave());
             data.skill_cool_time = 100f;

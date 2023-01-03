@@ -7177,11 +7177,6 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 921857590283088468, guid: 2786a9407abacea408051571634681fd,
-        type: 3}
-      propertyPath: ObservedComponents.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7908643602575291608, guid: 2786a9407abacea408051571634681fd,
         type: 3}
       propertyPath: m_Name
@@ -12643,14 +12638,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1287104098}
-  m_LocalRotation: {x: -0, y: 0.9876034, z: -0.1569699, w: 0}
-  m_LocalPosition: {x: 331.8, y: 107.1, z: 620.4}
+  m_LocalRotation: {x: -0, y: 0.8657892, z: -0.500409, w: 0}
+  m_LocalPosition: {x: 331.8, y: 118.62, z: 606.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 18.062, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 60.054, y: 180, z: 0}
 --- !u!114 &1287104102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14953,7 +14948,7 @@ PrefabInstance:
     - target: {fileID: -5288027136644175145, guid: 31f9c25cc1e5f2749ac2c9162a0ce72e,
         type: 3}
       propertyPath: sceneViewId
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2720523114104778327, guid: 31f9c25cc1e5f2749ac2c9162a0ce72e,
         type: 3}
@@ -20976,7 +20971,7 @@ PrefabInstance:
     - target: {fileID: -2349926236009029907, guid: 7906c25727048dd4ba5a1d4ca8b75741,
         type: 3}
       propertyPath: sceneViewId
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1920188697191961058, guid: 7906c25727048dd4ba5a1d4ca8b75741,
         type: 3}
@@ -21052,16 +21047,6 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -1973734622114177220, guid: 548fdf1d932624845a340d2251566185,
-        type: 3}
-      propertyPath: ObservedComponents.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 688051988704369332, guid: 548fdf1d932624845a340d2251566185,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 53740ccf54f7c1641863123a4da7ae37, type: 2}
     - target: {fileID: 2112509909748419435, guid: 548fdf1d932624845a340d2251566185,
         type: 3}
       propertyPath: m_Name

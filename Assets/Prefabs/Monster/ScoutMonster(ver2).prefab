@@ -55,9 +55,10 @@ MonoBehaviour:
   targets: []
   agent: {fileID: 3964423536984545499}
   Particles:
-  - {fileID: 2421973375779753916, guid: 80d57da61f14baf49898e48dd5cdfbf1, type: 3}
+  - {fileID: 8842275092806263839, guid: 3b2308d84ef5bf54a99ea33ce2459c1e, type: 3}
   - {fileID: 1307689207180990719, guid: d83126c7ad241fc4d93cae85e49d9b67, type: 3}
   - {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}
+  - {fileID: 325493070480157103, guid: 85ea6cd5bc6b9d14bbc75819497cd620, type: 3}
   target_mask:
     serializedVersion: 2
     m_Bits: 64
@@ -246,6 +247,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 8246307114910510010}
+  - {fileID: 6056013235344988652}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
