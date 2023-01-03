@@ -172,7 +172,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded == true)//´ë½¬
         {
             Debug.Log("Dash!!!!!!!!");
-            rigid.AddForce(Vector3.forward * dash_force, ForceMode.Acceleration);
+            rigid.AddForce(Vector3.forward * dash_force, ForceMode.Impulse);
         }
     }
 
