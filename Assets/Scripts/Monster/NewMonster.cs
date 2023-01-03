@@ -106,8 +106,8 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     [SerializeField]
     protected CURRNET_STATE current_state = new CURRNET_STATE();
 
-    float testTime = 5;
-    
+    float RandTime = 5;
+    public float Rand_Chase_Time;
     #endregion
     //애니메이션 관련 컴포넌트
 
@@ -139,16 +139,16 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         //패트롤 애니메이
         animator.SetBool(hash_walk, true);
         agent.speed = data.patrol_speed;
-        testTime -= Time.deltaTime;
+        RandTime -= Time.deltaTime;
         if(!agent.hasPath)
         {
             agent.SetDestination(Get_Random_Point(transform, data.patrol_dist));
         }
         //몇 초뒤에 확인 했는데 똑같은 자리라면 다시 랜덤으로 돌려보리기
-        if (testTime <= 0)
+        if (RandTime <= 0)
         {
             agent.SetDestination(Get_Random_Point(transform, data.patrol_dist));
-            testTime = Random.Range(1f,4f);
+            RandTime = Random.Range(1f,4f);
         }
         if (on_event ==true)
         {
@@ -296,13 +296,14 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         {
             //콜라이더 disable
             agent.SetDestination(transform.position);
+            agent.isStopped = true;
             audioplayer.PlayOneShot(dead_clip);
             animator.SetTrigger(hash_dead);
             animator.SetBool(hash_walk, false);
             animator.SetBool(hash_chase, false);
             Instantiate(Particles[0], transform.position, Quaternion.identity);
             Instantiate(Particles[1], transform.position, Quaternion.identity);
-            Destroy(gameObject, 1f);
+            Destroy(gameObject, 0.3f);
             Init();
             current_state = CURRNET_STATE.EIdle;
         }
@@ -329,6 +330,20 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
             }
         }
 
+    }
+
+    public virtual void Another_Find_Player()
+    {
+        if(lock_target != null)
+        {
+            Rand_Chase_Time -= Time.deltaTime;
+            if(Rand_Chase_Time <= 0)
+            {
+                lock_target = null;
+                Rand_Chase_Time = 15f;
+                current_state = CURRNET_STATE.EIdle;
+            }
+        }
     }
 
     public virtual void Monster_State()
@@ -398,8 +413,8 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
         //Gizmos.DrawWireSphere(transform.position, data.chase_dist);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, data.attack_dist);
-        //Gizmos.color = Color.green;
-        //Gizmos.DrawWireSphere(transform.position, data.event_chase_dist);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, data.event_chase_dist);
     }
 
 }

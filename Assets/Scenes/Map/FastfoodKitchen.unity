@@ -11962,6 +11962,7 @@ MonoBehaviour:
   is_dead: 0
   on_event: 0
   current_state: 0
+  Rand_Chase_Time: 10
 --- !u!65 &1231860775
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21167,6 +21168,11 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1973734622114177220, guid: 548fdf1d932624845a340d2251566185,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2112509909748419435, guid: 548fdf1d932624845a340d2251566185,
         type: 3}
       propertyPath: m_Name
@@ -21241,6 +21247,11 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4209440815884919538, guid: cca21489d720ba543ad26d8f4d55ce29,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4223828825391251200, guid: cca21489d720ba543ad26d8f4d55ce29,
         type: 3}
       propertyPath: m_Name
@@ -21264,7 +21275,7 @@ PrefabInstance:
     - target: {fileID: 4223828825391251205, guid: cca21489d720ba543ad26d8f4d55ce29,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 599.0955
+      value: 581
       objectReference: {fileID: 0}
     - target: {fileID: 4223828825391251205, guid: cca21489d720ba543ad26d8f4d55ce29,
         type: 3}
