@@ -15,6 +15,7 @@ public class HelicopterEvent : MonoBehaviour
     public Transform tail_rotor;
     public float rotor_speed;
     public float tail_rotor_speed;
+    public bool ride = false;
 
     public List<GameObject> player_list;
 
@@ -28,11 +29,12 @@ public class HelicopterEvent : MonoBehaviour
     {
         if(col.gameObject.layer == 6)
         {
-            print("enter: " + col.name);
-
-            current_player_count++;
-            Ride_Helicopter();
-            player_list.Add(col.gameObject);
+            if(!ride)
+            {
+                current_player_count++;
+                Ride_Helicopter();
+                player_list.Add(col.gameObject);
+            }
         }
     }
 
@@ -40,9 +42,11 @@ public class HelicopterEvent : MonoBehaviour
     {
         if (col.gameObject.layer == 6)
         {
-            print("exit" + col.name);
-            current_player_count--;
-            player_list.Remove(col.gameObject);
+            if(!ride)
+            {
+                current_player_count--;
+                player_list.Remove(col.gameObject);
+            }
         }
     }
 
@@ -50,6 +54,7 @@ public class HelicopterEvent : MonoBehaviour
     {
         if(current_player_count == GameManager.Instance.player_count)
         {
+            ride = true;
             helicopter.SetActive(true);
         }
     }
@@ -68,8 +73,9 @@ public class HelicopterEvent : MonoBehaviour
         for (int i = 0; i < player_list.Count; i++)
         {
             player_list[i].transform.localPosition = Vector3.zero;
-            player_list[i].transform.SetParent(null);
+            //player_list[i].transform.DetachChildren();
         }
+        heli_player.transform.DetachChildren();
         player_list.Clear();
     }
 }

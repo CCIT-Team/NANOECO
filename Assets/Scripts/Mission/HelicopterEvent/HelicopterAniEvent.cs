@@ -15,4 +15,9 @@ public class HelicopterAniEvent : MonoBehaviour
     {
         he.Arrived_Player();
     }
+
+    void Event_2()
+    {
+        gameObject.SetActive(false);
+    }
 }
