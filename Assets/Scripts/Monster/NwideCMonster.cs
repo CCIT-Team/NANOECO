@@ -20,7 +20,7 @@ public class NwideCMonster : NewMonster
         data.chase_dist = 25f;
         data.attack_dist = 3f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 1000f;
+        data.event_chase_dist = 150f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
@@ -44,7 +44,7 @@ public class NwideCMonster : NewMonster
         data.chase_dist = 25f;
         data.attack_dist = 3f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 1000f;
+        data.event_chase_dist = 150f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
@@ -61,6 +61,7 @@ public class NwideCMonster : NewMonster
         mon_action += Monster_State;
         mon_action += Hp_Check;
         mon_action += Hit_Mon;
+        mon_action += Another_Find_Player;
     }
 
     private void FixedUpdate()
