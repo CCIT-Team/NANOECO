@@ -15,6 +15,11 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(this.gameObject);
     }
 
+    private void Start()
+    {
+        sp = GameObject.FindGameObjectWithTag("Spawn").GetComponent<SpawnPoint>();
+    }
+
     private void Update()
     {
         SpawnPointUpdate();

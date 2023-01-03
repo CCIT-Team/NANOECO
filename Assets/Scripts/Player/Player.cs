@@ -31,8 +31,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     int current_item = 0;
     bool isdash = false;
     public bool isGrounded = true;
-    public GameObject hand;//아이템 줍기용
+    [Header("아이템 줍기")]
+    public GameObject hand;
+    bool isusehand = false;
     [Header("스폰포인트")]
+    public Transform[] firstSpawnPoint = new Transform[4];
+    int spawnNum = 0;
     public Transform spawn_point;
     [Header("애니메이션 관련")]
     public Animator ani;
@@ -73,11 +77,16 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             Camera.main.GetComponent<PlayerCamera>().player = gameObject.transform;
         }
         instance = this;
-        spawn_point = GameObject.FindGameObjectWithTag("Spawn").transform;
+        firstSpawnPoint[0] = GameObject.FindGameObjectWithTag("FirstSpawnPoint").transform.Find("1").transform;
+        firstSpawnPoint[1] = GameObject.FindGameObjectWithTag("FirstSpawnPoint").transform.Find("2").transform;
+        firstSpawnPoint[2] = GameObject.FindGameObjectWithTag("FirstSpawnPoint").transform.Find("3").transform;
+        firstSpawnPoint[3] = GameObject.FindGameObjectWithTag("FirstSpawnPoint").transform.Find("4").transform;
     }
 
     void Start()
     {
+        PhotonNetwork.CurrentRoom.IsOpen = false;
+
         Skil();
         is_dead = false;
         item[0].SetActive(true);
@@ -85,6 +94,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         item[2].SetActive(false);
         pv.RPC("ActiveRPC", RpcTarget.AllBuffered, current_item);
         helicopter.SetActive(false);
+        if (firstSpawnPoint[spawnNum] != null)
+        {
+            spawnNum += 1;
+        }
+        spawn_point = firstSpawnPoint[spawnNum];
     }
 
     void Update()
@@ -108,7 +122,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             is_dead = true;
             helicopter.SetActive(true);
             helicopterplayerbody.transform.parent = helicopterrope.transform;
-           // helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
+            // helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
             if (helicopterAni.GetBool("Respawn"))
             {
                 ReSpawn();
@@ -129,6 +143,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 {
                     helicopterrope.transform.DetachChildren();
                     helicopterplayerbody.transform.parent = originPlayer.transform;
+                    helicopterplayerbody.transform.localRotation = new Quaternion(10.468f, 0, 0, 0);
                     is_dead = false;
                     current_hp = max_hp;
                     respawn_time = 3;
@@ -194,11 +209,15 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void SpawnPointUpdate()
     {
         spawn_point = GameManager.Instance.spawnPoint;
+        if (GameManager.Instance.spawnPoint == null)
+        {
+            spawn_point = firstSpawnPoint[spawnNum];
+        }
     }
 
     public void ItemChange()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && !isusehand)
         {
             item[0].SetActive(true);//주무기
             item[1].SetActive(false);//아이템1
@@ -206,7 +225,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             current_item = 0;
             pv.RPC("ActiveRPC", RpcTarget.AllBuffered, current_item);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && !isusehand)
         {
             item[0].SetActive(false);
             item[1].SetActive(true);
@@ -214,13 +233,22 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             current_item = 1;
             pv.RPC("ActiveRPC", RpcTarget.AllBuffered, current_item);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3) && !isusehand)
         {
             item[0].SetActive(false);
             item[1].SetActive(false);
             item[2].SetActive(true);
             current_item = 2;
             pv.RPC("ActiveRPC", RpcTarget.AllBuffered, current_item);
+        }
+        PickUpAndDropItem();
+    }
+
+    void PickUpAndDropItem()
+    {
+        if(isusehand && Input.GetKeyDown(KeyCode.E))
+        {
+            hand.transform.DetachChildren();
         }
     }
 
@@ -249,10 +277,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    //private void OnCollisionEnter(Collision col)
-    //{
-    //    if (col.gameObject.layer == 8) { current_hp -= col.gameObject.GetComponent<Character>().damage; }
-    //}
+    private void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.layer == 11 && Input.GetKeyDown(KeyCode.E)) 
+        { 
+            isusehand = true; 
+            col.transform.parent = hand.transform; 
+        }
+    }
 
     public enum EPlayer_Skil
     {
