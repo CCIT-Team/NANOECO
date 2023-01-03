@@ -72,7 +72,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     [SerializeField]
     protected NavMeshAgent agent;
     [SerializeField]
-    protected GameObject[] Particles; //1: Á×À½ ÀÌÆåÆ®, 2: Á×À½ ÀÌÆåÆ®, 3: È÷Æ® ÀÌÆåÆ®, 4: 
+    protected GameObject[] Particles; //1: Á×À½ ÀÌÆåÆ®, 2: Á×À½ ÀÌÆåÆ®, 3: È÷Æ® ÀÌÆåÆ®, 4: ½ºÅ³°ü·Ã
     protected GameObject lock_target;
     [SerializeField]
     protected LayerMask target_mask;
