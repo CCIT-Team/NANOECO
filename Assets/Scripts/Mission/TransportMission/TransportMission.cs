@@ -22,15 +22,19 @@ public class TransportMission : MissionBase
             if(!is_active && active_count > 0)
             {
                 is_active = true;
+                if (!target_ani.GetBool(target_move)) { target_ani.SetBool(target_move, true); }
                 Mission_Event();
             }
             else if(is_active && active_count == 0)
             {
                 is_active = false;
+                if (target_ani.GetBool(target_move)) { target_ani.SetBool(target_move, false); }
                 StopAllCoroutines();
             }
         }
     }
+    public Animator target_ani;
+    int target_move = Animator.StringToHash("move");
 
     [Space][Header("스폰 세팅")]
     public List<GameObject> monster_groups;

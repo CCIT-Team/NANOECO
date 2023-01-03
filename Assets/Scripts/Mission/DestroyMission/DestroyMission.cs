@@ -17,7 +17,7 @@ public class DestroyMission : MissionBase
 
     void OnTriggerEnter(Collider other)
     {
-        if(!started)
+        if(!started && other.gameObject.layer == 6)
         {
             Mission_Event();
             started = true;
