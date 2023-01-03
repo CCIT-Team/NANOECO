@@ -500,6 +500,7 @@ MonoBehaviour:
   is_dead: 0
   on_event: 0
   current_state: 0
+  Rand_Chase_Time: 15
   mon_bullet: {fileID: 7263270026204661956, guid: 14844231901c0f84cbe9265858136677,
     type: 3}
   shot_pos: {fileID: 6296223342006248891}
@@ -670,6 +671,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6636345597330156416}
+  - {fileID: 2203416467683216443}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

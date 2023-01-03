@@ -403,6 +403,7 @@ MonoBehaviour:
   is_dead: 0
   on_event: 0
   current_state: 0
+  Rand_Chase_Time: 15
 --- !u!195 &2112509909748419476
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -570,6 +571,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 7487483577558109151}
+  - {fileID: 8676817127049431496}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

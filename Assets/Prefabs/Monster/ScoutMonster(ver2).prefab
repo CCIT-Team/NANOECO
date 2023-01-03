@@ -74,6 +74,7 @@ MonoBehaviour:
   is_dead: 0
   on_event: 0
   current_state: 0
+  Rand_Chase_Time: 15
   monster_group:
   - {fileID: 1129619674144474263, guid: eeed8a5420cbe134c83c08540b56c059, type: 3}
   spawn_point:
@@ -247,6 +248,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 8246307114910510010}
+  - {fileID: 5766900421086175396}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
