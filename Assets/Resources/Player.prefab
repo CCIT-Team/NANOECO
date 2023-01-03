@@ -140,7 +140,7 @@ Transform:
   m_GameObject: {fileID: 332523706819104275}
   m_LocalRotation: {x: -0.2513817, y: -0.000000029967026, z: -0.00000011538123, w: 0.96788806}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 0.99999994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2426500645856954309}
@@ -1733,6 +1733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67ab2f1c5d6e664d9cffccc17f28e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &4958753444761235237
 GameObject:
   m_ObjectHideFlags: 0
@@ -6909,6 +6910,7 @@ MonoBehaviour:
   helicopterrope: {fileID: 4958753444761235237}
   helicopterplayerbody: {fileID: 8936953236230042151}
   originPlayer: {fileID: 5336137748936740216}
+  isunrideheli: 0
 --- !u!114 &5336137748936740195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7901,6 +7903,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2426500645856954309}
+  - component: {fileID: 1636514053535670359}
+  - component: {fileID: 7973732808055057359}
   m_Layer: 0
   m_Name: SpainUpper
   m_TagString: Untagged
@@ -7929,6 +7933,31 @@ Transform:
   m_Father: {fileID: 719690929232424676}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1636514053535670359
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8583501498032418082}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 57.62, y: 68.34, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7973732808055057359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8583501498032418082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45a014102c2f86647afba0c30946c072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8616231566435106454
 GameObject:
   m_ObjectHideFlags: 0
