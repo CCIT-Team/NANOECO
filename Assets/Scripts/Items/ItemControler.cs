@@ -16,9 +16,11 @@ public class ItemControler : MonoBehaviourPunCallbacks
     public GameObject useditem;
 
     public PhotonView pv;
+    Player player;
 
-    void Start()
+    public virtual void Start()
     {
+        GetPlayer();
         count = maxcount;
     }
     override public void OnEnable()
@@ -32,7 +34,7 @@ public class ItemControler : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)&&!iscooldown && pv.IsMine)
+        if(Input.GetMouseButtonDown(0) && player.is_dead && pv.IsMine && !iscooldown)
         {
             if (count == 0)
                 return;
@@ -61,5 +63,11 @@ public class ItemControler : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.Instantiate(itemprefab.name, this.transform.position, this.transform.rotation);
         count--;
+    }
+
+    void GetPlayer()
+    {
+        pv = GetComponentInParent<PhotonView>();
+        player = pv.gameObject.GetComponent<Player>();
     }
 }

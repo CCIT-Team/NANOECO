@@ -7,16 +7,15 @@ using Photon.Realtime;
 public class Bomber : ItemControler
 {
     int layerMask;
-    void Start()
+    public override void Start()
     {
-        count = maxcount;
+        base.Start();
         layerMask  = 1 << LayerMask.NameToLayer("Ground");
     }
     public override void Useitem()
     {
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit,100f, layerMask))
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, layerMask))
         {
             target = hit.point;
         }
