@@ -14,7 +14,7 @@ public class Totem : MonoBehaviourPunCallbacks
     public bool iseffect = false;
 
 
-    public override void Start()
+    void Start()
     {
         effectaround = GetComponent<SphereCollider>();
         new WaitForSecondsRealtime(1);
