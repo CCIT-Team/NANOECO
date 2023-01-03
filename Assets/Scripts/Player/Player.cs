@@ -143,7 +143,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 {
                     helicopterrope.transform.DetachChildren();
                     helicopterplayerbody.transform.parent = originPlayer.transform;
-                    helicopterplayerbody.transform.localRotation = new Quaternion(10.468f, 0, 0, 0);
+                    helicopterplayerbody.transform.rotation = new Quaternion(10.468f, 0, 0, 0);
                     is_dead = false;
                     current_hp = max_hp;
                     respawn_time = 3;
