@@ -28,11 +28,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public float respawn_time = 5;
     public int skil_num;
     public GameObject[] item;
-    public Transform spawn_point;
     int current_item = 0;
     bool isdash = false;
     public bool isGrounded = true;
     public GameObject hand;//아이템 줍기용
+    [Header("스폰포인트")]
+    public Transform spawn_point;
     [Header("애니메이션 관련")]
     public Animator ani;
     public Animator helicopterAni;
@@ -42,6 +43,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject helicopterplayerbody;
     public GameObject originPlayer;
     public bool isunrideheli = false;
+
 
     Vector3 curPos;
     Quaternion curRot;
@@ -91,6 +93,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
         //pv.RPC("DestroyRPC", RpcTarget.AllBuffered);
         ItemChange();
+        SpawnPointUpdate();
         Dead();
         if (Input.GetKeyDown(KeyCode.G))
         {
@@ -126,7 +129,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 {
                     helicopterrope.transform.DetachChildren();
                     helicopterplayerbody.transform.parent = originPlayer.transform;
-                    //helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
                     is_dead = false;
                     current_hp = max_hp;
                     respawn_time = 3;
@@ -188,6 +190,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         else { ani.SetBool("Bomb", false); }
     }
+
+    void SpawnPointUpdate()
+    {
+        spawn_point = GameManager.Instance.spawnPoint;
+    }
+
     public void ItemChange()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
