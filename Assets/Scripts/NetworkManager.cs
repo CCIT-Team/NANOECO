@@ -122,7 +122,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         SceneFunction.loading_canvas.SetActive(false);
-        pv.RPC("Player_Number_Check", RpcTarget.AllBuffered);
+        pv.RPC("Player_Number_Check", RpcTarget.AllBuffered, (int)PhotonNetwork.CurrentRoom.PlayerCount);
         if (PhotonNetwork.IsMasterClient)
         {
             
@@ -141,12 +141,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnLeftRoom()
     {
-        Debug.Log(25);
+        
     }
 
     public override void OnDisconnected(DisconnectCause cause)
     {
-        pv.RPC("Player_Number_Check", RpcTarget.AllBuffered);
+        pv.RPC("Player_Number_Check", RpcTarget.AllBuffered, (int)PhotonNetwork.CurrentRoom.PlayerCount - 1);
         SceneFunction.loading_canvas.SetActive(false);
     }
 
@@ -175,14 +175,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    private void Player_Number_Check()
+    private void Player_Number_Check(int num)
     {
-        //Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
+        Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
         for(int i = 0; i < 3;i++)
         {
             tool_btn.GetComponent<ToolBtn>().user_profile_info[i].SetActive(false);
         }
-        for(int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount - 1; i++)
+        for(int i = 0; i < num - 1; i++)
         {
             tool_btn.GetComponent<ToolBtn>().user_profile_info[i].SetActive(true);
         }

@@ -22,7 +22,7 @@ public class NwideCMonster : NewMonster
         data.skill_dist = 0f;
         data.event_chase_dist = 1000f;
 
-        data.idle_cool_time = 2f;
+        data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
         data.attack_cool_time = 4f;
         data.skill_cool_time = 100f;
@@ -46,7 +46,7 @@ public class NwideCMonster : NewMonster
         data.skill_dist = 0f;
         data.event_chase_dist = 1000f;
 
-        data.idle_cool_time = 2f;
+        data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
         data.attack_cool_time = 4f;
         data.skill_cool_time = 100f;
