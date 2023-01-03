@@ -35,7 +35,7 @@ public class RangeSpread : Range
                     break;
             }
         }
-        if (Input.GetKeyDown(KeyCode.R) && pv.IsMine && player.is_dead && !isdelay)
+        if (Input.GetKeyDown(KeyCode.R) && pv.IsMine && !player.is_dead && !isdelay)
         {
             StartCoroutine("Reloading");
             pv.RPC("ReloadRPC", RpcTarget.AllBuffered);

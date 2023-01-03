@@ -41,7 +41,7 @@ public class Range : WeaponeBase
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && pv.IsMine && player.is_dead && !isdelay)
+        if (Input.GetMouseButton(0) && pv.IsMine && !player.is_dead && !isdelay)
         {
             switch (ammo)
             {
@@ -57,7 +57,7 @@ public class Range : WeaponeBase
                     break;
             }
         }
-        if(Input.GetKeyDown(KeyCode.R) && pv.IsMine && player.is_dead && !isdelay)
+        if(Input.GetKeyDown(KeyCode.R) && pv.IsMine && !player.is_dead && !isdelay)
         {
             StartCoroutine("Reloading");
             pv.RPC("ReloadRPC", RpcTarget.AllBuffered);
