@@ -405,7 +405,7 @@ MonoBehaviour:
   targets: []
   agent: {fileID: 2112509909748419476}
   Particles:
-  - {fileID: 2421973375779753916, guid: 80d57da61f14baf49898e48dd5cdfbf1, type: 3}
+  - {fileID: 8842275092806263839, guid: 3b2308d84ef5bf54a99ea33ce2459c1e, type: 3}
   - {fileID: 6751104467108730567, guid: a95498be6ab73104f9d4b59cec2c8ba1, type: 3}
   - {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}
   target_mask:
@@ -590,6 +590,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 7487483577558109151}
+  - {fileID: 2879946983573769626}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
