@@ -74,14 +74,12 @@ public class NsocutMonster : NewMonster
 
     public override void Skill()
     {
-        Debug.Log("1");
         audioplayer.PlayOneShot(skill_clip);
         animator.SetTrigger(hash_skill);
         float dist = (lock_target.transform.position - transform.position).magnitude;
         transform.LookAt(lock_target.transform);
         if (dist <= data.skill_dist)
         {
-            Debug.Log("스킬사용");
             agent.SetDestination(transform.position);
             Instantiate(Particles[3], transform.position, Quaternion.identity);
             //몬스터 생성 메서드 필요
