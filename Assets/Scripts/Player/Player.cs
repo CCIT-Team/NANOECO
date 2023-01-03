@@ -42,7 +42,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject helicopterplayerbody;
     public GameObject originPlayer;
 
-
     Vector3 curPos;
     Quaternion curRot;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -105,7 +104,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             is_dead = true;
             helicopter.SetActive(true);
             helicopterplayerbody.transform.parent = helicopterrope.transform;
-            helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
+           // helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
             if (helicopterAni.GetBool("Respawn"))
             {
                 ReSpawn();
@@ -122,9 +121,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             {
                 is_dead = false;
                 helicopterAni.SetBool("Respawn", true);
+                transform.position = spawn_point.position;
                 if (helicopterAni.GetBool("HliEnd"))
                 {
-                    transform.position = spawn_point.position;
                     helicopterplayerbody.transform.parent = originPlayer.transform;
                     helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
                     helicopter.SetActive(false);

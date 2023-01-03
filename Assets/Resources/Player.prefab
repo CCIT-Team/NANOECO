@@ -6907,8 +6907,8 @@ MonoBehaviour:
   helicopterAni: {fileID: 4958753444626218893}
   helicopter: {fileID: 4958753444626218891}
   helicopterrope: {fileID: 4958753444761235237}
-  helicopterplayerbody: {fileID: 8318192957669589487}
-  originPlayer: {fileID: 8936953236230042151}
+  helicopterplayerbody: {fileID: 8936953236230042151}
+  originPlayer: {fileID: 5336137748936740216}
 --- !u!114 &5336137748936740195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7367,8 +7367,9 @@ Transform:
   - {fileID: 1935322010324633105}
   - {fileID: 5656155703869559333}
   - {fileID: 719690929232424676}
+  - {fileID: 3184304602095507790}
   m_Father: {fileID: 7393122562969155693}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7399892078490581944
 GameObject:
@@ -7742,7 +7743,7 @@ GameObject:
   - component: {fileID: 3184304602095507790}
   - component: {fileID: 5397754457721771243}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7755,15 +7756,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8318192957669589487}
-  m_LocalRotation: {x: -0.091223046, y: -6.05787e-25, z: -2.0255585e-17, w: 0.9958305}
+  m_LocalRotation: {x: 0.6396539, y: 4.6566123e-10, z: -4.656612e-10, w: 0.768663}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6.6341205, y: 6.6341224, z: 6.6341224}
+  m_LocalScale: {x: 6.634121, y: 6.634122, z: 6.634122}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7907020837775719811}
   - {fileID: 5996007131483710662}
-  m_Father: {fileID: 7393122562969155693}
-  m_RootOrder: 0
+  m_Father: {fileID: 8407517294685551322}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &5397754457721771243
 SkinnedMeshRenderer:
@@ -8103,7 +8104,6 @@ Transform:
   m_LocalScale: {x: 0.15073586, y: 0.15073584, z: 0.15073584}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3184304602095507790}
   - {fileID: 8407517294685551322}
   m_Father: {fileID: 4703470698698184642}
   m_RootOrder: 0

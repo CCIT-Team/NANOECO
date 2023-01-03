@@ -14,6 +14,7 @@ public class PlayerAnimationMethod : MonoBehaviour
     {
         Player.instance.helicopterplayerbody.SetActive(true);
         Player.instance.helicopterplayerbody.transform.parent = Player.instance.originPlayer.transform;
+        Player.instance.helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
     }
 
     void PlayerDead()
