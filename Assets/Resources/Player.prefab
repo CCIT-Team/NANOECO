@@ -6974,7 +6974,7 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Run
   - Type: 4
     SynchronizeType: 0
@@ -7790,7 +7790,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2db3280af693bcb42aeb2b958d9c6b3c, type: 2}
+  - {fileID: 2100000, guid: 8a67cace915e5f14a9b2f9828107e84f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
