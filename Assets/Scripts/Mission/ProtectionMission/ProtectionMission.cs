@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class ProtectionMission : MissionBase
+public class ProtectionMission : MissionBase, IPunObservable
 {
     public ProtectionTarget target;
 
@@ -10,6 +11,26 @@ public class ProtectionMission : MissionBase
     public List<Transform> spawn_point = new List<Transform>();
     public int wave_count;
     public float wave_time;
+
+    Vector3 curPos;
+    Quaternion curRot;
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+            stream.SendNext(wave_count);
+            stream.SendNext(wave_time);
+        }
+        else
+        {
+            curPos = (Vector3)stream.ReceiveNext();
+            curRot = (Quaternion)stream.ReceiveNext();
+            wave_count = (int)stream.ReceiveNext();
+            wave_time = (float)stream.ReceiveNext();
+        }
+    }
 
     public override void Clear()
     {
