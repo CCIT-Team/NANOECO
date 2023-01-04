@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class ProtectionTarget : MonoBehaviourPunCallbacks, IPunObservable
+public class SCMonsterGroup : MonoBehaviourPunCallbacks, IPunObservable
 {
-    public ProtectionMission pm;
-
-    public float hp;
-
     Vector3 curPos;
     Quaternion curRot;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -24,5 +20,4 @@ public class ProtectionTarget : MonoBehaviourPunCallbacks, IPunObservable
             curRot = (Quaternion)stream.ReceiveNext();
         }
     }
-
 }
