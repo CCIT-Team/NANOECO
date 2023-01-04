@@ -193,13 +193,29 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             rigid.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
         }
     }
-
+    float timer = 5;
     void Dash()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded == true)//대쉬
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded == true && isdash == false)//대쉬
         {
-            Debug.Log("Dash!!!!!!!!");
-            rigid.AddForce(Vector3.forward * dash_force, ForceMode.Impulse);
+            Debug.Log("대쉬");
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+
+            Vector3 dash = new Vector3(-horizontal * dash_force * Time.deltaTime, 0, -vertical * dash_force * Time.deltaTime);
+            transform.position += Vector3.Lerp(transform.position,dash,5);
+            isdash = true;
+        }       
+        if(isdash == true)
+        {
+            timer -= Time.deltaTime;
+            Debug.Log(timer);
+            if (timer <= 0)
+            {
+                timer = 5;
+                isdash = false;
+                Debug.Log("대쉬 초기화");
+            }
         }
     }
 
