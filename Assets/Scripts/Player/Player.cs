@@ -137,6 +137,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             spawn_point = firstSpawnPoint[spawnNum];
         }
+
         if(spawnNum > 3)
         {
             spawnNum = 0;
