@@ -6,9 +6,9 @@ public class PlayerAnimationMethod : MonoBehaviour
 {
     void RideHelicopter()
     {
+        Player.instance.helicopterAni.SetBool("Respawn", true);
         Player.instance.helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
         Player.instance.helicopterplayerbody.SetActive(false);
-        Player.instance.helicopterAni.SetBool("Respawn", true);
     }
     void UnRideHelicopter()
     {
