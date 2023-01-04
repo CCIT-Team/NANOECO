@@ -21,7 +21,7 @@ public class GameManager : Singleton<GameManager>
         sp = GameObject.FindGameObjectWithTag("Spawn").GetComponent<SpawnPoint>();
     }
 
-    private void Update()
+     void Update()
     {
         SpawnPointUpdate();
         if(sp == null || SceneManager.sceneCount == 2 && sp == null)
