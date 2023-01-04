@@ -58,7 +58,7 @@ public class TransportMission : MissionBase, IPunObservable
             stream.SendNext(transform.rotation);
             stream.SendNext(t);
             stream.SendNext(current_point);
-            stream.SendNext(_active_count);
+            stream.SendNext(active_count);
             stream.SendNext(is_active);
         }
         else
@@ -67,7 +67,7 @@ public class TransportMission : MissionBase, IPunObservable
             curRot = (Quaternion)stream.ReceiveNext();
             t = (float)stream.ReceiveNext();
             current_point = (int)stream.ReceiveNext();
-            _active_count = (int)stream.ReceiveNext();
+            active_count = (int)stream.ReceiveNext();
             is_active = (bool)stream.ReceiveNext();
         }
     }
