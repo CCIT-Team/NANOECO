@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7571098203109304904}
   - component: {fileID: -5075831752684468833}
   - component: {fileID: 1077599734743087708}
+  - component: {fileID: 3587956501732520764}
   m_Layer: 0
   m_Name: MonsterGroup_0
   m_TagString: Untagged
@@ -55,7 +56,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 1077599734743087708}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -75,6 +77,18 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &3587956501732520764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129619674144474263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d1bde50f4c64814f8a78d01f2d1c3d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8462700537774636200
 GameObject:
   m_ObjectHideFlags: 0
