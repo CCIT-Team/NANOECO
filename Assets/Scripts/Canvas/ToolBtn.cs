@@ -72,9 +72,9 @@ public class ToolBtn : MonoBehaviourPunCallbacks
         pv.RPC("Guest_Ready_Check", RpcTarget.OthersBuffered, true);
 
 
-        
-        //SceneFunction.game_map_name = "FastFoodPlayerTest";
-        //SceneFunction.fade.GetComponent<Fade>().Load_Scene();
+
+        SceneFunction.game_map_name = "FastFoodPlayerTest";
+        SceneFunction.fade.GetComponent<Fade>().Load_Scene();
     }
 
     [PunRPC]

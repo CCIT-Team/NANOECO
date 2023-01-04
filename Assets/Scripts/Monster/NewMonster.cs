@@ -52,7 +52,7 @@ public struct Data
     public float state_time;
 }
 
-public abstract class NewMonster : MonoBehaviourPunCallbacks
+public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
 {
     #region 파라미터
     protected readonly int hash_walk = Animator.StringToHash("Walk");
@@ -109,7 +109,21 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks
     float RandTime = 5;
     public float Rand_Chase_Time;
     #endregion
-
+    Vector3 curPos;
+    Quaternion curRot;
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+        }
+        else
+        {
+            curPos = (Vector3)stream.ReceiveNext();
+            curRot = (Quaternion)stream.ReceiveNext();
+        }
+    }
     public abstract void Init();
 
     public virtual void Idle()
