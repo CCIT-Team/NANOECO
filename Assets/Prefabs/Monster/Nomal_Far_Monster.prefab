@@ -438,7 +438,6 @@ GameObject:
   - component: {fileID: 4223828825391251204}
   - component: {fileID: 4223828825391251207}
   - component: {fileID: 4223828825391251201}
-  - component: {fileID: 1940529474923343914}
   - component: {fileID: 2613403026955771086}
   - component: {fileID: 4209440815884919538}
   - component: {fileID: -6171981349842299977}
@@ -459,7 +458,7 @@ Transform:
   m_GameObject: {fileID: 4223828825391251200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4223828827046505617}
@@ -501,6 +500,7 @@ MonoBehaviour:
   is_dead: 0
   on_event: 0
   current_state: 0
+  Rand_Chase_Time: 15
   mon_bullet: {fileID: 7263270026204661956, guid: 14844231901c0f84cbe9265858136677,
     type: 3}
   shot_pos: {fileID: 6296223342006248891}
@@ -622,26 +622,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &1940529474923343914
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4223828825391251200}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f967f0819be06b34a812db8ce5b8d03f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &2613403026955771086
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -664,9 +644,9 @@ Rigidbody:
   m_GameObject: {fileID: 4223828825391251200}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 10
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -691,7 +671,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6636345597330156416}
-  - {fileID: 2499149158470425883}
+  - {fileID: 2203416467683216443}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1549,7 +1529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4223828827046505617}
   - component: {fileID: 4223828827046505616}
-  - component: {fileID: 2499149158470425883}
+  - component: {fileID: 2203416467683216443}
   m_Layer: 0
   m_Name: Ant(fixed)
   m_TagString: Untagged
@@ -1602,7 +1582,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2499149158470425883
+--- !u!114 &2203416467683216443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

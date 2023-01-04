@@ -21,6 +21,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     [SerializeField]
     public PhotonView pv;
+
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject); 
@@ -62,14 +63,32 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinOrCreateRoom(Canvas.GetComponent<WRCanvas>().Room_Code.text, ros, null);
     }
 
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        //Debug.Log(25252525);
+        //Debug.Log(roomList.Count);
+        //foreach(RoomInfo p in roomList)
+        //{
+        //    Debug.Log(p.Name);
+        //}
+
+        //Debug.Log(123123123);
+        //PhotonNetwork.CurrentRoom.IsOpen = false;
+    }
+
+
 
     private void Update()
     {
+        //Debug.Log(PhotonNetwork.CountOfRooms);
+        
+
         //for master check
         if (PhotonNetwork.InRoom)
         {
             if (PhotonNetwork.IsMasterClient)
             {
+
                 if (PhotonNetwork.CurrentRoom.PlayerCount >= 2)
                 {
                     tool_btn.GetComponent<ToolBtn>().master_check.SetActive(true);
@@ -88,11 +107,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
                 else
                 {
                     tool_btn.GetComponent<ToolBtn>().master_check_for_guest.SetActive(false);
-
-                    //for (int i = 0; i < 3; i++)
-                    //{
-                    //    tool_btn.GetComponent<ToolBtn>().user_profile_info[i].SetActive(false);
-                    //}
                 }
             }
 
@@ -113,13 +127,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
          PhotonNetwork.LeaveRoom();
          SceneFunction.loading_canvas.SetActive(true);
     }
-
-/// <summary>
-/// /////////////////////////////////////////////////////////////////
-/// </summary>
-
     public override void OnCreatedRoom()
     {
+
+        Debug.Log("방 생성 완료");
+
+
+
         if (PhotonNetwork.InRoom)
         {
             SceneFunction.loading_canvas.SetActive(false);
@@ -133,6 +147,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         SceneFunction.loading_canvas.SetActive(false);
         pv.RPC("Player_Number_Check", RpcTarget.AllBuffered);
+        Debug.Log(PhotonNetwork.CurrentRoom.Name);
+        
+
         if (PhotonNetwork.IsMasterClient)
         {
             //
@@ -163,6 +180,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         SceneFunction.loading_canvas.SetActive(false);
         Debug.Log("존재하는 방이 없어요~");
+
+        Utils.info_message.text = "No room exists.";
+        Utils.info_canvas.SetActive(true);
     }
 
 
