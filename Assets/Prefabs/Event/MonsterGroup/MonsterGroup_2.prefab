@@ -70,7 +70,9 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 6583918856096006581}
+  - {fileID: 4781087136034712588}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -97,6 +99,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Nomal_Far_Monster (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223828825391251204, guid: cca21489d720ba543ad26d8f4d55ce29,
+        type: 3}
+      propertyPath: is_dead
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4223828825391251205, guid: cca21489d720ba543ad26d8f4d55ce29,
         type: 3}
@@ -172,6 +179,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Nomal_Far_Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 4223828825391251204, guid: cca21489d720ba543ad26d8f4d55ce29,
+        type: 3}
+      propertyPath: is_dead
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4223828825391251205, guid: cca21489d720ba543ad26d8f4d55ce29,
         type: 3}
