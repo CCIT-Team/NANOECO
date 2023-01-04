@@ -137,13 +137,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             respawn_time -= Time.deltaTime;
             if (respawn_time <= 0)
             {
-                helicopterAni.SetBool("Respawn", true);
                 transform.position = spawn_point.position;
                 if (isunrideheli == true)
                 {
                     helicopterrope.transform.DetachChildren();
                     helicopterplayerbody.transform.parent = originPlayer.transform;
-                    helicopterplayerbody.transform.rotation = new Quaternion(10.468f, 0, 0, 0);
                     is_dead = false;
                     current_hp = max_hp;
                     respawn_time = 3;

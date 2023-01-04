@@ -23,12 +23,17 @@ public class GameManager : Singleton<GameManager>
     private void Update()
     {
         SpawnPointUpdate();
+        if(sp == null)
+        {
+            sp = GameObject.FindGameObjectWithTag("Spawn").GetComponent<SpawnPoint>();
+        }
     }
 
     public void SpawnPointUpdate()
     {
         spawnPoint = sp.check_points[sp.current_spawn_point].transform;
     }
+
 }
 
 [System.Serializable]
