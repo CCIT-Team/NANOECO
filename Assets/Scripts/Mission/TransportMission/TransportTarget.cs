@@ -6,6 +6,7 @@ using Photon.Pun;
 public class TransportTarget : MonoBehaviourPunCallbacks, IPunObservable
 {
     public TransportMission path;
+    public PhotonView pv;
 
     Vector3 curPos;
     Quaternion curRot;
@@ -25,13 +26,13 @@ public class TransportTarget : MonoBehaviourPunCallbacks, IPunObservable
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 6)
+        if(other.gameObject.layer == 6 && pv.IsMine)
             path._active_count++;
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 6)
+        if (other.gameObject.layer == 6 && pv.IsMine)
             path._active_count--;
     }
 }
