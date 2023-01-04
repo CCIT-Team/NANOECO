@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -23,7 +24,7 @@ public class GameManager : Singleton<GameManager>
     private void Update()
     {
         SpawnPointUpdate();
-        if(sp == null)
+        if(sp == null || SceneManager.sceneCount == 2 && sp == null)
         {
             sp = GameObject.FindGameObjectWithTag("Spawn").GetComponent<SpawnPoint>();
         }

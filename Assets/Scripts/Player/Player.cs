@@ -132,6 +132,15 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 ReSpawn();
             }
         }
+
+        if (spawn_point == null)
+        {
+            spawn_point = firstSpawnPoint[spawnNum];
+        }
+        if(spawnNum > 3)
+        {
+            spawnNum = 0;
+        }
     }
 
     void ReSpawn()
@@ -248,7 +257,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void PickUpAndDropItem()
     {
-        if(isusehand && Input.GetKeyDown(KeyCode.E))
+        if (isusehand && Input.GetKeyDown(KeyCode.E))
         {
             hand.transform.DetachChildren();
         }
@@ -281,10 +290,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.layer == 11 && Input.GetKeyDown(KeyCode.E)) 
-        { 
-            isusehand = true; 
-            col.transform.parent = hand.transform; 
+        if (col.gameObject.layer == 11 && Input.GetKeyDown(KeyCode.E))
+        {
+            isusehand = true;
+            col.transform.parent = hand.transform;
         }
     }
 
