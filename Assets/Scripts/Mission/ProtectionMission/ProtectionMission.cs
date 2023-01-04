@@ -25,7 +25,8 @@ public class ProtectionMission : MissionBase
     {
         wave_count--;
         int i = Random.Range(0, monster_group.Count);
-        Instantiate(monster_group[i], spawn_point[i].position, Quaternion.identity);
+        GameObject mg = Instantiate(monster_group[i], spawn_point[i].position, Quaternion.identity);
+        mg.transform.parent = transform;
         yield return new WaitForSeconds(wave_time);
         if(wave_count != 0 && target.hp > 0) { StartCoroutine(Monster_Wave()); }
         else if(wave_count == 0 && target.hp > 0) { Clear(); }

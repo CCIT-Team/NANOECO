@@ -37,7 +37,8 @@ public class DestroyMission : MissionBase
     IEnumerator Spawn_Monster()
     {
         int i = Random.Range(0, monster_group.Count);
-        Instantiate(monster_group[i], spawn_point[i].transform.position, Quaternion.identity);
+        GameObject mg = Instantiate(monster_group[i], spawn_point[i].transform.position, Quaternion.identity);
+        mg.transform.parent = transform;
 
         yield return new WaitForSeconds(wave_time);
         StartCoroutine(Spawn_Monster());

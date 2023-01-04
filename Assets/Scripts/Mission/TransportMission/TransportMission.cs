@@ -133,7 +133,8 @@ public class TransportMission : MissionBase
         for(int i = 0; i < col.Count; i++)
         {
             int m = Random.Range(0, monster_groups.Count);
-            Instantiate(monster_groups[i], col[i].position, Quaternion.identity);
+            GameObject mg = Instantiate(monster_groups[i], col[i].position, Quaternion.identity);
+            mg.transform.parent = transform;
         }
     }
 
