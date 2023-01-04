@@ -57,11 +57,15 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
+            stream.SendNext(current_hp);
+            stream.SendNext(is_dead);
         }
         else
         {
             curPos = (Vector3)stream.ReceiveNext();
             curRot = (Quaternion)stream.ReceiveNext();
+            current_hp = (float)stream.ReceiveNext();
+            is_dead = (bool)stream.ReceiveNext();
         }
     }
 
