@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class PlayerAnimationMethod : MonoBehaviour
 {
-    public Player player;
-
     void RideHelicopter()
     {
-        player.helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
-        player.helicopterplayerbody.SetActive(false);
-        player.helicopterAni.SetBool("Respawn", true);
+        Player.instance.helicopterAni.SetBool("Respawn", true);
+        Player.instance.helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
+        Player.instance.helicopterplayerbody.SetActive(false);
     }
     void UnRideHelicopter()
     {
         Debug.Log("Çï±â ³»¸®±â");
-        player.is_dead = false;
-        player.isunrideheli = true;
-        player.helicopterplayerbody.SetActive(true);
-        player.helicopterrope.transform.DetachChildren();
-        player.helicopterplayerbody.transform.parent = player.originPlayer.transform;
-       // player.helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
+        //Player.instance.is_dead = false;
+        Player.instance.isunrideheli = true;
+        Player.instance.helicopterplayerbody.SetActive(true);
+        //Player.instance.helicopterrope.transform.DetachChildren();
+        //Player.instance.helicopterplayerbody.transform.parent = Player.instance.originPlayer.transform;
     }
 
     void PlayerDead()
@@ -36,7 +33,7 @@ public class PlayerAnimationMethod : MonoBehaviour
     void HelicopterEnd()
     {
         Player.instance.helicopter.GetComponent<Animator>().SetBool("HliEnd", true);
-        player.helicopter.SetActive(false);
+        Player.instance.helicopter.SetActive(false);
     }
 
 }

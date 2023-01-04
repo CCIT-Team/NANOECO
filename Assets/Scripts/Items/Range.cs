@@ -34,52 +34,44 @@ public class Range : WeaponeBase
         }
         ammo = maxAmmo;
         bullet.damage = damage;
-        //bullet.knockback = knockback;
         bullet.explosive = explosion;
         bulletname = bullet.gameObject.name;
     }
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && pv.IsMine && player.is_dead && !isdelay)
+        if (pv.IsMine)
         {
-            switch (ammo)
+            if (Input.GetMouseButton(0) && !player.is_dead && !isdelay)
             {
-                case 0:
-                    StartCoroutine("Reloading");
-                    pv.RPC("ReloadRPC", RpcTarget.AllBuffered);
-                    break;
-                default :
-                    isdelay = true;
-                    Attack();
-                    StartCoroutine("AttackDelay");
-                    pv.RPC("ShotRPC", RpcTarget.AllBuffered);
-                    break;
+                switch (ammo)
+                {
+                    case 0:
+                        pv.RPC("ReloadRPC", RpcTarget.AllBuffered);
+                        break;
+                    default:
+                        pv.RPC("ShotRPC", RpcTarget.AllBuffered);
+                        break;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.R) && !player.is_dead && !isdelay)
+            {
+                pv.RPC("ReloadRPC", RpcTarget.AllBuffered);
             }
         }
-        if(Input.GetKeyDown(KeyCode.R) && pv.IsMine && player.is_dead && !isdelay)
-        {
-            StartCoroutine("Reloading");
-            pv.RPC("ReloadRPC", RpcTarget.AllBuffered);
-        }
-            
     }
 
     public override void Attack()
     {
-        
         GameObject chargedbullet = Instantiate(bullet.gameObject);
         chargedbullet.transform.position = firePosition.transform.position;
         chargedbullet.transform.rotation = firePosition.transform.rotation;
-        
         //PhotonNetwork.Instantiate(bulletname, firePosition.transform.position, firePosition.transform.rotation);
         ammo--;
     }
 
     IEnumerator Reloading()
     {
-        isdelay = true;
-        isreloading = true;
         yield return new WaitForSecondsRealtime(2);
         ammo = maxAmmo;
         isdelay = false;
@@ -104,5 +96,10 @@ public class Range : WeaponeBase
         StartCoroutine("AttackDelay");
     }
 
-    void ReloadRPC() => StartCoroutine("Reloading");
+    void ReloadRPC()
+    {
+        isdelay = true;
+        isreloading = true;
+        StartCoroutine("Reloading");
+    }
 }

@@ -15,7 +15,7 @@ public class Melee : WeaponeBase
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isdelay && player.is_dead)
+        if (Input.GetMouseButtonDown(0) && !isdelay && !player.is_dead)
         {
             isdelay = true;
             StartCoroutine("AttackDelay");

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2207186406622467455}
   - component: {fileID: 1260985184230962757}
+  - component: {fileID: 5865528215935169142}
   m_Layer: 0
   m_Name: gun
   m_TagString: Untagged
@@ -51,13 +52,36 @@ MonoBehaviour:
   attackspeed: 2
   realdelay: 0.5
   isdelay: 0
-  knockback: 0.1
   pv: {fileID: 0}
+  player: {fileID: 0}
   maxAmmo: 500
   ammo: 500
   firePosition: {fileID: 2610163585536448594}
   bullet: {fileID: -4316363247423991619, guid: 66730fb6a4bf0144cb61d28681ef01a5, type: 3}
   explosion: 0
+--- !u!114 &5865528215935169142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059019529358623581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 0}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2610163585536448594
 GameObject:
   m_ObjectHideFlags: 0

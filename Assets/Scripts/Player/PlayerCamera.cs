@@ -105,7 +105,7 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
         Debug.DrawRay(transform.position, player.position - transform.position, Color.blue);
         if (Physics.Raycast(transform.position, Vector3.back, out backRay, 3))
         {
-            offset.z = backRay.transform.position.z;
+            //offset.z = backRay.transform.position.z;
         }
         else
         {

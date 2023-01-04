@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3964423536984545499}
   - component: {fileID: 4803087699941845317}
   - component: {fileID: 4370602455422271360}
-  - component: {fileID: 262134885970142962}
+  - component: {fileID: -5288027136644175145}
+  - component: {fileID: 8246307114910510010}
   m_Layer: 8
   m_Name: ScoutMonster(ver2)
   m_TagString: Monster
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4549089600791144859}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4557701900973695874}
@@ -53,7 +54,10 @@ MonoBehaviour:
   targets: []
   agent: {fileID: 3964423536984545499}
   Particles:
-  - {fileID: 2421973375779753916, guid: 80d57da61f14baf49898e48dd5cdfbf1, type: 3}
+  - {fileID: 8842275092806263839, guid: 3b2308d84ef5bf54a99ea33ce2459c1e, type: 3}
+  - {fileID: 1307689207180990719, guid: d83126c7ad241fc4d93cae85e49d9b67, type: 3}
+  - {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}
+  - {fileID: 325493070480157103, guid: 85ea6cd5bc6b9d14bbc75819497cd620, type: 3}
   target_mask:
     serializedVersion: 2
     m_Bits: 64
@@ -69,6 +73,7 @@ MonoBehaviour:
   is_dead: 0
   on_event: 0
   current_state: 0
+  Rand_Chase_Time: 15
   monster_group:
   - {fileID: 1129619674144474263, guid: eeed8a5420cbe134c83c08540b56c059, type: 3}
   spawn_point:
@@ -204,24 +209,48 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.8780518, y: 3.2870483, z: 3.4246826}
-  m_Center: {x: -0.19714355, y: 1.1435242, z: -0.696228}
---- !u!54 &262134885970142962
-Rigidbody:
+  m_Size: {x: 3.8780518, y: 6.117237, z: 3.4246826}
+  m_Center: {x: -0.19714355, y: 2.5586188, z: -0.6962279}
+--- !u!114 &-5288027136644175145
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4549089600791144859}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 8246307114910510010}
+  - {fileID: 5766900421086175396}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &8246307114910510010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4549089600791144859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1001 &4092237994811294825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -304,6 +333,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spider(final)
       objectReference: {fileID: 0}
+    - target: {fileID: 1630794972795428178, guid: 4273b6f0bee5614438d45977075a34bc,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dc9f6cef95e3a7e43ad55a034942892b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4273b6f0bee5614438d45977075a34bc, type: 3}
 --- !u!1 &3750343004701374776 stripped
@@ -332,6 +366,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5766900421086175396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3750343004701374776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters: []
+  m_SynchronizeLayers: []
 --- !u!4 &4557701900973695874 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4273b6f0bee5614438d45977075a34bc,

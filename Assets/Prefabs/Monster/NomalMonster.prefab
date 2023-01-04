@@ -167,6 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1935314116448640897}
   - component: {fileID: 2633284489965207543}
+  - component: {fileID: 8676817127049431496}
   m_Layer: 0
   m_Name: Ant(fixed)
   m_TagString: Untagged
@@ -219,6 +220,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8676817127049431496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265596449694418235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters: []
+  m_SynchronizeLayers: []
 --- !u!1 &1291757936509592738
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +343,8 @@ GameObject:
   - component: {fileID: 2112509909748419476}
   - component: {fileID: 2112509909748419434}
   - component: {fileID: 4333620693232472977}
-  - component: {fileID: 6443163828550717067}
+  - component: {fileID: -1973734622114177220}
+  - component: {fileID: 7487483577558109151}
   m_Layer: 8
   m_Name: NomalMonster
   m_TagString: Monster
@@ -343,7 +361,7 @@ Transform:
   m_GameObject: {fileID: 2112509909748419435}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1935314116448640897}
@@ -366,7 +384,9 @@ MonoBehaviour:
   targets: []
   agent: {fileID: 2112509909748419476}
   Particles:
-  - {fileID: 2421973375779753916, guid: 80d57da61f14baf49898e48dd5cdfbf1, type: 3}
+  - {fileID: 8842275092806263839, guid: 3b2308d84ef5bf54a99ea33ce2459c1e, type: 3}
+  - {fileID: 6751104467108730567, guid: a95498be6ab73104f9d4b59cec2c8ba1, type: 3}
+  - {fileID: 1000012909287652, guid: abb9f519b142e304d9c45b56afa768bc, type: 3}
   target_mask:
     serializedVersion: 2
     m_Bits: 64
@@ -382,6 +402,7 @@ MonoBehaviour:
   is_dead: 0
   on_event: 0
   current_state: 0
+  Rand_Chase_Time: 15
 --- !u!195 &2112509909748419476
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -511,24 +532,48 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8955811, y: 2.1637902, z: 1.5418003}
-  m_Center: {x: -0.020585835, y: 0.58189523, z: -0.34962642}
---- !u!54 &6443163828550717067
-Rigidbody:
+  m_Size: {x: 1.8955811, y: 3.9290416, z: 1.5418003}
+  m_Center: {x: -0.020585835, y: 1.4645208, z: -0.34962642}
+--- !u!114 &-1973734622114177220
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112509909748419435}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 7487483577558109151}
+  - {fileID: 8676817127049431496}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &7487483577558109151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112509909748419435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &2638988772326124665
 GameObject:
   m_ObjectHideFlags: 0
