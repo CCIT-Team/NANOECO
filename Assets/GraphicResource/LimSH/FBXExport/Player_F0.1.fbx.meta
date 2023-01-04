@@ -15,7 +15,12 @@ ModelImporter:
   - first:
       74: -94229085810197063
     second: IdleHand (1)
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LowPolyPlayer
+    second: {fileID: 2100000, guid: 8a67cace915e5f14a9b2f9828107e84f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
