@@ -59,6 +59,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(transform.rotation);
             stream.SendNext(current_hp);
             stream.SendNext(is_dead);
+            stream.SendNext(current_item);
         }
         else
         {
@@ -66,6 +67,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             curRot = (Quaternion)stream.ReceiveNext();
             current_hp = (float)stream.ReceiveNext();
             is_dead = (bool)stream.ReceiveNext();
+            current_item = (int)stream.ReceiveNext();
         }
     }
 
@@ -96,7 +98,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         item[0].SetActive(true);
         item[1].SetActive(false);
         item[2].SetActive(false);
-        pv.RPC("ActiveRPC", RpcTarget.AllBuffered, current_item);
         helicopter.SetActive(false);
         if (firstSpawnPoint[spawnNum] != null)
         {
@@ -247,27 +248,33 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && !isusehand)
         {
-            item[0].SetActive(true);//주무기
-            item[1].SetActive(false);//아이템1
-            item[2].SetActive(false);//아이템2
             current_item = 0;
-            pv.RPC("ActiveRPC", RpcTarget.AllBuffered, current_item);
+            if (current_item == 0)
+            {
+                item[0].SetActive(true);//주무기
+                item[1].SetActive(false);//아이템1
+                item[2].SetActive(false);//아이템2
+            }           
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && !isusehand)
         {
-            item[0].SetActive(false);
-            item[1].SetActive(true);
-            item[2].SetActive(false);
             current_item = 1;
-            pv.RPC("ActiveRPC", RpcTarget.AllBuffered, current_item);
+            if (current_item == 1)
+            {
+                item[0].SetActive(false);
+                item[1].SetActive(true);
+                item[2].SetActive(false);
+            }
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && !isusehand)
         {
-            item[0].SetActive(false);
-            item[1].SetActive(false);
-            item[2].SetActive(true);
             current_item = 2;
-            pv.RPC("ActiveRPC", RpcTarget.AllBuffered, current_item);
+            if (current_item == 2)
+            {
+                item[0].SetActive(false);
+                item[1].SetActive(false);
+                item[2].SetActive(true);
+            }
         }
         PickUpAndDropItem();
     }
