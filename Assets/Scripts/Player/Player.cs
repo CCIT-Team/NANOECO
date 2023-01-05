@@ -118,6 +118,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             current_hp = -100;
         }
+        if (helicopterAni.GetBool("Respawn"))
+        {
+            ReSpawn();
+        }
     }
 
     void Dead()
@@ -128,10 +132,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             helicopter.SetActive(true);
             helicopterplayerbody.transform.parent = helicopterrope.transform;
             // helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
-            if (helicopterAni.GetBool("Respawn"))
-            {
-                ReSpawn();
-            }
         }
 
         if (spawn_point == null)
