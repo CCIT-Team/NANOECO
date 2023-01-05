@@ -68,7 +68,6 @@ public class NtankerMonster : NewMonster
 
     private void FixedUpdate()
     {
-        if (pv.IsMine)
             mon_action();
     }
 }

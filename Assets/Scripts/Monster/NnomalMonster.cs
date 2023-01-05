@@ -67,7 +67,7 @@ public class NnomalMonster : NewMonster
 
     private void FixedUpdate()
     {
-        if (pv.IsMine)
+        if(pv.IsMine)
             mon_action();
     }
 

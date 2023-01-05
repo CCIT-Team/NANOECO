@@ -67,7 +67,6 @@ public class NwideCMonster : NewMonster
 
     private void FixedUpdate()
     {
-        if (pv.IsMine)
             mon_action();
     }
 }
