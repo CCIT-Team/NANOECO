@@ -16,7 +16,7 @@ public class ItemControler : MonoBehaviourPunCallbacks
     public GameObject useditem;
 
     public PhotonView pv;
-    Player player;
+    protected Player player;
 
     public virtual void Start()
     {
@@ -34,17 +34,19 @@ public class ItemControler : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && !player.is_dead && pv.IsMine && !iscooldown)
+        if (pv.IsMine)
         {
-            if (count == 0)
-                return;
-            else
+            if (Input.GetMouseButtonDown(0) && !player.is_dead && !iscooldown)
             {
-                iscooldown = true;
-                Useitem();
-                StartCoroutine("Cooling");
+                if (count == 0)
+                    return;
+                else
+                {
+                    iscooldown = true;
+                    Useitem(); 
+                }
             }
-        }
+        }   
     }
 
     IEnumerator Cooling()
@@ -63,11 +65,12 @@ public class ItemControler : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.Instantiate(itemprefab.name, this.transform.position, this.transform.rotation);
         count--;
+        StartCoroutine("Cooling");
     }
 
     void GetPlayer()
     {
-        pv = GetComponentInParent<PhotonView>();
-        player = pv.gameObject.GetComponent<Player>();
+        pv = GetComponent<PhotonView>();
+        player = gameObject.transform.parent.GetComponentInParent<Player>();
     }
 }
