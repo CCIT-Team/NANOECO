@@ -113,7 +113,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
     float RandTime = 5;
     public float Rand_Chase_Time;
     #endregion
-    PhotonView PV;
+    public PhotonView PV;
 
     Vector3 curPos;
     Quaternion curRot;
