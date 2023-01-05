@@ -59,7 +59,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
             stream.SendNext(current_hp);
-            stream.SendNext(is_dead);
+            //stream.SendNext(is_dead);
             stream.SendNext(current_item);
         }
         else
@@ -67,7 +67,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             curPos = (Vector3)stream.ReceiveNext();
             curRot = (Quaternion)stream.ReceiveNext();
             current_hp = (float)stream.ReceiveNext();
-            is_dead = (bool)stream.ReceiveNext();
+            //is_dead = (bool)stream.ReceiveNext();
             current_item = (int)stream.ReceiveNext();
         }
     }
@@ -110,12 +110,13 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void Update()
     {
         if (pv.IsMine && PhotonNetwork.IsConnected && !is_dead) { Move(); }
-        if (pv.IsMine) { ItemChange(); Dead(); }
+        if (pv.IsMine) { ItemChange();}
         if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
         SpawnPointUpdate();
+        Dead();
         if (helicopterAni.GetBool("Respawn"))
         {
-            if (pv.IsMine) { ReSpawn(); }  
+            ReSpawn();
         }
     }
 
@@ -149,20 +150,21 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             if (respawn_time <= 0)
             {
                 transform.position = spawn_point.position;
-                if (isunrideheli == true)
-                {
-                    Debug.Log("내려 내려 내려");
-                    helicopterplayerbody.SetActive(true);
-                    helicopterrope.transform.DetachChildren();
-                    helicopterplayerbody.transform.parent = originPlayer.transform;
-                    current_hp = max_hp;
-                    respawn_time = 3;
-                    DontHitTime(3);
-                    isunrideheli = false;
-                    is_dead = false;
-                }
+                isunrideheli = true;
             }
-            if(helicopterAni.GetBool("HliEnd"))
+            if (isunrideheli == true)
+            {
+                Debug.Log("내려 내려 내려");
+                helicopterplayerbody.SetActive(true);
+                helicopterrope.transform.DetachChildren();
+                helicopterplayerbody.transform.parent = originPlayer.transform;
+                current_hp = max_hp;
+                respawn_time = 3;
+                DontHitTime(3);
+                isunrideheli = false;
+                is_dead = false;
+            }
+            if (helicopterAni.GetBool("HliEnd"))
             {
                 helicopterplayerbody.SetActive(true);
                 helicopterrope.transform.DetachChildren();
