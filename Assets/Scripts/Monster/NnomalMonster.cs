@@ -59,15 +59,10 @@ public class NnomalMonster : NewMonster
     #endregion
     private void Awake()
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
             mon_action += Monster_State;
             mon_action += Hp_Check;
             mon_action += Hit_Mon;
             mon_action += Another_Find_Player;
-        }
-        else
-            return;
     }
 
     private void FixedUpdate()
