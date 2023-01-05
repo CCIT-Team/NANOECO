@@ -58,6 +58,7 @@ public class NnomalFMonster : NewMonster
         data.current_time = 0f;
         data.state_time = 0f;
         on_event = false;
+        protection_target = false;
     }
     #endregion
     private void Awake()
@@ -70,6 +71,7 @@ public class NnomalFMonster : NewMonster
 
     private void FixedUpdate()
     {
+        if(pv.IsMine)
         mon_action();
     }
 

@@ -69,6 +69,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField]
     protected Collider[] targets;
     protected Player player;
+    protected ProtectionTarget protectionTarget;
     [SerializeField]
     protected NavMeshAgent agent;
     [SerializeField]
@@ -101,7 +102,10 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField]
     protected bool is_dead = false;
 
+    #region 해성이가 받아서 사용하면 됨
     public bool on_event = false;  //이벤트로 생성된 몹
+    public bool protection_target = false; //보호대상 이벤트로 생성된 몹
+    #endregion
 
     [SerializeField]
     protected CURRNET_STATE current_state = new CURRNET_STATE();
@@ -109,6 +113,8 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
     float RandTime = 5;
     public float Rand_Chase_Time;
     #endregion
+    public PhotonView pv;
+
     Vector3 curPos;
     Quaternion curRot;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -167,15 +173,33 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             agent.SetDestination(Get_Random_Point(transform, data.patrol_dist));
             RandTime = Random.Range(1f,4f);
         }
-        if (on_event ==true)
+        if (on_event ==true) //이벤트로 생성된 것 지정
         {
             Collider[] targets = Physics.OverlapSphere(transform.position, data.event_chase_dist, target_mask);
             for (int i = 0; i < targets.Length; i++)
             {
                 player = targets[i].GetComponent<Player>();
-                if (player != null)
+                //if (player != null)
+                if (player != null && pv.IsMine)
                 {
                     lock_target = player.gameObject;
+                    current_state = CURRNET_STATE.EChase;
+                    break;
+                }
+                if (targets == null)
+                    return;
+            }
+        }
+        else if(protection_target == true) //방어 대상 지정
+        {
+            Collider[] targets = Physics.OverlapSphere(transform.position, data.event_chase_dist, target_mask);
+            for (int i = 0; i < targets.Length; i++)
+            {
+                protectionTarget = targets[i].GetComponent<ProtectionTarget>();
+                //if (player != null)
+                if (protectionTarget != null && pv.IsMine)
+                {
+                    lock_target = protectionTarget.gameObject;
                     current_state = CURRNET_STATE.EChase;
                     break;
                 }
@@ -189,7 +213,8 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             for (int i = 0; i < targets.Length; i++)
             {
                 player = targets[i].GetComponent<Player>();
-                if (player != null)
+                //if (player != null)
+                if (player != null && pv.IsMine)
                 {
                     lock_target = player.gameObject;
                     current_state = CURRNET_STATE.EChase;
@@ -228,7 +253,22 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             if(dist <= data.attack_dist)
                 current_state = CURRNET_STATE.EAttack;
             
-            if(on_event == true)
+            if(on_event == true)//이벤트로 생성된 것 지정
+            {
+                if (dist > data.event_chase_dist)
+                {
+                    if (data.state_time >= data.chase_cool_time)
+                    {
+                        agent.SetDestination(transform.position);
+                        lock_target = null;
+                        animator.SetTrigger(hash_idle);
+                        animator.SetBool(hash_chase, false);
+                        current_state = CURRNET_STATE.EIdle;
+                        data.state_time = 0f;
+                    }
+                }
+            }
+            else if(protection_target == true) //방어 대상 지정
             {
                 if (dist > data.event_chase_dist)
                 {
@@ -272,11 +312,22 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             {
                 if (data.current_time >= data.attack_cool_time)
                 {
-                    audioplayer.PlayOneShot(attack_clip);
-                    animator.SetTrigger(hash_attack);
-                    agent.stoppingDistance = (data.attack_dist-0.5f); 
-                    player.current_hp -= data.damage;   //데미지 주는 부분 변경 필요
-                    data.current_time = 0;
+                    if (protection_target == true)
+                    {
+                        audioplayer.PlayOneShot(attack_clip);
+                        animator.SetTrigger(hash_attack);
+                        agent.stoppingDistance = (data.attack_dist - 0.5f);
+                        protectionTarget.hp -= data.damage;   //방어 대상 공격
+                        data.current_time = 0;
+                    }
+                    else
+                    {
+                        audioplayer.PlayOneShot(attack_clip);
+                        animator.SetTrigger(hash_attack);
+                        agent.stoppingDistance = (data.attack_dist - 0.5f);
+                        player.current_hp -= data.damage;   //플레이어 공격
+                        data.current_time = 0;
+                    }
                 }
                 else
                 {
