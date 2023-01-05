@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class Bullet : MonoBehaviourPunCallbacks
+public class Bullet : MonoBehaviourPunCallbacks, IPunObservable
 {
     public float damage = 0;
     //public float knockback = 0;
@@ -42,6 +42,22 @@ public class Bullet : MonoBehaviourPunCallbacks
             monster.hit_true = true;
             if (!ps.isPlaying)
                 Destroy(this.gameObject);
+        }
+    }
+
+    Vector3 curPos;
+    Quaternion curRot;
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+       if(stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+        }
+       else
+        {
+            curPos = (Vector3)stream.ReceiveNext();
+            curRot = (Quaternion)stream.ReceiveNext();
         }
     }
 }

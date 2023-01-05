@@ -41,8 +41,8 @@ public abstract class WeaponeBase : MonoBehaviourPunCallbacks
 
     void GetPlayer()
     {
-        pv = GetComponentInParent<PhotonView>();
-        player = pv.gameObject.GetComponent<Player>();
+        player = transform.parent.GetComponentInParent<Player>();
+        pv = GetComponent<PhotonView>();
     }
 }
 

@@ -84,7 +84,10 @@ public class NsocutMonster : NewMonster
             agent.SetDestination(transform.position);
             Instantiate(Particles[3], transform.position, Quaternion.identity);
             //몬스터 생성 메서드 필요
-            StartCoroutine(Monster_Wave());
+            if(wave_count > 0)
+            {
+                StartCoroutine(Monster_Wave());
+            }
             data.skill_cool_time = 100f;
         }
         else

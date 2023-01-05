@@ -57,11 +57,15 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
+            stream.SendNext(current_hp);
+            stream.SendNext(is_dead);
         }
         else
         {
             curPos = (Vector3)stream.ReceiveNext();
             curRot = (Quaternion)stream.ReceiveNext();
+            current_hp = (float)stream.ReceiveNext();
+            is_dead = (bool)stream.ReceiveNext();
         }
     }
 
@@ -128,6 +132,16 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 ReSpawn();
             }
         }
+
+        if (spawn_point == null)
+        {
+            spawn_point = firstSpawnPoint[spawnNum];
+        }
+
+        if (spawnNum > 3)
+        {
+            spawnNum = 0;
+        }
     }
 
     void ReSpawn()
@@ -137,13 +151,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             respawn_time -= Time.deltaTime;
             if (respawn_time <= 0)
             {
-                helicopterAni.SetBool("Respawn", true);
                 transform.position = spawn_point.position;
                 if (isunrideheli == true)
                 {
                     helicopterrope.transform.DetachChildren();
                     helicopterplayerbody.transform.parent = originPlayer.transform;
-                    helicopterplayerbody.transform.rotation = new Quaternion(10.468f, 0, 0, 0);
                     is_dead = false;
                     current_hp = max_hp;
                     respawn_time = 3;
@@ -181,13 +193,29 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             rigid.AddForce(Vector3.up * jump_force, ForceMode.Impulse);
         }
     }
-
+    float timer = 5;
     void Dash()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded == true)//대쉬
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded == true && isdash == false)//대쉬
         {
-            Debug.Log("Dash!!!!!!!!");
-            rigid.AddForce(Vector3.forward * dash_force, ForceMode.Impulse);
+            Debug.Log("대쉬");
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+
+            Vector3 dash = new Vector3(-horizontal * dash_force * Time.deltaTime, 0, -vertical * dash_force * Time.deltaTime);
+            transform.position += Vector3.Lerp(transform.position,dash,5);
+            isdash = true;
+        }       
+        if(isdash == true)
+        {
+            timer -= Time.deltaTime;
+            Debug.Log(timer);
+            if (timer <= 0)
+            {
+                timer = 5;
+                isdash = false;
+                Debug.Log("대쉬 초기화");
+            }
         }
     }
 
@@ -246,7 +274,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void PickUpAndDropItem()
     {
-        if(isusehand && Input.GetKeyDown(KeyCode.E))
+        if (isusehand && Input.GetKeyDown(KeyCode.E))
         {
             hand.transform.DetachChildren();
         }
@@ -279,10 +307,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.layer == 11 && Input.GetKeyDown(KeyCode.E)) 
-        { 
-            isusehand = true; 
-            col.transform.parent = hand.transform; 
+        if (col.gameObject.layer == 11 && Input.GetKeyDown(KeyCode.E))
+        {
+            isusehand = true;
+            col.transform.parent = hand.transform;
         }
     }
 

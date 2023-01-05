@@ -1,14 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class DestroyMission : MissionBase
+public class DestroyMission : MissionBase, IPunObservable
 {
     public List<DestroyTarget> target = new List<DestroyTarget>();
     public List<GameObject> monster_group = new List<GameObject>();
     public List<GameObject> spawn_point = new List<GameObject>();
     public float wave_time;
     public bool started = false;
+
+    Vector3 curPos;
+    Quaternion curRot;
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+            stream.SendNext(started);
+            stream.SendNext(wave_time);
+        }
+        else
+        {
+            curPos = (Vector3)stream.ReceiveNext();
+            curRot = (Quaternion)stream.ReceiveNext();
+            started = (bool)stream.ReceiveNext();
+            wave_time = (float)stream.ReceiveNext();
+        }
+    }
 
     public float hp
     {
@@ -37,7 +58,8 @@ public class DestroyMission : MissionBase
     IEnumerator Spawn_Monster()
     {
         int i = Random.Range(0, monster_group.Count);
-        Instantiate(monster_group[i], spawn_point[i].transform.position, Quaternion.identity);
+        GameObject mg = Instantiate(monster_group[i], spawn_point[i].transform.position, Quaternion.identity);
+        mg.transform.parent = transform;
 
         yield return new WaitForSeconds(wave_time);
         StartCoroutine(Spawn_Monster());

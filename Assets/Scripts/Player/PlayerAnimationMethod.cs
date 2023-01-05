@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerAnimationMethod : MonoBehaviour
 {
+    public Animator heliAni;
     void RideHelicopter()
     {
+        heliAni.SetBool("Respawn", true);
         Player.instance.helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
         Player.instance.helicopterplayerbody.SetActive(false);
-        Player.instance.helicopterAni.SetBool("Respawn", true);
     }
     void UnRideHelicopter()
     {
@@ -16,7 +17,7 @@ public class PlayerAnimationMethod : MonoBehaviour
         //Player.instance.is_dead = false;
         Player.instance.isunrideheli = true;
         Player.instance.helicopterplayerbody.SetActive(true);
-        //Player.instance.helicopterrope.transform.DetachChildren();
+        Player.instance.helicopterrope.transform.DetachChildren();
         //Player.instance.helicopterplayerbody.transform.parent = Player.instance.originPlayer.transform;
     }
 

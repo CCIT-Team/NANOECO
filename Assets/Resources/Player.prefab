@@ -1733,6 +1733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67ab2f1c5d6e664d9cffccc17f28e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heliAni: {fileID: 4958753444626218893}
 --- !u!1 &4958753444761235237
 GameObject:
   m_ObjectHideFlags: 0
@@ -6891,7 +6892,7 @@ MonoBehaviour:
   max_hp: 100
   current_hp: 100
   jump_force: 1000
-  dash_force: 1000
+  dash_force: 350
   move_force: 15
   is_dead: 1
   respawn_time: 3
@@ -6901,7 +6902,7 @@ MonoBehaviour:
   - {fileID: 5082337188932917547, guid: c3723d5909920f04bb428b0f104922f0, type: 3}
   - {fileID: 4065306939797495791, guid: b0ef4b9fea4234a4c9db78a13975c953, type: 3}
   isGrounded: 1
-  hand: {fileID: 0}
+  hand: {fileID: 5534488910848128364}
   firstSpawnPoint:
   - {fileID: 0}
   - {fileID: 0}
@@ -6974,7 +6975,7 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Run
   - Type: 4
     SynchronizeType: 0
@@ -7790,7 +7791,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2db3280af693bcb42aeb2b958d9c6b3c, type: 2}
+  - {fileID: 2100000, guid: 8a67cace915e5f14a9b2f9828107e84f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8193,7 +8194,12 @@ PrefabInstance:
         type: 3}
       propertyPath: pv
       value: 
-      objectReference: {fileID: 5336137748936740197}
+      objectReference: {fileID: 2484978799560530570}
+    - target: {fileID: 1260985184230962757, guid: 175a86d2984881b4f992125a75b1abda,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 5336137748936740196}
     - target: {fileID: 2207186406622467455, guid: 175a86d2984881b4f992125a75b1abda,
         type: 3}
       propertyPath: m_RootOrder
@@ -8274,8 +8280,25 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1.73
       objectReference: {fileID: 0}
+    - target: {fileID: 5865528215935169142, guid: 175a86d2984881b4f992125a75b1abda,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 175a86d2984881b4f992125a75b1abda, type: 3}
+--- !u!114 &2484978799560530570 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5865528215935169142, guid: 175a86d2984881b4f992125a75b1abda,
+    type: 3}
+  m_PrefabInstance: {fileID: 8294189984755624188}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9054633827399986081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7907020837775719811 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2207186406622467455, guid: 175a86d2984881b4f992125a75b1abda,
