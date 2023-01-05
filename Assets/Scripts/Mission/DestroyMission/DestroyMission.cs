@@ -22,6 +22,7 @@ public class DestroyMission : MissionBase, IPunObservable
             stream.SendNext(started);
             stream.SendNext(wave_time);
             stream.SendNext(mm);
+            stream.SendNext(monster_group);
         }
         else
         {
@@ -30,6 +31,7 @@ public class DestroyMission : MissionBase, IPunObservable
             started = (bool)stream.ReceiveNext();
             wave_time = (float)stream.ReceiveNext();
             mm = (int)stream.ReceiveNext();
+            monster_group = (List<GameObject>)stream.ReceiveNext();
         }
     }
 
@@ -64,7 +66,6 @@ public class DestroyMission : MissionBase, IPunObservable
         {
             mm = Random.Range(0, monster_group.Count);
             GameObject mg = Instantiate(monster_group[mm], spawn_point[j].transform.position, Quaternion.identity);
-            //PhotonNetwork.Instantiate(monster_group[mm], spawn_point[j].transform.position, Quaternion.identity);
             mg.transform.parent = transform;
         }
 
