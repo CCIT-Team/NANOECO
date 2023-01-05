@@ -43,6 +43,10 @@ public class Bullet : MonoBehaviourPunCallbacks, IPunObservable
             if (!ps.isPlaying)
                 Destroy(this.gameObject);
         }
+        if(other.gameObject.layer == 11)
+        {
+            other.gameObject.GetComponent<DestroyTarget>()._hp -= damage;
+        }
     }
 
     Vector3 curPos;
