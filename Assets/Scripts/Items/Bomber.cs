@@ -6,7 +6,7 @@ using Photon.Realtime;
 
 public class Bomber : ItemControler
 {
-    int layerMask;
+    protected int layerMask;
     public override void Start()
     {
         base.Start();
@@ -28,5 +28,6 @@ public class Bomber : ItemControler
         useditem.SetActive(true);
 
         count--;
+        StartCoroutine("Cooling");
     }
 }
