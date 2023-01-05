@@ -12,13 +12,13 @@ public class PlayerMouseRotate : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        //cam = PhotonTestPlayer.instance.cam;
+        //cam = PhotonTestNaNoPlayer.instance.cam;
         cam = Camera.main;
     }
 
     private void Update()
     {
-        if (pv.IsMine && !Player.instance.is_dead) { Aim();}
+        if (pv.IsMine && !NaNoPlayer.instance.is_dead) { Aim();}
     }
 
     private void Aim()
