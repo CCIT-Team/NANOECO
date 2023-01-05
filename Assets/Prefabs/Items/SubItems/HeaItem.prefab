@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 4820149005735638166}
   - component: {fileID: 5302269009553925801}
   - component: {fileID: 494210727228904002}
+  - component: {fileID: -335389765113364190}
   m_Layer: 0
   m_Name: HeaItem
   m_TagString: Untagged
@@ -213,10 +214,32 @@ MonoBehaviour:
   iscooldown: 0
   maxcount: 3
   count: 3
-  itemprefab: {fileID: 4065306939797495791, guid: eb565618e10a34a4fb9771520ca5bbd5,
+  itemprefab: {fileID: 4065306939797495791, guid: ee6dd4045a229da468b5e352ab61b2f4,
     type: 3}
   useditem: {fileID: 0}
-  pv: {fileID: 0}
+  pv: {fileID: -335389765113364190}
+--- !u!114 &-335389765113364190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4065306939797495791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6142659002680335836
 GameObject:
   m_ObjectHideFlags: 0

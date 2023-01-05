@@ -24,14 +24,12 @@ public class Bullet : MonoBehaviourPunCallbacks, IPunObservable
     }
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("닿음");
         if (other.gameObject.layer == 8)
         {
-            Debug.Log("레이어 확인");
             if (explosive)
             {
                 speed = 0;
-                sp.radius = 3;
+                sp.radius = 5;
                 ps.Play();
                 transform.GetChild(1).gameObject.SetActive(false);
             }

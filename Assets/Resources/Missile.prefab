@@ -5063,6 +5063,7 @@ GameObject:
   - component: {fileID: 1079474223695046974}
   - component: {fileID: -4316363247423991619}
   - component: {fileID: 9020638318761881103}
+  - component: {fileID: -8478969635137327345}
   m_Layer: 0
   m_Name: Missile
   m_TagString: Untagged
@@ -5113,7 +5114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  knockback: 3
   speed: 50
   explosive: 1
   ps: {fileID: 2604782487299358872}
@@ -5135,10 +5135,27 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -4316363247423991619}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!54 &-8478969635137327345
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7167444510161355727}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &8811732898274589786
 GameObject:
   m_ObjectHideFlags: 0
