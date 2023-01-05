@@ -159,10 +159,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                     helicopterplayerbody.SetActive(true);
                     helicopterplayerbody.transform.parent = originPlayer.transform;
                     //helicopterrope.transform.DetachChildren();
-                    is_dead = false;
                     current_hp = max_hp;
                     respawn_time = 3;
                     isunrideheli = false;
+                    is_dead = false;
                 }
             }
         }
