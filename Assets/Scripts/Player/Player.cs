@@ -59,7 +59,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
             stream.SendNext(current_hp);
-            //stream.SendNext(is_dead);
+            stream.SendNext(is_dead);
             stream.SendNext(current_item);
         }
         else
@@ -67,7 +67,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             curPos = (Vector3)stream.ReceiveNext();
             curRot = (Quaternion)stream.ReceiveNext();
             current_hp = (float)stream.ReceiveNext();
-            //is_dead = (bool)stream.ReceiveNext();
+            is_dead = (bool)stream.ReceiveNext();
             current_item = (int)stream.ReceiveNext();
         }
     }
@@ -128,7 +128,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             is_dead = true;
             helicopter.SetActive(true);
             helicopterplayerbody.transform.parent = helicopterrope.transform;
-            // helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
+            helicopter.transform.rotation = new Quaternion(0, 0, 0,0);
         }
 
         if (spawn_point == null)
@@ -155,22 +155,25 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             if (isunrideheli == true)
             {
                 Debug.Log("내려 내려 내려");
-                GameManager.Instance.player_count += 1;
+                helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
                 helicopterplayerbody.SetActive(true);
                 helicopterrope.transform.DetachChildren();
                 helicopterplayerbody.transform.parent = originPlayer.transform;           
             }
             if (helicopterAni.GetBool("HliEnd"))
             {
+                helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
                 current_hp = max_hp;
-                respawn_time = 3;
-                DontHitTime(3);
-                isunrideheli = false;
-                is_dead = false;
+                respawn_time = 3;           
                 helicopterplayerbody.SetActive(true);
                 helicopterrope.transform.DetachChildren();
                 helicopterplayerbody.transform.parent = originPlayer.transform;
                 helicopter.SetActive(false);
+                DontHitTime(3);
+                isunrideheli = false;
+                is_dead = false;
+                helicopterAni.SetBool("Respawn", false);
+                helicopterAni.SetBool("HliEnd", false);
             }
         }
     }
