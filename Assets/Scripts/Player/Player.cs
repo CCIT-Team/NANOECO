@@ -126,8 +126,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void Dead()
     {
-        if (current_hp <= 0)
+        if (current_hp <= 0 || is_dead == true)
         {
+            current_hp = 0;
             is_dead = true;
             helicopter.SetActive(true);
             helicopterplayerbody.transform.parent = helicopterrope.transform;
@@ -155,8 +156,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 transform.position = spawn_point.position;
                 if (isunrideheli == true)
                 {
-                    helicopterrope.transform.DetachChildren();
+                    helicopterplayerbody.SetActive(true);
                     helicopterplayerbody.transform.parent = originPlayer.transform;
+                    //helicopterrope.transform.DetachChildren();
                     is_dead = false;
                     current_hp = max_hp;
                     respawn_time = 3;
