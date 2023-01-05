@@ -17,10 +17,10 @@ public class PlayerAnimationMethod : MonoBehaviour
         //Player.instance.is_dead = false;
         //Player.instance.helicopterrope.transform.DetachChildren();
         Player.instance.isunrideheli = true;
-       // Debug.Log(Player.instance.isunrideheli + "플레이어 내렸냐?");
+        // Debug.Log(Player.instance.isunrideheli + "플레이어 내렸냐?");
         Player.instance.helicopterplayerbody.SetActive(true);
-       // Player.instance.helicopterrope.transform.DetachChildren();
-        //Player.instance.helicopterplayerbody.transform.parent = Player.instance.originPlayer.transform;
+        Player.instance.helicopterrope.transform.DetachChildren();
+        Player.instance.helicopterplayerbody.transform.parent = Player.instance.originPlayer.transform;
     }
 
     void PlayerDead()

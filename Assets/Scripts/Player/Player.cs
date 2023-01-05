@@ -31,6 +31,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     int current_item = 0;
     bool isdash = false;
     public bool isGrounded = true;
+    bool isdontHit = false;
     [Header("아이템 줍기")]
     public GameObject hand;
     bool isusehand = false;
@@ -156,14 +157,30 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 transform.position = spawn_point.position;
                 if (isunrideheli == true)
                 {
+                    Debug.Log("내려 내려 내려");
                     helicopterplayerbody.SetActive(true);
+                    helicopterrope.transform.DetachChildren();
                     helicopterplayerbody.transform.parent = originPlayer.transform;
-                    //helicopterrope.transform.DetachChildren();
                     current_hp = max_hp;
                     respawn_time = 3;
+                    DontHitTime(3);
                     isunrideheli = false;
                     is_dead = false;
                 }
+            }
+        }
+    }
+
+    void DontHitTime(float time)
+    {
+        isdontHit = true;
+        if(isdontHit)
+        {
+            current_hp = max_hp;
+            time -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                isdontHit = false;
             }
         }
     }
@@ -208,6 +225,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             Vector3 dash = new Vector3(-horizontal * dash_force * Time.deltaTime, 0, -vertical * dash_force * Time.deltaTime);
             transform.position += Vector3.Lerp(transform.position,dash,5);
             isdash = true;
+            DontHitTime(1);
         }       
         if(isdash == true)
         {
