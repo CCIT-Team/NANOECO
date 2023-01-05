@@ -15,9 +15,7 @@ public class PlayerAnimationMethod : MonoBehaviour
     {
         Debug.Log("헬기 내리기");
         //Player.instance.is_dead = false;
-
         Player.instance.helicopterrope.transform.DetachChildren();
-
         Player.instance.isunrideheli = true;
         Debug.Log(Player.instance.isunrideheli + "플레이어 내렸냐?");
         Player.instance.helicopterplayerbody.SetActive(true);
@@ -37,7 +35,7 @@ public class PlayerAnimationMethod : MonoBehaviour
 
     void HelicopterEnd()
     {
-        Player.instance.helicopter.GetComponent<Animator>().SetBool("HliEnd", true);
+        heliAni.SetBool("HliEnd", true);
         Player.instance.helicopter.SetActive(false);
     }
 
