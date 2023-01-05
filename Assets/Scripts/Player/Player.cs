@@ -110,18 +110,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void Update()
     {
         if (pv.IsMine && PhotonNetwork.IsConnected && !is_dead) { Move(); }
+        if (pv.IsMine) { ItemChange(); Dead(); }
         if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
-        //pv.RPC("DestroyRPC", RpcTarget.AllBuffered);
-        ItemChange();
         SpawnPointUpdate();
-        Dead();
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            current_hp = -100;
-        }
         if (helicopterAni.GetBool("Respawn"))
         {
-            ReSpawn();
+            if (pv.IsMine) { ReSpawn(); }  
         }
     }
 
