@@ -18,7 +18,7 @@ public class PlayerAnimationMethod : MonoBehaviour
         //Player.instance.helicopterrope.transform.DetachChildren();
         Player.instance.isunrideheli = true;
        // Debug.Log(Player.instance.isunrideheli + "플레이어 내렸냐?");
-       // Player.instance.helicopterplayerbody.SetActive(true);
+        Player.instance.helicopterplayerbody.SetActive(true);
        // Player.instance.helicopterrope.transform.DetachChildren();
         //Player.instance.helicopterplayerbody.transform.parent = Player.instance.originPlayer.transform;
     }
