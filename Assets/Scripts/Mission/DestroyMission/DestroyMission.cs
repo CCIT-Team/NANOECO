@@ -10,6 +10,7 @@ public class DestroyMission : MissionBase, IPunObservable
     public List<GameObject> spawn_point = new List<GameObject>();
     public float wave_time;
     public bool started = false;
+    public PhotonView pv;
 
     Vector3 curPos;
     Quaternion curRot;
