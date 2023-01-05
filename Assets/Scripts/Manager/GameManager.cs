@@ -23,11 +23,11 @@ public class GameManager : Singleton<GameManager>
 
      void Update()
     {
-        SpawnPointUpdate();
         if(sp == null || SceneManager.sceneCount == 3 && sp == null)
         {
             sp = GameObject.FindGameObjectWithTag("Spawn").GetComponent<SpawnPoint>();
         }
+        SpawnPointUpdate();
     }
 
     public void SpawnPointUpdate()

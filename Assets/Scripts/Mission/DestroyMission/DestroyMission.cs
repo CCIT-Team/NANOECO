@@ -21,6 +21,7 @@ public class DestroyMission : MissionBase, IPunObservable
             stream.SendNext(transform.rotation);
             stream.SendNext(started);
             stream.SendNext(wave_time);
+            stream.SendNext(mm);
         }
         else
         {
@@ -28,6 +29,7 @@ public class DestroyMission : MissionBase, IPunObservable
             curRot = (Quaternion)stream.ReceiveNext();
             started = (bool)stream.ReceiveNext();
             wave_time = (float)stream.ReceiveNext();
+            mm = (int)stream.ReceiveNext();
         }
     }
 
@@ -55,11 +57,15 @@ public class DestroyMission : MissionBase, IPunObservable
         StartCoroutine(Spawn_Monster());
     }
 
+    int mm;
     IEnumerator Spawn_Monster()
     {
-        int i = Random.Range(0, monster_group.Count);
-        GameObject mg = Instantiate(monster_group[i], spawn_point[i].transform.position, Quaternion.identity);
-        mg.transform.parent = transform;
+        for(int j = 0; j < spawn_point.Count; j++)
+        {
+            mm = Random.Range(0, monster_group.Count);
+            GameObject mg = Instantiate(monster_group[mm], spawn_point[j].transform.position, Quaternion.identity);
+            mg.transform.parent = transform;
+        }
 
         yield return new WaitForSeconds(wave_time);
         StartCoroutine(Spawn_Monster());
@@ -71,6 +77,11 @@ public class DestroyMission : MissionBase, IPunObservable
         foreach (var g in target)
         {
             hp += g._hp;
+        }
+        
+        if(hp <= 0)
+        {
+            StopAllCoroutines();
         }
         return hp;
     }
