@@ -64,6 +64,7 @@ public class DestroyMission : MissionBase, IPunObservable
         {
             mm = Random.Range(0, monster_group.Count);
             GameObject mg = Instantiate(monster_group[mm], spawn_point[j].transform.position, Quaternion.identity);
+            //PhotonNetwork.Instantiate(monster_group[mm], spawn_point[j].transform.position, Quaternion.identity);
             mg.transform.parent = transform;
         }
 
