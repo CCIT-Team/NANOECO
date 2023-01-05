@@ -113,6 +113,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
     float RandTime = 5;
     public float Rand_Chase_Time;
     #endregion
+    PhotonView PV;
 
     Vector3 curPos;
     Quaternion curRot;
@@ -352,7 +353,8 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
         if(data.current_hp <= 0)
         {
             is_dead = true;
-            Is_Dead();
+            //Is_Dead();
+            IISS_DDEEAADD();
             is_dead = false;
         }
     }
@@ -374,6 +376,17 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             Init();
             current_state = CURRNET_STATE.EIdle;
         }
+    }
+
+    public void IISS_DDEEAADD()
+    {
+        if (PV.IsMine)
+            PV.RPC("DeadRPC", RpcTarget.AllBuffered);
+    }
+    [PunRPC]
+    public void DeadRPC()
+    {
+        Is_Dead();
     }
 
     public virtual void Hit_Mon()
