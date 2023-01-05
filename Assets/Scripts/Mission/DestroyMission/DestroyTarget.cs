@@ -12,9 +12,11 @@ public class DestroyTarget : MonoBehaviourPunCallbacks
         get { return hp; }
         set
         {
-            hp = value;
-            if(hp <= 0) { Destroy_Object(); }
-
+            if(dm.pv.IsMine)
+            {
+                hp = value;
+                if (hp <= 0) { Destroy_Object(); }
+            }
         }
     }
     Vector3 curPos;
@@ -25,15 +27,11 @@ public class DestroyTarget : MonoBehaviourPunCallbacks
         {
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
-            stream.SendNext(hp);
-            stream.SendNext(_hp);
         }
         else
         {
             curPos = (Vector3)stream.ReceiveNext();
             curRot = (Quaternion)stream.ReceiveNext();
-            hp = (float)stream.ReceiveNext();
-            _hp = (float)stream.ReceiveNext();
         }
     }
 
