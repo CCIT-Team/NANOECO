@@ -1660,7 +1660,6 @@ GameObject:
   - component: {fileID: 4958753444626218893}
   - component: {fileID: 2343849699127049534}
   - component: {fileID: 6352820097762869474}
-  - component: {fileID: 3748673554163148402}
   m_Layer: 0
   m_Name: Helicopter
   m_TagString: Untagged
@@ -1735,30 +1734,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heliAni: {fileID: 4958753444626218893}
---- !u!114 &3748673554163148402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4958753444626218891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 1
-  m_SynchronizeParameters:
-  - Type: 4
-    SynchronizeType: 2
-    Name: Respawn
-  - Type: 4
-    SynchronizeType: 2
-    Name: HliEnd
-  m_SynchronizeLayers:
-  - SynchronizeType: 2
-    LayerIndex: 0
 --- !u!1 &4958753444761235237
 GameObject:
   m_ObjectHideFlags: 0
@@ -6981,6 +6956,7 @@ MonoBehaviour:
   - {fileID: 5336137748936740218}
   - {fileID: 5336137748936740219}
   - {fileID: 5336137748936740192}
+  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

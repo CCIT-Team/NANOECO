@@ -168,6 +168,13 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                     is_dead = false;
                 }
             }
+            if(helicopterAni.GetBool("HliEnd"))
+            {
+                helicopterplayerbody.SetActive(true);
+                helicopterrope.transform.DetachChildren();
+                helicopterplayerbody.transform.parent = originPlayer.transform;
+                helicopter.SetActive(false);
+            }
         }
     }
 
