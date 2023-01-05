@@ -165,6 +165,7 @@ public class TransportMission : MissionBase, IPunObservable
 
     public override void Clear()
     {
+        print(4444);
         target.transform.SetParent(heli_rope.transform);
         heli.SetActive(true);
         ms.mission_0_clear = true;
