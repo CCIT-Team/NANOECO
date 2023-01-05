@@ -16,6 +16,7 @@ public class PlayerAnimationMethod : MonoBehaviour
         Debug.Log("헬기 내리기");
         //Player.instance.is_dead = false;
         Player.instance.isunrideheli = true;
+        Debug.Log(Player.instance.isunrideheli + "플레이어 내렸냐?");
         Player.instance.helicopterplayerbody.SetActive(true);
         Player.instance.helicopterrope.transform.DetachChildren();
         //Player.instance.helicopterplayerbody.transform.parent = Player.instance.originPlayer.transform;
