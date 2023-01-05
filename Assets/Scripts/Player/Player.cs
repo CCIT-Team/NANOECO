@@ -150,22 +150,23 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             if (respawn_time <= 0)
             {
                 transform.position = spawn_point.position;
-                isunrideheli = true;
+                //isunrideheli = true;
             }
             if (isunrideheli == true)
             {
                 Debug.Log("내려 내려 내려");
+                GameManager.Instance.player_count += 1;
                 helicopterplayerbody.SetActive(true);
                 helicopterrope.transform.DetachChildren();
-                helicopterplayerbody.transform.parent = originPlayer.transform;
+                helicopterplayerbody.transform.parent = originPlayer.transform;           
+            }
+            if (helicopterAni.GetBool("HliEnd"))
+            {
                 current_hp = max_hp;
                 respawn_time = 3;
                 DontHitTime(3);
                 isunrideheli = false;
                 is_dead = false;
-            }
-            if (helicopterAni.GetBool("HliEnd"))
-            {
                 helicopterplayerbody.SetActive(true);
                 helicopterrope.transform.DetachChildren();
                 helicopterplayerbody.transform.parent = originPlayer.transform;

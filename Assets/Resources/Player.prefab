@@ -6956,7 +6956,6 @@ MonoBehaviour:
   - {fileID: 5336137748936740218}
   - {fileID: 5336137748936740219}
   - {fileID: 5336137748936740192}
-  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -6996,6 +6995,8 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
+  - SynchronizeType: 0
+    LayerIndex: 1
 --- !u!114 &5336137748936740219
 MonoBehaviour:
   m_ObjectHideFlags: 0
