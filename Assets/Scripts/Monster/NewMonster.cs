@@ -52,7 +52,7 @@ public struct Data
     public float state_time;
 }
 
-public abstract class NewMonster : MonoBehaviourPunCallbacks//, IPunObservable
+public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
 {
     #region 파라미터
     protected readonly int hash_walk = Animator.StringToHash("Walk");
@@ -117,23 +117,23 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks//, IPunObservable
 
     //Vector3 curPos;
     //Quaternion curRot;
-    //public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    //{
-    //    if (stream.IsWriting)
-    //    {
-    //        stream.SendNext(transform.position);
-    //        stream.SendNext(transform.rotation);
-    //        stream.SendNext(data.current_hp);
-    //        stream.SendNext(is_dead);
-    //    }
-    //    else
-    //    {
-    //        curPos = (Vector3)stream.ReceiveNext();
-    //        curRot = (Quaternion)stream.ReceiveNext();
-    //        data.current_hp = (float)stream.ReceiveNext();
-    //        is_dead = (bool)stream.ReceiveNext();
-    //    }
-    //}
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            //        stream.SendNext(transform.position);
+            //        stream.SendNext(transform.rotation);
+            stream.SendNext(data.current_hp);
+            stream.SendNext(is_dead);
+        }
+        else
+        {
+            //        curPos = (Vector3)stream.ReceiveNext();
+            //        curRot = (Quaternion)stream.ReceiveNext();
+            data.current_hp = (float)stream.ReceiveNext();
+            is_dead = (bool)stream.ReceiveNext();
+        }
+    }
     public abstract void Init();
 
     public virtual void Idle()
@@ -372,7 +372,8 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks//, IPunObservable
             animator.SetBool(hash_chase, false);
             Instantiate(Particles[0], transform.position, Quaternion.identity);
             Instantiate(Particles[1], transform.position, Quaternion.identity);
-            Destroy(gameObject, 0.3f);
+            //Destroy(gameObject, 0.3f);
+            PhotonNetwork.Destroy(gameObject);
             Init();
             current_state = CURRNET_STATE.EIdle;
         }
