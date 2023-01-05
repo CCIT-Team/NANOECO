@@ -93,7 +93,7 @@ public class NdestructMonster : NewMonster
             Collider[] targets = Physics.OverlapSphere(transform.position, data.patrol_dist, target_mask);
             for (int i = 0; i < targets.Length; i++)
             {
-                player = targets[i].GetComponent<Player>();
+                player = targets[i].GetComponent<NaNoPlayer>();
                 if (player != null)
                 {
                     lock_target = player.gameObject;
