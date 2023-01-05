@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class NtankerMonster : NewMonster
 {
     System.Action mon_action;
 
     #region
+    [PunRPC]
     public NtankerMonster()
     {
         data.max_hp = 200f;

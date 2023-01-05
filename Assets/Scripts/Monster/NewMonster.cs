@@ -113,7 +113,6 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
     float RandTime = 5;
     public float Rand_Chase_Time;
     #endregion
-    public PhotonView pv;
 
     Vector3 curPos;
     Quaternion curRot;
@@ -180,7 +179,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             {
                 player = targets[i].GetComponent<Player>();
                 //if (player != null)
-                if (player != null && pv.IsMine)
+                if (player != null)
                 {
                     lock_target = player.gameObject;
                     current_state = CURRNET_STATE.EChase;
@@ -197,7 +196,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             {
                 protectionTarget = targets[i].GetComponent<ProtectionTarget>();
                 //if (player != null)
-                if (protectionTarget != null && pv.IsMine)
+                if (protectionTarget != null)
                 {
                     lock_target = protectionTarget.gameObject;
                     current_state = CURRNET_STATE.EChase;
@@ -214,7 +213,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             {
                 player = targets[i].GetComponent<Player>();
                 //if (player != null)
-                if (player != null && pv.IsMine)
+                if (player != null)
                 {
                     lock_target = player.gameObject;
                     current_state = CURRNET_STATE.EChase;
