@@ -42,7 +42,7 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
 
     void CameraEvent()
     {
-        switch (Player.instance.camera_shaking_num)
+        switch (NaNoPlayer.instance.camera_shaking_num)
         {
             case 0:
                 StopCoroutine(CameraShaking(0, 0));
@@ -81,7 +81,7 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
             yield return null;
 
             Camera.main.transform.localPosition = originpos;
-            Player.instance.camera_shaking_num = 0;
+            NaNoPlayer.instance.camera_shaking_num = 0;
         }
     }
 

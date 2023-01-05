@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class NwideFMonster : NewMonster
 {
     System.Action mon_action;
@@ -12,7 +12,7 @@ public class NwideFMonster : NewMonster
     private GameObject shot_pos;
 
     #region �ʱⰪ
-
+    [PunRPC]
     public NwideFMonster()
     {
         data.max_hp = 80f;
@@ -60,6 +60,7 @@ public class NwideFMonster : NewMonster
         data.current_time = 0f;
         data.state_time = 0f;
         on_event = false;
+        protection_target = false;
     }
     #endregion
     private void Awake()
@@ -72,7 +73,7 @@ public class NwideFMonster : NewMonster
 
     private void FixedUpdate()
     {
-        mon_action();
+            mon_action();
     }
 
     public override void Attack()

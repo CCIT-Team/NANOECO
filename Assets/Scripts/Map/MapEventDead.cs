@@ -6,11 +6,7 @@ public class MapEventDead : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        //½ÌÅ©´ë, ±â¸§Åë, ³«»ç
-        if (other.gameObject.layer == 6)
-        {
-            var player = other.GetComponent<Player>();
+            var player = other.GetComponent<NaNoPlayer>();
             player.is_dead = true;
-        }
     }
 }

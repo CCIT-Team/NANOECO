@@ -72,7 +72,7 @@ public class Bomb : MonoBehaviourPunCallbacks
             }
             else if (targetLayer == 7)
             {
-                var pl = other.gameObject.GetComponent<Player>();
+                var pl = other.gameObject.GetComponent<NaNoPlayer>();
                 pl.current_hp += damage;
             }
 

@@ -6,16 +6,17 @@ using Photon.Realtime;
 
 public class Bullet : MonoBehaviourPunCallbacks, IPunObservable
 {
-    public float damage = 0;
+    protected float flytime = 1;
+    public float damage = 5;
     //public float knockback = 0;
-    public float speed = 500;
+    public float speed = 50;
     public bool explosive = false;
     public ParticleSystem ps;
     SphereCollider sp;
 
     private void Start()
     {
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 50*flytime/speed);
         sp = GetComponent<SphereCollider>();
     }
     private void Update()
@@ -24,14 +25,12 @@ public class Bullet : MonoBehaviourPunCallbacks, IPunObservable
     }
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("닿음");
         if (other.gameObject.layer == 8)
         {
-            Debug.Log("레이어 확인");
             if (explosive)
             {
                 speed = 0;
-                sp.radius = 3;
+                sp.radius = 5;
                 ps.Play();
                 transform.GetChild(1).gameObject.SetActive(false);
             }
@@ -42,6 +41,10 @@ public class Bullet : MonoBehaviourPunCallbacks, IPunObservable
             monster.hit_true = true;
             if (!ps.isPlaying)
                 Destroy(this.gameObject);
+        }
+        if(other.gameObject.layer == 11)
+        {
+            other.gameObject.GetComponent<DestroyTarget>()._hp -= damage;
         }
     }
 

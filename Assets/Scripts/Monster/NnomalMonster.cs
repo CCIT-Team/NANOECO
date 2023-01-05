@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class NnomalMonster : NewMonster
 {
     System.Action mon_action;
     #region �ʱⰪ
-
+    [PunRPC]
     public NnomalMonster()
     {
         data.max_hp = 100f;
@@ -54,19 +54,21 @@ public class NnomalMonster : NewMonster
         data.current_time = 0f;
         data.state_time = 0f;
         on_event = false;
+        protection_target = false;
     }
     #endregion
     private void Awake()
     {
-        mon_action += Monster_State;
-        mon_action += Hp_Check;
-        mon_action += Hit_Mon; 
-        mon_action += Another_Find_Player;
+            mon_action += Monster_State;
+            mon_action += Hp_Check;
+            mon_action += Hit_Mon;
+            mon_action += Another_Find_Player;
     }
 
     private void FixedUpdate()
     {
-        mon_action();
+
+            mon_action();
     }
 
     private void Update()

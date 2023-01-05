@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class NnomalFMonster : NewMonster
 {
@@ -11,6 +12,7 @@ public class NnomalFMonster : NewMonster
     private GameObject shot_pos;
 
     #region �ʱⰪ
+    [PunRPC]
     public NnomalFMonster()
     {
         data.max_hp = 50f;
@@ -58,6 +60,7 @@ public class NnomalFMonster : NewMonster
         data.current_time = 0f;
         data.state_time = 0f;
         on_event = false;
+        protection_target = false;
     }
     #endregion
     private void Awake()

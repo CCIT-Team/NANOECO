@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class NsocutMonster : NewMonster
 {
     System.Action mon_action;
@@ -11,6 +11,7 @@ public class NsocutMonster : NewMonster
     public float wave_time;
 
     #region 초기값
+    [PunRPC]
     public NsocutMonster()
     {
         data.max_hp = 50f;
@@ -58,6 +59,7 @@ public class NsocutMonster : NewMonster
         data.current_time = 0f;
         data.state_time = 0f;
         on_event = false;
+        protection_target = false;
     }
     #endregion
     private void Awake()
@@ -70,7 +72,7 @@ public class NsocutMonster : NewMonster
 
     private void FixedUpdate()
     {
-        mon_action();
+            mon_action();
     }
 
     public override void Skill()
@@ -82,7 +84,6 @@ public class NsocutMonster : NewMonster
         if (dist <= data.skill_dist)
         {
             agent.SetDestination(transform.position);
-            Instantiate(Particles[3], transform.position, Quaternion.identity);
             //몬스터 생성 메서드 필요
             if(wave_count > 0)
             {
@@ -100,6 +101,7 @@ public class NsocutMonster : NewMonster
     IEnumerator Monster_Wave()
     {
         wave_count--;
+        Instantiate(Particles[3], transform.position, Quaternion.identity);
         int i = Random.Range(0, monster_group.Count);
         Instantiate(monster_group[i], spawn_point[i].position, Quaternion.identity);
         yield return new WaitForSeconds(wave_time);

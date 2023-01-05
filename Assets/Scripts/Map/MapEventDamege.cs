@@ -6,11 +6,7 @@ public class MapEventDamege : MonoBehaviour
 {
     private void OnTriggerStay(Collider other)
     {
-        //±×¸±
-        if (other.gameObject.layer == 6)
-        {
-            var player = other.GetComponent<Player>();
+            var player = other.GetComponent<NaNoPlayer>();
             player.current_hp -= 1f;
-        }
     }
 }

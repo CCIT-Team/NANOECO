@@ -71,7 +71,9 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 9056512917476034948}
+  - {fileID: 7882048350047497054}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -154,6 +156,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2112509909748419478, guid: 548fdf1d932624845a340d2251566185,
+        type: 3}
+      propertyPath: on_event
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 548fdf1d932624845a340d2251566185, type: 3}
 --- !u!4 &1913441839931293231 stripped
@@ -183,6 +190,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112509909748419478, guid: 548fdf1d932624845a340d2251566185,
+        type: 3}
+      propertyPath: on_event
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4168761883600027696, guid: 548fdf1d932624845a340d2251566185,
         type: 3}
@@ -263,6 +275,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tanker_Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 1920188697191961061, guid: 7906c25727048dd4ba5a1d4ca8b75741,
+        type: 3}
+      propertyPath: on_event
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1920188697191961115, guid: 7906c25727048dd4ba5a1d4ca8b75741,
         type: 3}

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class TransportMission : MissionBase
+public class TransportMission : MissionBase, IPunObservable
 {
     [Header("미션 세팅")]
     public List<TransportPoint> path;
@@ -46,6 +47,30 @@ public class TransportMission : MissionBase
     public Transform tail_rotor;
     public float rotor_speed;
     public float tail_rotor_speed;
+
+    Vector3 curPos;
+    Quaternion curRot;
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+            stream.SendNext(t);
+            stream.SendNext(current_point);
+            stream.SendNext(active_count);
+            stream.SendNext(is_active);
+        }
+        else
+        {
+            curPos = (Vector3)stream.ReceiveNext();
+            curRot = (Quaternion)stream.ReceiveNext();
+            t = (float)stream.ReceiveNext();
+            current_point = (int)stream.ReceiveNext();
+            active_count = (int)stream.ReceiveNext();
+            is_active = (bool)stream.ReceiveNext();
+        }
+    }
 
     void Update()
     {
@@ -133,12 +158,14 @@ public class TransportMission : MissionBase
         for(int i = 0; i < col.Count; i++)
         {
             int m = Random.Range(0, monster_groups.Count);
-            Instantiate(monster_groups[i], col[i].position, Quaternion.identity);
+            GameObject mg = Instantiate(monster_groups[i], col[i].position, Quaternion.identity);
+            mg.transform.parent = transform;
         }
     }
 
     public override void Clear()
     {
+        print(4444);
         target.transform.SetParent(heli_rope.transform);
         heli.SetActive(true);
         ms.mission_0_clear = true;
