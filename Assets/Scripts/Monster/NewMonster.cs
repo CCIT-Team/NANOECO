@@ -68,7 +68,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
     protected MONSTER_TYPE monster_type;
     [SerializeField]
     protected Collider[] targets;
-    protected Player player;
+    protected NaNoPlayer player;
     protected ProtectionTarget protectionTarget;
     [SerializeField]
     protected NavMeshAgent agent;
@@ -178,7 +178,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             Collider[] targets = Physics.OverlapSphere(transform.position, data.event_chase_dist, target_mask);
             for (int i = 0; i < targets.Length; i++)
             {
-                player = targets[i].GetComponent<Player>();
+                player = targets[i].GetComponent<NaNoPlayer>();
                 //if (player != null)
                 if (player != null)
                 {
@@ -212,7 +212,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             Collider[] targets = Physics.OverlapSphere(transform.position, data.chase_dist, target_mask);
             for (int i = 0; i < targets.Length; i++)
             {
-                player = targets[i].GetComponent<Player>();
+                player = targets[i].GetComponent<NaNoPlayer>();
                 //if (player != null)
                 if (player != null)
                 {
