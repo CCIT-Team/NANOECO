@@ -1963,7 +1963,6 @@ MonoBehaviour:
   type: -1
   damage: 0
   attackspeed: 0
-  realdelay: 0
   isdelay: 0
   pv: {fileID: 0}
   player: {fileID: 0}
@@ -2349,7 +2348,6 @@ MonoBehaviour:
   type: -1
   damage: 0
   attackspeed: 0
-  realdelay: 0
   isdelay: 0
   pv: {fileID: 0}
   player: {fileID: 0}
@@ -2689,7 +2687,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 2267237792599771496}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -7946,6 +7945,7 @@ MonoBehaviour:
   - {fileID: 1462028979}
   wave_time: 5
   started: 0
+  pv: {fileID: 1584547218306115379}
 --- !u!65 &5604700466465971000
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8682,7 +8682,6 @@ MonoBehaviour:
   type: -1
   damage: 0
   attackspeed: 0
-  realdelay: 0
   isdelay: 0
   pv: {fileID: 0}
   player: {fileID: 0}
@@ -9393,7 +9392,6 @@ MonoBehaviour:
   type: -1
   damage: 0
   attackspeed: 0
-  realdelay: 0
   isdelay: 0
   pv: {fileID: 0}
   player: {fileID: 0}
@@ -9513,7 +9511,6 @@ MonoBehaviour:
   type: -1
   damage: 0
   attackspeed: 0
-  realdelay: 0
   isdelay: 0
   pv: {fileID: 0}
   player: {fileID: 0}
@@ -10085,7 +10082,6 @@ MonoBehaviour:
   type: -1
   damage: 0
   attackspeed: 0
-  realdelay: 0
   isdelay: 0
   pv: {fileID: 0}
   player: {fileID: 0}
@@ -10205,7 +10201,6 @@ MonoBehaviour:
   type: -1
   damage: 0
   attackspeed: 0
-  realdelay: 0
   isdelay: 0
   pv: {fileID: 0}
   player: {fileID: 0}
@@ -10403,7 +10398,6 @@ MonoBehaviour:
   type: -1
   damage: 0
   attackspeed: 0
-  realdelay: 0
   isdelay: 0
   pv: {fileID: 0}
   player: {fileID: 0}
@@ -10935,7 +10929,6 @@ MonoBehaviour:
   type: -1
   damage: 0
   attackspeed: 0
-  realdelay: 0
   isdelay: 0
   pv: {fileID: 0}
   player: {fileID: 0}
@@ -11602,7 +11595,6 @@ MonoBehaviour:
   type: -1
   damage: 0
   attackspeed: 0
-  realdelay: 0
   isdelay: 0
   pv: {fileID: 0}
   player: {fileID: 0}
@@ -12187,7 +12179,6 @@ MonoBehaviour:
   type: -1
   damage: 0
   attackspeed: 0
-  realdelay: 0
   isdelay: 0
   pv: {fileID: 0}
   player: {fileID: 0}
@@ -12307,7 +12298,6 @@ MonoBehaviour:
   type: -1
   damage: 0
   attackspeed: 0
-  realdelay: 0
   isdelay: 0
   pv: {fileID: 0}
   player: {fileID: 0}
