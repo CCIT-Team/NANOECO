@@ -14,6 +14,7 @@ public class Range : WeaponeBase
     public bool explosion = false;
     int skill;
     bool isreloading = false;
+    protected ParticleSystem p;
     public override void Start()
     {
         base.Start();
@@ -36,6 +37,7 @@ public class Range : WeaponeBase
         bullet.damage = damage;
         bullet.explosive = explosion;
         bulletname = bullet.gameObject.name;
+        p = firePosition.GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -64,6 +66,7 @@ public class Range : WeaponeBase
     public override void Attack()
     {
         GameObject chargedbullet = Instantiate(bullet.gameObject);
+        p.Play();
         chargedbullet.transform.position = firePosition.transform.position;
         chargedbullet.transform.rotation = firePosition.transform.rotation;
         //PhotonNetwork.Instantiate(bulletname, firePosition.transform.position, firePosition.transform.rotation);
@@ -96,6 +99,7 @@ public class Range : WeaponeBase
         StartCoroutine("AttackDelay");
     }
 
+    [PunRPC]
     void ReloadRPC()
     {
         isdelay = true;

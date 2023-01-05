@@ -5,17 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 public class RangeSpread : Range
 {
-
-    ParticleSystem p;
     public int spreadamunt = 15;
-    
-
-    public override void Start()
-    {
-        base.Start();
-        //bullet.GetComponent<Bullet>().knockback = knockback;
-        p = firePosition.GetComponent<ParticleSystem>();
-    }
 
     void Update()
     {
