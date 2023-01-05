@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class NsocutMonster : NewMonster
 {
     System.Action mon_action;
@@ -11,6 +11,7 @@ public class NsocutMonster : NewMonster
     public float wave_time;
 
     #region �ʱⰪ
+    [PunRPC]
     public NsocutMonster()
     {
         data.max_hp = 50f;

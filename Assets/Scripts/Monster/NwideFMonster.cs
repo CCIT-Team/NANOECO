@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class NwideFMonster : NewMonster
 {
     System.Action mon_action;
@@ -12,7 +12,7 @@ public class NwideFMonster : NewMonster
     private GameObject shot_pos;
 
     #region �ʱⰪ
-
+    [PunRPC]
     public NwideFMonster()
     {
         data.max_hp = 80f;
