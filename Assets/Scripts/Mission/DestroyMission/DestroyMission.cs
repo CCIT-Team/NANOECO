@@ -53,6 +53,7 @@ public class DestroyMission : MissionBase, IPunObservable
     public override void Clear()
     {
         ms.mission_1_clear = true;
+        ms.Mission_Clear(1);
     }
 
     public override void Mission_Event()

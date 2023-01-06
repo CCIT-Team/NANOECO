@@ -1786,7 +1786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc2b54a66097cde4c97f9c854cea0dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mission_name: 
+  mission_name: Protect the kitchen utensils
   mission_info: 
   ms: {fileID: 5604700467207207537}
   target: {fileID: 5604700467634897020}
@@ -7925,7 +7925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc75af9b89cd8244aab81f9326b4da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mission_name: 
+  mission_name: Destroy the insect eggs
   mission_info: 
   ms: {fileID: 5604700467207207537}
   target:
@@ -8239,7 +8239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ffac88ff78170043a36ec6e6ca9c744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mission_name: 
+  mission_name: Search and rescue the staff
   mission_info: 
   ms: {fileID: 5604700467207207537}
   path:
@@ -10254,6 +10254,13 @@ MonoBehaviour:
   mission_0_clear: 0
   mission_1_clear: 0
   mission_2_clear: 0
+  mission_3_clear: 0
+  ig: {fileID: 0}
+  mb:
+  - {fileID: 5604700466631023068}
+  - {fileID: 5604700466465970983}
+  - {fileID: 5604700466109773347}
+  - {fileID: 5604700467569512412}
 --- !u!1 &5604700467252772030
 GameObject:
   m_ObjectHideFlags: 0
@@ -11108,7 +11115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d210e9fbfcdd44a87b5f4c648645a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mission_name: 
+  mission_name: Collect the parts of the device
   mission_info: 
   ms: {fileID: 5604700467207207537}
   goal_parts: 11
@@ -11177,7 +11184,6 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 5604700467569512412}
   - {fileID: 6800731887136179632}
   - {fileID: 8842652757603176400}
   sceneViewId: 0
