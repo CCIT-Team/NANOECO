@@ -81,14 +81,14 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
     void Awake()
     {
         nickname.text = pv.IsMine ? PhotonNetwork.NickName : pv.Owner.NickName;
-        if(pv.IsMine)
-        {
-            if(GameManager.Instance.players[GameManager.Instance.playersnum] == null)
-            {
-                GameManager.Instance.players[GameManager.Instance.playersnum] = this;
-            }
-            else { GameManager.Instance.playersnum += 1; }
-        }
+        //if(pv.IsMine)
+        //{
+        //    if(GameManager.Instance.players[GameManager.Instance.playersnum] == null)
+        //    {
+        //        GameManager.Instance.players[GameManager.Instance.playersnum] = this;
+        //    }
+        //    else { GameManager.Instance.playersnum += 1; }
+        //}
         nickname.color = pv.IsMine ? Color.green : Color.red;
         if (pv.IsMine)
         {
