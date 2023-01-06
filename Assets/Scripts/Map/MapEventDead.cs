@@ -6,7 +6,7 @@ public class MapEventDead : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-            var player = other.GetComponent<NaNoPlayer>();
+            var player = other.GetComponent<Player>();
             player.is_dead = true;
     }
 }

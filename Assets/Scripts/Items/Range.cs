@@ -6,15 +6,14 @@ using Photon.Realtime;
 
 public class Range : WeaponeBase
 {
-    public GameObject firePosition;
-    public Bullet bullet;
-    protected string bulletname;
     public int maxAmmo = 0;    //ÃÖ´ë Åº¼ö
     public int ammo = 0; //ÇöÀç Åº¼ö
+    public GameObject firePosition;
+    public Bullet bullet;
+    string bulletname;
     public bool explosion = false;
     int skill;
-    protected bool isreloading = false;
-    protected ParticleSystem p;
+    bool isreloading = false;
     public override void Start()
     {
         base.Start();
@@ -37,7 +36,6 @@ public class Range : WeaponeBase
         bullet.damage = damage;
         bullet.explosive = explosion;
         bulletname = bullet.gameObject.name;
-        p = firePosition.GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -66,7 +64,6 @@ public class Range : WeaponeBase
     public override void Attack()
     {
         GameObject chargedbullet = Instantiate(bullet.gameObject);
-        p.Play();
         chargedbullet.transform.position = firePosition.transform.position;
         chargedbullet.transform.rotation = firePosition.transform.rotation;
         //PhotonNetwork.Instantiate(bulletname, firePosition.transform.position, firePosition.transform.rotation);
@@ -75,7 +72,7 @@ public class Range : WeaponeBase
 
     IEnumerator Reloading()
     {
-        yield return new WaitForSecondsRealtime( 1.3f * realdelay / attackspeed );
+        yield return new WaitForSecondsRealtime(2);
         ammo = maxAmmo;
         isdelay = false;
         isreloading = false;
@@ -99,7 +96,6 @@ public class Range : WeaponeBase
         StartCoroutine("AttackDelay");
     }
 
-    [PunRPC]
     void ReloadRPC()
     {
         isdelay = true;

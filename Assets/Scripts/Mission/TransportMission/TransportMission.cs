@@ -169,7 +169,6 @@ public class TransportMission : MissionBase, IPunObservable
         target.transform.SetParent(heli_rope.transform);
         heli.SetActive(true);
         ms.mission_0_clear = true;
-        ms.Mission_Clear(0);
     }
 
     void OnDrawGizmos()

@@ -222,7 +222,7 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.7529412, g: 0.1802567, b: 0.039215673, a: 0.6666667}
+      minColor: {r: 0.754717, g: 0.23536101, b: 0.039159846, a: 0.6666667}
       maxColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 0.42745098}
       maxGradient:
         serializedVersion: 2
@@ -4899,15 +4899,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7167444510161355727}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
-  m_ConstrainProportionsScale: 1
+  m_LocalRotation: {x: -0.0023227818, y: -0.71535814, z: -0.02238381, w: 0.6983956}
+  m_LocalPosition: {x: 432.0175, y: 1.3787047, z: -329.33966}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5875494147912010957}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 180}
 --- !u!33 &2526447892267627245
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4983,8 +4983,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d453918bfeba8ca45bc690cdb5c3a533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
-  speed: 30
+  damage: 1
+  speed: 50
   explosive: 0
   ps: {fileID: 2604782487299358872}
 --- !u!114 &9020638318761881103

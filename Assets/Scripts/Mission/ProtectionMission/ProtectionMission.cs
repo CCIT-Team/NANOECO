@@ -35,7 +35,6 @@ public class ProtectionMission : MissionBase, IPunObservable
     public override void Clear()
     {
         ms.mission_2_clear = true;
-        ms.Mission_Clear(2);
     }
 
     public override void Mission_Event()

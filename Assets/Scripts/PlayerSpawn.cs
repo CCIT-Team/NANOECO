@@ -19,7 +19,7 @@ public class PlayerSpawn : MonoBehaviourPunCallbacks
 
     void CheckandSpawn()
     {      
-        PhotonNetwork.Instantiate("Player", spawnPoint[GameManager.Instance.player_count].position, Quaternion.identity, 0);
+        PhotonNetwork.Instantiate("Player", spawnPoint[0].position, Quaternion.identity, 0);
     }
     //PhotonNetwork.Instantiate("Player", spawnPoint[].position, Quaternion.identity, 0);
 }

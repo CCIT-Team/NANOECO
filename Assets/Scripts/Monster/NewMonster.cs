@@ -68,7 +68,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
     protected MONSTER_TYPE monster_type;
     [SerializeField]
     protected Collider[] targets;
-    protected NaNoPlayer player;
+    protected Player player;
     protected ProtectionTarget protectionTarget;
     [SerializeField]
     protected NavMeshAgent agent;
@@ -178,7 +178,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             Collider[] targets = Physics.OverlapSphere(transform.position, data.event_chase_dist, target_mask);
             for (int i = 0; i < targets.Length; i++)
             {
-                player = targets[i].GetComponent<NaNoPlayer>();
+                player = targets[i].GetComponent<Player>();
                 //if (player != null)
                 if (player != null)
                 {
@@ -212,7 +212,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             Collider[] targets = Physics.OverlapSphere(transform.position, data.chase_dist, target_mask);
             for (int i = 0; i < targets.Length; i++)
             {
-                player = targets[i].GetComponent<NaNoPlayer>();
+                player = targets[i].GetComponent<Player>();
                 //if (player != null)
                 if (player != null)
                 {
@@ -488,15 +488,12 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, data.chase_dist);
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawWireSphere(transform.position, data.chase_dist);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, data.attack_dist);
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, data.event_chase_dist);
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, data.patrol_dist);
-
     }
 
 }

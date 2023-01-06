@@ -43,8 +43,8 @@ public class Totem : MonoBehaviourPunCallbacks
     {
         if (other.gameObject.layer == 6)
         {
-            NaNoPlayer chr;
-            chr = other.gameObject.GetComponent<NaNoPlayer>();
+            Player chr;
+            chr = other.gameObject.GetComponent<Player>();
             if(chr.max_hp <= chr.current_hp + effectamount)
                 chr.current_hp = chr.max_hp;
             else if(chr.max_hp > chr.current_hp)
