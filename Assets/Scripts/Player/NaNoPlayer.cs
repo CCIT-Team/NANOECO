@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using TMPro;
 using Photon.Pun;
 using Photon.Realtime;
-using Photon.Pun.Demo.PunBasics;
 
 public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
 {
@@ -29,12 +28,12 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
     public int skil_num;
     public GameObject[] item;
     int current_item = 0;
-    bool isdash = false;
+    bool is_dash = false;
     public bool isGrounded = true;
-    bool isdontHit = false;
+    bool is_dontHit = false;
     [Header("아이템 줍기")]
     public GameObject hand;
-    bool isusehand = false;
+    bool is_usehand = false;
     [Header("스폰포인트")]
     public Transform[] firstSpawnPoint = new Transform[4];
     int spawnNum = 0;
@@ -59,22 +58,37 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
             stream.SendNext(current_hp);
-            //stream.SendNext(is_dead);
+            stream.SendNext(is_dead);
             stream.SendNext(current_item);
         }
         else
         {
-            curPos = (Vector3)stream.ReceiveNext();
-            curRot = (Quaternion)stream.ReceiveNext();
-            current_hp = (float)stream.ReceiveNext();
-            //is_dead = (bool)stream.ReceiveNext();
-            current_item = (int)stream.ReceiveNext();
+            try
+            {
+                curPos = (Vector3)stream.ReceiveNext();
+                curRot = (Quaternion)stream.ReceiveNext();
+                current_hp = (float)stream.ReceiveNext();
+                is_dead = (bool)stream.ReceiveNext();
+                current_item = (int)stream.ReceiveNext();
+            }
+            catch
+            {
+
+            }
         }
     }
 
     void Awake()
     {
         nickname.text = pv.IsMine ? PhotonNetwork.NickName : pv.Owner.NickName;
+        if(pv.IsMine)
+        {
+            if(GameManager.Instance.players[GameManager.Instance.playersnum] == null)
+            {
+                GameManager.Instance.players[GameManager.Instance.playersnum] = this;
+            }
+            else { GameManager.Instance.playersnum += 1; }
+        }
         nickname.color = pv.IsMine ? Color.green : Color.red;
         if (pv.IsMine)
         {
@@ -110,7 +124,7 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
     void Update()
     {
         if (pv.IsMine && PhotonNetwork.IsConnected && !is_dead) { Move(); }
-        if (pv.IsMine) { ItemChange();}
+        if (pv.IsMine) { ItemChange(); }
         if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
         SpawnPointUpdate();
         Dead();
@@ -158,7 +172,7 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
                 GameManager.Instance.player_count += 1;
                 helicopterplayerbody.SetActive(true);
                 helicopterrope.transform.DetachChildren();
-                helicopterplayerbody.transform.parent = originPlayer.transform;           
+                helicopterplayerbody.transform.parent = originPlayer.transform;
             }
             if (helicopterAni.GetBool("HliEnd"))
             {
@@ -177,14 +191,14 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     void DontHitTime(float time)
     {
-        isdontHit = true;
-        if(isdontHit)
+        is_dontHit = true;
+        if (is_dontHit)
         {
             current_hp = max_hp;
             time -= Time.deltaTime;
             if (timer <= 0)
             {
-                isdontHit = false;
+                is_dontHit = false;
             }
         }
     }
@@ -220,25 +234,25 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
     float timer = 5;
     void Dash()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded == true && isdash == false)//대쉬
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded == true && is_dash == false)//대쉬
         {
             Debug.Log("대쉬");
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
 
             Vector3 dash = new Vector3(-horizontal * dash_force * Time.deltaTime, 0, -vertical * dash_force * Time.deltaTime);
-            transform.position += Vector3.Lerp(transform.position,dash,5);
-            isdash = true;
+            transform.position += Vector3.Lerp(transform.position, dash, 5);
+            is_dash = true;
             DontHitTime(1);
-        }       
-        if(isdash == true)
+        }
+        if (is_dash == true)
         {
             timer -= Time.deltaTime;
             Debug.Log(timer);
             if (timer <= 0)
             {
                 timer = 5;
-                isdash = false;
+                is_dash = false;
                 Debug.Log("대쉬 초기화");
             }
         }
@@ -270,7 +284,7 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     public void ItemChange()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && !isusehand)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && !is_usehand)
         {
             current_item = 0;
             if (current_item == 0)
@@ -278,9 +292,9 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
                 item[0].SetActive(true);//주무기
                 item[1].SetActive(false);//아이템1
                 item[2].SetActive(false);//아이템2
-            }           
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && !isusehand)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && !is_usehand)
         {
             current_item = 1;
             if (current_item == 1)
@@ -290,7 +304,7 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
                 item[2].SetActive(false);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && !isusehand)
+        if (Input.GetKeyDown(KeyCode.Alpha3) && !is_usehand)
         {
             current_item = 2;
             if (current_item == 2)
@@ -305,7 +319,7 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
 
     void PickUpAndDropItem()
     {
-        if (isusehand && Input.GetKeyDown(KeyCode.E))
+        if (is_usehand && Input.GetKeyDown(KeyCode.E))
         {
             hand.transform.DetachChildren();
         }
@@ -340,7 +354,7 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (col.gameObject.layer == 11 && Input.GetKeyDown(KeyCode.E))
         {
-            isusehand = true;
+            is_usehand = true;
             col.transform.parent = hand.transform;
         }
     }
@@ -353,14 +367,5 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
         EAdd_AttackPoint,
         EAdd_Vision,
         EAdd_DashForce
-    }
-
-    [PunRPC]
-    void ActiveRPC(int a)
-    {
-        item[0].SetActive(false);
-        item[1].SetActive(false);
-        item[2].SetActive(false);
-        item[a].SetActive(true);
     }
 }
