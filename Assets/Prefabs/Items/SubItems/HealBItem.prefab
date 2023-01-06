@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9042104651180418039}
   - component: {fileID: 6668113647397366666}
   m_Layer: 0
-  m_Name: BombItem
+  m_Name: HealBItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   iscooldown: 0
   maxcount: 5
   count: 5
-  itemprefab: {fileID: 5082337188932917547, guid: 71140197e92690f4591e61bb5d451a10,
+  itemprefab: {fileID: 5082337188932917547, guid: dc667c345e9b4f74190135fb3e5d1eb7,
     type: 3}
   useditem: {fileID: 0}
   pv: {fileID: 6668113647397366666}

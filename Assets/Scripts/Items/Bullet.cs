@@ -14,16 +14,16 @@ public class Bullet : MonoBehaviourPunCallbacks, IPunObservable
     public ParticleSystem ps;
     SphereCollider sp;
 
-    private void Start()
+    protected void Start()
     {
-        Destroy(gameObject, 5*flytime/speed);
+        Destroy(gameObject, speed != 0 ? 5*flytime/speed : 0.5f );
         sp = GetComponent<SphereCollider>();
     }
-    private void Update()
+    protected void Update()
     {
         transform.Translate(speed * Time.deltaTime * Vector3.forward);
     }
-    void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 8)
         {
@@ -48,8 +48,8 @@ public class Bullet : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    Vector3 curPos;
-    Quaternion curRot;
+    protected Vector3 curPos;
+    protected Quaternion curRot;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
        if(stream.IsWriting)

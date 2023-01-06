@@ -6,14 +6,14 @@ using Photon.Realtime;
 
 public class Range : WeaponeBase
 {
-    public int maxAmmo = 0;    //譆渠 驕熱
-    public int ammo = 0; //⑷營 驕熱
     public GameObject firePosition;
     public Bullet bullet;
-    string bulletname;
+    protected string bulletname;
+    public int maxAmmo = 0;    //譆渠 驕熱
+    public int ammo = 0; //⑷營 驕熱
     public bool explosion = false;
     int skill;
-    bool isreloading = false;
+    protected bool isreloading = false;
     protected ParticleSystem p;
     public override void Start()
     {
@@ -75,7 +75,7 @@ public class Range : WeaponeBase
 
     IEnumerator Reloading()
     {
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime( 1.3f * realdelay / attackspeed );
         ammo = maxAmmo;
         isdelay = false;
         isreloading = false;
