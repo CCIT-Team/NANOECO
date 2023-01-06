@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class GameManager : Singleton<GameManager>
 {
-    public Character_Info[] cc;
-    public List<GameObject> testtest;
+    public NaNoPlayer[] players = new NaNoPlayer[4];
+    public int playersnum = 0;
     public SpawnPoint sp;
     public Transform spawnPoint;
     public int player_count;
@@ -19,13 +20,18 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         sp = GameObject.FindGameObjectWithTag("Spawn").GetComponent<SpawnPoint>();
+        playersnum = 0;
     }
 
-     void Update()
+    void Update()
     {
-        if(sp == null || SceneManager.sceneCount == 3 && sp == null)
+        if (sp == null || SceneManager.sceneCount == 3 && sp == null)
         {
             sp = GameObject.FindGameObjectWithTag("Spawn").GetComponent<SpawnPoint>();
+        }
+        if(playersnum > 4)
+        {
+            playersnum = PhotonNetwork.PlayerList.Length;
         }
         SpawnPointUpdate();
     }
@@ -37,9 +43,4 @@ public class GameManager : Singleton<GameManager>
 
 }
 
-[System.Serializable]
-public class Character_Info
-{
-    public Character player;
-}
 
