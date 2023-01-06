@@ -6,6 +6,8 @@ using Photon.Realtime;
 
 public abstract class WeaponeBase : MonoBehaviourPunCallbacks
 {
+    public enum ItemID { ENONE = -1, EGun, ELuncher, ESpray, EBomb, EHealBomb, ETotem, EDummy}
+    public ItemID IID = ItemID.ENONE;
     public enum Type { ENONE = -1, EMELEE, ERANGE, ESUPPORT }
     public Type type = Type.ENONE;
     public float damage = 0;    //µ¥¹ÌÁö

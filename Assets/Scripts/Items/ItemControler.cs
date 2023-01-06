@@ -6,6 +6,7 @@ using Photon.Realtime;
 
 public class ItemControler : MonoBehaviourPunCallbacks
 {
+    public WeaponeBase.ItemID IID = WeaponeBase.ItemID.ENONE;
     public float cooldown = 0;
     public bool iscooldown = false;
     public int maxcount = 0;
