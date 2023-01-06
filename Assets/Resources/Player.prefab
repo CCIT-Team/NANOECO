@@ -7011,22 +7011,22 @@ MonoBehaviour:
     SynchronizeType: 2
     Name: Run
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Jump
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Dash
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Close Attack
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Bomb
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Dead
   m_SynchronizeLayers:
-  - SynchronizeType: 2
+  - SynchronizeType: 0
     LayerIndex: 0
   - SynchronizeType: 0
     LayerIndex: 1
@@ -7045,7 +7045,7 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
-  m_UseLocal: 1
+  m_UseLocal: 0
 --- !u!114 &5336137748936740192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7059,7 +7059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
+  m_SynchronizeAngularVelocity: 1
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &5435242020459516481
@@ -8227,6 +8227,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Launcher
       objectReference: {fileID: 0}
+    - target: {fileID: 4198457193207223625, guid: 6d6cb76ecf1e20149be3a6a2b623d51f,
+        type: 3}
+      propertyPath: observableSearch
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4232968494679413904, guid: 6d6cb76ecf1e20149be3a6a2b623d51f,
         type: 3}
       propertyPath: m_RootOrder
@@ -8323,6 +8328,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2874507570427120912}
     m_Modifications:
+    - target: {fileID: 5027793690275559148, guid: 776c9376cad92344a852c8bb376227ed,
+        type: 3}
+      propertyPath: observableSearch
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7811284691870994587, guid: 776c9376cad92344a852c8bb376227ed,
         type: 3}
       propertyPath: m_Name
@@ -8418,6 +8428,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2874507570427120912}
     m_Modifications:
+    - target: {fileID: 5027793690275559148, guid: 776c9376cad92344a852c8bb376227ed,
+        type: 3}
+      propertyPath: observableSearch
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7811284691870994587, guid: 776c9376cad92344a852c8bb376227ed,
         type: 3}
       propertyPath: m_Name
@@ -8612,6 +8627,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 3.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 5865528215935169142, guid: 175a86d2984881b4f992125a75b1abda,
+        type: 3}
+      propertyPath: observableSearch
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5865528215935169142, guid: 175a86d2984881b4f992125a75b1abda,
         type: 3}

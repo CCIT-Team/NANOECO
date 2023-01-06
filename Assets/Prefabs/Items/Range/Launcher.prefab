@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 2466662172870926645}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3032444485379887867}
   - {fileID: 1264673044778516768}
@@ -48,13 +48,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: -1
-  damage: 20
+  damage: 25
   attackspeed: 0.5
   isdelay: 0
   pv: {fileID: 4198457193207223625}
   player: {fileID: 0}
-  maxAmmo: 50
-  ammo: 50
+  maxAmmo: 15
+  ammo: 15
   firePosition: {fileID: 7677402307013608908}
   bullet: {fileID: -4316363247423991619, guid: 7b6333bc7785c1643ac4c243f43f7c5e, type: 3}
   explosion: 1
