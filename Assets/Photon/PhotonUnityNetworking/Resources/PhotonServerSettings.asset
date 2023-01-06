@@ -33,7 +33,20 @@ MonoBehaviour:
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
-  RpcList: []
+  RpcList:
+  - .ctor
+  - ActiveRPC
+  - ClickRpc
+  - Count_Ready_Player
+  - DestroyRpc
+  - DestroyRPC
+  - DestroySpaceship
+  - Fire
+  - Guest_Ready_Check
+  - Player_Number_Check
+  - ReloadRPC
+  - RespawnSpaceship
+  - ShotRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0
