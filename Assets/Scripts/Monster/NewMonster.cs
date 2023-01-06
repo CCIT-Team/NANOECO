@@ -488,12 +488,15 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnDrawGizmos()
     {
-        //Gizmos.color = Color.red;
-        //Gizmos.DrawWireSphere(transform.position, data.chase_dist);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, data.chase_dist);
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, data.attack_dist);
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, data.event_chase_dist);
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, data.patrol_dist);
+
     }
 
 }
