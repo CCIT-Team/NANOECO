@@ -4913,7 +4913,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8323520486951392692}
   - component: {fileID: 4936464049911467420}
-  - component: {fileID: 5027793690275559148}
   m_Layer: 0
   m_Name: SprayGun
   m_TagString: Untagged
@@ -4951,40 +4950,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: -1
-  damage: 3
+  damage: 5
   attackspeed: 5
   realdelay: 5
   isdelay: 0
-  pv: {fileID: 5027793690275559148}
-  player: {fileID: 0}
+  knockback: 0.1
+  pv: {fileID: 0}
   maxAmmo: 5000
   ammo: 5000
   firePosition: {fileID: 2873508997859594072}
   bullet: {fileID: 5506418452114299738, guid: 34c6e798ca3ac9b4ab99dbbd5777d332, type: 3}
   explosion: 0
   spreadamunt: 15
---- !u!114 &5027793690275559148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7811284691870994587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1001 &6220659310003411352
 PrefabInstance:
   m_ObjectHideFlags: 0

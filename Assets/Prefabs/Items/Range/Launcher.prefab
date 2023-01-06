@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4232968494679413904}
   - component: {fileID: 8835760846141360655}
-  - component: {fileID: 4198457193207223625}
   m_Layer: 0
   m_Name: Launcher
   m_TagString: Untagged
@@ -50,36 +49,15 @@ MonoBehaviour:
   type: -1
   damage: 20
   attackspeed: 0.5
+  realdelay: 3
   isdelay: 0
-  pv: {fileID: 4198457193207223625}
-  player: {fileID: 0}
+  knockback: 3
+  pv: {fileID: 0}
   maxAmmo: 50
   ammo: 50
   firePosition: {fileID: 7677402307013608908}
   bullet: {fileID: -4316363247423991619, guid: 7b6333bc7785c1643ac4c243f43f7c5e, type: 3}
   explosion: 1
---- !u!114 &4198457193207223625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2466662172870926645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &7677402307013608908
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,8 +67,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1264673044778516768}
-  - component: {fileID: 4856373713274190544}
-  - component: {fileID: 768505121444977921}
   m_Layer: 0
   m_Name: fireposition
   m_TagString: Untagged
@@ -113,6 +89,7 @@ Transform:
   m_Father: {fileID: 4232968494679413904}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+<<<<<<< HEAD
 --- !u!198 &4856373713274190544
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4980,6 +4957,8 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+=======
+>>>>>>> parent of 78c34e2 (무기 조정)
 --- !u!1001 &3287576377864516880
 PrefabInstance:
   m_ObjectHideFlags: 0
