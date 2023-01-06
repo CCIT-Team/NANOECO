@@ -50,7 +50,12 @@ MonoBehaviour:
   type: 1
   damage: 5
 <<<<<<< HEAD
+<<<<<<< HEAD
   attackspeed: 4
+=======
+  attackspeed: 2
+  realdelay: 0.5
+>>>>>>> parent of 78c34e2 (무기 조정)
 =======
   attackspeed: 2
   realdelay: 0.5
@@ -255,7 +260,11 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
       scalar: 1
+=======
+      scalar: 0.5
+>>>>>>> parent of 78c34e2 (무기 조정)
 =======
       scalar: 0.5
 >>>>>>> parent of 78c34e2 (무기 조정)
@@ -752,7 +761,11 @@ ParticleSystem:
     enabled: 1
     type: 4
 <<<<<<< HEAD
+<<<<<<< HEAD
     angle: 16.52
+=======
+    angle: 11.28
+>>>>>>> parent of 78c34e2 (무기 조정)
 =======
     angle: 11.28
 >>>>>>> parent of 78c34e2 (무기 조정)
@@ -763,7 +776,11 @@ ParticleSystem:
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Scale: {x: 0.05, y: 0.05, z: 0.05}
+=======
+    m_Scale: {x: 0.05, y: 0.05, z: 0.01}
+>>>>>>> parent of 78c34e2 (무기 조정)
 =======
     m_Scale: {x: 0.05, y: 0.05, z: 0.01}
 >>>>>>> parent of 78c34e2 (무기 조정)
