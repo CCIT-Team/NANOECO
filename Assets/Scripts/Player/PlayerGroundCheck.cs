@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerGroundCheck : MonoBehaviour
 {
-    public Player player;
-    void OnTriggerEnter(Collider col)
+
+    public NaNoPlayer player;
+
+    private void OnTriggerEnter(Collider other)
     {
-        if(col.gameObject == null)
+        if (other.gameObject == null)
         {
             player.rigid.AddForce(Vector3.down * 98.1f);
             player.isGrounded = false;

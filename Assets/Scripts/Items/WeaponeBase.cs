@@ -15,7 +15,7 @@ public abstract class WeaponeBase : MonoBehaviourPunCallbacks
     //public float knockback = 0; //공격시 적을 밀쳐내는 정도
 
     public PhotonView pv;
-    public Player player;
+    public NaNoPlayer player;
 
     IEnumerator AttackDelay() //공격 딜레이용 코루틴
     {
@@ -41,7 +41,7 @@ public abstract class WeaponeBase : MonoBehaviourPunCallbacks
 
     void GetPlayer()
     {
-        player = transform.parent.GetComponentInParent<Player>();
+        player = transform.parent.GetComponentInParent<NaNoPlayer>();
         pv = GetComponent<PhotonView>();
     }
 }

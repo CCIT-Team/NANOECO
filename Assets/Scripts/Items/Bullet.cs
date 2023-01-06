@@ -6,16 +6,17 @@ using Photon.Realtime;
 
 public class Bullet : MonoBehaviourPunCallbacks, IPunObservable
 {
-    public float damage = 0;
+    protected float flytime = 1;
+    public float damage = 5;
     //public float knockback = 0;
-    public float speed = 500;
+    public float speed = 50;
     public bool explosive = false;
     public ParticleSystem ps;
     SphereCollider sp;
 
     private void Start()
     {
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 50*flytime/speed);
         sp = GetComponent<SphereCollider>();
     }
     private void Update()

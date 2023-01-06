@@ -16,7 +16,7 @@ public class ItemControler : MonoBehaviourPunCallbacks
     public GameObject useditem;
 
     public PhotonView pv;
-    protected Player player;
+    protected NaNoPlayer player;
 
     public virtual void Start()
     {
@@ -71,6 +71,6 @@ public class ItemControler : MonoBehaviourPunCallbacks
     void GetPlayer()
     {
         pv = GetComponent<PhotonView>();
-        player = gameObject.transform.parent.GetComponentInParent<Player>();
+        player = gameObject.transform.parent.GetComponentInParent<NaNoPlayer>();
     }
 }

@@ -57,7 +57,7 @@ public class DestroyMission : MissionBase, IPunObservable
 
     public override void Mission_Event()
     {
-        StartCoroutine(Spawn_Monster());
+        //StartCoroutine(Spawn_Monster());
     }
 
     int mm;
