@@ -26,7 +26,7 @@ public class PlayerAnimationMethod : MonoBehaviour
 
     void PlayerRespawn()
     {
-        GameManager.Instance.player_count += 1;
+        //GameManager.Instance.player_count += 1;
     }
 
     void HelicopterEnd()

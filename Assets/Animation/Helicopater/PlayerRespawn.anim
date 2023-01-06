@@ -450,8 +450,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 5.0666666
-        value: 0
+        time: 5.15
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -1275,8 +1275,8 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 5.0666666
-        value: 0
+        time: 5.15
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -1520,7 +1520,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 4.9166665
+  - time: 4.5
     functionName: UnRideHelicopter
     data: 
     objectReferenceParameter: {fileID: 0}

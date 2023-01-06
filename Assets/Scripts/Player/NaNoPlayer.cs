@@ -128,7 +128,7 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
             is_dead = true;
             helicopter.SetActive(true);
             helicopterplayerbody.transform.parent = helicopterrope.transform;
-            helicopter.transform.rotation = new Quaternion(0, 0, 0,0);
+            // helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
         }
 
         if (spawn_point == null)
@@ -155,25 +155,22 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
             if (isunrideheli == true)
             {
                 Debug.Log("내려 내려 내려");
-                helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
+                GameManager.Instance.player_count += 1;
                 helicopterplayerbody.SetActive(true);
                 helicopterrope.transform.DetachChildren();
                 helicopterplayerbody.transform.parent = originPlayer.transform;           
             }
             if (helicopterAni.GetBool("HliEnd"))
             {
-                helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
                 current_hp = max_hp;
-                respawn_time = 3;           
+                respawn_time = 3;
+                DontHitTime(3);
+                isunrideheli = false;
+                is_dead = false;
                 helicopterplayerbody.SetActive(true);
                 helicopterrope.transform.DetachChildren();
                 helicopterplayerbody.transform.parent = originPlayer.transform;
                 helicopter.SetActive(false);
-                DontHitTime(3);
-                isunrideheli = false;
-                is_dead = false;
-                helicopterAni.SetBool("Respawn", false);
-                helicopterAni.SetBool("HliEnd", false);
             }
         }
     }
