@@ -9,14 +9,14 @@ public class Bullet : MonoBehaviourPunCallbacks, IPunObservable
     protected float flytime = 1;
     public float damage = 5;
     //public float knockback = 0;
-    public float speed = 50;
+    public float speed = 5;
     public bool explosive = false;
     public ParticleSystem ps;
     SphereCollider sp;
 
     private void Start()
     {
-        Destroy(gameObject, 50*flytime/speed);
+        Destroy(gameObject, 5*flytime/speed);
         sp = GetComponent<SphereCollider>();
     }
     private void Update()
@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviourPunCallbacks, IPunObservable
             if (explosive)
             {
                 speed = 0;
-                sp.radius = 5;
+                sp.radius *= 5;
                 ps.Play();
                 transform.GetChild(1).gameObject.SetActive(false);
             }

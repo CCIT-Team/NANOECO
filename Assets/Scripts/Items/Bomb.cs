@@ -46,7 +46,7 @@ public class Bomb : MonoBehaviourPunCallbacks
         {
             isboom = true;
             Destroy(mesh);
-            col.radius = 10;
+            col.radius *= 15;
             if(!is_play)
             {
                 ps.Play();
