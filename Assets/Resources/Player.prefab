@@ -6983,8 +6983,12 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 3
   OwnershipTransfer: 0
-  observableSearch: 0
-  ObservedComponents: []
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 5336137748936740196}
+  - {fileID: 5336137748936740218}
+  - {fileID: 5336137748936740219}
+  - {fileID: 5336137748936740192}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -7002,8 +7006,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 2
+    Name: Run
+  - Type: 4
+    SynchronizeType: 2
+    Name: Jump
+  - Type: 4
+    SynchronizeType: 2
+    Name: Dash
+  - Type: 4
+    SynchronizeType: 2
+    Name: Close Attack
+  - Type: 4
+    SynchronizeType: 2
+    Name: Bomb
+  - Type: 4
+    SynchronizeType: 2
+    Name: Dead
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+  - SynchronizeType: 0
+    LayerIndex: 1
 --- !u!114 &5336137748936740219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7033,7 +7059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
+  m_SynchronizeAngularVelocity: 1
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &5435242020459516481
