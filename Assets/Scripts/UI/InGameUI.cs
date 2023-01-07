@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Photon.Pun;
 
 public class InGameUI : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class InGameUI : MonoBehaviour
     {
         GameManager.Instance.Player_List_Set();
         ms.Mission_Box_Update(mission_box_list);
+        UI_Setting(PhotonNetwork.LocalPlayer.ActorNumber);
     }
 
     void Update()
@@ -40,16 +42,25 @@ public class InGameUI : MonoBehaviour
     void UI_Setting(int i)
     {
         int n = -1;
-        for(int j = 0; j < GameManager.Instance.players.Length; j++)
+        //for(int j = 0; j < GameManager.Instance.players.Length; j++)
+        //{
+        //    if(GameManager.Instance.players[j] == NaNoPlayer.instance)
+        //    {
+        //        n = j;
+        //        break;
+        //    }
+        //}
+
+        for (int j = 0; j < PhotonNetwork.PlayerList.Length; j++)
         {
-            if(GameManager.Instance.players[j] == NaNoPlayer.instance)
+            if (PhotonNetwork.PlayerList[j].ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
             {
                 n = j;
                 break;
             }
         }
 
-        switch(n)
+        switch (i)
         {
             case 0:
                 Setting(0, 1, 2, 3);
