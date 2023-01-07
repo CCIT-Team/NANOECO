@@ -11,15 +11,14 @@ public class NsocutMonster : NewMonster
     public float wave_time;
 
     #region �ʱⰪ
-    [PunRPC]
     public NsocutMonster()
     {
         data.max_hp = 50f;
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 10f;
-        data.chase_speed = 15f;
+        data.patrol_speed = 5f;
+        data.chase_speed = 8f;
 
         data.patrol_dist = 10f;
         data.chase_dist = 10f;
@@ -42,8 +41,8 @@ public class NsocutMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 10f;
-        data.chase_speed = 15f;
+        data.patrol_speed = 5f;
+        data.chase_speed = 8f;
 
         data.patrol_dist = 10f;
         data.chase_dist = 10f;
@@ -91,11 +90,7 @@ public class NsocutMonster : NewMonster
             }
             data.skill_cool_time = 100f;
         }
-        else
-        {
-            current_state = CURRNET_STATE.EChase;
-        }
-
+        else { current_state = CURRNET_STATE.EChase; }
     }
 
     IEnumerator Monster_Wave()

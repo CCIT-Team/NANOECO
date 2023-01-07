@@ -13,8 +13,8 @@ public class NnomalMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 5f;
         data.defense = 1f;
-        data.patrol_speed = 8f;
-        data.chase_speed = 13f;
+        data.patrol_speed = 4f;
+        data.chase_speed = 6f;
 
         data.patrol_dist = 5f;
         data.chase_dist = 7f;
@@ -37,8 +37,8 @@ public class NnomalMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 5f;
         data.defense = 1f;
-        data.patrol_speed = 8f;
-        data.chase_speed = 13f;
+        data.patrol_speed = 4f;
+        data.chase_speed = 6f;
 
         data.patrol_dist = 5f;
         data.chase_dist = 7f;
@@ -67,18 +67,6 @@ public class NnomalMonster : NewMonster
 
     private void FixedUpdate()
     {
-
             mon_action();
-    }
-
-    private void Update()
-    {
-        Debug.Log(data.current_hp);
-
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            hit_true = true;
-            data.current_hp -= 5f;
-        }
     }
 }

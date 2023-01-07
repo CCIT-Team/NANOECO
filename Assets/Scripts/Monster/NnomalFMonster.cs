@@ -19,8 +19,8 @@ public class NnomalFMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 6f;
-        data.chase_speed = 9f;
+        data.patrol_speed = 3f;
+        data.chase_speed = 4f;
 
         data.patrol_dist = 5f;
         data.chase_dist = 7f;
@@ -43,8 +43,8 @@ public class NnomalFMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 6f;
-        data.chase_speed = 9f;
+        data.patrol_speed = 3f;
+        data.chase_speed = 4f;
 
         data.patrol_dist = 5f;
         data.chase_dist = 7f;
@@ -89,19 +89,13 @@ public class NnomalFMonster : NewMonster
                 {
                     audioplayer.PlayOneShot(attack_clip);
                     animator.SetTrigger(hash_attack);
-                    agent.stoppingDistance = (data.attack_dist - 2f);
+                    agent.stoppingDistance = (data.attack_dist - 0.5f);
                     Instantiate(mon_bullet, transform.position, transform.rotation);
                     data.current_time = 0;
                 }
-                else
-                {
-                    current_state = CURRNET_STATE.EChase;
-                }
+                else { current_state = CURRNET_STATE.EChase; }
             }
-            else
-            {
-                current_state = CURRNET_STATE.EChase;
-            }
+            else { current_state = CURRNET_STATE.EChase; }
         }
         else
         {
@@ -109,5 +103,4 @@ public class NnomalFMonster : NewMonster
             animator.SetBool(hash_chase, false);
         }
     }
-
 }
