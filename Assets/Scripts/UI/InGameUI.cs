@@ -48,23 +48,31 @@ public class InGameUI : MonoBehaviour
 
     public void UI_Setting()
     {
-        for(int i = 0; i < GameManager.Instance.player_list.Count; i++)
-        {
-            if (GameManager.Instance.player_list[i] == Player.instance)
-            {
-                a = i;
-            }
-            break;
-        }
+        a = Player.instance.player_actornum;
 
-        for (int i = 0; i < GameManager.Instance.player_list.Count; i++)
+        if(a == 0)
         {
-            if(b == -1) { continue; }
-            else { b = i; break; }
-            if (c == -1) { continue; }
-            else { c = i; break; }
-            if (d == -1) { continue; }
-            else { d = i; break; }
+            b = 1;
+            c = 2;
+            d = 3;
+        }
+        else if (a == 1)
+        {
+            b = 0;
+            c = 2;
+            d = 3;
+        }
+        else if (a == 2)
+        {
+            b = 0;
+            c = 1;
+            d = 3;
+        }
+        else if (a == 3)
+        {
+            b = 0;
+            c = 1;
+            d = 2;
         }
 
         Setting(a, b, c, d);

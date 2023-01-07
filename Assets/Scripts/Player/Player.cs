@@ -453,7 +453,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         InGameUI.instace.GM_Color();
         GameManager.Instance.Player_List_Set();
-        player_actornum = PhotonNetwork.LocalPlayer.ActorNumber;
         GameManager.Instance.player_list.Add(this);
 
         for (int j = 0; j < PhotonNetwork.PlayerList.Length; j++)
@@ -486,18 +485,22 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             if (GameManager.Instance.player_list[j].pv.ViewID == 1001)
             {
                 playerIndicator.color = GameManager.Instance.player_color[0];
+                player_actornum = 0;
             }
             if (GameManager.Instance.player_list[j].pv.ViewID == 2001)
             {
                 playerIndicator.color = GameManager.Instance.player_color[1];
+                player_actornum = 1;
             }
             if (GameManager.Instance.player_list[j].pv.ViewID == 3001)
             {
                 playerIndicator.color = GameManager.Instance.player_color[2];
+                player_actornum = 2;
             }
             if (GameManager.Instance.player_list[j].pv.ViewID == 4001)
             {
-                playerIndicator.color = GameManager.Instance.player_color[4];
+                playerIndicator.color = GameManager.Instance.player_color[3];
+                player_actornum = 3;
             }
 
         }
