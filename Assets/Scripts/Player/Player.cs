@@ -277,7 +277,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void Move()
     {
-        Debug.Log(isGrounded);
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
