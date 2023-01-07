@@ -440,6 +440,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void Point_Color()
     {
+        InGameUI.instace.GM_Color();
+
         for (int j = 0; j < PhotonNetwork.PlayerList.Length; j++)
         {
             if (PhotonNetwork.PlayerList[j].ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
@@ -448,5 +450,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 break;
             }
         }
+
+        InGameUI.instace.UI_Setting(PhotonNetwork.LocalPlayer.ActorNumber);
     }
 }
