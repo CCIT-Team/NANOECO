@@ -11,8 +11,15 @@ public class InGameUI : MonoBehaviour
     public Color[] player_color;
     public Image[] color_bar;
     public Image[] color_point;
+    public Animation[] hit_anime;
     bool first_setting = true;
     public TextMeshProUGUI[] hp;
+
+    bool hp_set = false;
+    int a;
+    int b;
+    int c;
+    int d;
 
     // Start is called before the first frame update
     void Awake()
@@ -27,6 +34,7 @@ public class InGameUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad1)) { ms.Mission_Clear(1); }
         if (Input.GetKeyDown(KeyCode.Keypad2)) { ms.Mission_Clear(2); }
         if (Input.GetKeyDown(KeyCode.Keypad3)) { ms.Mission_Clear(3); }
+        if (hp_set) { Update_HP(a, b, c, d); }
     }
 
     void UI_Setting(int i)
@@ -64,6 +72,11 @@ public class InGameUI : MonoBehaviour
     {
         Set_Color(a, b, c, d);
         Set_HP(a, b, c, d);
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.d = d;
+        hp_set = true;
     }
 
     void Set_Color(int a, int b, int c, int d)
@@ -81,10 +94,35 @@ public class InGameUI : MonoBehaviour
 
     void Set_HP(int a, int b, int c, int d)
     {
-        hp[0].text = GameManager.Instance.players[a].ToString();
-        hp[1].text = GameManager.Instance.players[b].ToString();
-        hp[2].text = GameManager.Instance.players[c].ToString();
-        hp[3].text = GameManager.Instance.players[d].ToString();
+        hp[0].text = GameManager.Instance.players[a].current_hp.ToString();
+        hp[1].text = GameManager.Instance.players[b].current_hp.ToString();
+        hp[2].text = GameManager.Instance.players[c].current_hp.ToString();
+        hp[3].text = GameManager.Instance.players[d].current_hp.ToString();
+    }
+
+    void Update_HP(int a, int b, int c, int d)
+    {
+        if(int.Parse(hp[a].text) != GameManager.Instance.players[a].current_hp)
+        {
+            hp[0].text = GameManager.Instance.players[a].current_hp.ToString();
+            hit_anime[0].Play();
+
+        }
+        if (int.Parse(hp[1].text) != GameManager.Instance.players[b].current_hp)
+        {
+            hp[1].text = GameManager.Instance.players[a].current_hp.ToString();
+            hit_anime[1].Play();
+        }
+        if (int.Parse(hp[2].text) != GameManager.Instance.players[c].current_hp)
+        {
+            hp[2].text = GameManager.Instance.players[a].current_hp.ToString();
+            hit_anime[2].Play();
+        }
+        if (int.Parse(hp[3].text) != GameManager.Instance.players[d].current_hp)
+        {
+            hp[3].text = GameManager.Instance.players[a].current_hp.ToString();
+            hit_anime[3].Play();
+        }
     }
 }
 
@@ -92,6 +130,5 @@ public class InGameUI : MonoBehaviour
 public class MissionBox
 {
     public InGameUI ig;
-    public TextMeshProUGUI mission_text;
-    public Animation anime;
+    public TextMeshProUGUI mission_text;    public Animation anime;
 }
