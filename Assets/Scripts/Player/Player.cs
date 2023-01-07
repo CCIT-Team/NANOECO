@@ -441,16 +441,16 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         InGameUI.instace.GM_Color();
 
-        //for (int j = 0; j < PhotonNetwork.PlayerList.Length; j++)
-        //{
-        //    if (PhotonNetwork.PlayerList[j].ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
-        //    {
-        //        playerIndicator.color = GameManager.Instance.player_color[j];
-        //        break;
-        //    }
-        //}
+        for (int j = 0; j < PhotonNetwork.PlayerList.Length; j++)
+        {
+            if (PhotonNetwork.PlayerList[j].ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber && pv.IsMine)
+            {
+                playerIndicator.color = GameManager.Instance.player_color[j];
+                break;
+            }
+        }
 
-        playerIndicator.color = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber];
+        //playerIndicator.color = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber];
 
         InGameUI.instace.UI_Setting(PhotonNetwork.LocalPlayer.ActorNumber);
     }
