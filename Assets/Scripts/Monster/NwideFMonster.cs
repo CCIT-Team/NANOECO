@@ -15,22 +15,22 @@ public class NwideFMonster : NewMonster
     [PunRPC]
     public NwideFMonster()
     {
-        data.max_hp = 80f;
+        data.max_hp = 70f;
         data.current_hp = data.max_hp;
         data.damage = 5f;
         data.defense = 1f;
-        data.patrol_speed = 6f;
-        data.chase_speed = 10f;
+        data.patrol_speed = 8f;
+        data.chase_speed = 11f;
 
-        data.patrol_dist = 20f;
-        data.chase_dist = 25f;
-        data.attack_dist = 15f;
+        data.patrol_dist = 10f;
+        data.chase_dist = 13f;
+        data.attack_dist = 7f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 150f;
+        data.event_chase_dist = 50f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
-        data.attack_cool_time = 5f;
+        data.attack_cool_time = 3f;
         data.skill_cool_time = 100f;
 
         data.current_time = 0f;
@@ -39,22 +39,22 @@ public class NwideFMonster : NewMonster
 
     public override void Init()
     {
-        data.max_hp = 100f;
+        data.max_hp = 70f;
         data.current_hp = data.max_hp;
         data.damage = 5f;
         data.defense = 1f;
-        data.patrol_speed = 6f;
-        data.chase_speed = 10f;
+        data.patrol_speed = 8f;
+        data.chase_speed = 11f;
 
-        data.patrol_dist = 20f;
-        data.chase_dist = 25f;
-        data.attack_dist = 15f;
+        data.patrol_dist = 10f;
+        data.chase_dist = 13f;
+        data.attack_dist = 5f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 150f;
+        data.event_chase_dist = 50f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
-        data.attack_cool_time = 5f;
+        data.attack_cool_time = 3f;
         data.skill_cool_time = 100f;
 
         data.current_time = 0f;
