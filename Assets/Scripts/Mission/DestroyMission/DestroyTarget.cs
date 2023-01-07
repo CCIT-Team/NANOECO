@@ -7,14 +7,14 @@ public class DestroyTarget : MonoBehaviourPunCallbacks
 {
     public DestroyMission dm;
     public float hp;
+    public GameObject eft;
     public float _hp
     {
         get { return hp; }
         set
         {
             hp = value;
-            if(hp <= 0) { Destroy_Object(); }
-
+            if (hp <= 0) { Destroy_Object(); }
         }
     }
     Vector3 curPos;
@@ -45,7 +45,7 @@ public class DestroyTarget : MonoBehaviourPunCallbacks
             dm.StopAllCoroutines();
             dm.Clear();
         }
-
-        Destroy(gameObject);
+        Instantiate(eft, transform.position, Quaternion.identity);
+        Destroy(gameObject,0.01f);
     }
 }
