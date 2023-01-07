@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Transform spawnPoint;
     public int player_count;
     public PhotonView pv;
+    public Color[] player_color;
 
     [Header("접속중인 유저")]
     public string user_0;

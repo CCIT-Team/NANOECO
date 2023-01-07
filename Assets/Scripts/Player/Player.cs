@@ -183,7 +183,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void Start()
     {
         PhotonNetwork.CurrentRoom.IsOpen = false;
-
+        Point_Color();
         Skil();
         is_dead = false;
         inventory[0].SetActive(true);
@@ -436,5 +436,17 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         EAdd_AttackPoint,
         EAdd_Vision,
         EAdd_DashForce
+    }
+
+    void Point_Color()
+    {
+        for (int j = 0; j < PhotonNetwork.PlayerList.Length; j++)
+        {
+            if (PhotonNetwork.PlayerList[j].ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
+            {
+                playerIndicator.color = GameManager.Instance.player_color[j];
+                break;
+            }
+        }
     }
 }
