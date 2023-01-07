@@ -507,6 +507,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
         //playerIndicator.color = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber];
 
-        //InGameUI.instace.UI_Setting(PhotonNetwork.LocalPlayer.ActorNumber);
+        InGameUI.instace.UI_Setting();
     }
 }
