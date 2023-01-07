@@ -30,18 +30,28 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public bool isGrounded = true;
     bool is_dontHit = false;
     [Header("아이템")]
+    public GameObject[] weapons = new GameObject[3];
+    //0 = Difuser
+    //1 = Launcher
+    //2 = Spray
+    public GameObject[] gargets = new GameObject[4];
+    //0 = Bomb
+    //1 = Dummy
+    //2 = Healing Bomb
+    //3 = Heal Totam
     public GameObject hand;
     bool is_usehand = false;
-    public GameObject[] item;
+    public GameObject[] inventory;
     int current_item = 0;
     public int current_Weapon;
+    public int current_Garget;
     string weapon_String;
     //0 = 기본총
     //1 = 런처
     //2 = 스프레이
     //3 = 근접무기
     //4 = item
-
+    string garget_String;
     [Header("스폰포인트")]
     public Transform[] firstSpawnPoint = new Transform[4];
     int spawnNum = 0;
@@ -99,26 +109,63 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             Camera.main.GetComponent<PlayerCamera>().player = gameObject.transform;
         }
         instance = this;
-        firstSpawnPoint[0] = GameObject.FindGameObjectWithTag("FirstSpawnPoint").transform.Find("1").transform;
-        firstSpawnPoint[1] = GameObject.FindGameObjectWithTag("FirstSpawnPoint").transform.Find("2").transform;
-        firstSpawnPoint[2] = GameObject.FindGameObjectWithTag("FirstSpawnPoint").transform.Find("3").transform;
-        firstSpawnPoint[3] = GameObject.FindGameObjectWithTag("FirstSpawnPoint").transform.Find("4").transform;
-        switch(current_Weapon)
+
+        for (int i = 0; i < 3; i++)
+        {
+            firstSpawnPoint[i] = GameObject.FindGameObjectWithTag("FirstSpawnPoint").transform.Find("1").transform;
+            firstSpawnPoint[i] = GameObject.FindGameObjectWithTag("FirstSpawnPoint").transform.Find("2").transform;
+            firstSpawnPoint[i] = GameObject.FindGameObjectWithTag("FirstSpawnPoint").transform.Find("3").transform;
+            firstSpawnPoint[i] = GameObject.FindGameObjectWithTag("FirstSpawnPoint").transform.Find("4").transform;
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            weapons[i].SetActive(false);
+        }
+
+        for (int i = 0; i < 4; i++)
+        {
+            gargets[i].SetActive(false);
+        }
+
+        switch (current_Weapon)
         {
             case 0:
                 weapon_String = "Difuser";
+                weapons[0].SetActive(true);
+                inventory[0] = weapons[0];
                 break;
             case 1:
                 weapon_String = "Launcher";
+                weapons[1].SetActive(true);
+                inventory[0] = weapons[1];
                 break;
             case 2:
                 weapon_String = "Spray";
+                weapons[2].SetActive(true);
+                inventory[0] = weapons[2];
+                break;
+        }
+        switch (current_Garget)
+        {    //0 = Bomb
+             //1 = Dummy
+             //2 = Healing Bomb
+             //3 = Heal Totam
+            case 0:
+                garget_String = "Bomb";
+                gargets[0].SetActive(true);
+                break;
+            case 1:
+                garget_String = "Dummy";
+                gargets[1].SetActive(true);
+                break;
+            case 2:
+                garget_String = "Healing Bomb";
+                gargets[2].SetActive(true);
                 break;
             case 3:
-                weapon_String = "Swatter";
-                break;
-            case 4:
-                weapon_String = "Item";
+                garget_String = "Heal Totam";
+                gargets[3].SetActive(true);
                 break;
         }
     }
@@ -129,9 +176,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
         Skil();
         is_dead = false;
-        item[0].SetActive(true);
-        item[1].SetActive(false);
-        item[2].SetActive(false);
+        inventory[0].SetActive(true);
+        inventory[1].SetActive(false);
+        inventory[2].SetActive(false);
         helicopter.SetActive(false);
         if (firstSpawnPoint[spawnNum] != null)
         {
@@ -151,6 +198,13 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             ReSpawn();
         }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            current_Weapon = 0;
+            inventory[0] = weapons[0];
+            inventory[1] = gargets[0];
+            inventory[2] = gargets[3];
+        }
     }
 
     void Dead()
@@ -165,15 +219,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             // helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
         }
 
-        if (spawn_point == null)
-        {
-            spawn_point = firstSpawnPoint[spawnNum];
-        }
-
-        if (spawnNum > 3)
-        {
-            spawnNum = 0;
-        }
+        if (spawn_point == null) { spawn_point = firstSpawnPoint[spawnNum]; }
+        if (spawnNum > 3) { spawnNum = 0; }
     }
 
     void ReSpawn()
@@ -181,11 +228,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (is_dead)
         {
             respawn_time -= Time.deltaTime;
-            if (respawn_time <= 0)
-            {
-                transform.position = spawn_point.position;
-                //isunrideheli = true;
-            }
+            if (respawn_time <= 0) { transform.position = spawn_point.position; }
             if (isunrideheli == true)
             {
                 Debug.Log("내려 내려 내려");
@@ -239,7 +282,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             ani.SetBool("Run", false);
         }
-        Jump(); Dash();
+        Jump();
+        Dash();
     }
 
     void Jump()
@@ -294,10 +338,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             if (current_item == 0)
             {
                 ani.SetTrigger("Change");
-                item[0].SetActive(true);//주무기
-                item[1].SetActive(false);//아이템1
-                item[2].SetActive(false);//아이템2
                 ani.SetTrigger(weapon_String);
+                inventory[0].SetActive(true);//주무기
+                inventory[1].SetActive(false);//아이템1
+                inventory[2].SetActive(false);//아이템2
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && !is_usehand)
@@ -306,10 +350,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             if (current_item == 1)
             {
                 ani.SetTrigger("Change");
-                item[0].SetActive(false);
-                item[1].SetActive(true);
-                item[2].SetActive(false);
                 ani.SetTrigger("Item");
+                inventory[0].SetActive(false);
+                inventory[1].SetActive(true);
+                inventory[2].SetActive(false);
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha3) && !is_usehand)
@@ -318,10 +362,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             if (current_item == 2)
             {
                 ani.SetTrigger("Change");
-                item[0].SetActive(false);
-                item[1].SetActive(false);
-                item[2].SetActive(true);
                 ani.SetTrigger("Item");
+                inventory[0].SetActive(false);
+                inventory[1].SetActive(false);
+                inventory[2].SetActive(true);
             }
         }
         PickUpAndDropItem();

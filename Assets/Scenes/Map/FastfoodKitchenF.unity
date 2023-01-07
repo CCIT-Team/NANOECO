@@ -6028,6 +6028,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tanker_Monster
       objectReference: {fileID: 0}
+    - target: {fileID: 1920188697191961058, guid: 7906c25727048dd4ba5a1d4ca8b75741,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1920188697191961115, guid: 7906c25727048dd4ba5a1d4ca8b75741,
         type: 3}
       propertyPath: m_RootOrder
@@ -8136,6 +8141,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wide_Far_Monster(ver2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908643602575291608, guid: 2786a9407abacea408051571634681fd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8584288376910934804, guid: 2786a9407abacea408051571634681fd,
         type: 3}
@@ -10764,7 +10774,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826083592}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
@@ -12329,17 +12339,17 @@ PrefabInstance:
     - target: {fileID: 8355990703565098831, guid: 5187a8a22b5eb9f4b85d505200b13b7a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -198.944
+      value: -180.36
       objectReference: {fileID: 0}
     - target: {fileID: 8355990703565098831, guid: 5187a8a22b5eb9f4b85d505200b13b7a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -363.347
+      value: -362.01
       objectReference: {fileID: 0}
     - target: {fileID: 8355990703565098831, guid: 5187a8a22b5eb9f4b85d505200b13b7a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -955.36
+      value: -953.24
       objectReference: {fileID: 0}
     - target: {fileID: 8355990703565098831, guid: 5187a8a22b5eb9f4b85d505200b13b7a,
         type: 3}
@@ -12569,6 +12579,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ScoutMonster(ver2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549089600791144859, guid: 31f9c25cc1e5f2749ac2c9162a0ce72e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31f9c25cc1e5f2749ac2c9162a0ce72e, type: 3}
@@ -13031,7 +13046,7 @@ PrefabInstance:
     - target: {fileID: 2112509909748419435, guid: 548fdf1d932624845a340d2251566185,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2112509909748419473, guid: 548fdf1d932624845a340d2251566185,
         type: 3}
@@ -15899,7 +15914,7 @@ PrefabInstance:
     - target: {fileID: 4223828825391251200, guid: cca21489d720ba543ad26d8f4d55ce29,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4223828825391251205, guid: cca21489d720ba543ad26d8f4d55ce29,
         type: 3}
@@ -18838,6 +18853,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wide_Close_Monster(ver2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6630044749754660759, guid: 1cc53d122ed1df74b882411a32069c99,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cc53d122ed1df74b882411a32069c99, type: 3}
