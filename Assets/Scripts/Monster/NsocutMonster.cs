@@ -11,7 +11,6 @@ public class NsocutMonster : NewMonster
     public float wave_time;
 
     #region �ʱⰪ
-    [PunRPC]
     public NsocutMonster()
     {
         data.max_hp = 50f;
@@ -91,11 +90,7 @@ public class NsocutMonster : NewMonster
             }
             data.skill_cool_time = 100f;
         }
-        else
-        {
-            current_state = CURRNET_STATE.EChase;
-        }
-
+        else { current_state = CURRNET_STATE.EChase; }
     }
 
     IEnumerator Monster_Wave()

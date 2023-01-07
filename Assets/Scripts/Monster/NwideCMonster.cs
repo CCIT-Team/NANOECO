@@ -6,7 +6,6 @@ public class NwideCMonster : NewMonster
 {
     System.Action mon_action;
     #region �ʱⰪ
-    [PunRPC]
     public NwideCMonster()
     {
         data.max_hp = 110f;

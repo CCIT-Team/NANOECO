@@ -67,18 +67,6 @@ public class NnomalMonster : NewMonster
 
     private void FixedUpdate()
     {
-
             mon_action();
-    }
-
-    private void Update()
-    {
-        Debug.Log(data.current_hp);
-
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            hit_true = true;
-            data.current_hp -= 5f;
-        }
     }
 }

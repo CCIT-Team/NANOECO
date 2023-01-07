@@ -93,15 +93,9 @@ public class NnomalFMonster : NewMonster
                     Instantiate(mon_bullet, transform.position, transform.rotation);
                     data.current_time = 0;
                 }
-                else
-                {
-                    current_state = CURRNET_STATE.EChase;
-                }
+                else { current_state = CURRNET_STATE.EChase; }
             }
-            else
-            {
-                current_state = CURRNET_STATE.EChase;
-            }
+            else { current_state = CURRNET_STATE.EChase; }
         }
         else
         {
@@ -109,5 +103,4 @@ public class NnomalFMonster : NewMonster
             animator.SetBool(hash_chase, false);
         }
     }
-
 }

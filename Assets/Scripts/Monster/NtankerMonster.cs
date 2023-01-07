@@ -6,8 +6,7 @@ public class NtankerMonster : NewMonster
 {
     System.Action mon_action;
 
-    #region
-    [PunRPC]
+    #region �ʱⰪ
     public NtankerMonster()
     {
         data.max_hp = 150f;

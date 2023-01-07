@@ -12,7 +12,6 @@ public class NwideFMonster : NewMonster
     private GameObject shot_pos;
 
     #region �ʱⰪ
-    [PunRPC]
     public NwideFMonster()
     {
         data.max_hp = 70f;
@@ -93,15 +92,9 @@ public class NwideFMonster : NewMonster
                     Instantiate(mon_bullet, transform.position, transform.rotation);
                     data.current_time = 0;
                 }
-                else
-                {
-                    current_state = CURRNET_STATE.EChase;
-                }
+                else { current_state = CURRNET_STATE.EChase; }
             }
-            else
-            {
-                current_state = CURRNET_STATE.EChase;
-            }
+            else{ current_state = CURRNET_STATE.EChase; }
         }
         else
         {
