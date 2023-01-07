@@ -459,12 +459,13 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             if (PhotonNetwork.PlayerList[j].ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber && pv.IsMine)
             {
-                r = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].r;
-                g = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].g;
-                b = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].b;
-                a = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].a;
+                //r = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].r;
+                //g = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].g;
+                //b = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].b;
+                //a = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].a;
 
                 playerIndicator.color = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber];
+
             }
         }
 
