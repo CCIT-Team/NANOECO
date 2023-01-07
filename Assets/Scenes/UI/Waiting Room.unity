@@ -2348,14 +2348,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 313619659}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.19613001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 724341838}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -279, y: 0}
@@ -2381,7 +2381,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9aecd4a176a5fd343bc19261fb16c0c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f34aecf7eff2214c906afdbc5208564, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3111,7 +3111,7 @@ RectTransform:
   m_GameObject: {fileID: 394048631}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.20251, y: 0.11327866, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1471868564}
@@ -3142,7 +3142,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e361f77e1fc6bfe4b8fda70e47fc1aee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9aecd4a176a5fd343bc19261fb16c0c1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5104,7 +5104,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 724341840}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 967796263}
+        m_TargetAssemblyTypeName: GARAUI, Assembly-CSharp
+        m_MethodName: check4
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &724341840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7294,6 +7306,7 @@ GameObject:
   - component: {fileID: 967796262}
   - component: {fileID: 967796261}
   - component: {fileID: 967796260}
+  - component: {fileID: 967796263}
   m_Layer: 5
   m_Name: Tools_Canvas
   m_TagString: Untagged
@@ -7389,6 +7402,36 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 2
   m_TargetDisplay: 0
+--- !u!114 &967796263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967796258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b24a799bd3c52bf49974691bc55803bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ready: {fileID: 21300000, guid: 44bee252dab2cb745a44b333be4d4cbb, type: 3}
+  unready: {fileID: 21300000, guid: a224d15a09ee91c40aa9c10b4c39c3ad, type: 3}
+  ttt:
+  - {fileID: 587209529}
+  - {fileID: 872515877}
+  - {fileID: 1429557360}
+  - {fileID: 1917502298}
+  - {fileID: 570870050}
+  buttons:
+  - {fileID: 1471868565}
+  - {fileID: 1346395514}
+  - {fileID: 2076712526}
+  - {fileID: 724341839}
+  weapons:
+  - {fileID: 21300000, guid: 9aecd4a176a5fd343bc19261fb16c0c1, type: 3}
+  - {fileID: 21300000, guid: 84939dd01dfee5a4984f3de150e30adf, type: 3}
+  - {fileID: 21300000, guid: e361f77e1fc6bfe4b8fda70e47fc1aee, type: 3}
+  - {fileID: 21300000, guid: 7f34aecf7eff2214c906afdbc5208564, type: 3}
 --- !u!1 &972465344
 GameObject:
   m_ObjectHideFlags: 0
@@ -9174,7 +9217,7 @@ RectTransform:
   m_GameObject: {fileID: 1263073541}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.21259001, y: 0.084835, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1346395513}
@@ -9205,7 +9248,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9aecd4a176a5fd343bc19261fb16c0c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 84939dd01dfee5a4984f3de150e30adf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9506,7 +9549,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1346395515}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 967796263}
+        m_TargetAssemblyTypeName: GARAUI, Assembly-CSharp
+        m_MethodName: check2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1346395515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10054,7 +10109,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1471868566}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 967796263}
+        m_TargetAssemblyTypeName: GARAUI, Assembly-CSharp
+        m_MethodName: check1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1471868566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12302,6 +12369,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3dd6d60a55a7a740880dba5f8432152, type: 3}
+--- !u!1 &1757400840 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4051512778285536006, guid: f3dd6d60a55a7a740880dba5f8432152,
+    type: 3}
+  m_PrefabInstance: {fileID: 1757400839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1757400841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757400840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 100
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1758411840
 GameObject:
   m_ObjectHideFlags: 0
@@ -12436,7 +12531,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7839e6eb3ac3d4b44990605a29a355db, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13255,7 +13350,7 @@ RectTransform:
   m_GameObject: {fileID: 1908480415}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.14112943, y: 0.1337, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2076712525}
@@ -13286,7 +13381,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9aecd4a176a5fd343bc19261fb16c0c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e361f77e1fc6bfe4b8fda70e47fc1aee, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14646,7 +14741,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2076712527}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 967796263}
+        m_TargetAssemblyTypeName: GARAUI, Assembly-CSharp
+        m_MethodName: check3
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2076712527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15262,6 +15369,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341296703342078316, guid: f5d340f340cf72f4bbd16d23f9e4624c,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7371967406633403414, guid: f5d340f340cf72f4bbd16d23f9e4624c,
         type: 3}
