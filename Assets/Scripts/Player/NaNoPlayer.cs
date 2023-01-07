@@ -63,18 +63,11 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            try
-            {
-                curPos = (Vector3)stream.ReceiveNext();
-                curRot = (Quaternion)stream.ReceiveNext();
-                current_hp = (float)stream.ReceiveNext();
-                is_dead = (bool)stream.ReceiveNext();
-                current_item = (int)stream.ReceiveNext();
-            }
-            catch
-            {
-
-            }
+            curPos = (Vector3)stream.ReceiveNext();
+            curRot = (Quaternion)stream.ReceiveNext();
+            current_hp = (float)stream.ReceiveNext();
+            is_dead = (bool)stream.ReceiveNext();
+            current_item = (int)stream.ReceiveNext();
         }
     }
 
