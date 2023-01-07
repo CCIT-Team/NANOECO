@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Photon.Pun;
 
 public class InGameUI : MonoBehaviour
 {
@@ -10,12 +11,11 @@ public class InGameUI : MonoBehaviour
     public MissionSystem ms;
     public Color[] player_color;
     public Image[] color_bar;
-    public Image[] color_point = new Image[4];
+    public Image[] color_point;
     public Animation[] hit_anime;
     bool first_setting = true;
     public TextMeshProUGUI[] hp;
-    public int player_hand = -1;
-    public Image[] weapon_image;
+    public int player_hand;
 
     bool hp_set = false;
     int a;
@@ -25,7 +25,9 @@ public class InGameUI : MonoBehaviour
 
     void Awake()
     {
+        GameManager.Instance.Player_List_Set();
         ms.Mission_Box_Update(mission_box_list);
+        UI_Setting(PhotonNetwork.LocalPlayer.ActorNumber);
     }
 
     void Update()
@@ -35,22 +37,30 @@ public class InGameUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad2)) { ms.Mission_Clear(2); }
         if (Input.GetKeyDown(KeyCode.Keypad3)) { ms.Mission_Clear(3); }
         if (hp_set) { Update_HP(a, b, c, d); }
-        if(Player.instance.current_Hand != player_hand) { Update_Hand(); }
     }
 
     void UI_Setting(int i)
     {
         int n = -1;
-        for(int j = 0; j < GameManager.Instance.players.Length; j++)
+        //for(int j = 0; j < GameManager.Instance.players.Length; j++)
+        //{
+        //    if(GameManager.Instance.players[j] == NaNoPlayer.instance)
+        //    {
+        //        n = j;
+        //        break;
+        //    }
+        //}
+
+        for (int j = 0; j < PhotonNetwork.PlayerList.Length; j++)
         {
-            if(GameManager.Instance.players[j] == Player.instance)
+            if (PhotonNetwork.PlayerList[j].ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
             {
                 n = j;
                 break;
             }
         }
 
-        switch(n)
+        switch (i)
         {
             case 0:
                 Setting(0, 1, 2, 3);
@@ -72,7 +82,6 @@ public class InGameUI : MonoBehaviour
     void Setting(int a, int b, int c, int d)
     {
         Set_Color(a, b, c, d);
-        Set_Point();
         Set_HP(a, b, c, d);
         this.a = a;
         this.b = b;
@@ -92,14 +101,6 @@ public class InGameUI : MonoBehaviour
         color_point[1].color = player_color[b];
         color_point[2].color = player_color[c];
         color_point[3].color = player_color[d];
-    }
-
-    void Set_Point()
-    {
-        for(int i = 0; i < 4; i++)
-        {
-            color_point[i] = GameManager.Instance.players[i].playerIndicator;
-        }
     }
 
     void Set_HP(int a, int b, int c, int d)
@@ -132,21 +133,6 @@ public class InGameUI : MonoBehaviour
         {
             hp[3].text = GameManager.Instance.players[a].current_hp.ToString();
             hit_anime[3].Play();
-        }
-    }
-
-    void Update_Hand()
-    {
-        Off_Image();
-        weapon_image[Player.instance.current_Hand].enabled = true;
-        player_hand = Player.instance.current_Hand;
-    }
-
-    void Off_Image()
-    {
-        for(int i = 0; i < weapon_image.Length; i++)
-        {
-            weapon_image[i].enabled = false;
         }
     }
 }

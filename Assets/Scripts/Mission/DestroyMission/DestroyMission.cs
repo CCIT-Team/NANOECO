@@ -23,7 +23,7 @@ public class DestroyMission : MissionBase, IPunObservable
             stream.SendNext(started);
             stream.SendNext(wave_time);
             stream.SendNext(mm);
-            stream.SendNext(monster_group);
+            //stream.SendNext(monster_group);
         }
         else
         {
@@ -32,7 +32,7 @@ public class DestroyMission : MissionBase, IPunObservable
             started = (bool)stream.ReceiveNext();
             wave_time = (float)stream.ReceiveNext();
             mm = (int)stream.ReceiveNext();
-            monster_group = (List<GameObject>)stream.ReceiveNext();
+            //monster_group = (List<GameObject>)stream.ReceiveNext();
         }
     }
 
