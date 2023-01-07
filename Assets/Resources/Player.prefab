@@ -6892,9 +6892,9 @@ MonoBehaviour:
   camera_shaking_num: 0
   max_hp: 100
   current_hp: 100
-  jump_force: 1000
-  dash_force: 350
-  move_force: 15
+  jump_force: 100
+  dash_force: 35
+  move_force: 1.5
   is_dead: 1
   respawn_time: 3
   skil_num: 0
