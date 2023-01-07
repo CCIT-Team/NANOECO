@@ -406,8 +406,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.layer == 11 && Input.GetKeyDown(KeyCode.E))
+        if (col.gameObject.layer == 12 && Input.GetKey(KeyCode.E))
         {
+            Debug.Log("집어! 이것을!" + col.gameObject.layer);
             is_usehand = true;
             col.transform.parent = hand.transform;
         }
