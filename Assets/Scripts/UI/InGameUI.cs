@@ -24,6 +24,7 @@ public class InGameUI : MonoBehaviour
 
     void Awake()
     {
+        GameManager.Instance.Player_List_Set();
         ms.Mission_Box_Update(mission_box_list);
     }
 

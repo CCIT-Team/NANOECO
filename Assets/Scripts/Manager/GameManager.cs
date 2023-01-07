@@ -14,6 +14,12 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int player_count;
     public PhotonView pv;
 
+    [Header("접속중인 유저")]
+    public string user_0;
+    public string user_1;
+    public string user_2;
+    public string user_3;
+
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -44,9 +50,18 @@ public class GameManager : MonoBehaviourPunCallbacks
         spawnPoint = sp.check_points[sp.current_spawn_point].transform;
     }
 
-    void Player_List_Set()
+    public void Player_List_Set()
     {
-        //if (pv.IsMine == true)
+        if (pv.IsMine == true)
+        {
+            for(int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+            {
+                if(i == 0) { user_0 = PhotonNetwork.PlayerList[0].NickName; }
+                else if(i == 1) { user_1 = PhotonNetwork.PlayerList[1].NickName; }
+                else if(i == 2) { user_2 = PhotonNetwork.PlayerList[2].NickName; }
+                else if(i == 3) { user_3 = PhotonNetwork.PlayerList[3].NickName; }
+            }
+        }
     }
 }
 
