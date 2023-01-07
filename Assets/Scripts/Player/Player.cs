@@ -461,8 +461,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             {
                 GameManager.Instance.player_list[j].player_actornum = 0;
                 InGameUI.instace.color_point[0] = GameManager.Instance.player_list[j].playerIndicator;
-                InGameUI.instace.a = 0;
-                InGameUI.instace.b = 1;
+                InGameUI.instace.a = 1;
+                InGameUI.instace.b = 0;
                 InGameUI.instace.c = 2;
                 InGameUI.instace.d = 3;
                 InGameUI.instace.hh++;
@@ -471,8 +471,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             {
                 GameManager.Instance.player_list[j].player_actornum = 1;
                 InGameUI.instace.color_point[1] = GameManager.Instance.player_list[j].playerIndicator;
-                InGameUI.instace.a = 1;
-                InGameUI.instace.b = 0;
+                InGameUI.instace.a = 0;
+                InGameUI.instace.b = 1;
                 InGameUI.instace.c = 2;
                 InGameUI.instace.d = 3;
                 InGameUI.instace.hh++;
