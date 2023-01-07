@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public SpawnPoint sp;
     public Transform spawnPoint;
     public int player_count;
+    public PhotonView pv;
 
     private void Awake()
     {
@@ -43,6 +44,10 @@ public class GameManager : MonoBehaviourPunCallbacks
         spawnPoint = sp.check_points[sp.current_spawn_point].transform;
     }
 
+    void Player_List_Set()
+    {
+        //if (pv.IsMine == true)
+    }
 }
 
 
