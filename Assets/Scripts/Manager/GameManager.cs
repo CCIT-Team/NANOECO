@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager Instance;
     public Player[] players = new Player[4];
+    public List<Player> player_list = new List<Player>();
     public int playersnum = 0;
     public SpawnPoint sp;
     public Transform spawnPoint;
