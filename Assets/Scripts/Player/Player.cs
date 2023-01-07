@@ -411,6 +411,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             Debug.Log("집어! 이것을!" + col.gameObject.layer);
             is_usehand = true;
             col.transform.parent = hand.transform;
+            if (is_usehand && Input.GetKeyDown(KeyCode.E))
+            {
+                hand.transform.DetachChildren();
+            }
         }
     }
 
