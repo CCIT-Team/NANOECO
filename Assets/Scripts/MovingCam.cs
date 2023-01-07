@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class MovingCam : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float moveSpeed;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        Vector3 move = new Vector3(horizontal * moveSpeed * Time.deltaTime,0, vertical * moveSpeed * Time.deltaTime);
+
+        transform.position -= move;
+
+        if(Input.GetKey(KeyCode.U))
+        {
+            transform.position += Vector3.up * moveSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.I))
+        {
+            transform.position += Vector3.down * moveSpeed * Time.deltaTime;
+        }
     }
 }
