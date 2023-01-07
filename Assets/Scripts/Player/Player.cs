@@ -454,33 +454,47 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         InGameUI.instace.GM_Color();
         GameManager.Instance.Player_List_Set();
         player_actornum = PhotonNetwork.LocalPlayer.ActorNumber;
+        if (pv.IsMine) { GameManager.Instance.player_list.Add(this); }
 
         for (int j = 0; j < PhotonNetwork.PlayerList.Length; j++)
         {
-            if (PhotonNetwork.PlayerList[j].ActorNumber == 1007 && pv.IsMine)
+            //if (PhotonNetwork.PlayerList[j].ActorNumber == 1007 && pv.IsMine)
+            //{
+            //    //r = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].r;
+            //    //g = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].g;
+            //    //b = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].b;
+            //    //a = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].a;
+
+            //    playerIndicator.color = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber];
+
+            //}
+            //else
+            //{
+            //    if(PhotonNetwork.PlayerList[j].ActorNumber == 2001)
+            //    {
+            //        playerIndicator.color = GameManager.Instance.player_color[1];
+            //    }
+            //    if(PhotonNetwork.PlayerList[j].ActorNumber == 3001)
+            //    {
+            //        playerIndicator.color = GameManager.Instance.player_color[2];
+            //    }
+            //    if (PhotonNetwork.PlayerList[j].ActorNumber == 4001)
+            //    {
+            //        playerIndicator.color = GameManager.Instance.player_color[4];
+            //    }
+            //}
+
+            if (PhotonNetwork.PlayerList[j].ActorNumber == 2001)
             {
-                //r = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].r;
-                //g = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].g;
-                //b = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].b;
-                //a = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].a;
-
-                playerIndicator.color = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber];
-
+                playerIndicator.color = GameManager.Instance.player_color[1];
             }
-            else
+            if (PhotonNetwork.PlayerList[j].ActorNumber == 3001)
             {
-                if(PhotonNetwork.PlayerList[j].ActorNumber == 2001)
-                {
-                    playerIndicator.color = GameManager.Instance.player_color[1];
-                }
-                if(PhotonNetwork.PlayerList[j].ActorNumber == 3001)
-                {
-                    playerIndicator.color = GameManager.Instance.player_color[2];
-                }
-                if (PhotonNetwork.PlayerList[j].ActorNumber == 4001)
-                {
-                    playerIndicator.color = GameManager.Instance.player_color[4];
-                }
+                playerIndicator.color = GameManager.Instance.player_color[2];
+            }
+            if (PhotonNetwork.PlayerList[j].ActorNumber == 4001)
+            {
+                playerIndicator.color = GameManager.Instance.player_color[4];
             }
 
         }
