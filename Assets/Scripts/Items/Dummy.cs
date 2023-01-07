@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dummy : NaNoPlayer
+public class Dummy : Player
 {
     ParticleSystem p;
     // Start is called before the first frame update

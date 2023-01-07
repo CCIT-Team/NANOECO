@@ -7,7 +7,7 @@ using Photon.Realtime;
 public class Shield : MonoBehaviourPunCallbacks
 {
     Material shieldM;
-    NaNoPlayer player;
+    Player player;
     float mHpRec;
     float hpRec;
 
@@ -40,7 +40,7 @@ public class Shield : MonoBehaviourPunCallbacks
         if(other.gameObject.layer == 6)
         {
             StopCoroutine("DelayDestroy");
-            player = other.GetComponent<NaNoPlayer>();
+            player = other.GetComponent<Player>();
             mHpRec = player.max_hp;
             player.max_hp += 50;
             player.current_hp += 50;

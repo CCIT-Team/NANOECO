@@ -11,21 +11,20 @@ public class NsocutMonster : NewMonster
     public float wave_time;
 
     #region �ʱⰪ
-    [PunRPC]
     public NsocutMonster()
     {
         data.max_hp = 50f;
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 10f;
-        data.chase_speed = 15f;
+        data.patrol_speed = 5f;
+        data.chase_speed = 8f;
 
-        data.patrol_dist = 20f;
-        data.chase_dist = 30f;
-        data.attack_dist = 3f;
-        data.skill_dist = 5f;
-        data.event_chase_dist = 150f;
+        data.patrol_dist = 10f;
+        data.chase_dist = 10f;
+        data.attack_dist = 0.5f;
+        data.skill_dist = 4f;
+        data.event_chase_dist = 50f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
@@ -42,14 +41,14 @@ public class NsocutMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 10f;
-        data.chase_speed = 15f;
+        data.patrol_speed = 5f;
+        data.chase_speed = 8f;
 
-        data.patrol_dist = 20f;
-        data.chase_dist = 30f;
-        data.attack_dist = 3f;
-        data.skill_dist = 5f;
-        data.event_chase_dist = 150f;
+        data.patrol_dist = 10f;
+        data.chase_dist = 10f;
+        data.attack_dist = 0.5f;
+        data.skill_dist = 4f;
+        data.event_chase_dist = 50f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
@@ -91,11 +90,7 @@ public class NsocutMonster : NewMonster
             }
             data.skill_cool_time = 100f;
         }
-        else
-        {
-            current_state = CURRNET_STATE.EChase;
-        }
-
+        else { current_state = CURRNET_STATE.EChase; }
     }
 
     IEnumerator Monster_Wave()

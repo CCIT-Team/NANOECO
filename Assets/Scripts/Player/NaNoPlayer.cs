@@ -63,32 +63,25 @@ public class NaNoPlayer : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            try
-            {
-                curPos = (Vector3)stream.ReceiveNext();
-                curRot = (Quaternion)stream.ReceiveNext();
-                current_hp = (float)stream.ReceiveNext();
-                is_dead = (bool)stream.ReceiveNext();
-                current_item = (int)stream.ReceiveNext();
-            }
-            catch
-            {
-
-            }
+            curPos = (Vector3)stream.ReceiveNext();
+            curRot = (Quaternion)stream.ReceiveNext();
+            current_hp = (float)stream.ReceiveNext();
+            is_dead = (bool)stream.ReceiveNext();
+            current_item = (int)stream.ReceiveNext();
         }
     }
 
     void Awake()
     {
         nickname.text = pv.IsMine ? PhotonNetwork.NickName : pv.Owner.NickName;
-        if(pv.IsMine)
-        {
-            if(GameManager.Instance.players[GameManager.Instance.playersnum] == null)
-            {
-                GameManager.Instance.players[GameManager.Instance.playersnum] = this;
-            }
-            else { GameManager.Instance.playersnum += 1; }
-        }
+        //if(pv.IsMine)
+        //{
+        //    if(GameManager.Instance.players[GameManager.Instance.playersnum] == null)
+        //    {
+        //        GameManager.Instance.players[GameManager.Instance.playersnum] = this;
+        //    }
+        //    else { GameManager.Instance.playersnum += 1; }
+        //}
         nickname.color = pv.IsMine ? Color.green : Color.red;
         if (pv.IsMine)
         {

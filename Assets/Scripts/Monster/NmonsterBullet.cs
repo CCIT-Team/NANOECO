@@ -20,7 +20,7 @@ public class NmonsterBullet : MonoBehaviour
     {
         if(bullet.gameObject.layer == 6)
         {
-            var player = bullet.GetComponent<NaNoPlayer>();
+            var player = bullet.GetComponent<Player>();
             player.current_hp -= damege;
             Destroy(gameObject, 0.01f);
         }

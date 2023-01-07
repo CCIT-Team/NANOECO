@@ -6,31 +6,32 @@ using Photon.Realtime;
 
 public class Bullet : MonoBehaviourPunCallbacks, IPunObservable
 {
-    protected float flytime = 1;
-    public float damage = 5;
+    public float damage = 0;
     //public float knockback = 0;
-    public float speed = 5;
+    public float speed = 500;
     public bool explosive = false;
     public ParticleSystem ps;
     SphereCollider sp;
 
-    protected void Start()
+    private void Start()
     {
-        Destroy(gameObject, speed != 0 ? 5*flytime/speed : 0.5f );
+        Destroy(gameObject, 1f);
         sp = GetComponent<SphereCollider>();
     }
-    protected void Update()
+    private void Update()
     {
         transform.Translate(speed * Time.deltaTime * Vector3.forward);
     }
-    protected void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
+        Debug.Log("닿음");
         if (other.gameObject.layer == 8)
         {
+            Debug.Log("레이어 확인");
             if (explosive)
             {
                 speed = 0;
-                sp.radius *= 5;
+                sp.radius = 3;
                 ps.Play();
                 transform.GetChild(1).gameObject.SetActive(false);
             }
@@ -48,8 +49,8 @@ public class Bullet : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    protected Vector3 curPos;
-    protected Quaternion curRot;
+    Vector3 curPos;
+    Quaternion curRot;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
        if(stream.IsWriting)

@@ -68,7 +68,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
     protected MONSTER_TYPE monster_type;
     [SerializeField]
     protected Collider[] targets;
-    protected NaNoPlayer player;
+    protected Player player;
     protected ProtectionTarget protectionTarget;
     [SerializeField]
     protected NavMeshAgent agent;
@@ -110,38 +110,32 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField]
     protected CURRNET_STATE current_state = new CURRNET_STATE();
 
-    float RandTime = 5;
+    float RandTime = 3;
     public float Rand_Chase_Time;
+    public PhotonView PV;
     #endregion
-    public PhotonView PV; //서버를 통해서 제어
 
-    //Vector3 curPos;
-    //Quaternion curRot;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
-            //        stream.SendNext(transform.position);
-            //        stream.SendNext(transform.rotation);
             stream.SendNext(data.current_hp);
             stream.SendNext(is_dead);
         }
         else
         {
-            //        curPos = (Vector3)stream.ReceiveNext();
-            //        curRot = (Quaternion)stream.ReceiveNext();
             data.current_hp = (float)stream.ReceiveNext();
             is_dead = (bool)stream.ReceiveNext();
         }
     }
+
+
     public abstract void Init();
+
 
     public virtual void Idle()
     {
-        //애니메이션 초기화 + 사운드 상태 초기화 == init에 넣어도 될듯
-        //idle 애니메이션
         data.state_time += Time.deltaTime;
-        
         if(lock_target == null)
         {
             if(data.state_time >= data.idle_cool_time)
@@ -150,36 +144,29 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
                 data.state_time = 0f;
             }
         }
-        else
-        {
-            current_state = CURRNET_STATE.EChase;
-        }
-
+        else {  current_state = CURRNET_STATE.EChase;}
     }
+
 
     public virtual void Patrol()
     {
-        //패트롤 애니메이
         animator.SetBool(hash_walk, true);
         agent.speed = data.patrol_speed;
         RandTime -= Time.deltaTime;
         if(!agent.hasPath)
-        {
             agent.SetDestination(Get_Random_Point(transform, data.patrol_dist));
-        }
-        //몇 초뒤에 확인 했는데 똑같은 자리라면 다시 랜덤으로 돌려보리기
+
         if (RandTime <= 0)
         {
             agent.SetDestination(Get_Random_Point(transform, data.patrol_dist));
-            RandTime = Random.Range(1f,4f);
+            RandTime = Random.Range(1f,3f);
         }
-        if (on_event ==true) //이벤트로 생성된 것 지정
+        if (on_event ==true) //이벤트
         {
             Collider[] targets = Physics.OverlapSphere(transform.position, data.event_chase_dist, target_mask);
             for (int i = 0; i < targets.Length; i++)
             {
-                player = targets[i].GetComponent<NaNoPlayer>();
-                //if (player != null)
+                player = targets[i].GetComponent<Player>();
                 if (player != null)
                 {
                     lock_target = player.gameObject;
@@ -190,13 +177,12 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
                     return;
             }
         }
-        else if(protection_target == true) //방어 대상 지정
+        else if(protection_target == true) //방어
         {
             Collider[] targets = Physics.OverlapSphere(transform.position, data.event_chase_dist, target_mask);
             for (int i = 0; i < targets.Length; i++)
             {
                 protectionTarget = targets[i].GetComponent<ProtectionTarget>();
-                //if (player != null)
                 if (protectionTarget != null)
                 {
                     lock_target = protectionTarget.gameObject;
@@ -207,13 +193,12 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
                     return;
             }
         }
-        else
+        else //일반
         {
             Collider[] targets = Physics.OverlapSphere(transform.position, data.chase_dist, target_mask);
             for (int i = 0; i < targets.Length; i++)
             {
-                player = targets[i].GetComponent<NaNoPlayer>();
-                //if (player != null)
+                player = targets[i].GetComponent<Player>();
                 if (player != null)
                 {
                     lock_target = player.gameObject;
@@ -225,6 +210,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
+
 
     public virtual void Chase()
     {
@@ -236,24 +222,19 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             data.state_time += Time.deltaTime;
             data.current_time += Time.deltaTime;
             float dist = (lock_target.transform.position - transform.position).magnitude;
-            //공격 범위 보다 넓은 스킬 먼저 체크
             if(dist <= data.skill_dist)
             {
                  if(data.current_time >= data.skill_cool_time)
                 {
-                    current_state = CURRNET_STATE.ESkill; //스킬 부분으로 들어가게 된다면 멈춰서 스킬 사용(자폭제외)
+                    current_state = CURRNET_STATE.ESkill;
                     data.current_time = 0f;
                 }
             }
-            else
-            {
-                agent.SetDestination(lock_target.transform.position);
-            }
-
+            else  { agent.SetDestination(lock_target.transform.position); }
             if(dist <= data.attack_dist)
                 current_state = CURRNET_STATE.EAttack;
             
-            if(on_event == true)//이벤트로 생성된 것 지정
+            if(on_event == true)//이벤트 지정
             {
                 if (dist > data.event_chase_dist)
                 {
@@ -268,7 +249,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
                     }
                 }
             }
-            else if(protection_target == true) //방어 대상 지정
+            else if(protection_target == true) //방어 지정
             {
                 if (dist > data.event_chase_dist)
                 {
@@ -301,6 +282,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+
     public virtual void Attack()
     {
         if (lock_target != null)
@@ -316,7 +298,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
                     {
                         audioplayer.PlayOneShot(attack_clip);
                         animator.SetTrigger(hash_attack);
-                        agent.stoppingDistance = (data.attack_dist - 0.5f);
+                        agent.stoppingDistance = (data.attack_dist - 0.1f);
                         protectionTarget.hp -= data.damage;   //방어 대상 공격
                         data.current_time = 0;
                     }
@@ -324,20 +306,14 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
                     {
                         audioplayer.PlayOneShot(attack_clip);
                         animator.SetTrigger(hash_attack);
-                        agent.stoppingDistance = (data.attack_dist - 0.5f);
+                        agent.stoppingDistance = (data.attack_dist - 0.1f);
                         player.current_hp -= data.damage;   //플레이어 공격
                         data.current_time = 0;
                     }
                 }
-                else
-                {
-                    current_state = CURRNET_STATE.EChase;
-                }
+                else {  current_state = CURRNET_STATE.EChase; }
             }
-            else
-            {
-                current_state = CURRNET_STATE.EChase;
-            }
+            else {  current_state = CURRNET_STATE.EChase; }
         }
         else
         {
@@ -346,24 +322,25 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+
     public virtual void Skill() { }
     
+
     public virtual void Hp_Check()
     {
         if(data.current_hp <= 0)
         {
             is_dead = true;
             Is_Dead();
-            //IISS_DDEEAADD();
             is_dead = false;
         }
     }
+
 
     public virtual void Is_Dead() 
     {
         if (is_dead)
         {
-            //콜라이더 disable
             agent.SetDestination(transform.position);
             agent.isStopped = true;
             audioplayer.PlayOneShot(dead_clip);
@@ -379,16 +356,6 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    //public void IISS_DDEEAADD()
-    //{
-    //    if (PV.IsMine)
-    //        PV.RPC("DeadRPC", RpcTarget.AllBuffered);
-    //}
-    //[PunRPC]
-    //public void DeadRPC()
-    //{
-    //    Is_Dead();
-    //}
 
     public virtual void Hit_Mon()
     {
@@ -411,6 +378,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
 
     }
 
+
     public virtual void Another_Find_Player()
     {
         if(lock_target != null)
@@ -424,6 +392,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
     }
+
 
     public virtual void Monster_State()
     {
@@ -453,9 +422,9 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+
     bool Random_Point(Vector3 center, float range, out Vector3 result)
     {
-
         for (int i = 0; i < 30; i++)
         {
             Vector3 randomPoint = center + UnityEngine.Random.insideUnitSphere * range;
@@ -466,11 +435,10 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
                 return true;
             }
         }
-
         result = Vector3.zero;
-
         return false;
     }
+
 
     private Vector3 Get_Random_Point(Transform point = null, float radius = 0)
     {
@@ -479,26 +447,18 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
         if (Random_Point(point == null ? transform.position : point.position, radius == 0 ? data.patrol_dist : radius, out _point))
         {
             Debug.DrawRay(_point, Vector3.up, Color.black, 1);
-
             return _point;
         }
-
         return point == null ? Vector3.zero : point.position;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, data.chase_dist);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, data.attack_dist);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, data.event_chase_dist);
-        Gizmos.color = Color.magenta;
-        Gizmos.DrawWireSphere(transform.position, data.patrol_dist);
-
-    }
-
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(transform.position, data.chase_dist);
+    //    Gizmos.color = Color.blue;
+    //    Gizmos.DrawWireSphere(transform.position, data.attack_dist);
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawWireSphere(transform.position, data.event_chase_dist);
+    //}
 }
-
-

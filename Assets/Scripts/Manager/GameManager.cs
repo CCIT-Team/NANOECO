@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviourPunCallbacks
 {
-    public NaNoPlayer[] players = new NaNoPlayer[4];
+    public static GameManager Instance;
+    public Player[] players = new Player[4];
     public int playersnum = 0;
     public SpawnPoint sp;
     public Transform spawnPoint;
@@ -15,6 +16,7 @@ public class GameManager : Singleton<GameManager>
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        Instance = this;
     }
 
     private void Start()
@@ -29,7 +31,7 @@ public class GameManager : Singleton<GameManager>
         {
             sp = GameObject.FindGameObjectWithTag("Spawn").GetComponent<SpawnPoint>();
         }
-        if(playersnum > 4)
+        if (playersnum > 4)
         {
             playersnum = PhotonNetwork.PlayerList.Length;
         }

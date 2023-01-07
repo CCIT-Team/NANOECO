@@ -6,22 +6,21 @@ public class NtankerMonster : NewMonster
 {
     System.Action mon_action;
 
-    #region
-    [PunRPC]
+    #region �ʱⰪ
     public NtankerMonster()
     {
-        data.max_hp = 200f;
+        data.max_hp = 150f;
         data.current_hp = data.max_hp;
         data.damage = 10f;
         data.defense = 5f;
         data.patrol_speed = 4f;
-        data.chase_speed = 10f;
+        data.chase_speed = 5f;
 
-        data.patrol_dist = 31f;
-        data.chase_dist = 30f;
-        data.attack_dist = 5f;
+        data.patrol_dist = 8f;
+        data.chase_dist = 10f;
+        data.attack_dist = 1.5f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 150f;
+        data.event_chase_dist = 50f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
@@ -34,18 +33,18 @@ public class NtankerMonster : NewMonster
 
     public override void Init()
     {
-        data.max_hp = 200f;
+        data.max_hp = 150f;
         data.current_hp = data.max_hp;
         data.damage = 10f;
         data.defense = 5f;
         data.patrol_speed = 4f;
-        data.chase_speed = 10f;
+        data.chase_speed = 5f;
 
-        data.patrol_dist = 31f;
-        data.chase_dist = 30f;
-        data.attack_dist = 5f;
+        data.patrol_dist = 8f;
+        data.chase_dist = 10f;
+        data.attack_dist = 1.5f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 150f;
+        data.event_chase_dist = 50f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;

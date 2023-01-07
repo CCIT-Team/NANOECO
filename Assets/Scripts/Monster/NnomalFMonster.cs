@@ -19,18 +19,18 @@ public class NnomalFMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 5f;
-        data.chase_speed = 8f;
+        data.patrol_speed = 3f;
+        data.chase_speed = 4f;
 
-        data.patrol_dist = 20f;
-        data.chase_dist = 30f;
-        data.attack_dist = 20f;
+        data.patrol_dist = 5f;
+        data.chase_dist = 7f;
+        data.attack_dist = 4f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 150f;
+        data.event_chase_dist = 50f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
-        data.attack_cool_time = 2f;
+        data.attack_cool_time = 1f;
         data.skill_cool_time = 1000f;
 
         data.current_time = 0f;
@@ -43,18 +43,18 @@ public class NnomalFMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 5f;
-        data.chase_speed = 8f;
+        data.patrol_speed = 3f;
+        data.chase_speed = 4f;
 
-        data.patrol_dist = 20f;
-        data.chase_dist = 30f;
-        data.attack_dist = 20f;
+        data.patrol_dist = 5f;
+        data.chase_dist = 7f;
+        data.attack_dist = 4f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 150f;
+        data.event_chase_dist = 50f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
-        data.attack_cool_time = 2f;
+        data.attack_cool_time = 1f;
         data.skill_cool_time = 1000f;
 
         data.current_time = 0f;
@@ -89,19 +89,13 @@ public class NnomalFMonster : NewMonster
                 {
                     audioplayer.PlayOneShot(attack_clip);
                     animator.SetTrigger(hash_attack);
-                    agent.stoppingDistance = (data.attack_dist - 2f);
+                    agent.stoppingDistance = (data.attack_dist - 0.5f);
                     Instantiate(mon_bullet, transform.position, transform.rotation);
                     data.current_time = 0;
                 }
-                else
-                {
-                    current_state = CURRNET_STATE.EChase;
-                }
+                else { current_state = CURRNET_STATE.EChase; }
             }
-            else
-            {
-                current_state = CURRNET_STATE.EChase;
-            }
+            else { current_state = CURRNET_STATE.EChase; }
         }
         else
         {
@@ -109,5 +103,4 @@ public class NnomalFMonster : NewMonster
             animator.SetBool(hash_chase, false);
         }
     }
-
 }

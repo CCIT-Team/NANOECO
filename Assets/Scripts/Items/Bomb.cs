@@ -16,7 +16,7 @@ public class Bomb : MonoBehaviourPunCallbacks
 
     public ParticleSystem ps;
     SphereCollider col;
-    public GameObject bomb;
+    MeshRenderer mesh;
     public float damage = 20;
     public bool isboom = false;
 
@@ -31,6 +31,7 @@ public class Bomb : MonoBehaviourPunCallbacks
         starttime = Time.time;
         start = this.transform.position;
         col = GetComponent<SphereCollider>();
+        mesh = GetComponent<MeshRenderer>();
     }
     void Update()
     {
@@ -44,8 +45,8 @@ public class Bomb : MonoBehaviourPunCallbacks
         if (Time.time - starttime >= 1 )
         {
             isboom = true;
-            bomb.SetActive(false);
-            col.radius *= 15;
+            Destroy(mesh);
+            col.radius = 10;
             if(!is_play)
             {
                 ps.Play();
@@ -71,11 +72,8 @@ public class Bomb : MonoBehaviourPunCallbacks
             }
             else if (targetLayer == 7)
             {
-                var pl = other.gameObject.GetComponent<NaNoPlayer>();
-                if (pl.current_hp + damage >= pl.max_hp)
-                    pl.current_hp = pl.max_hp;
-                else
-                    pl.current_hp += damage;
+                var pl = other.gameObject.GetComponent<Player>();
+                pl.current_hp += damage;
             }
 
         }

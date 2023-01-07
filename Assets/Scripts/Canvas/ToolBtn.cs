@@ -73,7 +73,7 @@ public class ToolBtn : MonoBehaviourPunCallbacks
 
 
 
-        SceneFunction.game_map_name = "FastFoodKitchen";
+        SceneFunction.game_map_name = "FastFoodKitchenF";
         SceneFunction.fade.GetComponent<Fade>().Load_Scene();
     }
 
