@@ -7,6 +7,7 @@ using Photon.Pun;
 
 public class InGameUI : MonoBehaviour
 {
+    public static InGameUI instace;
     public List<MissionBox> mission_box_list;
     public MissionSystem ms;
     public Color[] player_color;
@@ -25,9 +26,10 @@ public class InGameUI : MonoBehaviour
 
     void Awake()
     {
-        GameManager.Instance.Player_List_Set();
+        instace = this;
+        //GameManager.Instance.Player_List_Set();
         ms.Mission_Box_Update(mission_box_list);
-        UI_Setting(PhotonNetwork.LocalPlayer.ActorNumber);
+        //UI_Setting(PhotonNetwork.LocalPlayer.ActorNumber);
     }
 
     void Update()
@@ -39,9 +41,13 @@ public class InGameUI : MonoBehaviour
         if (hp_set) { Update_HP(a, b, c, d); }
     }
 
-    void UI_Setting(int i)
+    public void GM_Color()
     {
         player_color = GameManager.Instance.player_color;
+    }
+
+    public void UI_Setting(int i)
+    {
         int n = -1;
         //for(int j = 0; j < GameManager.Instance.players.Length; j++)
         //{
