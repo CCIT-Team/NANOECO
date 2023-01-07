@@ -457,7 +457,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
         for (int j = 0; j < PhotonNetwork.PlayerList.Length; j++)
         {
-            if (PhotonNetwork.PlayerList[j].ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber && pv.IsMine)
+            if (PhotonNetwork.PlayerList[j].ActorNumber == 1007 && pv.IsMine)
             {
                 //r = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].r;
                 //g = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].g;
@@ -469,11 +469,20 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             }
             else
             {
-                if(PhotonNetwork.PlayerList[j].ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
+                if(PhotonNetwork.PlayerList[j].ActorNumber == 2001)
                 {
-                    playerIndicator.color = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber];
-                }          
+                    playerIndicator.color = GameManager.Instance.player_color[1];
+                }
+                if(PhotonNetwork.PlayerList[j].ActorNumber == 3001)
+                {
+                    playerIndicator.color = GameManager.Instance.player_color[2];
+                }
+                if (PhotonNetwork.PlayerList[j].ActorNumber == 4001)
+                {
+                    playerIndicator.color = GameManager.Instance.player_color[4];
+                }
             }
+
         }
 
         //playerIndicator.color = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber];
