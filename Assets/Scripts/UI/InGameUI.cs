@@ -41,6 +41,7 @@ public class InGameUI : MonoBehaviour
 
     void UI_Setting(int i)
     {
+        player_color = GameManager.Instance.player_color;
         int n = -1;
         //for(int j = 0; j < GameManager.Instance.players.Length; j++)
         //{
@@ -55,6 +56,7 @@ public class InGameUI : MonoBehaviour
         {
             if (PhotonNetwork.PlayerList[j].ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
             {
+                print(PhotonNetwork.LocalPlayer.ActorNumber + ": " + PhotonNetwork.PlayerList[j].ActorNumber);
                 n = j;
                 break;
             }
