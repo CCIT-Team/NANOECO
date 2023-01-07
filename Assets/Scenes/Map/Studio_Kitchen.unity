@@ -16703,13 +16703,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1287104098}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3edb25a0ab632749974f190ccbc337b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c834e2f045624c4180cd439f21eb326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4703470698698184642, guid: ae27a0810c1f46f49b93971dbc7d31bb, type: 3}
-  smooth_speed: 0.125
-  offset: {x: 0, y: 4, z: 3}
-  rotate_speed: 0.5
+  moveSpeed: 2
 --- !u!1 &1288974471
 GameObject:
   m_ObjectHideFlags: 0

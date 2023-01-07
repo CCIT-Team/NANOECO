@@ -14,6 +14,7 @@ public class InGameUI : MonoBehaviour
     public Animation[] hit_anime;
     bool first_setting = true;
     public TextMeshProUGUI[] hp;
+    public int player_hand;
 
     bool hp_set = false;
     int a;
@@ -21,13 +22,11 @@ public class InGameUI : MonoBehaviour
     int c;
     int d;
 
-    // Start is called before the first frame update
     void Awake()
     {
         ms.Mission_Box_Update(mission_box_list);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad0)) { ms.Mission_Clear(0); }
@@ -130,5 +129,6 @@ public class InGameUI : MonoBehaviour
 public class MissionBox
 {
     public InGameUI ig;
-    public TextMeshProUGUI mission_text;    public Animation anime;
+    public TextMeshProUGUI mission_text;
+    public Animation anime;
 }
