@@ -41,6 +41,8 @@ public class FinalMission : MissionBase
     public override void Clear()
     {
         clear = true;
+        ms.mission_3_clear = true;
+        ms.Mission_Clear(3);
     }
 
     public IEnumerator SpawnMonster()

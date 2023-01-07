@@ -13,8 +13,7 @@ public class DestroyTarget : MonoBehaviourPunCallbacks
         set
         {
             hp = value;
-            if(hp <= 0) { Destroy_Object(); }
-
+            if (hp <= 0) { Destroy_Object(); }
         }
     }
     Vector3 curPos;
