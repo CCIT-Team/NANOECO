@@ -1733,6 +1733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67ab2f1c5d6e664d9cffccc17f28e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerani: {fileID: 0}
   heliAni: {fileID: 4958753444626218893}
 --- !u!1 &4958753444761235237
 GameObject:
@@ -6897,12 +6898,13 @@ MonoBehaviour:
   is_dead: 1
   respawn_time: 3
   skil_num: 0
+  isGrounded: 1
+  hand: {fileID: 5534488910848128364}
   item:
   - {fileID: 9054633827399986081}
   - {fileID: 5082337188932917547, guid: c3723d5909920f04bb428b0f104922f0, type: 3}
   - {fileID: 4065306939797495791, guid: b0ef4b9fea4234a4c9db78a13975c953, type: 3}
-  isGrounded: 1
-  hand: {fileID: 5534488910848128364}
+  current_Weapon: 0
   firstSpawnPoint:
   - {fileID: 0}
   - {fileID: 0}

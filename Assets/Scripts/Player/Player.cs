@@ -11,7 +11,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 {
     public static Player instance;
 
-    //public Camera cam;
     int targetdisplay = 0;
     public Rigidbody rigid;
     public PhotonView pv;
@@ -27,14 +26,22 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public bool is_dead;
     public float respawn_time = 5;
     public int skil_num;
+    bool is_dash = false;
+    public bool isGrounded = true;
+    bool is_dontHit = false;
+    [Header("아이템")]
+    public GameObject hand;
+    bool is_usehand = false;
     public GameObject[] item;
     int current_item = 0;
-    bool isdash = false;
-    public bool isGrounded = true;
-    bool isdontHit = false;
-    [Header("아이템 줍기")]
-    public GameObject hand;
-    bool isusehand = false;
+    public int current_Weapon;
+    string weapon_String;
+    //0 = 기본총
+    //1 = 런처
+    //2 = 스프레이
+    //3 = 근접무기
+    //4 = item
+
     [Header("스폰포인트")]
     public Transform[] firstSpawnPoint = new Transform[4];
     int spawnNum = 0;
@@ -75,6 +82,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void Awake()
     {
         nickname.text = pv.IsMine ? PhotonNetwork.NickName : pv.Owner.NickName;
+        if (pv.IsMine)
+        {
+            if (GameManager.Instance.players[GameManager.Instance.playersnum] == null)
+            {
+                GameManager.Instance.players[GameManager.Instance.playersnum] = this;
+            }
+            else { GameManager.Instance.playersnum += 1; }
+        }
         nickname.color = pv.IsMine ? Color.green : Color.red;
         if (pv.IsMine)
         {
@@ -88,6 +103,24 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         firstSpawnPoint[1] = GameObject.FindGameObjectWithTag("FirstSpawnPoint").transform.Find("2").transform;
         firstSpawnPoint[2] = GameObject.FindGameObjectWithTag("FirstSpawnPoint").transform.Find("3").transform;
         firstSpawnPoint[3] = GameObject.FindGameObjectWithTag("FirstSpawnPoint").transform.Find("4").transform;
+        switch(current_Weapon)
+        {
+            case 0:
+                weapon_String = "Difuser";
+                break;
+            case 1:
+                weapon_String = "Launcher";
+                break;
+            case 2:
+                weapon_String = "Spray";
+                break;
+            case 3:
+                weapon_String = "Swatter";
+                break;
+            case 4:
+                weapon_String = "Item";
+                break;
+        }
     }
 
     void Start()
@@ -110,7 +143,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void Update()
     {
         if (pv.IsMine && PhotonNetwork.IsConnected && !is_dead) { Move(); }
-        if (pv.IsMine) { ItemChange();}
+        if (pv.IsMine) { ItemChange(); }
         if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
         SpawnPointUpdate();
         Dead();
@@ -126,9 +159,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             current_hp = 0;
             is_dead = true;
+            ani.SetTrigger("Dead");
             helicopter.SetActive(true);
             helicopterplayerbody.transform.parent = helicopterrope.transform;
-            helicopter.transform.rotation = new Quaternion(0, 0, 0,0);
+            // helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
         }
 
         if (spawn_point == null)
@@ -155,39 +189,35 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             if (isunrideheli == true)
             {
                 Debug.Log("내려 내려 내려");
-                helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
                 helicopterplayerbody.SetActive(true);
                 helicopterrope.transform.DetachChildren();
-                helicopterplayerbody.transform.parent = originPlayer.transform;           
+                helicopterplayerbody.transform.parent = originPlayer.transform;
             }
             if (helicopterAni.GetBool("HliEnd"))
             {
-                helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
                 current_hp = max_hp;
-                respawn_time = 3;           
+                respawn_time = 3;
+                DontHitTime(3);
+                isunrideheli = false;
+                is_dead = false;
                 helicopterplayerbody.SetActive(true);
                 helicopterrope.transform.DetachChildren();
                 helicopterplayerbody.transform.parent = originPlayer.transform;
                 helicopter.SetActive(false);
-                DontHitTime(3);
-                isunrideheli = false;
-                is_dead = false;
-                helicopterAni.SetBool("Respawn", false);
-                helicopterAni.SetBool("HliEnd", false);
             }
         }
     }
 
     void DontHitTime(float time)
     {
-        isdontHit = true;
-        if(isdontHit)
+        is_dontHit = true;
+        if (is_dontHit)
         {
             current_hp = max_hp;
             time -= Time.deltaTime;
             if (timer <= 0)
             {
-                isdontHit = false;
+                is_dontHit = false;
             }
         }
     }
@@ -223,43 +253,28 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     float timer = 5;
     void Dash()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded == true && isdash == false)//대쉬
+        if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded == true && is_dash == false)//대쉬
         {
             Debug.Log("대쉬");
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
 
             Vector3 dash = new Vector3(-horizontal * dash_force * Time.deltaTime, 0, -vertical * dash_force * Time.deltaTime);
-            transform.position += Vector3.Lerp(transform.position,dash,5);
-            isdash = true;
+            transform.position += Vector3.Lerp(transform.position, dash, 5);
+            is_dash = true;
             DontHitTime(1);
-        }       
-        if(isdash == true)
+        }
+        if (is_dash == true)
         {
             timer -= Time.deltaTime;
             Debug.Log(timer);
             if (timer <= 0)
             {
                 timer = 5;
-                isdash = false;
+                is_dash = false;
                 Debug.Log("대쉬 초기화");
             }
         }
-    }
-
-    public void AttackAnimation()
-    {
-        if (current_item == 0 && item[0].name == "Melee1" && Input.GetMouseButtonDown(0))
-        {
-            ani.SetBool("Close Attack", true);
-        }
-        else { ani.SetBool("Close Attack", false); }
-
-        if (current_item == 1 && Input.GetMouseButtonDown(0))
-        {
-            ani.SetBool("Bomb", true);
-        }
-        else { ani.SetBool("Bomb", false); }
     }
 
     void SpawnPointUpdate()
@@ -273,34 +288,40 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     public void ItemChange()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && !isusehand)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && !is_usehand)
         {
             current_item = 0;
             if (current_item == 0)
             {
+                ani.SetTrigger("Change");
                 item[0].SetActive(true);//주무기
                 item[1].SetActive(false);//아이템1
                 item[2].SetActive(false);//아이템2
-            }           
+                ani.SetTrigger(weapon_String);
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && !isusehand)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && !is_usehand)
         {
             current_item = 1;
             if (current_item == 1)
             {
+                ani.SetTrigger("Change");
                 item[0].SetActive(false);
                 item[1].SetActive(true);
                 item[2].SetActive(false);
+                ani.SetTrigger("Item");
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && !isusehand)
+        if (Input.GetKeyDown(KeyCode.Alpha3) && !is_usehand)
         {
             current_item = 2;
             if (current_item == 2)
             {
+                ani.SetTrigger("Change");
                 item[0].SetActive(false);
                 item[1].SetActive(false);
                 item[2].SetActive(true);
+                ani.SetTrigger("Item");
             }
         }
         PickUpAndDropItem();
@@ -308,7 +329,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void PickUpAndDropItem()
     {
-        if (isusehand && Input.GetKeyDown(KeyCode.E))
+        if (is_usehand && Input.GetKeyDown(KeyCode.E))
         {
             hand.transform.DetachChildren();
         }
@@ -343,7 +364,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (col.gameObject.layer == 11 && Input.GetKeyDown(KeyCode.E))
         {
-            isusehand = true;
+            is_usehand = true;
             col.transform.parent = hand.transform;
         }
     }
@@ -356,14 +377,5 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         EAdd_AttackPoint,
         EAdd_Vision,
         EAdd_DashForce
-    }
-
-    [PunRPC]
-    void ActiveRPC(int a)
-    {
-        item[0].SetActive(false);
-        item[1].SetActive(false);
-        item[2].SetActive(false);
-        item[a].SetActive(true);
     }
 }
