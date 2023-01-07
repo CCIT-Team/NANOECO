@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimationMethod : MonoBehaviour
 {
+    public Animator playerani;
     public Animator heliAni;
     void RideHelicopter()
     {
@@ -33,5 +34,20 @@ public class PlayerAnimationMethod : MonoBehaviour
     {
         heliAni.SetBool("HliEnd", true);
         Player.instance.helicopter.SetActive(false);
+    }
+
+    void ItemChange()
+    {
+        playerani.SetTrigger("Change");
+    }
+    
+    void Attack()
+    {
+        playerani.SetTrigger("Attck");
+    }
+
+    void Reload()
+    {
+        playerani.SetTrigger("Reload");
     }
 }
