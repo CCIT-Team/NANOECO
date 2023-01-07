@@ -53,7 +53,7 @@ public class InGameUI : MonoBehaviour
 
         for (int j = 0; j < PhotonNetwork.PlayerList.Length; j++)
         {
-            if (PhotonNetwork.PlayerList[i].ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
+            if (PhotonNetwork.PlayerList[j].ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
             {
                 n = j;
                 break;
