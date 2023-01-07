@@ -449,64 +449,58 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         EAdd_DashForce
     }
 
-    void Point_Color()
+    public void Point_Color()
     {
         InGameUI.instace.GM_Color();
         GameManager.Instance.Player_List_Set();
         GameManager.Instance.player_list.Add(this);
+        InGameUI.instace.color_point.Add(this.playerIndicator);
 
         for (int j = 0; j < PhotonNetwork.PlayerList.Length; j++)
         {
-            //if (PhotonNetwork.PlayerList[j].ActorNumber == 1007 && pv.IsMine)
-            //{
-            //    //r = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].r;
-            //    //g = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].g;
-            //    //b = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].b;
-            //    //a = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].a;
-
-            //    playerIndicator.color = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber];
-
-            //}
-            //else
-            //{
-            //    if(PhotonNetwork.PlayerList[j].ActorNumber == 2001)
-            //    {
-            //        playerIndicator.color = GameManager.Instance.player_color[1];
-            //    }
-            //    if(PhotonNetwork.PlayerList[j].ActorNumber == 3001)
-            //    {
-            //        playerIndicator.color = GameManager.Instance.player_color[2];
-            //    }
-            //    if (PhotonNetwork.PlayerList[j].ActorNumber == 4001)
-            //    {
-            //        playerIndicator.color = GameManager.Instance.player_color[4];
-            //    }
-            //}
             if (GameManager.Instance.player_list[j].pv.ViewID == 1001)
             {
-                playerIndicator.color = GameManager.Instance.player_color[0];
-                player_actornum = 0;
+                //GameManager.Instance.player_list[j].playerIndicator.color = InGameUI.instace.player_color[0];
+                GameManager.Instance.player_list[j].player_actornum = 0;
+                InGameUI.instace.a = 0;
+                InGameUI.instace.b = 1;
+                InGameUI.instace.c = 2;
+                InGameUI.instace.d = 3;
+                InGameUI.instace.hh++;
             }
             if (GameManager.Instance.player_list[j].pv.ViewID == 2001)
             {
-                playerIndicator.color = GameManager.Instance.player_color[1];
-                player_actornum = 1;
+                //GameManager.Instance.player_list[j].playerIndicator.color = InGameUI.instace.player_color[1];
+                GameManager.Instance.player_list[j].player_actornum = 1;
+                InGameUI.instace.a = 1;
+                InGameUI.instace.b = 0;
+                InGameUI.instace.c = 2;
+                InGameUI.instace.d = 3;
+                InGameUI.instace.hh++;
             }
             if (GameManager.Instance.player_list[j].pv.ViewID == 3001)
             {
-                playerIndicator.color = GameManager.Instance.player_color[2];
-                player_actornum = 2;
+                //GameManager.Instance.player_list[j].playerIndicator.color = InGameUI.instace.player_color[2];
+                GameManager.Instance.player_list[j].player_actornum = 2;
+                InGameUI.instace.a = 2;
+                InGameUI.instace.b = 0;
+                InGameUI.instace.c = 1;
+                InGameUI.instace.d = 3;
+                InGameUI.instace.hh++;
             }
             if (GameManager.Instance.player_list[j].pv.ViewID == 4001)
             {
-                playerIndicator.color = GameManager.Instance.player_color[3];
-                player_actornum = 3;
+                //GameManager.Instance.player_list[j].playerIndicator.color = InGameUI.instace.player_color[3];
+                GameManager.Instance.player_list[j].player_actornum = 3;
+                InGameUI.instace.a = 3;
+                InGameUI.instace.b = 0;
+                InGameUI.instace.c = 1;
+                InGameUI.instace.d = 2;
+                InGameUI.instace.hh++;
             }
 
         }
 
         //playerIndicator.color = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber];
-
-        InGameUI.instace.UI_Setting();
     }
 }

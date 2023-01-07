@@ -90659,11 +90659,7 @@ MonoBehaviour:
   - {fileID: 4278776694046690949}
   - {fileID: 4278776695085070236}
   - {fileID: 4278776693319206724}
-  color_point:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  color_point: []
   hit_anime:
   - {fileID: 4278776694100632997}
   - {fileID: 4278776693562610271}
@@ -90675,6 +90671,11 @@ MonoBehaviour:
   - {fileID: 4278776693483262860}
   - {fileID: 4278776693583578662}
   player_hand: -1
+  a: -1
+  b: -1
+  c: -1
+  d: -1
+  hh: -1
 --- !u!1 &4278776695085070234
 GameObject:
   m_ObjectHideFlags: 0

@@ -7036,6 +7036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b739e424bb1522488ba922677ba13fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player_actornum: 0
   rigid: {fileID: 5336137748936740198}
   pv: {fileID: 5336137748936740197}
   camera_shaking_num: 0
@@ -7080,6 +7081,10 @@ MonoBehaviour:
   helicopterplayerbody: {fileID: 8936953236230042151}
   originPlayer: {fileID: 5336137748936740216}
   isunrideheli: 0
+  r: 0
+  g: 0
+  b: 0
+  a: 0
 --- !u!114 &5336137748936740195
 MonoBehaviour:
   m_ObjectHideFlags: 0
