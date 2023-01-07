@@ -12,8 +12,8 @@ public class NwideCMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 5f;
         data.defense = 1f;
-        data.patrol_speed = 2f;
-        data.chase_speed = 3.5f;
+        data.patrol_speed = 4f;
+        data.chase_speed = 7f;
 
         data.patrol_dist = 8f;
         data.chase_dist = 11f;

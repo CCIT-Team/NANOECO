@@ -12,14 +12,15 @@ public class NnomalFMonster : NewMonster
     private GameObject shot_pos;
 
     #region �ʱⰪ
+    [PunRPC]
     public NnomalFMonster()
     {
         data.max_hp = 50f;
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 1f;
-        data.chase_speed = 2f;
+        data.patrol_speed = 3f;
+        data.chase_speed = 4f;
 
         data.patrol_dist = 5f;
         data.chase_dist = 7f;

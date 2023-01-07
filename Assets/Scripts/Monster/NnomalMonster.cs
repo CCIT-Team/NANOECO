@@ -6,14 +6,15 @@ public class NnomalMonster : NewMonster
 {
     System.Action mon_action;
     #region �ʱⰪ
+    [PunRPC]
     public NnomalMonster()
     {
         data.max_hp = 60f;
         data.current_hp = data.max_hp;
         data.damage = 5f;
         data.defense = 1f;
-        data.patrol_speed = 2f;
-        data.chase_speed = 3f;
+        data.patrol_speed = 4f;
+        data.chase_speed = 6f;
 
         data.patrol_dist = 5f;
         data.chase_dist = 7f;
