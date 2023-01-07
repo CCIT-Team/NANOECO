@@ -19,10 +19,10 @@ public class InGameUI : MonoBehaviour
     public int player_hand;
 
     bool hp_set = false;
-    int a;
-    int b;
-    int c;
-    int d;
+    int a = -1;
+    int b = -1;
+    int c = -1;
+    int d = -1;
 
     void Awake()
     {
@@ -46,55 +46,42 @@ public class InGameUI : MonoBehaviour
         player_color = GameManager.Instance.player_color;
     }
 
-    public void UI_Setting(int i)
+    public void UI_Setting()
     {
-        int n = -1;
-        //for(int j = 0; j < GameManager.Instance.players.Length; j++)
-        //{
-        //    if(GameManager.Instance.players[j] == NaNoPlayer.instance)
-        //    {
-        //        n = j;
-        //        break;
-        //    }
-        //}
+        a = Player.instance.player_actornum;
 
-        for (int j = 0; j < PhotonNetwork.PlayerList.Length; j++)
+        if(a == 0)
         {
-            if (PhotonNetwork.PlayerList[j].ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
-            {
-                print(PhotonNetwork.LocalPlayer.ActorNumber + ": " + PhotonNetwork.PlayerList[j].ActorNumber);
-                n = j;
-                break;
-            }
+            b = 1;
+            c = 2;
+            d = 3;
+        }
+        else if (a == 1)
+        {
+            b = 0;
+            c = 2;
+            d = 3;
+        }
+        else if (a == 2)
+        {
+            b = 0;
+            c = 1;
+            d = 3;
+        }
+        else if (a == 3)
+        {
+            b = 0;
+            c = 1;
+            d = 2;
         }
 
-        switch (i)
-        {
-            case 0:
-                Setting(0, 1, 2, 3);
-                break;
-            case 1:
-                Setting(1, 0, 2, 3);
-                break;
-            case 2:
-                Setting(2, 0, 1, 3);
-                break;
-            case 3:
-                Setting(3, 0, 1, 2);
-                break;
-            default:
-                break;
-        }
+        Setting(a, b, c, d);
     }
 
     void Setting(int a, int b, int c, int d)
     {
         Set_Color(a, b, c, d);
         Set_HP(a, b, c, d);
-        this.a = a;
-        this.b = b;
-        this.c = c;
-        this.d = d;
         hp_set = true;
     }
 
@@ -113,33 +100,33 @@ public class InGameUI : MonoBehaviour
 
     void Set_HP(int a, int b, int c, int d)
     {
-        hp[0].text = GameManager.Instance.players[a].current_hp.ToString();
-        hp[1].text = GameManager.Instance.players[b].current_hp.ToString();
-        hp[2].text = GameManager.Instance.players[c].current_hp.ToString();
-        hp[3].text = GameManager.Instance.players[d].current_hp.ToString();
+        hp[0].text = GameManager.Instance.player_list[a].current_hp.ToString();
+        hp[1].text = GameManager.Instance.player_list[b].current_hp.ToString();
+        hp[2].text = GameManager.Instance.player_list[c].current_hp.ToString();
+        hp[3].text = GameManager.Instance.player_list[d].current_hp.ToString();
     }
 
     void Update_HP(int a, int b, int c, int d)
     {
-        if(int.Parse(hp[a].text) != GameManager.Instance.players[a].current_hp)
+        if(int.Parse(hp[a].text) != GameManager.Instance.player_list[a].current_hp)
         {
-            hp[0].text = GameManager.Instance.players[a].current_hp.ToString();
+            hp[0].text = GameManager.Instance.player_list[a].current_hp.ToString();
             hit_anime[0].Play();
 
         }
-        if (int.Parse(hp[1].text) != GameManager.Instance.players[b].current_hp)
+        if (int.Parse(hp[1].text) != GameManager.Instance.player_list[b].current_hp)
         {
-            hp[1].text = GameManager.Instance.players[a].current_hp.ToString();
+            hp[1].text = GameManager.Instance.player_list[a].current_hp.ToString();
             hit_anime[1].Play();
         }
-        if (int.Parse(hp[2].text) != GameManager.Instance.players[c].current_hp)
+        if (int.Parse(hp[2].text) != GameManager.Instance.player_list[c].current_hp)
         {
-            hp[2].text = GameManager.Instance.players[a].current_hp.ToString();
+            hp[2].text = GameManager.Instance.player_list[a].current_hp.ToString();
             hit_anime[2].Play();
         }
-        if (int.Parse(hp[3].text) != GameManager.Instance.players[d].current_hp)
+        if (int.Parse(hp[3].text) != GameManager.Instance.player_list[d].current_hp)
         {
-            hp[3].text = GameManager.Instance.players[a].current_hp.ToString();
+            hp[3].text = GameManager.Instance.player_list[a].current_hp.ToString();
             hit_anime[3].Play();
         }
     }
