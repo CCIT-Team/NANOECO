@@ -44,7 +44,7 @@ public class InGameUI : MonoBehaviour
         if (hp_set) { Update_HP(a, b, c, d); }
         if(hh == PhotonNetwork.PlayerList.Length && sibal == true)
         {
-            UI_Setting();
+            UI_Setting(Player.instance.player_actornum);
             sibal = false;
         }
     }
@@ -54,8 +54,35 @@ public class InGameUI : MonoBehaviour
         player_color = GameManager.Instance.player_color;
     }
 
-    public void UI_Setting()
+    public void UI_Setting(int i)
     {
+        switch(i)
+        {
+            case 0:
+                a = 0;
+                b = 1;
+                c = 2;
+                d = 3;
+                break;
+            case 1:
+                a = 1;
+                b = 0;
+                c = 2;
+                d = 3;
+                break;
+            case 2:
+                a = 2;
+                b = 0;
+                c = 1;
+                d = 3;
+                break;
+            case 3:
+                a = 3;
+                b = 0;
+                c = 1;
+                d = 2;
+                break;
+        }
         Setting(a, b, c, d);
     }
 
