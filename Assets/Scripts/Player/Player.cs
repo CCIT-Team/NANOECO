@@ -454,7 +454,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         InGameUI.instace.GM_Color();
         GameManager.Instance.Player_List_Set();
         player_actornum = PhotonNetwork.LocalPlayer.ActorNumber;
-        if (pv.IsMine) { GameManager.Instance.player_list.Add(this); }
+        GameManager.Instance.player_list.Add(this);
 
         for (int j = 0; j < PhotonNetwork.PlayerList.Length; j++)
         {
@@ -483,16 +483,19 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             //        playerIndicator.color = GameManager.Instance.player_color[4];
             //    }
             //}
-
-            if (PhotonNetwork.PlayerList[j].ActorNumber == 2001)
+            if (GameManager.Instance.player_list[j].pv.ViewID == 1001)
+            {
+                playerIndicator.color = GameManager.Instance.player_color[0];
+            }
+            if (GameManager.Instance.player_list[j].pv.ViewID == 2001)
             {
                 playerIndicator.color = GameManager.Instance.player_color[1];
             }
-            if (PhotonNetwork.PlayerList[j].ActorNumber == 3001)
+            if (GameManager.Instance.player_list[j].pv.ViewID == 3001)
             {
                 playerIndicator.color = GameManager.Instance.player_color[2];
             }
-            if (PhotonNetwork.PlayerList[j].ActorNumber == 4001)
+            if (GameManager.Instance.player_list[j].pv.ViewID == 4001)
             {
                 playerIndicator.color = GameManager.Instance.player_color[4];
             }
@@ -501,6 +504,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
         //playerIndicator.color = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber];
 
-        InGameUI.instace.UI_Setting(PhotonNetwork.LocalPlayer.ActorNumber);
+        //InGameUI.instace.UI_Setting(PhotonNetwork.LocalPlayer.ActorNumber);
     }
 }
