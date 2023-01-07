@@ -19,8 +19,8 @@ public class NwideFMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 5f;
         data.defense = 1f;
-        data.patrol_speed = 8f;
-        data.chase_speed = 11f;
+        data.patrol_speed = 4f;
+        data.chase_speed = 5f;
 
         data.patrol_dist = 10f;
         data.chase_dist = 13f;
@@ -43,8 +43,8 @@ public class NwideFMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 5f;
         data.defense = 1f;
-        data.patrol_speed = 8f;
-        data.chase_speed = 11f;
+        data.patrol_speed = 4f;
+        data.chase_speed = 5f;
 
         data.patrol_dist = 10f;
         data.chase_dist = 13f;
@@ -89,7 +89,7 @@ public class NwideFMonster : NewMonster
                 {
                     audioplayer.PlayOneShot(attack_clip);
                     animator.SetTrigger(hash_attack);
-                    agent.stoppingDistance = (data.attack_dist - 2f);
+                    agent.stoppingDistance = (data.attack_dist - 0.5f);
                     Instantiate(mon_bullet, transform.position, transform.rotation);
                     data.current_time = 0;
                 }

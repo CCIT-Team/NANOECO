@@ -110,7 +110,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
     [SerializeField]
     protected CURRNET_STATE current_state = new CURRNET_STATE();
 
-    float RandTime = 5;
+    float RandTime = 3;
     public float Rand_Chase_Time;
     #endregion
     public PhotonView PV; //서버를 통해서 제어
@@ -171,7 +171,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
         if (RandTime <= 0)
         {
             agent.SetDestination(Get_Random_Point(transform, data.patrol_dist));
-            RandTime = Random.Range(1f,4f);
+            RandTime = Random.Range(1f,3f);
         }
         if (on_event ==true) //이벤트로 생성된 것 지정
         {
@@ -316,7 +316,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
                     {
                         audioplayer.PlayOneShot(attack_clip);
                         animator.SetTrigger(hash_attack);
-                        agent.stoppingDistance = (data.attack_dist - 0.5f);
+                        agent.stoppingDistance = (data.attack_dist - 0.1f);
                         protectionTarget.hp -= data.damage;   //방어 대상 공격
                         data.current_time = 0;
                     }
@@ -324,7 +324,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
                     {
                         audioplayer.PlayOneShot(attack_clip);
                         animator.SetTrigger(hash_attack);
-                        agent.stoppingDistance = (data.attack_dist - 0.5f);
+                        agent.stoppingDistance = (data.attack_dist - 0.1f);
                         player.current_hp -= data.damage;   //플레이어 공격
                         data.current_time = 0;
                     }
