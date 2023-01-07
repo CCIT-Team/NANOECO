@@ -12,17 +12,20 @@ public class InGameUI : MonoBehaviour
     public MissionSystem ms;
     public Color[] player_color;
     public Image[] color_bar;
-    public Image[] color_point;
+    public List<Image> color_point = new List<Image>();
     public Animation[] hit_anime;
     bool first_setting = true;
     public TextMeshProUGUI[] hp;
     public int player_hand;
 
     bool hp_set = false;
-    int a = -1;
-    int b = -1;
-    int c = -1;
-    int d = -1;
+    public int a = -1;
+    public int b = -1;
+    public int c = -1;
+    public int d = -1;
+
+    public int hh = -1;
+    bool sibal = true;
 
     void Awake()
     {
@@ -39,6 +42,11 @@ public class InGameUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad2)) { ms.Mission_Clear(2); }
         if (Input.GetKeyDown(KeyCode.Keypad3)) { ms.Mission_Clear(3); }
         if (hp_set) { Update_HP(a, b, c, d); }
+        if(hh == PhotonNetwork.PlayerList.Length && sibal == true)
+        {
+            UI_Setting();
+            sibal = false;
+        }
     }
 
     public void GM_Color()
@@ -48,33 +56,6 @@ public class InGameUI : MonoBehaviour
 
     public void UI_Setting()
     {
-        a = Player.instance.player_actornum;
-
-        if(a == 0)
-        {
-            b = 1;
-            c = 2;
-            d = 3;
-        }
-        else if (a == 1)
-        {
-            b = 0;
-            c = 2;
-            d = 3;
-        }
-        else if (a == 2)
-        {
-            b = 0;
-            c = 1;
-            d = 3;
-        }
-        else if (a == 3)
-        {
-            b = 0;
-            c = 1;
-            d = 2;
-        }
-
         Setting(a, b, c, d);
     }
 
@@ -92,10 +73,10 @@ public class InGameUI : MonoBehaviour
         color_bar[2].color = player_color[c];
         color_bar[3].color = player_color[d];
 
-        color_point[0].color = player_color[a];
-        color_point[1].color = player_color[b];
-        color_point[2].color = player_color[c];
-        color_point[3].color = player_color[d];
+        color_point[a].color = player_color[a];
+        color_point[b].color = player_color[b];
+        color_point[c].color = player_color[c];
+        color_point[d].color = player_color[d];
     }
 
     void Set_HP(int a, int b, int c, int d)
