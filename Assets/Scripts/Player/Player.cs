@@ -14,9 +14,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     int targetdisplay = 0;
     public Rigidbody rigid;
     public PhotonView pv;
-    public TextMeshProUGUI nickname;
     EPlayer_Skil eps;
     public int camera_shaking_num;
+    [Header("UI")]
+    public TextMeshProUGUI nickname;
+    public SpriteRenderer playerIndicator;
     [Header("Status")]
     public float max_hp;
     public float current_hp;
@@ -43,8 +45,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     bool is_usehand = false;
     public GameObject[] inventory;
     int current_item = 0;
-    public int current_Weapon;
+    public int current_Hand = -1;
     public int current_Garget;
+    public int current_Weapon;
     string weapon_String;
     //0 = 기본총
     //1 = 런처
@@ -134,16 +137,19 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 weapon_String = "Difuser";
                 weapons[0].SetActive(true);
                 inventory[0] = weapons[0];
+                current_Hand = 0;
                 break;
             case 1:
                 weapon_String = "Launcher";
                 weapons[1].SetActive(true);
                 inventory[0] = weapons[1];
+                current_Hand = 1;
                 break;
             case 2:
                 weapon_String = "Spray";
                 weapons[2].SetActive(true);
                 inventory[0] = weapons[2];
+                current_Hand = 2;
                 break;
         }
         switch (current_Garget)
@@ -154,18 +160,22 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             case 0:
                 garget_String = "Bomb";
                 gargets[0].SetActive(true);
+                current_Hand = 3;
                 break;
             case 1:
                 garget_String = "Dummy";
                 gargets[1].SetActive(true);
+                current_Hand = 4;
                 break;
             case 2:
                 garget_String = "Healing Bomb";
                 gargets[2].SetActive(true);
+                current_Hand = 5;
                 break;
             case 3:
                 garget_String = "Heal Totam";
                 gargets[3].SetActive(true);
+                current_Hand = 6;
                 break;
         }
     }
@@ -406,10 +416,15 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.layer == 11 && Input.GetKeyDown(KeyCode.E))
+        if (col.gameObject.layer == 12 && Input.GetKey(KeyCode.E))
         {
+            Debug.Log("집어! 이것을!" + col.gameObject.layer);
             is_usehand = true;
             col.transform.parent = hand.transform;
+            if (is_usehand && Input.GetKeyDown(KeyCode.E))
+            {
+                hand.transform.DetachChildren();
+            }
         }
     }
 
