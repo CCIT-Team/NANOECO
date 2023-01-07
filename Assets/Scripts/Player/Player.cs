@@ -10,7 +10,7 @@ using Photon.Pun.Demo.PunBasics;
 public class Player : MonoBehaviourPunCallbacks, IPunObservable
 {
     public static Player instance;
-
+    public int player_actornum;
     int targetdisplay = 0;
     public Rigidbody rigid;
     public PhotonView pv;
@@ -69,6 +69,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject originPlayer;
     public bool isunrideheli = false;
 
+    public float r;
+    public float g;
+    public float b;
+    public float a;
 
     Vector3 curPos;
     Quaternion curRot;
@@ -81,6 +85,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(current_hp);
             stream.SendNext(is_dead);
             stream.SendNext(current_item);
+            stream.SendNext(r);
+            stream.SendNext(g);
+            stream.SendNext(b);
+            stream.SendNext(a);
         }
         else
         {
@@ -89,6 +97,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             current_hp = (float)stream.ReceiveNext();
             is_dead = (bool)stream.ReceiveNext();
             current_item = (int)stream.ReceiveNext();
+            r = (float)stream.ReceiveNext();
+            g = (float)stream.ReceiveNext();
+            b = (float)stream.ReceiveNext();
+            a = (float)stream.ReceiveNext();
         }
     }
 
@@ -440,17 +452,23 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void Point_Color()
     {
         InGameUI.instace.GM_Color();
+        GameManager.Instance.Player_List_Set();
+        player_actornum = PhotonNetwork.LocalPlayer.ActorNumber;
 
-        for (int j = 0; j < PhotonNetwork.PlayerList.Length; j++)
-        {
-            if (PhotonNetwork.PlayerList[j].ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber && pv.IsMine)
-            {
-                playerIndicator.color = GameManager.Instance.player_color[j];
-                break;
-            }
-        }
+        //for (int j = 0; j < PhotonNetwork.PlayerList.Length; j++)
+        //{
+        //    if (PhotonNetwork.PlayerList[j].ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
+        //    {
+        //        r = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].r;
+        //    }
+        //}
 
-        //playerIndicator.color = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber];
+        r = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].r;
+        g = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].g;
+        b = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].b;
+        a = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber].a;
+
+        playerIndicator.color = new Color(r, g, b, a);
 
         InGameUI.instace.UI_Setting(PhotonNetwork.LocalPlayer.ActorNumber);
     }
