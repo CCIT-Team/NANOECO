@@ -18,7 +18,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public int camera_shaking_num;
     [Header("UI")]
     public TextMeshProUGUI nickname;
-    public SpriteRenderer playerIndicator;
+    public Image playerIndicator;
     [Header("Status")]
     public float max_hp;
     public float current_hp;
