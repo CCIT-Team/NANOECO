@@ -15,7 +15,7 @@ public class nextSecnt : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.K))
         {
-            SceneManager.LoadScene("FastFoodKitchen");
+            SceneManager.LoadScene("FastFoodKitchenF");
         }
     }
 }

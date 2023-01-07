@@ -19,18 +19,18 @@ public class NnomalFMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 5f;
-        data.chase_speed = 8f;
+        data.patrol_speed = 6f;
+        data.chase_speed = 9f;
 
-        data.patrol_dist = 20f;
-        data.chase_dist = 30f;
-        data.attack_dist = 20f;
+        data.patrol_dist = 5f;
+        data.chase_dist = 7f;
+        data.attack_dist = 4f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 150f;
+        data.event_chase_dist = 50f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
-        data.attack_cool_time = 2f;
+        data.attack_cool_time = 1f;
         data.skill_cool_time = 1000f;
 
         data.current_time = 0f;
@@ -43,18 +43,18 @@ public class NnomalFMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 5f;
-        data.chase_speed = 8f;
+        data.patrol_speed = 6f;
+        data.chase_speed = 9f;
 
-        data.patrol_dist = 20f;
-        data.chase_dist = 30f;
-        data.attack_dist = 20f;
+        data.patrol_dist = 5f;
+        data.chase_dist = 7f;
+        data.attack_dist = 4f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 150f;
+        data.event_chase_dist = 50f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
-        data.attack_cool_time = 2f;
+        data.attack_cool_time = 1f;
         data.skill_cool_time = 1000f;
 
         data.current_time = 0f;
