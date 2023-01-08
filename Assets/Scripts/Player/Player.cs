@@ -213,10 +213,13 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (pv.IsMine && PhotonNetwork.IsConnected && !is_dead) { Move(); }
         if (pv.IsMine)
-        { 
-            ItemChange(); 
+        {
+            ItemChange();
         }
-        Dead();
+        if (current_hp <= 0 || is_dead == true)
+        {
+            Dead();
+        }
         if (helicopterAni.GetBool("Respawn"))
         {
             ReSpawn();
@@ -234,15 +237,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void Dead()
     {
-        if (current_hp <= 0 || is_dead == true)
-        {
-            current_hp = 0;
-            is_dead = true;
-            ani.SetTrigger("Dead");
-            helicopter.SetActive(true);
-            helicopterplayerbody.transform.parent = helicopterrope.transform;
-            helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
-        }
+        current_hp = 0;
+        is_dead = true;
+        ani.SetTrigger("Dead");
+        helicopter.SetActive(true);
+        helicopterplayerbody.transform.parent = helicopterrope.transform;
+        helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
 
         if (spawn_point == null) { spawn_point = firstSpawnPoint[spawnNum]; }
         if (spawnNum > 3) { spawnNum = 0; }
@@ -262,9 +262,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 helicopterplayerbody.transform.parent = originPlayer.transform;
             }
             if (helicopterAni.GetBool("HliEnd"))
-            {               
+            {
                 respawn_time = 3;
-                isunrideheli = false;               
+                isunrideheli = false;
                 helicopterplayerbody.SetActive(true);
                 helicopterrope.transform.DetachChildren();
                 helicopterplayerbody.transform.parent = originPlayer.transform;
