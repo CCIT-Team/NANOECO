@@ -109,13 +109,13 @@ public class InGameUI : MonoBehaviour
     {
         color_bar[0].color = player_color[a];
         color_bar[1].color = player_color[b];
-        //color_bar[2].color = GameManager.Instance.player_list[c].cccc;
-        //color_bar[3].color = GameManager.Instance.player_list[d].cccc;
+        //color_bar[2].color = player_color[c];
+        //color_bar[3].color = player_color[d];
 
-        GameManager.Instance.player_list[a].playerIndicator.color = player_color[a];
-        GameManager.Instance.player_list[b].playerIndicator.color = player_color[b];
-        //color_point[c].color = GameManager.Instance.player_list[c].cccc;
-        //color_point[d].color = GameManager.Instance.player_list[d].cccc;
+        color_point[a].color = player_color[a];
+        color_point[b].color = player_color[b];
+        //color_point[c].color = player_color[c];
+        //color_point[d].color = player_color[d];
     }
 
     void Set_HP(int a, int b, int c, int d)
