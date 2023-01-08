@@ -73,7 +73,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public float g;
     public float b;
     public float a;
-
+    public Color cccc;
     Vector3 curPos;
     Quaternion curRot;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

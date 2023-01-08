@@ -25,7 +25,7 @@ public class InGameUI : MonoBehaviour
     public int d = -1;
 
     public int hh = -1;
-    bool sibal = true;
+    public bool sibal = true;
 
     void Awake()
     {
@@ -42,7 +42,11 @@ public class InGameUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad2)) { ms.Mission_Clear(2); }
         if (Input.GetKeyDown(KeyCode.Keypad3)) { ms.Mission_Clear(3); }
         if (hp_set) { Update_HP(a, b, c, d); }
-        if(hh == PhotonNetwork.PlayerList.Length && sibal == true)
+    }
+
+    public void zzz()
+    {
+        if (GameManager.Instance.player_list.Count == PhotonNetwork.PlayerList.Length && sibal == true)
         {
             UI_Setting(Player.instance.player_actornum);
             sibal = false;
@@ -95,15 +99,15 @@ public class InGameUI : MonoBehaviour
 
     void Set_Color(int a, int b, int c, int d)
     {
-        color_bar[0].color = player_color[a];
-        color_bar[1].color = player_color[b];
-        color_bar[2].color = player_color[c];
-        color_bar[3].color = player_color[d];
-
         color_point[a].color = player_color[a];
         color_point[b].color = player_color[b];
         color_point[c].color = player_color[c];
         color_point[d].color = player_color[d];
+
+        color_bar[0].color = color_point[a].color; 
+        color_bar[1].color = color_point[b].color; 
+        color_bar[2].color = color_point[c].color;
+        color_bar[3].color = color_point[d].color;
     }
 
     void Set_HP(int a, int b, int c, int d)
