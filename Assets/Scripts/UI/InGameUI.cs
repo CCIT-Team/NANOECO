@@ -33,6 +33,7 @@ public class InGameUI : MonoBehaviour
         //GameManager.Instance.Player_List_Set();
         ms.Mission_Box_Update(mission_box_list);
         //UI_Setting(PhotonNetwork.LocalPlayer.ActorNumber);
+        zzz();
     }
 
     void Update()
