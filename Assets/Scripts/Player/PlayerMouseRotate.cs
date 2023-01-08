@@ -2,7 +2,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PlayerMouseRotate : MonoBehaviour
+public class PlayerMouseRotate : MonoBehaviourPunCallbacks
 {
     [SerializeField] private LayerMask groundMask;
 
@@ -16,7 +16,7 @@ public class PlayerMouseRotate : MonoBehaviour
 
     private void Update()
     {
-        if(pv.IsMine && !Player.instance.is_dead)
+        if(pv.IsMine)
         {
             Aim();
         }

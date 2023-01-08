@@ -31,7 +31,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public int skil_num;
     bool is_dash = false;
     public bool isGrounded = true;
-    bool is_dontHit = false;
     [Header("æ∆¿Ã≈€")]
     public GameObject[] weapons = new GameObject[3];
     //0 = Difuser
@@ -75,8 +74,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public float b;
     public float a;
     public Color cccc;
-    Vector3 curPos;
-    Quaternion curRot;
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -94,8 +92,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         else
         {
             is_dead = (bool)stream.ReceiveNext();
-            curPos = (Vector3)stream.ReceiveNext();
-            curRot = (Quaternion)stream.ReceiveNext();
+            transform.position = (Vector3)stream.ReceiveNext();
+            transform.rotation = (Quaternion)stream.ReceiveNext();
             current_hp = (float)stream.ReceiveNext();
             current_item = (int)stream.ReceiveNext();
             r = (float)stream.ReceiveNext();
@@ -216,10 +214,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             ItemChange();
         }
-        if (current_hp <= 0 || is_dead == true)
-        {
-            Dead();
-        }
+        Dead();
         if (helicopterAni.GetBool("Respawn"))
         {
             ReSpawn();
@@ -237,12 +232,15 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void Dead()
     {
-        current_hp = 0;
-        is_dead = true;
-        ani.SetTrigger("Dead");
-        helicopter.SetActive(true);
-        helicopterplayerbody.transform.parent = helicopterrope.transform;
-        //helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
+        if (current_hp <= 0 || is_dead == true)
+        {
+            current_hp = 0;
+            is_dead = true;
+            ani.SetTrigger("Dead");
+            helicopter.SetActive(true);
+            helicopterplayerbody.transform.parent = helicopterrope.transform;
+            helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
+        }
 
         if (spawn_point == null) { spawn_point = firstSpawnPoint[spawnNum]; }
         if (spawnNum > 3) { spawnNum = 0; }
@@ -353,7 +351,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKeyDown(KeyCode.Alpha2) && !is_usehand)
         {
             current_item = 1;
-            current_Hand = 1;
+            current_Hand = 3;
             if (current_item == 1)
             {
                 ani.SetTrigger("Change");
@@ -366,7 +364,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKeyDown(KeyCode.Alpha3) && !is_usehand)
         {
             current_item = 2;
-            current_Hand = 2;
+            current_Hand = 6;
             if (current_item == 2)
             {
                 ani.SetTrigger("Change");
