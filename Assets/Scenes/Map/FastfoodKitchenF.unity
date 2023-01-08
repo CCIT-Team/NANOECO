@@ -13835,6 +13835,26 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 8355990703055694766, guid: 5187a8a22b5eb9f4b85d505200b13b7a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -327.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8355990703055694766, guid: 5187a8a22b5eb9f4b85d505200b13b7a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -408.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8355990703085772892, guid: 5187a8a22b5eb9f4b85d505200b13b7a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8355990703288910030, guid: 5187a8a22b5eb9f4b85d505200b13b7a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -244.9
+      objectReference: {fileID: 0}
     - target: {fileID: 8355990703565098824, guid: 5187a8a22b5eb9f4b85d505200b13b7a,
         type: 3}
       propertyPath: check_points.Array.size
@@ -13934,6 +13954,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8355990703895461491, guid: 5187a8a22b5eb9f4b85d505200b13b7a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -640.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8355990703895461491, guid: 5187a8a22b5eb9f4b85d505200b13b7a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -385.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5187a8a22b5eb9f4b85d505200b13b7a, type: 3}

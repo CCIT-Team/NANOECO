@@ -81,9 +81,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (stream.IsWriting)
         {
+            stream.SendNext(is_dead);
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
-            stream.SendNext(is_dead);
             stream.SendNext(current_hp);
             stream.SendNext(current_item);
             stream.SendNext(r);
@@ -93,9 +93,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
+            is_dead = (bool)stream.ReceiveNext();
             curPos = (Vector3)stream.ReceiveNext();
             curRot = (Quaternion)stream.ReceiveNext();
-            is_dead = (bool)stream.ReceiveNext();
             current_hp = (float)stream.ReceiveNext();
             current_item = (int)stream.ReceiveNext();
             r = (float)stream.ReceiveNext();
