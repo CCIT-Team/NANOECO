@@ -8793,6 +8793,11 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5604700466109773347, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+        type: 3}
+      propertyPath: mission_name
+      value: Protect the multi-tap
+      objectReference: {fileID: 0}
     - target: {fileID: 5604700466152365651, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
         type: 3}
       propertyPath: m_Mesh
@@ -8829,6 +8834,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604700466465970983, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+        type: 3}
+      propertyPath: mission_name
+      value: Destroy the insect eggs
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604700466631023068, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+        type: 3}
+      propertyPath: mission_name
+      value: Search and rescue the staff
       objectReference: {fileID: 0}
     - target: {fileID: 5604700466738629297, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
         type: 3}
@@ -9007,6 +9022,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 399937472637960896, guid: 6bc13ceba0ff585488c8a6cca7667025,
         type: 3}
+    - target: {fileID: 5604700467569512412, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+        type: 3}
+      propertyPath: mission_name
+      value: Gather the machine parts
+      objectReference: {fileID: 0}
     - target: {fileID: 5604700467696817556, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
         type: 3}
       propertyPath: m_Mesh
