@@ -97,7 +97,7 @@ public class InGameUI : MonoBehaviour
     {
         GameManager.Instance.player_list[a].cccc = player_color[a];
         GameManager.Instance.player_list[b].cccc = player_color[b];
-        //GameManager.Instance.player_list[c].cccc = player_color[c];
+        GameManager.Instance.player_list[c].cccc = player_color[c];
         //GameManager.Instance.player_list[d].cccc = player_color[d];
 
         Set_Color(a, b, c, d);
@@ -109,12 +109,12 @@ public class InGameUI : MonoBehaviour
     {
         color_bar[0].color = player_color[a];
         color_bar[1].color = player_color[b];
-        //color_bar[2].color = player_color[c];
+        color_bar[2].color = player_color[c];
         //color_bar[3].color = player_color[d];
 
         color_point[a].color = player_color[a];
         color_point[b].color = player_color[b];
-        //color_point[c].color = player_color[c];
+        color_point[c].color = player_color[c];
         //color_point[d].color = player_color[d];
     }
 
