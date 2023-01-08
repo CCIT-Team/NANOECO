@@ -1,26 +1,30 @@
 using UnityEngine;
 
+
 public class PlayerMouseRotate : MonoBehaviour
 {
     [SerializeField] private LayerMask groundMask;
 
-    //public Camera cam;
+    public Camera cam;
 
     private void Start()
     {
         //cam = PhotonTestPlayer.instance.cam;
-        //cam = Camera.main;
+        cam = Camera.main;
     }
 
     private void Update()
     {
-        Aim();
+        if(Player.instance.pv.IsMine && Player.instance.is_dead == false)
+        {
+            Aim();
+        }
     }
 
     private void Aim()
     {
         var (success, position) = GetMousePosition();
-        if (success && !Player.instance.is_dead)
+        if (success && Player.instance.is_dead == false)
         {
             var direction = position - transform.position;
             direction.y = 0;
@@ -30,7 +34,9 @@ public class PlayerMouseRotate : MonoBehaviour
 
     private (bool success, Vector3 position) GetMousePosition()
     {
-        if (Physics.Raycast(Player.instance.ray, out var hitInfo, Mathf.Infinity, groundMask))
+        var ray = cam.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
         {
             return (success: true, position: hitInfo.point);
         }
