@@ -93,22 +93,27 @@ public class InGameUI : MonoBehaviour
 
     void Setting(int a, int b, int c, int d)
     {
+        GameManager.Instance.player_list[a].cccc = player_color[a];
+        GameManager.Instance.player_list[b].cccc = player_color[b];
+        GameManager.Instance.player_list[c].cccc = player_color[c];
+        GameManager.Instance.player_list[d].cccc = player_color[d];
+
         Set_Color(a, b, c, d);
         Set_HP(a, b, c, d);
         hp_set = true;
     }
 
-    IEnumerator Set_Color(int a, int b, int c, int d)
+    void Set_Color(int a, int b, int c, int d)
     {
-        color_point[a].color = player_color[a];
-        color_point[b].color = player_color[b];
-        color_point[c].color = player_color[c];
-        color_point[d].color = player_color[d];
-        yield return new WaitForSeconds(0.2f);
-        color_bar[0].color = color_point[a].color;
-        color_bar[1].color = color_point[b].color;
-        color_bar[2].color = color_point[c].color;
-        color_bar[3].color = color_point[d].color;
+        color_point[a].color = GameManager.Instance.player_list[a].cccc;
+        color_point[b].color = GameManager.Instance.player_list[b].cccc;
+        color_point[c].color = GameManager.Instance.player_list[c].cccc;
+        color_point[d].color = GameManager.Instance.player_list[d].cccc;
+
+        color_bar[0].color = GameManager.Instance.player_list[a].cccc;
+        color_bar[1].color = GameManager.Instance.player_list[b].cccc;
+        color_bar[2].color = GameManager.Instance.player_list[c].cccc;
+        color_bar[3].color = GameManager.Instance.player_list[d].cccc;
     }
 
     void Set_HP(int a, int b, int c, int d)
