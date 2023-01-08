@@ -1815,7 +1815,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4958753444626218890
 Transform:
   m_ObjectHideFlags: 0
@@ -7036,6 +7036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b739e424bb1522488ba922677ba13fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player_actornum: 0
   rigid: {fileID: 5336137748936740198}
   pv: {fileID: 5336137748936740197}
   camera_shaking_num: 0
@@ -7046,7 +7047,7 @@ MonoBehaviour:
   jump_force: 250
   dash_force: 35
   move_force: 1.5
-  is_dead: 1
+  is_dead: 0
   respawn_time: 3
   skil_num: 0
   isGrounded: 1
@@ -7055,15 +7056,15 @@ MonoBehaviour:
   - {fileID: 2491086760451726355}
   - {fileID: 4508826830145785607}
   gargets:
-  - {fileID: 7034234368129635491}
-  - {fileID: 2399045519205307846}
-  - {fileID: 4675177867057831335}
-  - {fileID: 5302058293580550663}
+  - {fileID: 5082337188932917547, guid: c3723d5909920f04bb428b0f104922f0, type: 3}
+  - {fileID: 1466770548585659483, guid: a0911bf1b2b1b3a41987c7498516f82e, type: 3}
+  - {fileID: 5082337188932917547, guid: 083e502dc20a48340937baa09f85ffa6, type: 3}
+  - {fileID: 4065306939797495791, guid: 689a033a2ef279441b682bfe545c0acc, type: 3}
   hand: {fileID: 5534488910848128364}
   inventory:
   - {fileID: 2491086760451726355}
-  - {fileID: 7034234368129635491}
-  - {fileID: 5302058293580550663}
+  - {fileID: 5082337188932917547, guid: c3723d5909920f04bb428b0f104922f0, type: 3}
+  - {fileID: 4065306939797495791, guid: 689a033a2ef279441b682bfe545c0acc, type: 3}
   current_Hand: 0
   current_Garget: 0
   current_Weapon: 0
@@ -7080,6 +7081,11 @@ MonoBehaviour:
   helicopterplayerbody: {fileID: 8936953236230042151}
   originPlayer: {fileID: 5336137748936740216}
   isunrideheli: 0
+  r: 0
+  g: 0
+  b: 0
+  a: 0
+  cccc: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &5336137748936740195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8562,12 +8568,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 462049699996271756}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4675177867057831335 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5082337188932917547, guid: dc667c345e9b4f74190135fb3e5d1eb7,
-    type: 3}
-  m_PrefabInstance: {fileID: 462049699996271756}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &932071386336953614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8642,12 +8642,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbb26262bffd93a409602b8bae1b748c, type: 3}
---- !u!1 &2399045519205307846 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3288893045408403656, guid: bbb26262bffd93a409602b8bae1b748c,
-    type: 3}
-  m_PrefabInstance: {fileID: 932071386336953614}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4101768209715319796 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3747849797524641530, guid: bbb26262bffd93a409602b8bae1b748c,
@@ -8731,12 +8725,6 @@ PrefabInstance:
 --- !u!4 &7034234368129635486 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5082337188932917526, guid: 23b67b0a0b9b19948b7af0149aeae9c9,
-    type: 3}
-  m_PrefabInstance: {fileID: 2816588552063454600}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7034234368129635491 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5082337188932917547, guid: 23b67b0a0b9b19948b7af0149aeae9c9,
     type: 3}
   m_PrefabInstance: {fileID: 2816588552063454600}
   m_PrefabAsset: {fileID: 0}
@@ -8935,12 +8923,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee6dd4045a229da468b5e352ab61b2f4, type: 3}
---- !u!1 &5302058293580550663 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4065306939797495791, guid: ee6dd4045a229da468b5e352ab61b2f4,
-    type: 3}
-  m_PrefabInstance: {fileID: 8214124757621607912}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9006878351716699288 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 936945336163615088, guid: ee6dd4045a229da468b5e352ab61b2f4,

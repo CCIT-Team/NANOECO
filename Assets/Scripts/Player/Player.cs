@@ -10,7 +10,7 @@ using Photon.Pun.Demo.PunBasics;
 public class Player : MonoBehaviourPunCallbacks, IPunObservable
 {
     public static Player instance;
-
+    public int player_actornum;
     int targetdisplay = 0;
     public Rigidbody rigid;
     public PhotonView pv;
@@ -69,7 +69,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject originPlayer;
     public bool isunrideheli = false;
 
-
+    public float r;
+    public float g;
+    public float b;
+    public float a;
+    public Color cccc;
     Vector3 curPos;
     Quaternion curRot;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -81,6 +85,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(current_hp);
             stream.SendNext(is_dead);
             stream.SendNext(current_item);
+            stream.SendNext(r);
+            stream.SendNext(g);
+            stream.SendNext(b);
+            stream.SendNext(a);
         }
         else
         {
@@ -89,6 +97,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             current_hp = (float)stream.ReceiveNext();
             is_dead = (bool)stream.ReceiveNext();
             current_item = (int)stream.ReceiveNext();
+            r = (float)stream.ReceiveNext();
+            g = (float)stream.ReceiveNext();
+            b = (float)stream.ReceiveNext();
+            a = (float)stream.ReceiveNext();
         }
     }
 
@@ -183,7 +195,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void Start()
     {
         PhotonNetwork.CurrentRoom.IsOpen = false;
-
+        Point_Color();
         Skil();
         is_dead = false;
         inventory[0].SetActive(true);
@@ -277,7 +289,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void Move()
     {
-        Debug.Log(isGrounded);
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -436,5 +447,44 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         EAdd_AttackPoint,
         EAdd_Vision,
         EAdd_DashForce
+    }
+
+    public void Point_Color()
+    {
+        InGameUI.instace.GM_Color();
+        GameManager.Instance.Player_List_Set();
+        GameManager.Instance.player_list.Add(this);
+
+        if (pv.IsMine) { InGameUI.instace.ply = this; }
+
+        for (int j = 0; j < PhotonNetwork.PlayerList.Length; j++)
+        {
+            if (GameManager.Instance.player_list[j].pv.ViewID == 1001 || GameManager.Instance.player_list[j].pv.ViewID == 1007)
+            {
+                GameManager.Instance.player_list[j].player_actornum = 0;
+                InGameUI.instace.color_point[0] = GameManager.Instance.player_list[j].playerIndicator;
+                InGameUI.instace.hh++;
+            }
+            if (GameManager.Instance.player_list[j].pv.ViewID == 2001)
+            {
+                GameManager.Instance.player_list[j].player_actornum = 1;
+                InGameUI.instace.color_point[1] = GameManager.Instance.player_list[j].playerIndicator;
+                InGameUI.instace.hh++;
+            }
+            if (GameManager.Instance.player_list[j].pv.ViewID == 3001)
+            {
+                GameManager.Instance.player_list[j].player_actornum = 2;
+                InGameUI.instace.color_point[2] = GameManager.Instance.player_list[j].playerIndicator;
+                InGameUI.instace.hh++;
+            }
+            if (GameManager.Instance.player_list[j].pv.ViewID == 4001)
+            {
+                GameManager.Instance.player_list[j].player_actornum = 3;
+                InGameUI.instace.color_point[3] = GameManager.Instance.player_list[j].playerIndicator;
+                InGameUI.instace.hh++;
+            }
+
+        }
+        //playerIndicator.color = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber];
     }
 }
