@@ -216,7 +216,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             ItemChange();
         }
-        if (pv.IsMine && current_hp <= 0 || pv.IsMine && is_dead == true)
+        if (current_hp <= 0 || is_dead == true)
         {
             Dead();
         }
@@ -261,7 +261,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 helicopterrope.transform.DetachChildren();
                 helicopterplayerbody.transform.parent = originPlayer.transform;
             }
-            if (pv.IsMine && helicopterAni.GetBool("HliEnd"))
+            if (helicopterAni.GetBool("HliEnd"))
             {
                 respawn_time = 3;
                 isunrideheli = false;
