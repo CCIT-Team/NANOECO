@@ -93319,8 +93319,11 @@ MonoBehaviour:
   - {fileID: 4278776694522217538}
   - {fileID: 4278776693412756335}
   - {fileID: 4278776694760633332}
-  max_ammo: {fileID: 0}
-  current_ammo: {fileID: 0}
+  max_ammo: {fileID: 4278776694381448244}
+  current_ammo: {fileID: 4278776693148126784}
+  gun: {fileID: 0}
+  launcher: {fileID: 0}
+  spray: {fileID: 0}
   a: -1
   b: -1
   c: -1
