@@ -7892,7 +7892,7 @@ PrefabInstance:
     - target: {fileID: 777657613197372084, guid: 8f233bb653c30bb4295d0d5dd595b22d,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 127
+      value: 119
       objectReference: {fileID: 0}
     - target: {fileID: 1281897562867911521, guid: 8f233bb653c30bb4295d0d5dd595b22d,
         type: 3}
@@ -7912,7 +7912,7 @@ PrefabInstance:
     - target: {fileID: 4539967805613540662, guid: 8f233bb653c30bb4295d0d5dd595b22d,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 127
+      value: 119
       objectReference: {fileID: 0}
     - target: {fileID: 6284821598710373958, guid: 8f233bb653c30bb4295d0d5dd595b22d,
         type: 3}
@@ -7947,7 +7947,7 @@ PrefabInstance:
     - target: {fileID: 6761140895712551564, guid: 8f233bb653c30bb4295d0d5dd595b22d,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 127
+      value: 119
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2021465438, guid: 8f233bb653c30bb4295d0d5dd595b22d, type: 3}
@@ -14764,7 +14764,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 40
+  m_StaticEditorFlags: 32
   m_IsActive: 1
 --- !u!65 &1026819489
 BoxCollider:
@@ -18274,7 +18274,7 @@ PrefabInstance:
     - target: {fileID: 4192967270436757477, guid: 5266988b81c6ff44d833c591e20cd635,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3009
+      value: 2986
       objectReference: {fileID: 0}
     - target: {fileID: 4192967270436757477, guid: 5266988b81c6ff44d833c591e20cd635,
         type: 3}
@@ -18284,7 +18284,7 @@ PrefabInstance:
     - target: {fileID: 4192967270436757477, guid: 5266988b81c6ff44d833c591e20cd635,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3006
+      value: 3125
       objectReference: {fileID: 0}
     - target: {fileID: 4192967270436757477, guid: 5266988b81c6ff44d833c591e20cd635,
         type: 3}
@@ -19995,7 +19995,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 127
+  m_StaticEditorFlags: 119
   m_IsActive: 1
 --- !u!4 &1414640829
 Transform:
