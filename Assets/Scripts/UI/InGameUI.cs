@@ -107,13 +107,13 @@ public class InGameUI : MonoBehaviour
 
     void Set_Color(int a, int b, int c, int d)
     {
-        color_bar[0].color = GameManager.Instance.player_list[a].cccc;
-        color_bar[1].color = GameManager.Instance.player_list[b].cccc;
+        color_bar[0].color = player_color[a];
+        color_bar[1].color = player_color[b];
         //color_bar[2].color = GameManager.Instance.player_list[c].cccc;
         //color_bar[3].color = GameManager.Instance.player_list[d].cccc;
 
-        GameManager.Instance.player_list[a].playerIndicator.color = GameManager.Instance.player_list[a].cccc;
-        GameManager.Instance.player_list[b].playerIndicator.color = GameManager.Instance.player_list[b].cccc;
+        GameManager.Instance.player_list[a].playerIndicator.color = player_color[a];
+        GameManager.Instance.player_list[b].playerIndicator.color = player_color[b];
         //color_point[c].color = GameManager.Instance.player_list[c].cccc;
         //color_point[d].color = GameManager.Instance.player_list[d].cccc;
     }
