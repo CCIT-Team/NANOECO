@@ -467,35 +467,23 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             {
                 GameManager.Instance.player_list[j].player_actornum = 1;
                 InGameUI.instace.color_point[1] = GameManager.Instance.player_list[j].playerIndicator;
-                //InGameUI.instace.a = 1;
-                //InGameUI.instace.b = 0;
-                //InGameUI.instace.c = 2;
-                //InGameUI.instace.d = 3;
                 InGameUI.instace.hh++;
             }
             if (GameManager.Instance.player_list[j].pv.ViewID == 3001)
             {
                 GameManager.Instance.player_list[j].player_actornum = 2;
                 InGameUI.instace.color_point[2] = GameManager.Instance.player_list[j].playerIndicator;
-                //InGameUI.instace.a = 2;
-                //InGameUI.instace.b = 0;
-                //InGameUI.instace.c = 1;
-                //InGameUI.instace.d = 3;
                 InGameUI.instace.hh++;
             }
             if (GameManager.Instance.player_list[j].pv.ViewID == 4001)
             {
                 GameManager.Instance.player_list[j].player_actornum = 3;
                 InGameUI.instace.color_point[3] = GameManager.Instance.player_list[j].playerIndicator;
-                //InGameUI.instace.a = 3;
-                //InGameUI.instace.b = 0;
-                //InGameUI.instace.c = 1;
-                //InGameUI.instace.d = 2;
                 InGameUI.instace.hh++;
             }
 
         }
-
+        InGameUI.instace.ply = this;
         //playerIndicator.color = GameManager.Instance.player_color[PhotonNetwork.LocalPlayer.ActorNumber];
     }
 }

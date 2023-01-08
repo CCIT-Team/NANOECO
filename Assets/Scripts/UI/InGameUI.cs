@@ -13,10 +13,12 @@ public class InGameUI : MonoBehaviour
     public Color[] player_color;
     public Image[] color_bar;
     public List<Image> color_point = new List<Image>();
+    public List<Image> color_point_ = new List<Image>();
     public Animation[] hit_anime;
     bool first_setting = true;
     public TextMeshProUGUI[] hp;
     public int player_hand;
+    public Player ply;
 
     bool hp_set = false;
     public int a = -1;
@@ -49,7 +51,7 @@ public class InGameUI : MonoBehaviour
     {
         if (GameManager.Instance.player_list.Count == PhotonNetwork.PlayerList.Length && sibal == true)
         {
-            UI_Setting(Player.instance.player_actornum);
+            UI_Setting(ply.player_actornum);
             sibal = false;
         }
     }
@@ -105,15 +107,15 @@ public class InGameUI : MonoBehaviour
 
     void Set_Color(int a, int b, int c, int d)
     {
-        GameManager.Instance.player_list[a].playerIndicator.color = GameManager.Instance.player_list[a].cccc;
-        GameManager.Instance.player_list[b].playerIndicator.color = GameManager.Instance.player_list[b].cccc;
-        //color_point[c].color = GameManager.Instance.player_list[c].cccc;
-        //color_point[d].color = GameManager.Instance.player_list[d].cccc;
-
         color_bar[0].color = GameManager.Instance.player_list[a].cccc;
         color_bar[1].color = GameManager.Instance.player_list[b].cccc;
         //color_bar[2].color = GameManager.Instance.player_list[c].cccc;
         //color_bar[3].color = GameManager.Instance.player_list[d].cccc;
+
+        GameManager.Instance.player_list[a].playerIndicator.color = GameManager.Instance.player_list[a].cccc;
+        GameManager.Instance.player_list[b].playerIndicator.color = GameManager.Instance.player_list[b].cccc;
+        //color_point[c].color = GameManager.Instance.player_list[c].cccc;
+        //color_point[d].color = GameManager.Instance.player_list[d].cccc;
     }
 
     void Set_HP(int a, int b, int c, int d)
@@ -126,7 +128,7 @@ public class InGameUI : MonoBehaviour
 
     void Update_HP(int a, int b, int c, int d)
     {
-        if(int.Parse(hp[a].text) != GameManager.Instance.player_list[a].current_hp)
+        if(int.Parse(hp[0].text) != GameManager.Instance.player_list[a].current_hp)
         {
             hp[0].text = GameManager.Instance.player_list[a].current_hp.ToString();
             hit_anime[0].Play();
