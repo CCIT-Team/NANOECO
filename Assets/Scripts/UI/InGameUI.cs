@@ -237,8 +237,6 @@ public class InGameUI : MonoBehaviour
             }
 
             weapon_icon[ply.current_Hand].enabled = true;
-
-            player_hand = ply.current_Hand;
         }
     }
 
@@ -295,6 +293,7 @@ public class InGameUI : MonoBehaviour
                     current_ammo.text = spray.ammo.ToString();
                 break;
             default:
+                current_ammo.text = "-";
                 break;
         }
     }
