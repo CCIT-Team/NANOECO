@@ -20,6 +20,13 @@ public class InGameUI : MonoBehaviour
     public int[] ff = new int[4];
     public int player_hand;
     public Player ply;
+    public List<Image> weapon_icon;
+    public TextMeshProUGUI max_ammo;
+    public TextMeshProUGUI current_ammo;
+    Range gun;
+    Range launcher;
+    RangeSpread spray;
+    WeaponeBase wbb;
 
     bool hp_set = false;
     public int a = -1;
@@ -29,6 +36,7 @@ public class InGameUI : MonoBehaviour
 
     public int hh = -1;
     public bool sibal = true;
+    public bool setting = false;
 
     void Awake()
     {
@@ -45,7 +53,12 @@ public class InGameUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad2)) { ms.Mission_Clear(2); }
         if (Input.GetKeyDown(KeyCode.Keypad3)) { ms.Mission_Clear(3); }
         zzz();
-        if (hp_set) { Update_HP(a, b, c, d); }
+        if (hp_set)
+        {
+            Update_HP(a, b, c, d);
+            Hand_Icon();
+            Ammo_Setting();
+        }
     }
 
     public void zzz()
@@ -207,6 +220,78 @@ public class InGameUI : MonoBehaviour
                     break;
                 }
             }
+        }
+    }
+
+    void Hand_Icon()
+    {
+        if(ply.current_Hand != player_hand)
+        {
+            for(int i = 0; i < weapon_icon.Count; i++)
+            {
+                weapon_icon[i].enabled = false;
+            }
+
+            weapon_icon[ply.current_Hand].enabled = true;
+
+            player_hand = ply.current_Hand;
+        }
+    }
+
+    void Ammo_Setting()
+    {
+        if(ply.current_Hand != player_hand)
+        {
+            int a;
+            switch(ply.current_Hand)
+            {
+                case 0:
+                    max_ammo.text = gun.maxAmmo.ToString();
+                    current_ammo.text = gun.ammo.ToString();
+                    wbb = gun;
+                    break;
+                case 1:
+                    max_ammo.text = launcher.maxAmmo.ToString();
+                    current_ammo.text = launcher.ammo.ToString();
+                    wbb = launcher;
+                    break;
+                case 2:
+                    max_ammo.text = spray.maxAmmo.ToString();
+                    current_ammo.text = spray.ammo.ToString();
+                    wbb = spray;
+                    break;
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                    max_ammo.text = "-";
+                    current_ammo.text = "-";
+                    break;
+            }
+
+            player_hand = ply.current_Hand;
+        }
+        Ammo_Update();
+    }
+
+    void Ammo_Update()
+    {
+        switch (player_hand)
+        {
+            case 0:
+                if (gun.ammo != int.Parse(current_ammo.text))
+                    current_ammo.text = gun.ammo.ToString();
+                break;
+            case 1:
+                if (launcher.ammo != int.Parse(current_ammo.text))
+                    current_ammo.text = launcher.ammo.ToString();
+                break;
+            case 2:
+                if (spray.ammo != int.Parse(current_ammo.text))
+                    current_ammo.text = spray.ammo.ToString();
+                break;
+            default:
+                break;
         }
     }
 }
