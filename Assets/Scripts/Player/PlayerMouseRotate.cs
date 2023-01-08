@@ -4,12 +4,12 @@ public class PlayerMouseRotate : MonoBehaviour
 {
     [SerializeField] private LayerMask groundMask;
 
-    public Camera cam;
+    //public Camera cam;
 
     private void Start()
     {
         //cam = PhotonTestPlayer.instance.cam;
-        cam = Camera.main;
+        //cam = Camera.main;
     }
 
     private void Update()
@@ -30,9 +30,7 @@ public class PlayerMouseRotate : MonoBehaviour
 
     private (bool success, Vector3 position) GetMousePosition()
     {
-        var ray = cam.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
+        if (Physics.Raycast(Player.instance.ray, out var hitInfo, Mathf.Infinity, groundMask))
         {
             return (success: true, position: hitInfo.point);
         }

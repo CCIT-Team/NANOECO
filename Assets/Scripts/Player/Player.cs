@@ -31,6 +31,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     bool is_dash = false;
     public bool isGrounded = true;
     bool is_dontHit = false;
+    public Camera cam;
+    public Ray ray;
     [Header("æ∆¿Ã≈€")]
     public GameObject[] weapons = new GameObject[3];
     //0 = Difuser
@@ -85,6 +87,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(is_dead);
             stream.SendNext(current_hp);
             stream.SendNext(current_item);
+            stream.SendNext(ray);
             stream.SendNext(r);
             stream.SendNext(g);
             stream.SendNext(b);
@@ -97,6 +100,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             is_dead = (bool)stream.ReceiveNext();
             current_hp = (float)stream.ReceiveNext();
             current_item = (int)stream.ReceiveNext();
+            ray = (Ray)stream.ReceiveNext();
             r = (float)stream.ReceiveNext();
             g = (float)stream.ReceiveNext();
             b = (float)stream.ReceiveNext();
@@ -195,6 +199,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void Start()
     {
         PhotonNetwork.CurrentRoom.IsOpen = false;
+        cam = Camera.main;
         Point_Color();
         Skil();
         is_dead = false;
@@ -211,6 +216,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void Update()
     {
+        ray = cam.ScreenPointToRay(Input.mousePosition);
         if (pv.IsMine && PhotonNetwork.IsConnected && !is_dead) { Move(); }
         if (pv.IsMine)
         {
