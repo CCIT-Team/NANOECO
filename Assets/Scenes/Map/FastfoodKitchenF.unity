@@ -93261,12 +93261,23 @@ MonoBehaviour:
   ff: 00000000000000000000000000000000
   player_hand: -1
   ply: {fileID: 0}
+  weapon_icon:
+  - {fileID: 4278776693975034585}
+  - {fileID: 4278776693515054214}
+  - {fileID: 4278776694476926041}
+  - {fileID: 4278776694077579538}
+  - {fileID: 4278776694522217538}
+  - {fileID: 4278776693412756335}
+  - {fileID: 4278776694760633332}
+  max_ammo: {fileID: 0}
+  current_ammo: {fileID: 0}
   a: -1
   b: -1
   c: -1
   d: -1
   hh: -1
   sibal: 1
+  setting: 0
 --- !u!1 &4278776695085070234
 GameObject:
   m_ObjectHideFlags: 0
