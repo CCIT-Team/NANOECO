@@ -33,7 +33,6 @@ public class InGameUI : MonoBehaviour
         //GameManager.Instance.Player_List_Set();
         ms.Mission_Box_Update(mission_box_list);
         //UI_Setting(PhotonNetwork.LocalPlayer.ActorNumber);
-        zzz();
     }
 
     void Update()
@@ -42,6 +41,7 @@ public class InGameUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad1)) { ms.Mission_Clear(1); }
         if (Input.GetKeyDown(KeyCode.Keypad2)) { ms.Mission_Clear(2); }
         if (Input.GetKeyDown(KeyCode.Keypad3)) { ms.Mission_Clear(3); }
+        zzz();
         if (hp_set) { Update_HP(a, b, c, d); }
     }
 
