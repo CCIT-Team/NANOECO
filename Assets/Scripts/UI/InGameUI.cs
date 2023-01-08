@@ -102,6 +102,7 @@ public class InGameUI : MonoBehaviour
         //GameManager.Instance.player_list[d].cccc = player_color[d];
 
         Set_Color(a, b, c, d);
+        Init_ff();
         Set_HP(a, b, c, d);
         hp_set = true;
     }
