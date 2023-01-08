@@ -17,8 +17,8 @@ public class NsocutMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 5f;
-        data.chase_speed = 8f;
+        data.patrol_speed = 2.5f;
+        data.chase_speed = 4f;
 
         data.patrol_dist = 10f;
         data.chase_dist = 10f;
@@ -41,8 +41,8 @@ public class NsocutMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 5f;
-        data.chase_speed = 8f;
+        data.patrol_speed = 2.5f;
+        data.chase_speed = 4f;
 
         data.patrol_dist = 10f;
         data.chase_dist = 10f;
@@ -76,7 +76,6 @@ public class NsocutMonster : NewMonster
 
     public override void Skill()
     {
-        audioplayer.PlayOneShot(skill_clip);
         animator.SetTrigger(hash_skill);
         float dist = (lock_target.transform.position - transform.position).magnitude;
         transform.LookAt(lock_target.transform);
@@ -96,6 +95,7 @@ public class NsocutMonster : NewMonster
     IEnumerator Monster_Wave()
     {
         wave_count--;
+        audioplayer.PlayOneShot(skill_clip);
         Instantiate(Particles[3], transform.position, Quaternion.identity);
         int i = Random.Range(0, monster_group.Count);
         Instantiate(monster_group[i], spawn_point[i].position, Quaternion.identity);

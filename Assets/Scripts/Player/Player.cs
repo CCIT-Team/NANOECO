@@ -83,7 +83,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
             stream.SendNext(current_hp);
-            stream.SendNext(is_dead);
             stream.SendNext(current_item);
             stream.SendNext(r);
             stream.SendNext(g);
@@ -95,7 +94,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             curPos = (Vector3)stream.ReceiveNext();
             curRot = (Quaternion)stream.ReceiveNext();
             current_hp = (float)stream.ReceiveNext();
-            is_dead = (bool)stream.ReceiveNext();
             current_item = (int)stream.ReceiveNext();
             r = (float)stream.ReceiveNext();
             g = (float)stream.ReceiveNext();
@@ -263,11 +261,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 current_hp = max_hp;
                 respawn_time = 3;
                 DontHitTime(3);
-                isunrideheli = false;
-                is_dead = false;
+                isunrideheli = false;               
                 helicopterplayerbody.SetActive(true);
                 helicopterrope.transform.DetachChildren();
                 helicopterplayerbody.transform.parent = originPlayer.transform;
+                is_dead = false;
                 helicopter.SetActive(false);
             }
         }

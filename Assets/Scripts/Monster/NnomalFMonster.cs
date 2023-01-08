@@ -12,14 +12,13 @@ public class NnomalFMonster : NewMonster
     private GameObject shot_pos;
 
     #region �ʱⰪ
-    [PunRPC]
     public NnomalFMonster()
     {
         data.max_hp = 50f;
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 3f;
+        data.patrol_speed = 2f;
         data.chase_speed = 4f;
 
         data.patrol_dist = 5f;
@@ -30,7 +29,7 @@ public class NnomalFMonster : NewMonster
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
-        data.attack_cool_time = 1f;
+        data.attack_cool_time = 2f;
         data.skill_cool_time = 1000f;
 
         data.current_time = 0f;
@@ -43,7 +42,7 @@ public class NnomalFMonster : NewMonster
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 3f;
+        data.patrol_speed = 2f;
         data.chase_speed = 4f;
 
         data.patrol_dist = 5f;
@@ -54,7 +53,7 @@ public class NnomalFMonster : NewMonster
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
-        data.attack_cool_time = 1f;
+        data.attack_cool_time = 2f;
         data.skill_cool_time = 1000f;
 
         data.current_time = 0f;

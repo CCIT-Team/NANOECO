@@ -34,6 +34,7 @@ public class PlayerAnimationMethod : MonoBehaviour
     {
         Player.instance.helicopter.SetActive(false);
         heliAni.SetBool("HliEnd", true);
+        Player.instance.is_dead = false;
         Player.instance.helicopter.SetActive(false);
     }
 
