@@ -89354,9 +89354,9 @@ Animation:
   m_GameObject: {fileID: 4278776693562610267}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 0c39488ab1c0df849ad6c56771f8c0a5, type: 2}
+  m_Animation: {fileID: 7400000, guid: 7cb8acfc92af50c47a546ccf7d63d719, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 0c39488ab1c0df849ad6c56771f8c0a5, type: 2}
+  - {fileID: 7400000, guid: 7cb8acfc92af50c47a546ccf7d63d719, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -89727,9 +89727,9 @@ Animation:
   m_GameObject: {fileID: 4278776693629143380}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 0c39488ab1c0df849ad6c56771f8c0a5, type: 2}
+  m_Animation: {fileID: 7400000, guid: 7cb8acfc92af50c47a546ccf7d63d719, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 0c39488ab1c0df849ad6c56771f8c0a5, type: 2}
+  - {fileID: 7400000, guid: 7cb8acfc92af50c47a546ccf7d63d719, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -90778,9 +90778,9 @@ Animation:
   m_GameObject: {fileID: 4278776694100632993}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 068804da47a53694b92714ad6bcaed76, type: 2}
+  m_Animation: {fileID: 7400000, guid: 89985d7910250714299b95d578c66d4d, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 068804da47a53694b92714ad6bcaed76, type: 2}
+  - {fileID: 7400000, guid: 89985d7910250714299b95d578c66d4d, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -91936,9 +91936,9 @@ Animation:
   m_GameObject: {fileID: 4278776694557137383}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 0c39488ab1c0df849ad6c56771f8c0a5, type: 2}
+  m_Animation: {fileID: 7400000, guid: 7cb8acfc92af50c47a546ccf7d63d719, type: 2}
   m_Animations:
-  - {fileID: 7400000, guid: 0c39488ab1c0df849ad6c56771f8c0a5, type: 2}
+  - {fileID: 7400000, guid: 7cb8acfc92af50c47a546ccf7d63d719, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -92887,6 +92887,7 @@ MonoBehaviour:
   - {fileID: 4278776694665695097}
   - {fileID: 4278776693483262860}
   - {fileID: 4278776693583578662}
+  ff: 00000000000000000000000000000000
   player_hand: -1
   ply: {fileID: 0}
   a: -1
