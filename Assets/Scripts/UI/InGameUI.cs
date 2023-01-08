@@ -23,9 +23,9 @@ public class InGameUI : MonoBehaviour
     public List<Image> weapon_icon;
     public TextMeshProUGUI max_ammo;
     public TextMeshProUGUI current_ammo;
-    Range gun;
-    Range launcher;
-    RangeSpread spray;
+    public Range gun;
+    public Range launcher;
+    public RangeSpread spray;
     WeaponeBase wbb;
 
     bool hp_set = false;
