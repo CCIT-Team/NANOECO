@@ -29,7 +29,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public float respawn_time = 5;
     public int skil_num;
     bool is_dash = false;
-    public bool is_rotation = true;
     public bool isGrounded = true;
     bool is_dontHit = false;
     [Header("æ∆¿Ã≈€")]
@@ -235,7 +234,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (current_hp <= 0 || is_dead == true)
         {
             current_hp = 0;
-            is_rotation = false;
             is_dead = true;
             ani.SetTrigger("Dead");
             helicopter.SetActive(true);
@@ -269,7 +267,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 helicopterplayerbody.transform.parent = originPlayer.transform;
                 current_hp = max_hp;
                 is_dead = false;
-                is_rotation = true;
                 helicopter.SetActive(false);
             }
         }
