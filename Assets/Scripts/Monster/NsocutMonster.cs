@@ -13,7 +13,7 @@ public class NsocutMonster : NewMonster
     #region �ʱⰪ
     public NsocutMonster()
     {
-        data.max_hp = 25f;
+        data.max_hp = 15f;
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
@@ -37,7 +37,7 @@ public class NsocutMonster : NewMonster
 
     public override void Init()
     {
-        data.max_hp = 25f;
+        data.max_hp = 15f;
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;

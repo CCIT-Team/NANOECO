@@ -14,7 +14,7 @@ public class NnomalFMonster : NewMonster
     #region �ʱⰪ
     public NnomalFMonster()
     {
-        data.max_hp = 25f;
+        data.max_hp = 10f;
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
@@ -38,7 +38,7 @@ public class NnomalFMonster : NewMonster
 
     public override void Init()
     {
-        data.max_hp = 25f;
+        data.max_hp = 10f;
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
