@@ -18,7 +18,7 @@ public class PlayerMouseRotate : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if (pv.IsMine && !Player.instance.is_dead) { Aim();}
+        if (pv.IsMine && Player.instance.is_rotation) { Aim();}
     }
 
     private void Aim()
