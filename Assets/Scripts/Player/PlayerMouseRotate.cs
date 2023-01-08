@@ -1,5 +1,6 @@
 using UnityEngine;
-
+using Photon.Pun;
+using Photon.Realtime;
 
 public class PlayerMouseRotate : MonoBehaviour
 {
@@ -7,15 +8,15 @@ public class PlayerMouseRotate : MonoBehaviour
 
     public Camera cam;
 
+    public PhotonView pv;
     private void Start()
     {
-        //cam = PhotonTestPlayer.instance.cam;
         cam = Camera.main;
     }
 
     private void Update()
     {
-        if(Player.instance.pv.IsMine && Player.instance.is_dead == false)
+        if(pv.IsMine && !Player.instance.is_dead)
         {
             Aim();
         }
@@ -24,7 +25,7 @@ public class PlayerMouseRotate : MonoBehaviour
     private void Aim()
     {
         var (success, position) = GetMousePosition();
-        if (success && Player.instance.is_dead == false)
+        if (success)
         {
             var direction = position - transform.position;
             direction.y = 0;
