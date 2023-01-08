@@ -210,7 +210,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void Update()
     {
         if (pv.IsMine && PhotonNetwork.IsConnected && !is_dead) { Move(); }
-        if (pv.IsMine) { ItemChange(); }
+        if (pv.IsMine) { ItemChange(); Dead();}
         if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
         SpawnPointUpdate();
         Dead();
