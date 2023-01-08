@@ -1883,7 +1883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67ab2f1c5d6e664d9cffccc17f28e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerani: {fileID: 0}
   heliAni: {fileID: 4958753444626218893}
 --- !u!1 &4958753444761235237
 GameObject:
@@ -7149,10 +7148,10 @@ MonoBehaviour:
     SynchronizeType: 2
     Name: Run
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Jump
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Dash
   - Type: 4
     SynchronizeType: 0
@@ -7161,36 +7160,36 @@ MonoBehaviour:
     SynchronizeType: 0
     Name: Bomb
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: 'Dead '
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Spray
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Launcher
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Difuser
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Swatter
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Reload
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Change
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Attack
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Item
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 1
 --- !u!114 &5336137748936740219
 MonoBehaviour:

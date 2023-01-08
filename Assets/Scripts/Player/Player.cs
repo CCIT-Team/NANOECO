@@ -141,7 +141,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             gargets[i].SetActive(false);
         }
-
+        current_Weapon = 0;
         switch (current_Weapon)
         {
             case 0:
@@ -373,6 +373,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
         PickUpAndDropItem();
+        if (current_item == 1 && Input.GetMouseButtonDown(0) || current_item == 2 && Input.GetMouseButtonDown(0))
+        {
+            ani.SetTrigger("Attack");
+        }
     }
 
     void PickUpAndDropItem()
