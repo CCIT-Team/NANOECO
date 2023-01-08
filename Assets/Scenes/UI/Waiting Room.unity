@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5465,7 +5465,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.069}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 99.73718, y: -84.59534}
+  m_AnchoredPosition: {x: 99.737305, y: -84.59534}
   m_SizeDelta: {x: -200.53345, y: -168.95203}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &743748869
@@ -7338,7 +7338,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.069}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 99.73718, y: -84.59537}
+  m_AnchoredPosition: {x: 99.737305, y: -84.59534}
   m_SizeDelta: {x: -200.5334, y: -168.952}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &967796260
@@ -7429,9 +7429,9 @@ MonoBehaviour:
   - {fileID: 724341839}
   weapons:
   - {fileID: 21300000, guid: 9aecd4a176a5fd343bc19261fb16c0c1, type: 3}
-  - {fileID: 21300000, guid: 84939dd01dfee5a4984f3de150e30adf, type: 3}
-  - {fileID: 21300000, guid: e361f77e1fc6bfe4b8fda70e47fc1aee, type: 3}
-  - {fileID: 21300000, guid: 7f34aecf7eff2214c906afdbc5208564, type: 3}
+  - {fileID: 21300000, guid: 8f9a342d6d0a8f748b3d3892daf449cb, type: 3}
+  - {fileID: 21300000, guid: 2cf090ae414e72447aff9b6d3b6e2fb9, type: 3}
+  - {fileID: 21300000, guid: 49ba506a2936ce844bae1fb3dca76734, type: 3}
 --- !u!1 &972465344
 GameObject:
   m_ObjectHideFlags: 0
@@ -7591,7 +7591,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.069}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 99.73718, y: -84.59537}
+  m_AnchoredPosition: {x: 99.737305, y: -84.59534}
   m_SizeDelta: {x: -200.5334, y: -168.952}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &990856607
