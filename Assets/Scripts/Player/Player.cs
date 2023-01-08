@@ -82,7 +82,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
-            //stream.SendNext(current_hp);
+            stream.SendNext(current_hp);
             stream.SendNext(current_item);
             stream.SendNext(r);
             stream.SendNext(g);
@@ -93,7 +93,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             curPos = (Vector3)stream.ReceiveNext();
             curRot = (Quaternion)stream.ReceiveNext();
-            //current_hp = (float)stream.ReceiveNext();
+            current_hp = (float)stream.ReceiveNext();
             current_item = (int)stream.ReceiveNext();
             r = (float)stream.ReceiveNext();
             g = (float)stream.ReceiveNext();
@@ -257,30 +257,15 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 helicopterplayerbody.transform.parent = originPlayer.transform;
             }
             if (helicopterAni.GetBool("HliEnd"))
-            {
-                current_hp = max_hp;
+            {               
                 respawn_time = 3;
-                DontHitTime(3);
                 isunrideheli = false;               
                 helicopterplayerbody.SetActive(true);
                 helicopterrope.transform.DetachChildren();
                 helicopterplayerbody.transform.parent = originPlayer.transform;
+                current_hp = max_hp;
                 is_dead = false;
                 helicopter.SetActive(false);
-            }
-        }
-    }
-
-    void DontHitTime(float time)
-    {
-        is_dontHit = true;
-        if (is_dontHit)
-        {
-            current_hp = max_hp;
-            time -= Time.deltaTime;
-            if (timer <= 0)
-            {
-                is_dontHit = false;
             }
         }
     }
@@ -318,14 +303,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && isGrounded == true && is_dash == false)//대쉬
         {
-            Debug.Log("대쉬");
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
 
             Vector3 dash = new Vector3(-horizontal * dash_force * Time.deltaTime, 0, -vertical * dash_force * Time.deltaTime);
             transform.position += Vector3.Lerp(transform.position, dash, 5);
             is_dash = true;
-            DontHitTime(1);
         }
         if (is_dash == true)
         {
