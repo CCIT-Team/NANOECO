@@ -98,15 +98,15 @@ public class InGameUI : MonoBehaviour
         hp_set = true;
     }
 
-    void Set_Color(int a, int b, int c, int d)
+    IEnumerator Set_Color(int a, int b, int c, int d)
     {
         color_point[a].color = player_color[a];
         color_point[b].color = player_color[b];
         color_point[c].color = player_color[c];
         color_point[d].color = player_color[d];
-
-        color_bar[0].color = color_point[a].color; 
-        color_bar[1].color = color_point[b].color; 
+        yield return new WaitForSeconds(0.2f);
+        color_bar[0].color = color_point[a].color;
+        color_bar[1].color = color_point[b].color;
         color_bar[2].color = color_point[c].color;
         color_bar[3].color = color_point[d].color;
     }
