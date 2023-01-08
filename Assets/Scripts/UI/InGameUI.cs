@@ -127,10 +127,10 @@ public class InGameUI : MonoBehaviour
         //hp[2].text = GameManager.Instance.player_list[c].current_hp.ToString();
         //hp[3].text = GameManager.Instance.player_list[d].current_hp.ToString();
 
-        hp[a].text = GameManager.Instance.player_list[a].current_hp.ToString();
-        hp[b].text = GameManager.Instance.player_list[b].current_hp.ToString();
-        hp[c].text = GameManager.Instance.player_list[c].current_hp.ToString();
-        //hp[d].text = GameManager.Instance.player_list[d].current_hp.ToString();
+        hp[ff[0]].text = GameManager.Instance.player_list[ff[0]].current_hp.ToString();
+        hp[ff[1]].text = GameManager.Instance.player_list[ff[1]].current_hp.ToString();
+        hp[ff[2]].text = GameManager.Instance.player_list[ff[2]].current_hp.ToString();
+        //hp[ff[3]].text = GameManager.Instance.player_list[ff[3]].current_hp.ToString();
     }
 
     void Update_HP(int a, int b, int c, int d)
@@ -157,26 +157,25 @@ public class InGameUI : MonoBehaviour
         //    hit_anime[3].Play();
         //}
 
-        if (int.Parse(hp[a].text) != GameManager.Instance.player_list[a].current_hp)
+        if (int.Parse(hp[ff[0]].text) != GameManager.Instance.player_list[ff[0]].current_hp)
         {
-            hp[a].text = GameManager.Instance.player_list[a].current_hp.ToString();
-            hit_anime[a].Play();
-
+            hp[ff[0]].text = GameManager.Instance.player_list[ff[0]].current_hp.ToString();
+            hit_anime[ff[0]].Play();
         }
-        if (int.Parse(hp[b].text) != GameManager.Instance.player_list[b].current_hp)
+        if (int.Parse(hp[ff[1]].text) != GameManager.Instance.player_list[ff[1]].current_hp)
         {
-            hp[b].text = GameManager.Instance.player_list[b].current_hp.ToString();
-            hit_anime[b].Play();
+            hp[ff[1]].text = GameManager.Instance.player_list[ff[1]].current_hp.ToString();
+            hit_anime[ff[1]].Play();
         }
-        if (int.Parse(hp[c].text) != GameManager.Instance.player_list[c].current_hp)
+        if (int.Parse(hp[ff[2]].text) != GameManager.Instance.player_list[ff[2]].current_hp)
         {
-            hp[c].text = GameManager.Instance.player_list[c].current_hp.ToString();
-            hit_anime[c].Play();
+            hp[ff[2]].text = GameManager.Instance.player_list[ff[2]].current_hp.ToString();
+            hit_anime[ff[2]].Play();
         }
-        //if (int.Parse(hp[d].text) != GameManager.Instance.player_list[d].current_hp)
+        //if (int.Parse(hp[ff[3]].text) != GameManager.Instance.player_list[ff[3]].current_hp)
         //{
-        //    hp[d].text = GameManager.Instance.player_list[d].current_hp.ToString();
-        //    hit_anime[d].Play();
+        //    hp[ff[3]].text = GameManager.Instance.player_list[ff[3]].current_hp.ToString();
+        //    hit_anime[ff[3]].Play();
         //}
     }
 
