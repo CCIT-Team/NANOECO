@@ -215,7 +215,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (pv.IsMine) { ItemChange(); Dead();}
         if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
         SpawnPointUpdate();
-        Dead();
         if (helicopterAni.GetBool("Respawn"))
         {
             ReSpawn();
