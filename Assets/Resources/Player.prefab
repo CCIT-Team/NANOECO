@@ -1815,7 +1815,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4958753444626218890
 Transform:
   m_ObjectHideFlags: 0
@@ -7047,7 +7047,7 @@ MonoBehaviour:
   jump_force: 250
   dash_force: 35
   move_force: 1.5
-  is_dead: 1
+  is_dead: 0
   respawn_time: 3
   skil_num: 0
   isGrounded: 1
@@ -7085,6 +7085,7 @@ MonoBehaviour:
   g: 0
   b: 0
   a: 0
+  cccc: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &5336137748936740195
 MonoBehaviour:
   m_ObjectHideFlags: 0
