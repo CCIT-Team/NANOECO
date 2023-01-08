@@ -105,8 +105,8 @@ public class InGameUI : MonoBehaviour
 
     void Set_Color(int a, int b, int c, int d)
     {
-        color_point[a].color = GameManager.Instance.player_list[a].cccc;
-        color_point[b].color = GameManager.Instance.player_list[b].cccc;
+        color_point[0].color = GameManager.Instance.player_list[a].cccc;
+        color_point[1].color = GameManager.Instance.player_list[b].cccc;
         //color_point[c].color = GameManager.Instance.player_list[c].cccc;
         //color_point[d].color = GameManager.Instance.player_list[d].cccc;
 
