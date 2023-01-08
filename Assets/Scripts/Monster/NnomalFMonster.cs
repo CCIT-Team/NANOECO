@@ -25,7 +25,7 @@ public class NnomalFMonster : NewMonster
         data.chase_dist = 7f;
         data.attack_dist = 4f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 50f;
+        data.event_chase_dist = 20f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
@@ -49,7 +49,7 @@ public class NnomalFMonster : NewMonster
         data.chase_dist = 7f;
         data.attack_dist = 4f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 50f;
+        data.event_chase_dist = 20f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
