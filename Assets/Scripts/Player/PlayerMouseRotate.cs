@@ -16,15 +16,19 @@ public class PlayerMouseRotate : MonoBehaviourPunCallbacks
         cam = Camera.main;
     }
 
+    private void FixedUpdate()
+    {
+        if (pv.IsMine) { Aim(); }
+    }
     private void Update()
     {
-        if (pv.IsMine && !Player.instance.is_dead) { Aim();}
+        if (pv.IsMine) { Aim();}
     }
 
     private void Aim()
     {
         var (success, position) = GetMousePosition();
-        if (success)
+        if (success && !Player.instance.is_dead)
         {
             var direction = position - transform.position;
             direction.y = 0;
