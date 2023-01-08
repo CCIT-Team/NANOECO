@@ -17,6 +17,7 @@ public class InGameUI : MonoBehaviour
     public Animation[] hit_anime;
     bool first_setting = true;
     public TextMeshProUGUI[] hp;
+    public int[] ff = new int[4];
     public int player_hand;
     public Player ply;
 
@@ -120,34 +121,76 @@ public class InGameUI : MonoBehaviour
 
     void Set_HP(int a, int b, int c, int d)
     {
-        hp[0].text = GameManager.Instance.player_list[a].current_hp.ToString();
-        hp[1].text = GameManager.Instance.player_list[b].current_hp.ToString();
-        hp[2].text = GameManager.Instance.player_list[c].current_hp.ToString();
-        hp[3].text = GameManager.Instance.player_list[d].current_hp.ToString();
+        //hp[0].text = GameManager.Instance.player_list[a].current_hp.ToString();
+        //hp[1].text = GameManager.Instance.player_list[b].current_hp.ToString();
+        //hp[2].text = GameManager.Instance.player_list[c].current_hp.ToString();
+        //hp[3].text = GameManager.Instance.player_list[d].current_hp.ToString();
+
+        hp[0].text = GameManager.Instance.player_list[ff[0]].current_hp.ToString();
+        hp[1].text = GameManager.Instance.player_list[ff[1]].current_hp.ToString();
+        hp[2].text = GameManager.Instance.player_list[ff[2]].current_hp.ToString();
+        hp[3].text = GameManager.Instance.player_list[ff[3]].current_hp.ToString();
     }
 
     void Update_HP(int a, int b, int c, int d)
     {
-        if(int.Parse(hp[0].text) != GameManager.Instance.player_list[a].current_hp)
+        //if(int.Parse(hp[0].text) != GameManager.Instance.player_list[a].current_hp)
+        //{
+        //    hp[0].text = GameManager.Instance.player_list[a].current_hp.ToString();
+        //    hit_anime[0].Play();
+
+        //}
+        //if (int.Parse(hp[1].text) != GameManager.Instance.player_list[b].current_hp)
+        //{
+        //    hp[1].text = GameManager.Instance.player_list[b].current_hp.ToString();
+        //    hit_anime[1].Play();
+        //}
+        //if (int.Parse(hp[2].text) != GameManager.Instance.player_list[c].current_hp)
+        //{
+        //    hp[2].text = GameManager.Instance.player_list[c].current_hp.ToString();
+        //    hit_anime[2].Play();
+        //}
+        //if (int.Parse(hp[3].text) != GameManager.Instance.player_list[d].current_hp)
+        //{
+        //    hp[3].text = GameManager.Instance.player_list[d].current_hp.ToString();
+        //    hit_anime[3].Play();
+        //}
+
+        if (int.Parse(hp[0].text) != GameManager.Instance.player_list[ff[0]].current_hp)
         {
-            hp[0].text = GameManager.Instance.player_list[a].current_hp.ToString();
+            hp[0].text = GameManager.Instance.player_list[ff[0]].current_hp.ToString();
             hit_anime[0].Play();
 
         }
-        if (int.Parse(hp[1].text) != GameManager.Instance.player_list[b].current_hp)
+        if (int.Parse(hp[1].text) != GameManager.Instance.player_list[ff[1]].current_hp)
         {
-            hp[1].text = GameManager.Instance.player_list[b].current_hp.ToString();
+            hp[1].text = GameManager.Instance.player_list[ff[1]].current_hp.ToString();
             hit_anime[1].Play();
         }
-        if (int.Parse(hp[2].text) != GameManager.Instance.player_list[c].current_hp)
+        if (int.Parse(hp[2].text) != GameManager.Instance.player_list[ff[2]].current_hp)
         {
-            hp[2].text = GameManager.Instance.player_list[c].current_hp.ToString();
+            hp[2].text = GameManager.Instance.player_list[ff[2]].current_hp.ToString();
             hit_anime[2].Play();
         }
-        if (int.Parse(hp[3].text) != GameManager.Instance.player_list[d].current_hp)
+        if (int.Parse(hp[3].text) != GameManager.Instance.player_list[ff[3]].current_hp)
         {
-            hp[3].text = GameManager.Instance.player_list[d].current_hp.ToString();
+            hp[3].text = GameManager.Instance.player_list[ff[3]].current_hp.ToString();
             hit_anime[3].Play();
+        }
+    }
+
+    void Init_ff()
+    {
+        for(int i = 0; i < ff.Length; i++)
+        {
+            for(int j = 0; j < ff.Length; j++)
+            {
+                if(player_color[j] == color_bar[i].color)
+                {
+                    ff[i] = j;
+                    break;
+                }
+            }
         }
     }
 }
