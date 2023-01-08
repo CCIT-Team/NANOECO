@@ -241,7 +241,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         ani.SetTrigger("Dead");
         helicopter.SetActive(true);
         helicopterplayerbody.transform.parent = helicopterrope.transform;
-        helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
+        //helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
 
         if (spawn_point == null) { spawn_point = firstSpawnPoint[spawnNum]; }
         if (spawnNum > 3) { spawnNum = 0; }
@@ -267,9 +267,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 helicopterplayerbody.SetActive(true);
                 helicopterrope.transform.DetachChildren();
                 helicopterplayerbody.transform.parent = originPlayer.transform;
+                helicopter.SetActive(false);
                 current_hp = max_hp;
                 is_dead = false;
-                helicopter.SetActive(false);
             }
         }
     }
