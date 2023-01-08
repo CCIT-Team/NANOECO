@@ -9,7 +9,7 @@ public class NtankerMonster : NewMonster
     #region �ʱⰪ
     public NtankerMonster()
     {
-        data.max_hp = 150f;
+        data.max_hp = 75f;
         data.current_hp = data.max_hp;
         data.damage = 10f;
         data.defense = 5f;
@@ -33,7 +33,7 @@ public class NtankerMonster : NewMonster
 
     public override void Init()
     {
-        data.max_hp = 150f;
+        data.max_hp = 75f;
         data.current_hp = data.max_hp;
         data.damage = 10f;
         data.defense = 5f;
