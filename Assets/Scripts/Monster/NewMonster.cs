@@ -115,15 +115,21 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
     public PhotonView PV;
     #endregion
 
+    public Vector3 curPos;
+    public Quaternion curRot;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
             stream.SendNext(data.current_hp);
             stream.SendNext(is_dead);
         }
         else
         {
+            curPos = (Vector3)stream.ReceiveNext();
+            curRot = (Quaternion)stream.ReceiveNext();
             data.current_hp = (float)stream.ReceiveNext();
             is_dead = (bool)stream.ReceiveNext();
         }

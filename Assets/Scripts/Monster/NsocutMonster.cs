@@ -44,8 +44,8 @@ public class NsocutMonster : NewMonster
         data.patrol_speed = 2.5f;
         data.chase_speed = 4f;
 
-        data.patrol_dist = 10f;
-        data.chase_dist = 10f;
+        data.patrol_dist = 5f;
+        data.chase_dist = 6f;
         data.attack_dist = 0.5f;
         data.skill_dist = 2f;
         data.event_chase_dist = 20f;
