@@ -142,6 +142,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             gargets[i].SetActive(false);
         }
         current_Weapon = 0;
+        current_Hand = 0;
         switch (current_Weapon)
         {
             case 0:
@@ -163,32 +164,32 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 current_Hand = 2;
                 break;
         }
-        switch (current_Garget)
-        {    //0 = Bomb
-             //1 = Dummy
-             //2 = Healing Bomb
-             //3 = Heal Totam
-            case 0:
-                garget_String = "Bomb";
-                gargets[0].SetActive(true);
-                current_Hand = 3;
-                break;
-            case 1:
-                garget_String = "Dummy";
-                gargets[1].SetActive(true);
-                current_Hand = 4;
-                break;
-            case 2:
-                garget_String = "Healing Bomb";
-                gargets[2].SetActive(true);
-                current_Hand = 5;
-                break;
-            case 3:
-                garget_String = "Heal Totam";
-                gargets[3].SetActive(true);
-                current_Hand = 6;
-                break;
-        }
+        //switch (current_Garget)
+        //{    //0 = Bomb
+        //     //1 = Dummy
+        //     //2 = Healing Bomb
+        //     //3 = Heal Totam
+        //    case 0:
+        //        garget_String = "Bomb";
+        //        gargets[0].SetActive(true);
+        //        current_Hand = 3;
+        //        break;
+        //    case 1:
+        //        garget_String = "Dummy";
+        //        gargets[1].SetActive(true);
+        //        current_Hand = 4;
+        //        break;
+        //    case 2:
+        //        garget_String = "Healing Bomb";
+        //        gargets[2].SetActive(true);
+        //        current_Hand = 5;
+        //        break;
+        //    case 3:
+        //        garget_String = "Heal Totam";
+        //        gargets[3].SetActive(true);
+        //        current_Hand = 6;
+        //        break;
+        //}
     }
 
     void Start()
@@ -339,6 +340,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKeyDown(KeyCode.Alpha1) && !is_usehand)
         {
             current_item = 0;
+            current_Hand = 0;
             if (current_item == 0)
             {
                 ani.SetTrigger("Change");
@@ -351,6 +353,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKeyDown(KeyCode.Alpha2) && !is_usehand)
         {
             current_item = 1;
+            current_Hand = 1;
             if (current_item == 1)
             {
                 ani.SetTrigger("Change");
@@ -363,6 +366,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKeyDown(KeyCode.Alpha3) && !is_usehand)
         {
             current_item = 2;
+            current_Hand = 2;
             if (current_item == 2)
             {
                 ani.SetTrigger("Change");
