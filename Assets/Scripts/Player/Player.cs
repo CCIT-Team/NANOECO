@@ -10,6 +10,7 @@ using Photon.Pun.Demo.PunBasics;
 public class Player : MonoBehaviourPunCallbacks, IPunObservable
 {
     public static Player instance;
+
     public int player_actornum;
     int targetdisplay = 0;
     public Rigidbody rigid;
@@ -25,7 +26,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public float jump_force;
     public float dash_force;
     public float move_force;
-    public bool is_dead;
+    public bool is_dead = false;
     public float respawn_time = 5;
     public int skil_num;
     bool is_dash = false;
@@ -119,8 +120,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (pv.IsMine)
         {
             gameObject.name = nickname.text;
-            //cam.gameObject.name = nickname.text + "cam";
-            //cam = GameObject.Find(nickname.text + "cam").GetComponent<Camera>();
             Camera.main.GetComponent<PlayerCamera>().player = gameObject.transform;
         }
         instance = this;

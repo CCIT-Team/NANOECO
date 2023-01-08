@@ -2,33 +2,30 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PlayerMouseRotate : MonoBehaviourPunCallbacks
+public class PlayerMouseRotate : MonoBehaviour
 {
     [SerializeField] private LayerMask groundMask;
 
     public Camera cam;
 
     public PhotonView pv;
-
     private void Start()
     {
-        //cam = PhotonTestPlayer.instance.cam;
         cam = Camera.main;
     }
 
-    private void FixedUpdate()
-    {
-        if (pv.IsMine) { Aim(); }
-    }
     private void Update()
     {
-        if (pv.IsMine) { Aim();}
+        if(pv.IsMine && !Player.instance.is_dead)
+        {
+            Aim();
+        }
     }
 
     private void Aim()
     {
         var (success, position) = GetMousePosition();
-        if (success && !Player.instance.is_dead)
+        if (success)
         {
             var direction = position - transform.position;
             direction.y = 0;

@@ -21,9 +21,9 @@ public class NwideFMonster : NewMonster
         data.patrol_speed = 3f;
         data.chase_speed = 4f;
 
-        data.patrol_dist = 10f;
-        data.chase_dist = 13f;
-        data.attack_dist = 7f;
+        data.patrol_dist = 5f;
+        data.chase_dist = 6.5f;
+        data.attack_dist = 4f;
         data.skill_dist = 0f;
         data.event_chase_dist = 20f;
 
@@ -45,9 +45,9 @@ public class NwideFMonster : NewMonster
         data.patrol_speed = 3f;
         data.chase_speed = 4f;
 
-        data.patrol_dist = 10f;
-        data.chase_dist = 13f;
-        data.attack_dist = 5f;
+        data.patrol_dist = 5f;
+        data.chase_dist = 6.5f;
+        data.attack_dist = 4f;
         data.skill_dist = 0f;
         data.event_chase_dist = 20f;
 
