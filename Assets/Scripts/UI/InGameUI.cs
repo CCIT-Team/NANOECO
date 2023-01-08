@@ -206,6 +206,10 @@ public class InGameUI : MonoBehaviour
         //    }
         //    else { hp[ff[3]].text = 0.ToString(); }
         //}
+
+        gun = ply.weapons[0].GetComponent<Range>();
+        launcher = ply.weapons[1].GetComponent<Range>();
+        spray = ply.weapons[2].GetComponent<RangeSpread>();
     }
 
     void Init_ff()
