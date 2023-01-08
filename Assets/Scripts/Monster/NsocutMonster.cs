@@ -13,7 +13,7 @@ public class NsocutMonster : NewMonster
     #region �ʱⰪ
     public NsocutMonster()
     {
-        data.max_hp = 50f;
+        data.max_hp = 25f;
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
@@ -23,7 +23,7 @@ public class NsocutMonster : NewMonster
         data.patrol_dist = 10f;
         data.chase_dist = 10f;
         data.attack_dist = 0.5f;
-        data.skill_dist = 4f;
+        data.skill_dist = 2f;
         data.event_chase_dist = 50f;
 
         data.idle_cool_time = 0.5f;
@@ -37,7 +37,7 @@ public class NsocutMonster : NewMonster
 
     public override void Init()
     {
-        data.max_hp = 50f;
+        data.max_hp = 25f;
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
@@ -47,7 +47,7 @@ public class NsocutMonster : NewMonster
         data.patrol_dist = 10f;
         data.chase_dist = 10f;
         data.attack_dist = 0.5f;
-        data.skill_dist = 4f;
+        data.skill_dist = 2f;
         data.event_chase_dist = 50f;
 
         data.idle_cool_time = 0.5f;

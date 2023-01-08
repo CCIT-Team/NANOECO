@@ -14,7 +14,7 @@ public class NwideFMonster : NewMonster
     #region �ʱⰪ
     public NwideFMonster()
     {
-        data.max_hp = 70f;
+        data.max_hp = 35f;
         data.current_hp = data.max_hp;
         data.damage = 5f;
         data.defense = 1f;
@@ -38,7 +38,7 @@ public class NwideFMonster : NewMonster
 
     public override void Init()
     {
-        data.max_hp = 70f;
+        data.max_hp = 35f;
         data.current_hp = data.max_hp;
         data.damage = 5f;
         data.defense = 1f;
