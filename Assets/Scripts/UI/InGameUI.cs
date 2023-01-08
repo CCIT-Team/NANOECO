@@ -13,10 +13,12 @@ public class InGameUI : MonoBehaviour
     public Color[] player_color;
     public Image[] color_bar;
     public List<Image> color_point = new List<Image>();
+    public List<Image> color_point_ = new List<Image>();
     public Animation[] hit_anime;
     bool first_setting = true;
     public TextMeshProUGUI[] hp;
     public int player_hand;
+    public Player ply;
 
     bool hp_set = false;
     public int a = -1;
@@ -25,7 +27,7 @@ public class InGameUI : MonoBehaviour
     public int d = -1;
 
     public int hh = -1;
-    bool sibal = true;
+    public bool sibal = true;
 
     void Awake()
     {
@@ -41,10 +43,15 @@ public class InGameUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad1)) { ms.Mission_Clear(1); }
         if (Input.GetKeyDown(KeyCode.Keypad2)) { ms.Mission_Clear(2); }
         if (Input.GetKeyDown(KeyCode.Keypad3)) { ms.Mission_Clear(3); }
+        zzz();
         if (hp_set) { Update_HP(a, b, c, d); }
-        if(hh == PhotonNetwork.PlayerList.Length && sibal == true)
+    }
+
+    public void zzz()
+    {
+        if (GameManager.Instance.player_list.Count == PhotonNetwork.PlayerList.Length && sibal == true)
         {
-            UI_Setting(Player.instance.player_actornum);
+            UI_Setting(ply.player_actornum);
             sibal = false;
         }
     }
@@ -88,6 +95,11 @@ public class InGameUI : MonoBehaviour
 
     void Setting(int a, int b, int c, int d)
     {
+        GameManager.Instance.player_list[a].cccc = player_color[a];
+        GameManager.Instance.player_list[b].cccc = player_color[b];
+        GameManager.Instance.player_list[c].cccc = player_color[c];
+        //GameManager.Instance.player_list[d].cccc = player_color[d];
+
         Set_Color(a, b, c, d);
         Set_HP(a, b, c, d);
         hp_set = true;
@@ -98,12 +110,12 @@ public class InGameUI : MonoBehaviour
         color_bar[0].color = player_color[a];
         color_bar[1].color = player_color[b];
         color_bar[2].color = player_color[c];
-        color_bar[3].color = player_color[d];
+        //color_bar[3].color = player_color[d];
 
         color_point[a].color = player_color[a];
         color_point[b].color = player_color[b];
         color_point[c].color = player_color[c];
-        color_point[d].color = player_color[d];
+        //color_point[d].color = player_color[d];
     }
 
     void Set_HP(int a, int b, int c, int d)
@@ -116,7 +128,7 @@ public class InGameUI : MonoBehaviour
 
     void Update_HP(int a, int b, int c, int d)
     {
-        if(int.Parse(hp[a].text) != GameManager.Instance.player_list[a].current_hp)
+        if(int.Parse(hp[0].text) != GameManager.Instance.player_list[a].current_hp)
         {
             hp[0].text = GameManager.Instance.player_list[a].current_hp.ToString();
             hit_anime[0].Play();
