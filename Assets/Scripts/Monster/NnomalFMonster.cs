@@ -45,9 +45,9 @@ public class NnomalFMonster : NewMonster
         data.patrol_speed = 2f;
         data.chase_speed = 4f;
 
-        data.patrol_dist = 5f;
-        data.chase_dist = 7f;
-        data.attack_dist = 4f;
+        data.patrol_dist = 4f;
+        data.chase_dist = 5f;
+        data.attack_dist = 3f;
         data.skill_dist = 0f;
         data.event_chase_dist = 20f;
 
