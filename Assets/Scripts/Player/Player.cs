@@ -236,7 +236,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             ani.SetTrigger("Dead");
             helicopter.SetActive(true);
             helicopterplayerbody.transform.parent = helicopterrope.transform;
-            // helicopterplayerbody.transform.localPosition = new Vector3(0, 0, 0);
+            helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
         }
 
         if (spawn_point == null) { spawn_point = firstSpawnPoint[spawnNum]; }
@@ -251,7 +251,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             if (respawn_time <= 0) { transform.position = spawn_point.position; }
             if (isunrideheli == true)
             {
-                Debug.Log("내려 내려 내려");
+                helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
                 helicopterplayerbody.SetActive(true);
                 helicopterrope.transform.DetachChildren();
                 helicopterplayerbody.transform.parent = originPlayer.transform;
@@ -330,12 +330,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (is_dash == true)
         {
             timer -= Time.deltaTime;
-            Debug.Log(timer);
             if (timer <= 0)
             {
                 timer = 5;
                 is_dash = false;
-                Debug.Log("대쉬 초기화");
             }
         }
     }
@@ -427,7 +425,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (col.gameObject.layer == 12 && Input.GetKey(KeyCode.E))
         {
-            Debug.Log("집어! 이것을!" + col.gameObject.layer);
             is_usehand = true;
             col.transform.parent = hand.transform;
             if (is_usehand && Input.GetKeyDown(KeyCode.E))
