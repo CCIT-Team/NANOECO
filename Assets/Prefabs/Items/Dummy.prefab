@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 3288893045408403656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4829,10 +4829,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63c371602044b594690d6a1b6d765819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player_actornum: 0
   rigid: {fileID: 7144322994264615029}
   pv: {fileID: 1676229983408210440}
-  nickname: {fileID: 0}
   camera_shaking_num: 0
+  nickname: {fileID: 0}
+  playerIndicator: {fileID: 0}
   max_hp: 0
   current_hp: 0
   jump_force: 0
@@ -4841,9 +4843,21 @@ MonoBehaviour:
   is_dead: 0
   respawn_time: 5
   skil_num: 0
-  item: []
   isGrounded: 1
+  weapons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  gargets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   hand: {fileID: 0}
+  inventory: []
+  current_Hand: -1
+  current_Garget: 0
+  current_Weapon: 0
   firstSpawnPoint:
   - {fileID: 0}
   - {fileID: 0}
@@ -4857,6 +4871,11 @@ MonoBehaviour:
   helicopterplayerbody: {fileID: 0}
   originPlayer: {fileID: 0}
   isunrideheli: 0
+  r: 0
+  g: 0
+  b: 0
+  a: 0
+  cccc: {r: 0, g: 0, b: 0, a: 0}
 --- !u!54 &7144322994264615029
 Rigidbody:
   m_ObjectHideFlags: 0

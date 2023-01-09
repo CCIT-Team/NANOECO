@@ -9,16 +9,17 @@ public class PlayerMouseRotate : MonoBehaviourPunCallbacks
     public Camera cam;
 
     public PhotonView pv;
-
     private void Start()
     {
-        //cam = PhotonTestPlayer.instance.cam;
         cam = Camera.main;
     }
 
     private void Update()
     {
-        if (pv.IsMine && !Player.instance.is_dead) { Aim();}
+        if(pv.IsMine)
+        {
+            Aim();
+        }
     }
 
     private void Aim()
