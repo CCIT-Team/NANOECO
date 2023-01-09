@@ -50,7 +50,7 @@ MonoBehaviour:
   type: 1
   IID: 1
   damage: 25
-  attackspeed: 0.5
+  attackspeed: 1
   firePosition: {fileID: 7677402307013608908}
   bullet: {fileID: -4316363247423991619, guid: 7b6333bc7785c1643ac4c243f43f7c5e, type: 3}
   maxAmmo: 15
@@ -826,7 +826,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.4
+      value: 0.04
       mode: 0
       spread: 0
       speed:
@@ -4952,7 +4952,7 @@ ParticleSystemRenderer:
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
-  m_MaxParticleSize: 0.5
+  m_MaxParticleSize: 0.2
   m_CameraVelocityScale: 0
   m_VelocityScale: 0.1
   m_LengthScale: 0
