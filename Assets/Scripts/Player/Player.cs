@@ -10,6 +10,7 @@ using Photon.Pun.Demo.PunBasics;
 public class Player : MonoBehaviourPunCallbacks, IPunObservable
 {
     public static Player instance;
+
     public int player_actornum;
     int targetdisplay = 0;
     public Rigidbody rigid;
@@ -25,12 +26,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public float jump_force;
     public float dash_force;
     public float move_force;
-    public bool is_dead;
+    public bool is_dead = false;
     public float respawn_time = 5;
     public int skil_num;
     bool is_dash = false;
     public bool isGrounded = true;
-    bool is_dontHit = false;
     [Header("æ∆¿Ã≈€")]
     public GameObject[] weapons = new GameObject[3];
     //0 = Difuser
@@ -74,15 +74,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public float b;
     public float a;
     public Color cccc;
-    Vector3 curPos;
-    Quaternion curRot;
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
+            stream.SendNext(is_dead);
             stream.SendNext(transform.position);
             stream.SendNext(transform.rotation);
-            //stream.SendNext(is_dead);
             stream.SendNext(current_hp);
             stream.SendNext(current_item);
             stream.SendNext(r);
@@ -92,9 +91,9 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            curPos = (Vector3)stream.ReceiveNext();
-            curRot = (Quaternion)stream.ReceiveNext();
-            //is_dead = (bool)stream.ReceiveNext();
+            is_dead = (bool)stream.ReceiveNext();
+            transform.position = (Vector3)stream.ReceiveNext();
+            transform.rotation = (Quaternion)stream.ReceiveNext();
             current_hp = (float)stream.ReceiveNext();
             current_item = (int)stream.ReceiveNext();
             r = (float)stream.ReceiveNext();
@@ -119,8 +118,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (pv.IsMine)
         {
             gameObject.name = nickname.text;
-            //cam.gameObject.name = nickname.text + "cam";
-            //cam = GameObject.Find(nickname.text + "cam").GetComponent<Camera>();
             Camera.main.GetComponent<PlayerCamera>().player = gameObject.transform;
         }
         instance = this;
@@ -142,7 +139,8 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             gargets[i].SetActive(false);
         }
-
+        current_Weapon = 0;
+        current_Hand = 0;
         switch (current_Weapon)
         {
             case 0:
@@ -164,32 +162,32 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 current_Hand = 2;
                 break;
         }
-        switch (current_Garget)
-        {    //0 = Bomb
-             //1 = Dummy
-             //2 = Healing Bomb
-             //3 = Heal Totam
-            case 0:
-                garget_String = "Bomb";
-                gargets[0].SetActive(true);
-                current_Hand = 3;
-                break;
-            case 1:
-                garget_String = "Dummy";
-                gargets[1].SetActive(true);
-                current_Hand = 4;
-                break;
-            case 2:
-                garget_String = "Healing Bomb";
-                gargets[2].SetActive(true);
-                current_Hand = 5;
-                break;
-            case 3:
-                garget_String = "Heal Totam";
-                gargets[3].SetActive(true);
-                current_Hand = 6;
-                break;
-        }
+        //switch (current_Garget)
+        //{    //0 = Bomb
+        //     //1 = Dummy
+        //     //2 = Healing Bomb
+        //     //3 = Heal Totam
+        //    case 0:
+        //        garget_String = "Bomb";
+        //        gargets[0].SetActive(true);
+        //        current_Hand = 3;
+        //        break;
+        //    case 1:
+        //        garget_String = "Dummy";
+        //        gargets[1].SetActive(true);
+        //        current_Hand = 4;
+        //        break;
+        //    case 2:
+        //        garget_String = "Healing Bomb";
+        //        gargets[2].SetActive(true);
+        //        current_Hand = 5;
+        //        break;
+        //    case 3:
+        //        garget_String = "Heal Totam";
+        //        gargets[3].SetActive(true);
+        //        current_Hand = 6;
+        //        break;
+        //}
     }
 
     void Start()
@@ -212,13 +210,17 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void Update()
     {
         if (pv.IsMine && PhotonNetwork.IsConnected && !is_dead) { Move(); }
-        if (pv.IsMine) { ItemChange(); Dead();}
-        if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
-        SpawnPointUpdate();
+        if (pv.IsMine)
+        {
+            ItemChange();
+        }
+        Dead();
         if (helicopterAni.GetBool("Respawn"))
         {
             ReSpawn();
         }
+        if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
+        SpawnPointUpdate();
         if (Input.GetKeyDown(KeyCode.I))
         {
             current_Weapon = 0;
@@ -258,15 +260,15 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 helicopterplayerbody.transform.parent = originPlayer.transform;
             }
             if (helicopterAni.GetBool("HliEnd"))
-            {               
+            {
                 respawn_time = 3;
-                isunrideheli = false;               
+                isunrideheli = false;
                 helicopterplayerbody.SetActive(true);
                 helicopterrope.transform.DetachChildren();
                 helicopterplayerbody.transform.parent = originPlayer.transform;
+                helicopter.SetActive(false);
                 current_hp = max_hp;
                 is_dead = false;
-                helicopter.SetActive(false);
             }
         }
     }
@@ -336,6 +338,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKeyDown(KeyCode.Alpha1) && !is_usehand)
         {
             current_item = 0;
+            current_Hand = 0;
             if (current_item == 0)
             {
                 ani.SetTrigger("Change");
@@ -348,6 +351,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKeyDown(KeyCode.Alpha2) && !is_usehand)
         {
             current_item = 1;
+            current_Hand = 3;
             if (current_item == 1)
             {
                 ani.SetTrigger("Change");
@@ -360,6 +364,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (Input.GetKeyDown(KeyCode.Alpha3) && !is_usehand)
         {
             current_item = 2;
+            current_Hand = 6;
             if (current_item == 2)
             {
                 ani.SetTrigger("Change");
@@ -370,6 +375,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             }
         }
         PickUpAndDropItem();
+        if (current_item == 1 && Input.GetMouseButtonDown(0) || current_item == 2 && Input.GetMouseButtonDown(0))
+        {
+            ani.SetTrigger("Attack");
+        }
     }
 
     void PickUpAndDropItem()

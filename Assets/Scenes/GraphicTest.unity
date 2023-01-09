@@ -307,6 +307,75 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1001 &719202416
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: aef5fcbe1319dc046933d65b83e58f70,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aef5fcbe1319dc046933d65b83e58f70,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aef5fcbe1319dc046933d65b83e58f70,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aef5fcbe1319dc046933d65b83e58f70,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aef5fcbe1319dc046933d65b83e58f70,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aef5fcbe1319dc046933d65b83e58f70,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aef5fcbe1319dc046933d65b83e58f70,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aef5fcbe1319dc046933d65b83e58f70,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aef5fcbe1319dc046933d65b83e58f70,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aef5fcbe1319dc046933d65b83e58f70,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aef5fcbe1319dc046933d65b83e58f70,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: aef5fcbe1319dc046933d65b83e58f70,
+        type: 3}
+      propertyPath: m_Name
+      value: Weapon_Swatter
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aef5fcbe1319dc046933d65b83e58f70, type: 3}
 --- !u!1 &771798367
 GameObject:
   m_ObjectHideFlags: 0
@@ -9092,6 +9161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b739e424bb1522488ba922677ba13fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player_actornum: 0
   rigid: {fileID: 5336137748844433679}
   pv: {fileID: 5336137748844433676}
   camera_shaking_num: 0
@@ -9133,6 +9203,11 @@ MonoBehaviour:
   helicopterplayerbody: {fileID: 8936953236272016974}
   originPlayer: {fileID: 5336137748844433681}
   isunrideheli: 0
+  r: 0
+  g: 0
+  b: 0
+  a: 0
+  cccc: {r: 0, g: 0, b: 0, a: 0}
 --- !u!65 &5336137748844433678
 BoxCollider:
   m_ObjectHideFlags: 0

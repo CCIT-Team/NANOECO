@@ -14,7 +14,7 @@ public class NnomalFMonster : NewMonster
     #region �ʱⰪ
     public NnomalFMonster()
     {
-        data.max_hp = 25f;
+        data.max_hp = 10f;
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
@@ -25,7 +25,7 @@ public class NnomalFMonster : NewMonster
         data.chase_dist = 7f;
         data.attack_dist = 4f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 50f;
+        data.event_chase_dist = 20f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
@@ -38,18 +38,18 @@ public class NnomalFMonster : NewMonster
 
     public override void Init()
     {
-        data.max_hp = 25f;
+        data.max_hp = 10f;
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
         data.patrol_speed = 2f;
         data.chase_speed = 4f;
 
-        data.patrol_dist = 5f;
-        data.chase_dist = 7f;
-        data.attack_dist = 4f;
+        data.patrol_dist = 4f;
+        data.chase_dist = 5f;
+        data.attack_dist = 3f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 50f;
+        data.event_chase_dist = 20f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;

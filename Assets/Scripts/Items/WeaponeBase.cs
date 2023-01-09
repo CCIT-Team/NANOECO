@@ -8,14 +8,16 @@ public abstract class WeaponeBase : MonoBehaviourPunCallbacks
 {
     public enum Type { ENONE = -1, EMELEE, ERANGE, ESUPPORT }
     public Type type = Type.ENONE;
+    public enum ItemID { ENONE = -1, EGun, ELuncher, ESpray, EBomb, EHealBomb, ETotem, EDummy }
+    public ItemID IID = ItemID.ENONE;
     public float damage = 0;    //데미지
     public float attackspeed = 2;   //공격속도, 클수록 빠름07
-    public float realdelay = 2; //공격 딜레이,  (딜레이/속도)
-    public bool isdelay = false;    //딜레이 확인용
+    protected float realdelay = 2; //공격 딜레이,  (딜레이/속도)
+    protected bool isdelay = false;    //딜레이 확인용
     //public float knockback = 0; //공격시 적을 밀쳐내는 정도
 
-    public PhotonView pv;
-    public Player player;
+    protected PhotonView pv;
+    protected Player player;
 
     IEnumerator AttackDelay() //공격 딜레이용 코루틴
     {
@@ -41,7 +43,7 @@ public abstract class WeaponeBase : MonoBehaviourPunCallbacks
 
     void GetPlayer()
     {
-        player = transform.parent.GetComponentInParent<Player>();
+        player = transform.root.GetComponent<Player>();
         pv = GetComponent<PhotonView>();
     }
 }
