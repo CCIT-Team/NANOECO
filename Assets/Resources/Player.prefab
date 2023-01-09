@@ -1195,6 +1195,37 @@ Transform:
   m_Father: {fileID: 4213365948218704190}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 26.857922, y: 24.786901, z: 6.356642}
+--- !u!1 &3828265352486671502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3389946254639304554}
+  m_Layer: 0
+  m_Name: Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3389946254639304554
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3828265352486671502}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.84, y: -3.48, z: 4.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8407517294685551322}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3838387793918239972
 GameObject:
   m_ObjectHideFlags: 0
@@ -7061,7 +7092,7 @@ MonoBehaviour:
   - {fileID: 216293615072053262}
   - {fileID: 7089877362912196119}
   - {fileID: 9112642615032789334}
-  hand: {fileID: 5534488910848128364}
+  hand: {fileID: 3828265352486671502}
   inventory:
   - {fileID: 9054633827399986081}
   - {fileID: 5566066257911005801}
@@ -7585,6 +7616,7 @@ Transform:
   - {fileID: 5656155703869559333}
   - {fileID: 719690929232424676}
   - {fileID: 3184304602095507790}
+  - {fileID: 3389946254639304554}
   m_Father: {fileID: 7393122562969155693}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -89.98021, y: 0, z: 0}
