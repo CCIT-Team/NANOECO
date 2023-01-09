@@ -64,7 +64,7 @@ public class ItemControler : MonoBehaviourPunCallbacks
 
     public virtual void Useitem()
     {
-        PhotonNetwork.Instantiate(itemprefab.name, this.transform.position, this.transform.rotation);
+        PhotonNetwork.Instantiate(itemprefab.name, this.transform.position, itemprefab.transform.rotation);
         count--;
         StartCoroutine("Cooling");
     }
