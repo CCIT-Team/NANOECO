@@ -44,5 +44,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d9a3b3590e53d044b9c4bc8f55f1db6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cc: []
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playersnum: 0
+  sp: {fileID: 0}
+  spawnPoint: {fileID: 0}
   player_count: 0
+  pv: {fileID: 0}
+  player_color:
+  - {r: 1, g: 0.33333334, b: 0.7058824, a: 1}
+  - {r: 0, g: 0.6981132, b: 0.16301127, a: 1}
+  - {r: 0.3280082, g: 0.8584906, b: 0.79808336, a: 1}
+  - {r: 1, g: 0.9728835, b: 0, a: 1}
+  user_0: 
+  user_1: 
+  user_2: 
+  user_3: 

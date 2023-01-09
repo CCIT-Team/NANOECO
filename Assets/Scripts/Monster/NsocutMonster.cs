@@ -13,7 +13,7 @@ public class NsocutMonster : NewMonster
     #region �ʱⰪ
     public NsocutMonster()
     {
-        data.max_hp = 50f;
+        data.max_hp = 15f;
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
@@ -23,8 +23,8 @@ public class NsocutMonster : NewMonster
         data.patrol_dist = 10f;
         data.chase_dist = 10f;
         data.attack_dist = 0.5f;
-        data.skill_dist = 4f;
-        data.event_chase_dist = 50f;
+        data.skill_dist = 2f;
+        data.event_chase_dist = 20f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
@@ -37,18 +37,18 @@ public class NsocutMonster : NewMonster
 
     public override void Init()
     {
-        data.max_hp = 50f;
+        data.max_hp = 15f;
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 5f;
-        data.chase_speed = 8f;
+        data.patrol_speed = 2.5f;
+        data.chase_speed = 4f;
 
-        data.patrol_dist = 10f;
-        data.chase_dist = 10f;
+        data.patrol_dist = 5f;
+        data.chase_dist = 6f;
         data.attack_dist = 0.5f;
-        data.skill_dist = 4f;
-        data.event_chase_dist = 50f;
+        data.skill_dist = 2f;
+        data.event_chase_dist = 20f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
@@ -76,7 +76,6 @@ public class NsocutMonster : NewMonster
 
     public override void Skill()
     {
-        audioplayer.PlayOneShot(skill_clip);
         animator.SetTrigger(hash_skill);
         float dist = (lock_target.transform.position - transform.position).magnitude;
         transform.LookAt(lock_target.transform);
@@ -96,6 +95,7 @@ public class NsocutMonster : NewMonster
     IEnumerator Monster_Wave()
     {
         wave_count--;
+        audioplayer.PlayOneShot(skill_clip);
         Instantiate(Particles[3], transform.position, Quaternion.identity);
         int i = Random.Range(0, monster_group.Count);
         Instantiate(monster_group[i], spawn_point[i].position, Quaternion.identity);

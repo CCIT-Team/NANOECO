@@ -8,18 +8,18 @@ public class NnomalMonster : NewMonster
     #region 초기값
     public NnomalMonster()
     {
-        data.max_hp = 60f;
+        data.max_hp = 15f;
         data.current_hp = data.max_hp;
         data.damage = 5f;
         data.defense = 1f;
-        data.patrol_speed = 2f;
-        data.chase_speed = 3f;
+        data.patrol_speed = 3f;
+        data.chase_speed = 5f;
 
         data.patrol_dist = 5f;
         data.chase_dist = 7f;
         data.attack_dist = 0.5f; //몬스터가 크다면 공격 범위도 커야 할 듯
         data.skill_dist = 0.5f;
-        data.event_chase_dist = 50f;
+        data.event_chase_dist = 20f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
@@ -32,18 +32,18 @@ public class NnomalMonster : NewMonster
 
     public override void Init()
     {
-        data.max_hp = 60f;
+        data.max_hp = 15f;
         data.current_hp = data.max_hp;
         data.damage = 5f;
         data.defense = 1f;
-        data.patrol_speed = 4f;
-        data.chase_speed = 6f;
+        data.patrol_speed = 3f;
+        data.chase_speed = 5f;
 
         data.patrol_dist = 5f;
         data.chase_dist = 7f;
         data.attack_dist = 0.5f; //몬스터가 크다면 공격 범위도 커야 할 듯
         data.skill_dist = 0.5f;
-        data.event_chase_dist = 50f;
+        data.event_chase_dist = 20f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;

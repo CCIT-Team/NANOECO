@@ -115,15 +115,21 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
     public PhotonView PV;
     #endregion
 
+    public Vector3 curPos;
+    public Quaternion curRot;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
+            //stream.SendNext(transform.position);
+            //stream.SendNext(transform.rotation);
             stream.SendNext(data.current_hp);
             stream.SendNext(is_dead);
         }
         else
         {
+            //curPos = (Vector3)stream.ReceiveNext();
+            //curRot = (Quaternion)stream.ReceiveNext();
             data.current_hp = (float)stream.ReceiveNext();
             is_dead = (bool)stream.ReceiveNext();
         }
@@ -350,7 +356,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             Instantiate(Particles[0], transform.position, Quaternion.identity);
             Instantiate(Particles[1], transform.position, Quaternion.identity);
             Destroy(gameObject, 0.3f);
-            PhotonNetwork.Destroy(gameObject);
+            //PhotonNetwork.Destroy(gameObject);
             Init();
             current_state = CURRNET_STATE.EIdle;
         }
@@ -452,13 +458,15 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
         return point == null ? Vector3.zero : point.position;
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, data.chase_dist);
-    //    Gizmos.color = Color.blue;
-    //    Gizmos.DrawWireSphere(transform.position, data.attack_dist);
-    //    Gizmos.color = Color.green;
-    //    Gizmos.DrawWireSphere(transform.position, data.event_chase_dist);
-    //}
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, data.chase_dist);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, data.attack_dist);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, data.event_chase_dist);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, data.skill_dist);
+    }
 }
