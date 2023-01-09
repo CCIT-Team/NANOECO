@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 1466770548585659483}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -4826,11 +4826,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60f483dfcca988c43b2308f4f07368d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IID: 6
   cooldown: 20
   iscooldown: 0
   maxcount: 3
   count: 3
-  itemprefab: {fileID: 3288893045408403656, guid: 3589b73cebada3a469e2647d1e2cea5c,
+  itemprefab: {fileID: 3288893045408403656, guid: bbb26262bffd93a409602b8bae1b748c,
     type: 3}
   useditem: {fileID: 0}
   pv: {fileID: 9062884526016918420}
