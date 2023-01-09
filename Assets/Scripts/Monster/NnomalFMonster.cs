@@ -12,25 +12,24 @@ public class NnomalFMonster : NewMonster
     private GameObject shot_pos;
 
     #region �ʱⰪ
-    [PunRPC]
     public NnomalFMonster()
     {
-        data.max_hp = 50f;
+        data.max_hp = 10f;
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 3f;
+        data.patrol_speed = 2f;
         data.chase_speed = 4f;
 
         data.patrol_dist = 5f;
         data.chase_dist = 7f;
         data.attack_dist = 4f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 50f;
+        data.event_chase_dist = 20f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
-        data.attack_cool_time = 1f;
+        data.attack_cool_time = 2f;
         data.skill_cool_time = 1000f;
 
         data.current_time = 0f;
@@ -39,22 +38,22 @@ public class NnomalFMonster : NewMonster
 
     public override void Init()
     {
-        data.max_hp = 50f;
+        data.max_hp = 10f;
         data.current_hp = data.max_hp;
         data.damage = 0f;
         data.defense = 1f;
-        data.patrol_speed = 3f;
+        data.patrol_speed = 2f;
         data.chase_speed = 4f;
 
-        data.patrol_dist = 5f;
-        data.chase_dist = 7f;
-        data.attack_dist = 4f;
+        data.patrol_dist = 4f;
+        data.chase_dist = 5f;
+        data.attack_dist = 3f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 50f;
+        data.event_chase_dist = 20f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
-        data.attack_cool_time = 1f;
+        data.attack_cool_time = 2f;
         data.skill_cool_time = 1000f;
 
         data.current_time = 0f;

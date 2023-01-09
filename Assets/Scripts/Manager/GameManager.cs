@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        if (sp == null || SceneManager.sceneCount == 3 && sp == null)
+        if (sp == null || SceneManager.sceneCount == 2 && sp == null)
         {
             sp = GameObject.FindGameObjectWithTag("Spawn").GetComponent<SpawnPoint>();
         }

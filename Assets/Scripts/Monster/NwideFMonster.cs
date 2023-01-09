@@ -14,18 +14,18 @@ public class NwideFMonster : NewMonster
     #region �ʱⰪ
     public NwideFMonster()
     {
-        data.max_hp = 70f;
+        data.max_hp = 15f;
         data.current_hp = data.max_hp;
         data.damage = 5f;
         data.defense = 1f;
-        data.patrol_speed = 4f;
-        data.chase_speed = 5f;
+        data.patrol_speed = 3f;
+        data.chase_speed = 4f;
 
-        data.patrol_dist = 10f;
-        data.chase_dist = 13f;
-        data.attack_dist = 7f;
+        data.patrol_dist = 5f;
+        data.chase_dist = 6.5f;
+        data.attack_dist = 4f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 50f;
+        data.event_chase_dist = 20f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
@@ -38,18 +38,18 @@ public class NwideFMonster : NewMonster
 
     public override void Init()
     {
-        data.max_hp = 70f;
+        data.max_hp = 15f;
         data.current_hp = data.max_hp;
         data.damage = 5f;
         data.defense = 1f;
-        data.patrol_speed = 4f;
-        data.chase_speed = 5f;
+        data.patrol_speed = 3f;
+        data.chase_speed = 4f;
 
-        data.patrol_dist = 10f;
-        data.chase_dist = 13f;
-        data.attack_dist = 5f;
+        data.patrol_dist = 5f;
+        data.chase_dist = 6.5f;
+        data.attack_dist = 4f;
         data.skill_dist = 0f;
-        data.event_chase_dist = 50f;
+        data.event_chase_dist = 20f;
 
         data.idle_cool_time = 0.5f;
         data.chase_cool_time = 2f;
