@@ -209,6 +209,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void Update()
     {
+        current_hp = max_hp;
         if (pv.IsMine && PhotonNetwork.IsConnected && !is_dead) { Move(); }
         if (pv.IsMine)
         {
