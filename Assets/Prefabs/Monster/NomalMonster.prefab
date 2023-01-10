@@ -425,6 +425,8 @@ MonoBehaviour:
   current_state: 0
   Rand_Chase_Time: 15
   PV: {fileID: -1973734622114177220}
+  curPos: {x: 0, y: 0, z: 0}
+  curRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!195 &2112509909748419476
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -576,6 +578,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 2112509909748419478}
+  - {fileID: 0}
   - {fileID: 7487483577558109151}
   - {fileID: 8676817127049431496}
   sceneViewId: 0
