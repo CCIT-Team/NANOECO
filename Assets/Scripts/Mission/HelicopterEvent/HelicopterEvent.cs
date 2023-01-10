@@ -54,7 +54,7 @@ public class HelicopterEvent : MonoBehaviour
 
     void Ride_Helicopter()
     {
-        if(current_player_count == 4)
+        if(current_player_count == 8)
         {
             ride = true;
             helicopter.SetActive(true);
@@ -66,7 +66,7 @@ public class HelicopterEvent : MonoBehaviour
         for(int i = 0; i < player_list.Count; i++)
         {
             player_list[i].transform.SetParent(heli_player);
-            player_list[i].transform.localPosition = Vector3.zero;
+            //player_list[i].transform.localPosition = Vector3.zero;
         }
     }
 
