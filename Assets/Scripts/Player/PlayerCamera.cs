@@ -80,7 +80,7 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
             timer += Time.deltaTime;
             yield return null;
 
-            Camera.main.transform.localPosition = originpos;
+            Camera.main.transform.localPosition = transform.position + offset;
             Player.instance.camera_shaking_num = 0;
         }
     }
