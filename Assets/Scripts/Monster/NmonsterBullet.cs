@@ -22,6 +22,7 @@ public class NmonsterBullet : MonoBehaviour
         {
             var player = bullet.GetComponent<Player>();
             player.current_hp -= damege;
+            player.camera_shaking_num = 3;
             Destroy(gameObject, 0.01f);
         }
     }
