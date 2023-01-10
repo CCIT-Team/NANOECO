@@ -11,6 +11,7 @@ public class ProtectionMission : MissionBase, IPunObservable
     public List<Transform> spawn_point = new List<Transform>();
     public int wave_count;
     public float wave_time;
+    public bool mission_start = false;
 
     Vector3 curPos;
     Quaternion curRot;
@@ -22,6 +23,7 @@ public class ProtectionMission : MissionBase, IPunObservable
             stream.SendNext(transform.rotation);
             stream.SendNext(wave_count);
             stream.SendNext(wave_time);
+            stream.SendNext(mission_start);
         }
         else
         {
@@ -29,6 +31,7 @@ public class ProtectionMission : MissionBase, IPunObservable
             curRot = (Quaternion)stream.ReceiveNext();
             wave_count = (int)stream.ReceiveNext();
             wave_time = (float)stream.ReceiveNext();
+            mission_start = (bool)stream.ReceiveNext();
         }
     }
 
@@ -40,7 +43,11 @@ public class ProtectionMission : MissionBase, IPunObservable
 
     public override void Mission_Event()
     {
-        StartCoroutine(Monster_Wave());
+        if(!mission_start)
+        {
+            mission_start = true;
+            StartCoroutine(Monster_Wave());
+        }
     }
 
     IEnumerator Monster_Wave()
