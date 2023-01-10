@@ -66,6 +66,7 @@ public class Range : WeaponeBase
     public override void Attack()
     {
         GameObject chargedbullet = Instantiate(bullet.gameObject);
+        player.camera_shaking_num = 2;
         p.Play();
         chargedbullet.transform.position = firePosition.transform.position;
         chargedbullet.transform.rotation = firePosition.transform.rotation;

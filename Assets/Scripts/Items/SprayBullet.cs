@@ -6,6 +6,7 @@ using Photon.Realtime;
 
 public class SprayBullet : Bullet
 {
+    Player player;
     [HideInInspector]
     public bool canattack = true;
     new void Start()
@@ -27,6 +28,7 @@ public class SprayBullet : Bullet
     {
         if (other.gameObject.layer == 8 && canattack)
         {
+            player.camera_shaking_num = 2;
             var monster = other.gameObject.GetComponent<NewMonster>();
             monster.data.current_hp -= damage;
             monster.hit_true = true;
