@@ -24,6 +24,9 @@ public class Bomb : MonoBehaviourPunCallbacks
     //public float knockback = 1;
     bool is_play = false;
 
+    [HideInInspector]
+    public Player player;
+
     [Range(6,8)]
     public int targetLayer = 8;
     void Start()
@@ -48,6 +51,7 @@ public class Bomb : MonoBehaviourPunCallbacks
             col.radius *= 15;
             if(!is_play)
             {
+                player.camera_shaking_num = 4;
                 ps.Play();
                 is_play = true;
             }

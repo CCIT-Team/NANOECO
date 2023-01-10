@@ -48,22 +48,22 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
                 StopCoroutine(CameraShaking(0, 0));
                 break;
             case 1://무기 사격시 근거리
-                StartCoroutine(CameraShaking(0.25f, 0.5f));
+                StartCoroutine(CameraShaking(0.25f, 0.01f));
                 break;
             case 2://무기 사격시 원거리
-                StartCoroutine(CameraShaking(0.3f, 1f));
+                StartCoroutine(CameraShaking(0.03f, 0.01f));
                 break;
             case 3://몬스터에게 피격 
-                StartCoroutine(CameraShaking(0.2f, 0.175f));
+                StartCoroutine(CameraShaking(0.02f, 0.0175f));
                 break;
             case 4://폭탄
-                StartCoroutine(CameraShaking(0.5f, 4f));
+                StartCoroutine(CameraShaking(0.00005f, 0.00004f));
                 break;
             case 5://이벤트 스폰
-                StartCoroutine(CameraShaking(0.5f, 0.3f));
+                StartCoroutine(CameraShaking(0.00005f, 0.000003f));
                 break;
             case 6://이벤트 보스 출현
-                StartCoroutine(CameraShaking(0.35f, 1f));
+                StartCoroutine(CameraShaking(0.000035f, 0.00001f));
                 break;
         }
     }
@@ -80,7 +80,7 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
             timer += Time.deltaTime;
             yield return null;
 
-            Camera.main.transform.localPosition = originpos;
+            Camera.main.transform.localPosition = transform.position;
             Player.instance.camera_shaking_num = 0;
         }
     }

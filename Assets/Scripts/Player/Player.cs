@@ -32,6 +32,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     bool is_dash = false;
     public bool isGrounded = true;
     [Header("æ∆¿Ã≈€")]
+    public PartsItem pi;
     public GameObject[] weapons = new GameObject[3];
     //0 = Difuser
     //1 = Launcher
@@ -42,7 +43,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     //2 = Healing Bomb
     //3 = Heal Totam
     public GameObject hand;
-    bool is_usehand = false;
+    public bool is_usehand = false;
     public GameObject[] inventory;
     int current_item = 0;
     public int current_Hand = -1;
@@ -367,17 +368,18 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 inventory[2].SetActive(true);
             }
         }
-        PickUpAndDropItem();
+        DropItem();
         if (current_item == 1 && Input.GetMouseButtonDown(0) || current_item == 2 && Input.GetMouseButtonDown(0))
         {
             ani.SetTrigger("Attack");
         }
     }
-
-    void PickUpAndDropItem()
+    
+    void DropItem()
     {
         if (is_usehand && Input.GetKeyDown(KeyCode.E))
         {
+            pi.handed = false;
             hand.transform.DetachChildren();
             is_usehand = false;
         }
@@ -405,23 +407,6 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             case 5:
                 eps = EPlayer_Skil.EAdd_DashForce;
                 break;
-        }
-    }
-    PartsItem pi;
-    private void OnCollisionEnter(Collision col)
-    {
-        if (col.gameObject.layer == 12 && Input.GetKey(KeyCode.E) && !is_usehand)
-        {
-            is_usehand = true;
-            col.transform.parent = hand.transform;
-            pi = col.transform.GetComponent<PartsItem>();
-            pi.handed = true;
-            if (is_usehand && Input.GetKeyDown(KeyCode.E))
-            {
-                pi.handed = false;
-                hand.transform.DetachChildren();
-                is_usehand = false;
-            }
         }
     }
 

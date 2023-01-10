@@ -74,8 +74,10 @@ MonoBehaviour:
   on_event: 0
   protection_target: 0
   current_state: 0
-  Rand_Chase_Time: 15
+  Rand_Chase_Time: 5
   PV: {fileID: -5288027136644175145}
+  curPos: {x: 0, y: 0, z: 0}
+  curRot: {x: 0, y: 0, z: 0, w: 0}
   monster_group:
   - {fileID: 1129619674144474263, guid: cf73c3e82136835458f5acfc17279b91, type: 3}
   spawn_point:
