@@ -25,6 +25,7 @@ public class Bomber : ItemControler
         useditem.transform.position = this.transform.position;*/
         useditem = PhotonNetwork.Instantiate("Bomb", this.transform.position, this.transform.rotation);
         useditem.GetComponent<Bomb>().target = target;
+        useditem.GetComponent<Bomb>().player = player;
         useditem.SetActive(true);
 
         count--;
