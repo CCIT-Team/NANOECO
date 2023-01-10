@@ -52,7 +52,7 @@ public class HelicopterEvent : MonoBehaviour
 
     void Ride_Helicopter()
     {
-        if(current_player_count == GameManager.Instance.player_count)
+        if(current_player_count == 4)
         {
             ride = true;
             helicopter.SetActive(true);
