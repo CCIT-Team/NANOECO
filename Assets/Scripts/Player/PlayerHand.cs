@@ -5,15 +5,33 @@ using UnityEngine;
 public class PlayerHand : MonoBehaviour
 {
     public Player player;
-    PartsItem pi;
-    void OnTriggerEnter(Collider col)
+
+    private void Update()
     {
-        if (col.gameObject.layer == 12 && Input.GetKey(KeyCode.E) && !player.is_usehand)
+        if(Input.GetKey(KeyCode.E) && player.pi != null)
         {
             player.is_usehand = true;
-            col.transform.parent = player.hand.transform;
-            pi = col.transform.GetComponent<PartsItem>();
-            pi.handed = true;
+            player.pi.transform.parent = player.hand.transform;
+            player.pi.handed = true;
+        }
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.layer == 12 && !player.is_usehand)
+        {
+            player.pi = col.transform.GetComponent<PartsItem>();
+      
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 12 && player.is_usehand)
+        {
+            player.pi = null;
+            player.is_usehand = false;
+
         }
     }
 }

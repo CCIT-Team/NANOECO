@@ -971,7 +971,7 @@ GameObject:
   - component: {fileID: 5373370588657161501}
   - component: {fileID: 7014901708497284672}
   - component: {fileID: 3416734926345899869}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: PlayerIndi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1252,8 +1252,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.909881, y: 3.1968627, z: 7.522998}
-  m_Center: {x: -0.016879186, y: -1.098428, z: -2.0404096}
+  m_Size: {x: 22.466986, y: 19.799675, z: 7.523001}
+  m_Center: {x: -2.7597759, y: -2.0086136, z: -2.040404}
 --- !u!1 &3838387793918239972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,7 +1637,7 @@ GameObject:
   - component: {fileID: 889333721274532571}
   - component: {fileID: 3654401608564211625}
   - component: {fileID: 8065714903623167759}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7103,13 +7103,14 @@ MonoBehaviour:
   playerIndicator: {fileID: 3416734926345899869}
   max_hp: 100
   current_hp: 100
-  jump_force: 350
-  dash_force: 35
+  jump_force: 400
+  dash_force: 50
   move_force: 1.5
   is_dead: 0
   respawn_time: 3
   skil_num: 0
   isGrounded: 1
+  pi: {fileID: 0}
   weapons:
   - {fileID: 9054633827399986081}
   - {fileID: 8188922796859751560}
@@ -7611,8 +7612,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.1, y: 0.08, z: 6.12}
-  m_Center: {x: -1.49, y: -0.93, z: -1.57}
+  m_Size: {x: 2.8866477, y: 0.08000005, z: 3.1080534}
+  m_Center: {x: -0.85207874, y: -0.9300129, z: -1.0867378}
 --- !u!1 &7232337213863758697
 GameObject:
   m_ObjectHideFlags: 0
@@ -7823,7 +7824,7 @@ GameObject:
   - component: {fileID: 1179403342040001103}
   - component: {fileID: 3175180448991965071}
   - component: {fileID: 2956380101575200959}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: NickName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9302,7 +9303,7 @@ PrefabInstance:
     - target: {fileID: 7065196574166785829, guid: 6204c05da391e8b4a8c2602852f3adfe,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6204c05da391e8b4a8c2602852f3adfe, type: 3}

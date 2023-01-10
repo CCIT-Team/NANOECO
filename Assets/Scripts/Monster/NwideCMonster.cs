@@ -13,7 +13,7 @@ public class NwideCMonster : NewMonster
         data.damage = 5f;
         data.defense = 1f;
         data.patrol_speed = 2f;
-        data.chase_speed = 4f;
+        data.chase_speed = 3f;
 
         data.patrol_dist = 4f;
         data.chase_dist = 5.5f;
@@ -37,7 +37,7 @@ public class NwideCMonster : NewMonster
         data.damage = 5f;
         data.defense = 1f;
         data.patrol_speed = 2f;
-        data.chase_speed = 4f;
+        data.chase_speed = 3f;
 
         data.patrol_dist = 4f;
         data.chase_dist = 5.5f;

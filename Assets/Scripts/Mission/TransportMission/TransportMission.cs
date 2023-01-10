@@ -47,6 +47,7 @@ public class TransportMission : MissionBase, IPunObservable
     public Transform tail_rotor;
     public float rotor_speed;
     public float tail_rotor_speed;
+    public bool heli_on = false;
 
     Vector3 curPos;
     Quaternion curRot;
@@ -60,6 +61,7 @@ public class TransportMission : MissionBase, IPunObservable
             stream.SendNext(current_point);
             stream.SendNext(active_count);
             stream.SendNext(is_active);
+            stream.SendNext(heli_on);
         }
         else
         {
@@ -69,6 +71,7 @@ public class TransportMission : MissionBase, IPunObservable
             current_point = (int)stream.ReceiveNext();
             active_count = (int)stream.ReceiveNext();
             is_active = (bool)stream.ReceiveNext();
+            heli_on = (bool)stream.ReceiveNext();
         }
     }
 
@@ -165,9 +168,9 @@ public class TransportMission : MissionBase, IPunObservable
 
     public override void Clear()
     {
-        print(4444);
         target.transform.SetParent(heli_rope.transform);
-        heli.SetActive(true);
+        heli_on = true;
+        heli.SetActive(heli_on);
         ms.mission_0_clear = true;
         ms.Mission_Clear(0);
     }
