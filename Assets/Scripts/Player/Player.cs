@@ -379,6 +379,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (is_usehand && Input.GetKeyDown(KeyCode.E))
         {
             hand.transform.DetachChildren();
+            is_usehand = false;
         }
     }
 
@@ -409,13 +410,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.layer == 12 && Input.GetKey(KeyCode.E))
+        if (col.gameObject.layer == 12 && Input.GetKey(KeyCode.E) && !is_usehand)
         {
             is_usehand = true;
             col.transform.parent = hand.transform;
             if (is_usehand && Input.GetKeyDown(KeyCode.E))
             {
                 hand.transform.DetachChildren();
+                is_usehand = false;
             }
         }
     }
