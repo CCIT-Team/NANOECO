@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 
-public class GameManager : MonoBehaviourPunCallbacks
+public class GameManager : MonoBehaviourPunCallbacks,IPunObservable
+
 {
     public static GameManager Instance;
     public Player[] players = new Player[4];
@@ -22,6 +23,20 @@ public class GameManager : MonoBehaviourPunCallbacks
     public int user_2;
     public int user_3;
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(playersnum);
+            stream.SendNext(player_count);
+        }
+        else
+        {
+            playersnum = (int)stream.ReceiveNext();
+            player_count = (int)stream.ReceiveNext();
+
+        }
+    }
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);

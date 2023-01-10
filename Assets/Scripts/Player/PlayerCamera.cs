@@ -51,7 +51,7 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
                 StartCoroutine(CameraShaking(0.25f, 0.01f));
                 break;
             case 2://무기 사격시 원거리
-                StartCoroutine(CameraShaking(0.03f, 0.01f));
+                StartCoroutine(CameraShaking(0.05f, 0.03f));
                 break;
             case 3://몬스터에게 피격 
                 StartCoroutine(CameraShaking(0.02f, 0.0175f));
