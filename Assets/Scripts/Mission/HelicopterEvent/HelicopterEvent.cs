@@ -31,7 +31,7 @@ public class HelicopterEvent : MonoBehaviour
     {
         if(col.gameObject.layer == 6)
         {
-            if(!ride && pv.IsMine)
+            if(!ride)
             {
                 current_player_count++;
                 Ride_Helicopter();
@@ -44,7 +44,7 @@ public class HelicopterEvent : MonoBehaviour
     {
         if (col.gameObject.layer == 6)
         {
-            if(!ride && pv.IsMine)
+            if(!ride)
             {
                 current_player_count--;
                 player_list.Remove(col.gameObject);
