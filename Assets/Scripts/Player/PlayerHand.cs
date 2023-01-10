@@ -21,7 +21,7 @@ public class PlayerHand : MonoBehaviour
         if (col.gameObject.layer == 12 && !player.is_usehand)
         {
             player.pi = col.transform.GetComponent<PartsItem>();
-      
+            player.hand.transform.localPosition = new Vector3(2.83999991f, -3.48000002f, 4.19999981f);
         }
     }
 
