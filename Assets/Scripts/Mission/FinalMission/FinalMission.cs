@@ -22,6 +22,7 @@ public class FinalMission : MissionBase
     public List<GameObject> monster_groups;
     public float delay = 5f;
     public bool clear = false;
+    public bool mission_start = false;
 
     void Start()
     {
@@ -43,6 +44,15 @@ public class FinalMission : MissionBase
         clear = true;
         ms.mission_3_clear = true;
         ms.Mission_Clear(3);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == 6 && !mission_start)
+        {
+            Mission_Event();
+            mission_start = true;
+        }
     }
 
     public IEnumerator SpawnMonster()
