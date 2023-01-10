@@ -971,7 +971,7 @@ GameObject:
   - component: {fileID: 5373370588657161501}
   - component: {fileID: 7014901708497284672}
   - component: {fileID: 3416734926345899869}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: PlayerIndi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1252,8 +1252,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.909881, y: 3.1968627, z: 7.522998}
-  m_Center: {x: -0.016879186, y: -1.098428, z: -2.0404096}
+  m_Size: {x: 22.466986, y: 19.799675, z: 7.523001}
+  m_Center: {x: -2.7597759, y: -2.0086136, z: -2.040404}
 --- !u!1 &3838387793918239972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1637,7 +1637,7 @@ GameObject:
   - component: {fileID: 889333721274532571}
   - component: {fileID: 3654401608564211625}
   - component: {fileID: 8065714903623167759}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7823,7 +7823,7 @@ GameObject:
   - component: {fileID: 1179403342040001103}
   - component: {fileID: 3175180448991965071}
   - component: {fileID: 2956380101575200959}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: NickName
   m_TagString: Untagged
   m_Icon: {fileID: 0}

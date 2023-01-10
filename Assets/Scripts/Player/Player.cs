@@ -32,6 +32,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     bool is_dash = false;
     public bool isGrounded = true;
     [Header("æ∆¿Ã≈€")]
+    public PartsItem pi;
     public GameObject[] weapons = new GameObject[3];
     //0 = Difuser
     //1 = Launcher
@@ -373,7 +374,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             ani.SetTrigger("Attack");
         }
     }
-    PartsItem pi;
+    
     void DropItem()
     {
         if (is_usehand && Input.GetKeyDown(KeyCode.E))
