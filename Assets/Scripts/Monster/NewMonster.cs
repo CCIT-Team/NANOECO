@@ -238,20 +238,16 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             }
             else  
             {
-                Debug.Log("2");
                 agent.SetDestination(lock_target.transform.position);
             }
             if(dist <= data.attack_dist)
             {
-                Debug.Log("3");
                 current_state = CURRNET_STATE.EAttack;
             }
             if (on_event == true)//이벤트 지정
             {
-                Debug.Log("4");
                 if (dist > data.event_chase_dist)
                 {
-                    Debug.Log("5");
                     if (data.state_time >= data.chase_cool_time)
                     {
                         agent.SetDestination(transform.position);
@@ -280,7 +276,6 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             }
             else
             {
-                Debug.Log("6");
                 if (dist > data.chase_dist)
                 {
                     if (data.state_time >= data.chase_cool_time)
@@ -295,7 +290,6 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
                 }
                 else
                 {
-                    Debug.Log("7");
                     agent.SetDestination(lock_target.transform.position);
                 }
             }
@@ -318,7 +312,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
                     {
                         audioplayer.PlayOneShot(attack_clip);
                         animator.SetTrigger(hash_attack);
-                        agent.stoppingDistance = (data.attack_dist - 0.1f);
+                        agent.stoppingDistance = (data.attack_dist - 0.01f);
                         protectionTarget.hp -= data.damage;   //방어 대상 공격
                         data.current_time = 0;
                     }
@@ -326,7 +320,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
                     {
                         audioplayer.PlayOneShot(attack_clip);
                         animator.SetTrigger(hash_attack);
-                        agent.stoppingDistance = (data.attack_dist - 0.1f);
+                        agent.stoppingDistance = (data.attack_dist - 0.01f);
                         player.current_hp -= data.damage;   //플레이어 공격
                         player.camera_shaking_num = 3;
                         data.current_time = 0;
