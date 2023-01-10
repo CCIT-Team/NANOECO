@@ -48,6 +48,7 @@ public class TransportMission : MissionBase, IPunObservable
     public float rotor_speed;
     public float tail_rotor_speed;
     public bool heli_on = false;
+    public PhotonView pv;
 
     Vector3 curPos;
     Quaternion curRot;
@@ -168,11 +169,14 @@ public class TransportMission : MissionBase, IPunObservable
 
     public override void Clear()
     {
-        target.transform.SetParent(heli_rope.transform);
-        heli_on = true;
-        heli.SetActive(heli_on);
-        ms.mission_0_clear = true;
-        ms.Mission_Clear(0);
+        if(pv.IsMine)
+        {
+            target.transform.SetParent(heli_rope.transform);
+            heli_on = true;
+            heli.SetActive(heli_on);
+            ms.mission_0_clear = true;
+            ms.Mission_Clear(0);
+        }
     }
 
     void OnDrawGizmos()

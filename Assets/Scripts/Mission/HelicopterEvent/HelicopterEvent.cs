@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class HelicopterEvent : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class HelicopterEvent : MonoBehaviour
     public bool ride = false;
 
     public List<GameObject> player_list;
+    public PhotonView pv;
 
     void Update()
     {
@@ -29,7 +31,7 @@ public class HelicopterEvent : MonoBehaviour
     {
         if(col.gameObject.layer == 6)
         {
-            if(!ride)
+            if(!ride && pv.IsMine)
             {
                 current_player_count++;
                 Ride_Helicopter();
@@ -42,7 +44,7 @@ public class HelicopterEvent : MonoBehaviour
     {
         if (col.gameObject.layer == 6)
         {
-            if(!ride)
+            if(!ride && pv.IsMine)
             {
                 current_player_count--;
                 player_list.Remove(col.gameObject);
