@@ -9,8 +9,8 @@ public class PlayerGroundCheck : MonoBehaviour
     {
         if(col.gameObject == null)
         {
-            player.rigid.AddForce(Vector3.down * 98.1f);
             player.isGrounded = false;
+            player.rigid.AddForce(Vector3.down * 98.1f);
         }
         else
         {
