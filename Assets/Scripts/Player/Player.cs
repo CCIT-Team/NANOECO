@@ -407,15 +407,18 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 break;
         }
     }
-
+    PartsItem pi;
     private void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.layer == 12 && Input.GetKey(KeyCode.E) && !is_usehand)
         {
             is_usehand = true;
             col.transform.parent = hand.transform;
+            pi = col.transform.GetComponent<PartsItem>();
+            pi.handed = true;
             if (is_usehand && Input.GetKeyDown(KeyCode.E))
             {
+                pi.handed = false;
                 hand.transform.DetachChildren();
                 is_usehand = false;
             }
