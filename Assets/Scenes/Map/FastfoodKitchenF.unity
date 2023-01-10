@@ -4571,6 +4571,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1110938861}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &295080793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3440172099524271795, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+    type: 3}
+  m_PrefabInstance: {fileID: 619128933}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &295080794 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2826006140242003732, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+    type: 3}
+  m_PrefabInstance: {fileID: 619128933}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &303665710
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8812,6 +8836,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5604700466631023068, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
         type: 3}
+      propertyPath: pv
+      value: 
+      objectReference: {fileID: 295080794}
+    - target: {fileID: 5604700466631023068, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+        type: 3}
       propertyPath: mission_name
       value: Search and rescue the staff
       objectReference: {fileID: 0}
@@ -9002,6 +9031,11 @@ PrefabInstance:
       propertyPath: mission_name
       value: Gather the machine parts
       objectReference: {fileID: 0}
+    - target: {fileID: 5604700467570509077, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+        type: 3}
+      propertyPath: pv
+      value: 
+      objectReference: {fileID: 295080793}
     - target: {fileID: 5604700467634897020, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
         type: 3}
       propertyPath: pm
