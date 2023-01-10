@@ -22,6 +22,7 @@ public class FinalMission : MissionBase
     public List<GameObject> monster_groups;
     public float delay = 5f;
     public bool clear = false;
+    public bool mission_start = false;
 
     void Start()
     {
@@ -35,7 +36,7 @@ public class FinalMission : MissionBase
 
     public override void Mission_Event()
     {
-        SpawnMonster();
+        StartCoroutine(SpawnMonster());
     }
 
     public override void Clear()
@@ -45,16 +46,26 @@ public class FinalMission : MissionBase
         ms.Mission_Clear(3);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == 6 && !mission_start)
+        {
+            Mission_Event();
+            mission_start = true;
+        }
+    }
+
     public IEnumerator SpawnMonster()
     {
         for(int i = 0; i < spawn_points.Count; i++)
         {
             int j = Random.Range(0, monster_groups.Count);
+            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
             Instantiate(monster_groups[j], spawn_points[i].position, Quaternion.identity);
         }
 
         yield return new WaitForSeconds(delay);
 
-        if (!clear) { SpawnMonster(); }
+        if (!clear) { StartCoroutine(SpawnMonster()); }
     }
 }
