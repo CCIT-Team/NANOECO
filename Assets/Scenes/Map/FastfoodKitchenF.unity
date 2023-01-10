@@ -9211,6 +9211,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 399937472637960896, guid: 6bc13ceba0ff585488c8a6cca7667025,
         type: 3}
+    - target: {fileID: 5604700467534274926, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -92.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604700467534274926, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.6
+      objectReference: {fileID: 0}
     - target: {fileID: 5604700467569512412, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
         type: 3}
       propertyPath: mission_name

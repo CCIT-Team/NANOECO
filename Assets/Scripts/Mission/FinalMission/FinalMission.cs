@@ -36,7 +36,7 @@ public class FinalMission : MissionBase
 
     public override void Mission_Event()
     {
-        SpawnMonster();
+        StartCoroutine(SpawnMonster());
     }
 
     public override void Clear()
@@ -60,11 +60,12 @@ public class FinalMission : MissionBase
         for(int i = 0; i < spawn_points.Count; i++)
         {
             int j = Random.Range(0, monster_groups.Count);
+            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
             Instantiate(monster_groups[j], spawn_points[i].position, Quaternion.identity);
         }
 
         yield return new WaitForSeconds(delay);
 
-        if (!clear) { SpawnMonster(); }
+        if (!clear) { StartCoroutine(SpawnMonster()); }
     }
 }
