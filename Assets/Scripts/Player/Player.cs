@@ -308,7 +308,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             float vertical = Input.GetAxis("Vertical");
 
             Vector3 dash = new Vector3(-horizontal * dash_force * Time.deltaTime, 0, -vertical * dash_force * Time.deltaTime);
-            Vector3.Lerp(transform.position, transform.position + dash, 5);
+            transform.position += dash;
             is_dash = true;
         }
         if (is_dash == true)
@@ -380,9 +380,15 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (is_usehand && Input.GetKeyDown(KeyCode.E))
         {
+            hand.transform.localPosition = new Vector3(2.83999991f, -3.48000002f, 4.19999981f);
             pi.handed = false;
+            pi = null;
             hand.transform.DetachChildren();
             is_usehand = false;
+        }
+        if(pi == null && hand.transform.childCount >= 1)
+        {
+            hand.transform.DetachChildren();
         }
     }
 
