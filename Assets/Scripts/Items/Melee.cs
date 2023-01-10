@@ -15,12 +15,13 @@ public class Melee : WeaponeBase
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isdelay && !player.is_dead)
-        {
-            isdelay = true;
-            player.camera_shaking_num = 1;
-            StartCoroutine("AttackDelay");
-        }
+        if(pv.IsMine)
+            if (Input.GetMouseButtonDown(0) && !player.is_dead && !player.is_usehand && !isdelay)
+            {
+                isdelay = true;
+                player.camera_shaking_num = 1;
+                StartCoroutine("AttackDelay");
+            }
     }
 
     private void OnTriggerEnter(Collider other)

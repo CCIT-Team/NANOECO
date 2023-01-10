@@ -37,7 +37,7 @@ public class ItemControler : MonoBehaviourPunCallbacks
     {
         if (pv.IsMine)
         {
-            if (Input.GetMouseButtonDown(0) && !player.is_dead && !iscooldown)
+            if (Input.GetMouseButtonDown(0) && !player.is_dead && !player.is_usehand && !iscooldown)
             {
                 if (count == 0)
                     return;
