@@ -10,11 +10,11 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
     public float smooth_speed = 0.125f;
     public Vector3 offset;
     public float rotate_speed = 5;
-    
+
     Vector3 originpos;
     Vector3 mouseCurserpos;
     float v;
-    
+
     bool inputMode = false;
     private void Start()
     {
@@ -36,8 +36,11 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        CameraEvent();
-        CheckWall();
+        if (Player.instance.pv.IsMine)
+        {
+            CameraEvent();
+            CheckWall();
+        }
     }
 
     void CameraEvent()
@@ -54,7 +57,7 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
                 StartCoroutine(CameraShaking(0.05f, 0.03f));
                 break;
             case 3://¸ó½ºÅÍ¿¡°Ô ÇÇ°Ý 
-                StartCoroutine(CameraShaking(0.02f, 0.0175f));
+                StartCoroutine(CameraShaking(0.075f, 0.0185f));
                 break;
             case 4://ÆøÅº
                 StartCoroutine(CameraShaking(0.00005f, 0.00004f));
@@ -90,13 +93,13 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
         RaycastHit playerRay;
         RaycastHit backRay;
         Debug.DrawRay(transform.position, player.position - transform.position, Color.red);
-        if(Physics.Raycast(transform.position, player.position, out playerRay, player.position.z - transform.position.z))
+        if (Physics.Raycast(transform.position, player.position, out playerRay, player.position.z - transform.position.z))
         {
-           if (!playerRay.transform.CompareTag("Player"))
+            if (!playerRay.transform.CompareTag("Player"))
             {
                 offset.y -= playerRay.distance;
             }
-           else
+            else
             {
                 offset = originpos;
             }
