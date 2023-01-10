@@ -68,6 +68,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     public GameObject helicopterrope;
     public GameObject helicopterplayerbody;
     public GameObject originPlayer;
+    public GameObject player_body;
     public bool isunrideheli = false;
 
     public float r;
@@ -222,15 +223,13 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         { 
             helicopter.SetActive(false);
             helicopterplayerbody.SetActive(true);
+            player_body.SetActive(true);
         }
         if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
         SpawnPointUpdate();
         if (Input.GetKeyDown(KeyCode.I))
         {
-            current_Weapon = 0;
-            inventory[0] = weapons[0];
-            inventory[1] = gargets[0];
-            inventory[2] = gargets[3];
+            current_hp = max_hp;
         }
     }
 
