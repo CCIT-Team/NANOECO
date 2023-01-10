@@ -500,8 +500,10 @@ MonoBehaviour:
   on_event: 0
   protection_target: 0
   current_state: 0
-  Rand_Chase_Time: 15
+  Rand_Chase_Time: 5
   PV: {fileID: -6171981349842299977}
+  curPos: {x: 0, y: 0, z: 0}
+  curRot: {x: 0, y: 0, z: 0, w: 0}
   mon_bullet: {fileID: 7263270026204661956, guid: 14844231901c0f84cbe9265858136677,
     type: 3}
   shot_pos: {fileID: 6296223342006248891}

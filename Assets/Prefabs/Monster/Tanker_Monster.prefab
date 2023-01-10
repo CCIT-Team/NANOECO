@@ -771,8 +771,10 @@ MonoBehaviour:
   on_event: 0
   protection_target: 0
   current_state: 0
-  Rand_Chase_Time: 15
+  Rand_Chase_Time: 5
   PV: {fileID: -2349926236009029907}
+  curPos: {x: 0, y: 0, z: 0}
+  curRot: {x: 0, y: 0, z: 0, w: 0}
 --- !u!195 &1920188697191961063
 NavMeshAgent:
   m_ObjectHideFlags: 0
