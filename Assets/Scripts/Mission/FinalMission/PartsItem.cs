@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PartsItem : WeaponeBase
 {
-    public Transform player;
     public FinalMission fm;
     public bool handed;
 
@@ -15,11 +14,7 @@ public class PartsItem : WeaponeBase
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!handed && other.gameObject.layer == 6)
-        {
-            handed = true;
-        }
-        else if(handed && other.gameObject.layer == 10)
+        if(!handed && other.gameObject.layer == 10)
         {
             fm._current_parts++;
             Destroy(gameObject);
