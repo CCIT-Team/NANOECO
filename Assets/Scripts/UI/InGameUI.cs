@@ -109,10 +109,16 @@ public class InGameUI : MonoBehaviour
 
     void Setting(int a, int b, int c, int d)
     {
-        GameManager.Instance.player_list[a].cccc = player_color[a];
-        GameManager.Instance.player_list[b].cccc = player_color[b];
-        GameManager.Instance.player_list[c].cccc = player_color[c];
-        GameManager.Instance.player_list[d].cccc = player_color[d];
+        if(GameManager.Instance.player_count == 1)
+        {
+            GameManager.Instance.player_list[a].cccc = player_color[a];
+        }
+        if (GameManager.Instance.player_count == 2)
+            GameManager.Instance.player_list[b].cccc = player_color[b];
+        if (GameManager.Instance.player_count == 3)
+            GameManager.Instance.player_list[c].cccc = player_color[c];
+        if (GameManager.Instance.player_count == 4)
+            GameManager.Instance.player_list[d].cccc = player_color[d];
 
         Set_Color(a, b, c, d);
         Init_ff();
@@ -122,15 +128,22 @@ public class InGameUI : MonoBehaviour
 
     void Set_Color(int a, int b, int c, int d)
     {
-        color_bar[0].color = player_color[a];
-        color_bar[1].color = player_color[b];
-        color_bar[2].color = player_color[c];
-        //color_bar[3].color = player_color[d];
-
-        color_point[a].color = player_color[a];
-        color_point[b].color = player_color[b];
-        color_point[c].color = player_color[c];
-        //color_point[d].color = player_color[d];
+        if (GameManager.Instance.player_count == 1)
+            color_bar[0].color = player_color[a];
+        if (GameManager.Instance.player_count == 2)
+            color_bar[1].color = player_color[b];
+        if (GameManager.Instance.player_count == 3)
+            color_bar[2].color = player_color[c];
+        if (GameManager.Instance.player_count == 4)
+            color_bar[3].color = player_color[d];
+        if (GameManager.Instance.player_count == 1)
+            color_point[a].color = player_color[a];
+        if (GameManager.Instance.player_count == 2)
+            color_point[b].color = player_color[b];
+        if (GameManager.Instance.player_count == 3)
+            color_point[c].color = player_color[c];
+        if (GameManager.Instance.player_count == 4)
+            color_point[d].color = player_color[d];
     }
 
     void Set_HP(int a, int b, int c, int d)
@@ -140,10 +153,14 @@ public class InGameUI : MonoBehaviour
         //hp[2].text = GameManager.Instance.player_list[c].current_hp.ToString();
         //hp[3].text = GameManager.Instance.player_list[d].current_hp.ToString();
 
-        hp[ff[0]].text = GameManager.Instance.player_list[ff[0]].current_hp.ToString();
-        hp[ff[1]].text = GameManager.Instance.player_list[ff[1]].current_hp.ToString();
-        hp[ff[2]].text = GameManager.Instance.player_list[ff[2]].current_hp.ToString();
-        hp[ff[3]].text = GameManager.Instance.player_list[ff[3]].current_hp.ToString();
+        if (GameManager.Instance.player_count == 1)
+            hp[ff[0]].text = GameManager.Instance.player_list[ff[0]].current_hp.ToString();
+        if (GameManager.Instance.player_count == 2)
+            hp[ff[1]].text = GameManager.Instance.player_list[ff[1]].current_hp.ToString();
+        if (GameManager.Instance.player_count == 3)
+            hp[ff[2]].text = GameManager.Instance.player_list[ff[2]].current_hp.ToString();
+        if (GameManager.Instance.player_count == 4)
+            hp[ff[3]].text = GameManager.Instance.player_list[ff[3]].current_hp.ToString();
     }
 
     void Update_HP(int a, int b, int c, int d)
@@ -170,41 +187,53 @@ public class InGameUI : MonoBehaviour
         //    hit_anime[3].Play();
         //}
 
-        if (int.Parse(hp[ff[0]].text) != GameManager.Instance.player_list[ff[0]].current_hp)
+        if (GameManager.Instance.player_count == 1)
         {
-            if(GameManager.Instance.player_list[ff[0]].current_hp > 0)
+            if (int.Parse(hp[ff[0]].text) != GameManager.Instance.player_list[ff[0]].current_hp)
             {
-                hp[ff[0]].text = GameManager.Instance.player_list[ff[0]].current_hp.ToString();
-                hit_anime[ff[0]].Play();
+                if (GameManager.Instance.player_list[ff[0]].current_hp > 0)
+                {
+                    hp[ff[0]].text = GameManager.Instance.player_list[ff[0]].current_hp.ToString();
+                    hit_anime[ff[0]].Play();
+                }
+                else { hp[ff[0]].text = 0.ToString(); }
             }
-            else { hp[ff[0]].text = 0.ToString(); }
         }
-        if (int.Parse(hp[ff[1]].text) != GameManager.Instance.player_list[ff[1]].current_hp)
+        if (GameManager.Instance.player_count == 2)
         {
-            if(GameManager.Instance.player_list[ff[0]].current_hp > 0)
+            if (int.Parse(hp[ff[1]].text) != GameManager.Instance.player_list[ff[1]].current_hp)
             {
-                hp[ff[1]].text = GameManager.Instance.player_list[ff[1]].current_hp.ToString();
-                hit_anime[ff[1]].Play();
+                if (GameManager.Instance.player_list[ff[0]].current_hp > 0)
+                {
+                    hp[ff[1]].text = GameManager.Instance.player_list[ff[1]].current_hp.ToString();
+                    hit_anime[ff[1]].Play();
+                }
+                else { hp[ff[1]].text = 0.ToString(); }
             }
-            else { hp[ff[1]].text = 0.ToString(); }
         }
-        if (int.Parse(hp[ff[2]].text) != GameManager.Instance.player_list[ff[2]].current_hp)
+        if (GameManager.Instance.player_count == 3)
         {
-            if (GameManager.Instance.player_list[ff[0]].current_hp > 0)
+            if (int.Parse(hp[ff[2]].text) != GameManager.Instance.player_list[ff[2]].current_hp)
             {
-                hp[ff[2]].text = GameManager.Instance.player_list[ff[2]].current_hp.ToString();
-                hit_anime[ff[2]].Play();
+                if (GameManager.Instance.player_list[ff[0]].current_hp > 0)
+                {
+                    hp[ff[2]].text = GameManager.Instance.player_list[ff[2]].current_hp.ToString();
+                    hit_anime[ff[2]].Play();
+                }
+                else { hp[ff[2]].text = 0.ToString(); }
             }
-            else { hp[ff[2]].text = 0.ToString(); }
         }
-        if (int.Parse(hp[ff[3]].text) != GameManager.Instance.player_list[ff[3]].current_hp)
+        if (GameManager.Instance.player_count == 4)
         {
-            if (GameManager.Instance.player_list[ff[0]].current_hp > 0)
+            if (int.Parse(hp[ff[3]].text) != GameManager.Instance.player_list[ff[3]].current_hp)
             {
-                hp[ff[3]].text = GameManager.Instance.player_list[ff[3]].current_hp.ToString();
-                hit_anime[ff[3]].Play();
+                if (GameManager.Instance.player_list[ff[0]].current_hp > 0)
+                {
+                    hp[ff[3]].text = GameManager.Instance.player_list[ff[3]].current_hp.ToString();
+                    hit_anime[ff[3]].Play();
+                }
+                else { hp[ff[3]].text = 0.ToString(); }
             }
-            else { hp[ff[3]].text = 0.ToString(); }
         }
 
         gun = ply.weapons[0].GetComponent<Range>();
