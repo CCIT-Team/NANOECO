@@ -218,7 +218,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         }
         Dead();
         if (helicopterAni.GetBool("Respawn")){ReSpawn();}
-        if (!is_dead) { helicopter.SetActive(false); }
+        if (!is_dead) 
+        { 
+            helicopter.SetActive(false);
+            helicopterplayerbody.SetActive(true);
+        }
         if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
         SpawnPointUpdate();
         if (Input.GetKeyDown(KeyCode.I))
