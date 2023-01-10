@@ -107,14 +107,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void Awake()
     {
         nickname.text = pv.IsMine ? PhotonNetwork.NickName : pv.Owner.NickName;
-        if (pv.IsMine)
-        {
-            if (GameManager.Instance.players[GameManager.Instance.playersnum] == null)
-            {
-                GameManager.Instance.players[GameManager.Instance.playersnum] = this;
-            }
-            else { GameManager.Instance.playersnum += 1; }
-        }
+        //if (pv.IsMine)
+        //{
+        //    if (GameManager.Instance.players[GameManager.Instance.playersnum] == null)
+        //    {
+        //        GameManager.Instance.players[GameManager.Instance.playersnum] = this;
+        //    }
+        //    else { GameManager.Instance.playersnum += 1; }
+        //}
         nickname.color = pv.IsMine ? Color.green : Color.red;
         if (pv.IsMine)
         {
@@ -215,12 +215,11 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (pv.IsMine)
         {
             ItemChange();
+            DropItem();
         }
         Dead();
-        if (helicopterAni.GetBool("Respawn"))
-        {
-            ReSpawn();
-        }
+        if (helicopterAni.GetBool("Respawn")){ReSpawn();}
+        if (!is_dead) { helicopter.SetActive(false); }
         if (Input.GetKeyDown(KeyCode.Escape)) { Application.Quit(); }
         SpawnPointUpdate();
         if (Input.GetKeyDown(KeyCode.I))
@@ -236,6 +235,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (current_hp <= 0 || is_dead == true)
         {
+            GetComponent<PlayerMouseRotate>().enabled = false;
             helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
             current_hp = 0;
             is_dead = true;
@@ -264,6 +264,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 helicopterrope.transform.DetachChildren();
                 helicopterplayerbody.transform.parent = originPlayer.transform;
                 helicopter.SetActive(false);
+                GetComponent<PlayerMouseRotate>().enabled = true;
                 current_hp = max_hp;
                 is_dead = false;
             }
@@ -368,7 +369,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
                 inventory[2].SetActive(true);
             }
         }
-        DropItem();
+        
         if (current_item == 1 && Input.GetMouseButtonDown(0) || current_item == 2 && Input.GetMouseButtonDown(0))
         {
             ani.SetTrigger("Attack");
