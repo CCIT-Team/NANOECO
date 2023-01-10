@@ -75,7 +75,7 @@ public class PlayerCamera : MonoBehaviourPunCallbacks
 
         while (timer <= duration)
         {
-            Camera.main.transform.localPosition = Random.insideUnitSphere * manitude + originpos;
+            Camera.main.transform.localPosition = Random.insideUnitSphere * manitude + transform.position;
 
             timer += Time.deltaTime;
             yield return null;

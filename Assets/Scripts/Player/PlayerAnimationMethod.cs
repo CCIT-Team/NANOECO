@@ -31,8 +31,8 @@ public class PlayerAnimationMethod : MonoBehaviour
 
     void HelicopterEnd()
     {
-        heliAni.SetBool("HliEnd", true);
         Player.instance.helicopter.SetActive(false);
+        heliAni.SetBool("HliEnd", true);
     }
 
     //void ItemChange()

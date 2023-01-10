@@ -209,6 +209,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     void Update()
     {
+        current_hp = max_hp;
         if (pv.IsMine && PhotonNetwork.IsConnected && !is_dead) { Move(); }
         if (pv.IsMine)
         {
@@ -234,12 +235,12 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     {
         if (current_hp <= 0 || is_dead == true)
         {
+            helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
             current_hp = 0;
             is_dead = true;
             ani.SetTrigger("Dead");
             helicopter.SetActive(true);
             helicopterplayerbody.transform.parent = helicopterrope.transform;
-            helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
         }
 
         if (spawn_point == null) { spawn_point = firstSpawnPoint[spawnNum]; }
@@ -252,15 +253,10 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         {
             respawn_time -= Time.deltaTime;
             if (respawn_time <= 0) { transform.position = spawn_point.position; }
-            if (isunrideheli == true)
+            if (isunrideheli || helicopterAni.GetBool("HliEnd"))
             {
-                helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
                 helicopterplayerbody.SetActive(true);
-                helicopterrope.transform.DetachChildren();
-                helicopterplayerbody.transform.parent = originPlayer.transform;
-            }
-            if (helicopterAni.GetBool("HliEnd"))
-            {
+                helicopter.transform.rotation = new Quaternion(0, 0, 0, 0);
                 respawn_time = 3;
                 isunrideheli = false;
                 helicopterplayerbody.SetActive(true);
@@ -310,7 +306,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
             float vertical = Input.GetAxis("Vertical");
 
             Vector3 dash = new Vector3(-horizontal * dash_force * Time.deltaTime, 0, -vertical * dash_force * Time.deltaTime);
-            transform.position += Vector3.Lerp(transform.position, dash, 5);
+            Vector3.Lerp(transform.position, transform.position + dash, 5);
             is_dash = true;
         }
         if (is_dash == true)
@@ -327,10 +323,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
     void SpawnPointUpdate()
     {
         spawn_point = GameManager.Instance.spawnPoint;
-        if (GameManager.Instance.spawnPoint == null)
-        {
-            spawn_point = firstSpawnPoint[spawnNum];
-        }
+        if (GameManager.Instance.spawnPoint == null){spawn_point = firstSpawnPoint[spawnNum];}
     }
 
     public void ItemChange()
@@ -386,6 +379,7 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
         if (is_usehand && Input.GetKeyDown(KeyCode.E))
         {
             hand.transform.DetachChildren();
+            is_usehand = false;
         }
     }
 
@@ -416,13 +410,14 @@ public class Player : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.layer == 12 && Input.GetKey(KeyCode.E))
+        if (col.gameObject.layer == 12 && Input.GetKey(KeyCode.E) && !is_usehand)
         {
             is_usehand = true;
             col.transform.parent = hand.transform;
             if (is_usehand && Input.GetKeyDown(KeyCode.E))
             {
                 hand.transform.DetachChildren();
+                is_usehand = false;
             }
         }
     }
