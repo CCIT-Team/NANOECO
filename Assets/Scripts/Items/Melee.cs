@@ -18,6 +18,7 @@ public class Melee : WeaponeBase
         if (Input.GetMouseButtonDown(0) && !isdelay && !player.is_dead)
         {
             isdelay = true;
+            player.camera_shaking_num = 1;
             StartCoroutine("AttackDelay");
         }
     }
