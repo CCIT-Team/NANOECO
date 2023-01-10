@@ -6,14 +6,32 @@ public class PlayerHand : MonoBehaviour
 {
     public Player player;
 
+    private void Update()
+    {
+        if(Input.GetKey(KeyCode.E) && player.pi != null)
+        {
+            player.is_usehand = true;
+            player.pi.transform.parent = player.hand.transform;
+            player.pi.handed = true;
+        }
+    }
+
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.layer == 12 && Input.GetKey(KeyCode.E) && !player.is_usehand)
+        if (col.gameObject.layer == 12 && !player.is_usehand)
         {
             player.pi = col.transform.GetComponent<PartsItem>();
-            player.is_usehand = true;
-            col.transform.parent = player.hand.transform;
-            player.pi.handed = true;
+      
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 12 && player.is_usehand)
+        {
+            player.pi = null;
+            player.is_usehand = false;
+
         }
     }
 }
