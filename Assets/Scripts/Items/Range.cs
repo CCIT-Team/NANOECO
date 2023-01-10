@@ -44,7 +44,7 @@ public class Range : WeaponeBase
     {
         if (pv.IsMine)
         {
-            if (Input.GetMouseButton(0) && !player.is_dead && !isdelay)
+            if (Input.GetMouseButton(0) && !player.is_dead && !player.is_usehand && !isdelay)
             {
                 switch (ammo)
                 {
@@ -56,7 +56,7 @@ public class Range : WeaponeBase
                         break;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.R) && !player.is_dead && !isdelay)
+            if (Input.GetKeyDown(KeyCode.R) && !player.is_dead && !player.is_usehand && !isdelay)
             {
                 pv.RPC("ReloadRPC", RpcTarget.AllBuffered);
             }
