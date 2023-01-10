@@ -11,7 +11,7 @@ public class SprayBullet : Bullet
     public bool canattack = true;
     new void Start()
     {
-        
+        player = transform.root.GetComponent<Player>();
     }
 
     // Update is called once per frame

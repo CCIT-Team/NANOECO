@@ -14,8 +14,12 @@ public class RangeSpread : Range
             {
                 case 0:
                     if(!isdelay)
-                    StartCoroutine("Reloading");
-                    pv.RPC("ReloadRPC", RpcTarget.AllBuffered);
+                    {
+                        isreloading = true;
+                        StartCoroutine("Reloading");
+                        pv.RPC("ReloadRPC", RpcTarget.AllBuffered);
+                    }
+                    
                     break;
                 default:
                     Attack();

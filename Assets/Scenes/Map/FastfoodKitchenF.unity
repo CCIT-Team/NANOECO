@@ -8907,6 +8907,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5604700466465970983, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
         type: 3}
+      propertyPath: pv
+      value: 
+      objectReference: {fileID: 1538974692}
+    - target: {fileID: 5604700466465970983, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+        type: 3}
       propertyPath: mission_name
       value: Destroy the insect eggs
       objectReference: {fileID: 0}
@@ -21459,6 +21464,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536426623}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1538974692 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1584547218306115379, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+    type: 3}
+  m_PrefabInstance: {fileID: 619128933}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1539201601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22434,7 +22451,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1605253884}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 20497ae6fb21e32489e0f49b3e33b28a, type: 3}
