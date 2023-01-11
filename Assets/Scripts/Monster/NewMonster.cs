@@ -115,6 +115,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
     public PhotonView PV;
     #endregion
 
+    public FinalMission final;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -401,6 +402,14 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+    public virtual void BBB()
+    {
+        if(final.bbb == true)
+        {
+            data.current_hp = 0;
+
+        }
+    }
 
     public virtual void Monster_State()
     {

@@ -67,6 +67,7 @@ public class NsocutMonster : NewMonster
         mon_action += Hp_Check;
         mon_action += Hit_Mon;
         mon_action += Another_Find_Player;
+        mon_action += BBB;
     }
 
     private void FixedUpdate()
