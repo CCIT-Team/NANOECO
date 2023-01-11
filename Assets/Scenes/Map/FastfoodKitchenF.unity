@@ -9228,6 +9228,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5604700467569512412, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
         type: 3}
+      propertyPath: effect
+      value: 
+      objectReference: {fileID: 2083061334}
+    - target: {fileID: 5604700467569512412, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+        type: 3}
+      propertyPath: goal_parts
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604700467569512412, guid: 6d857ef9c8bd95a4eaa43e0f75d14982,
+        type: 3}
       propertyPath: mission_name
       value: Gather the machine parts
       objectReference: {fileID: 0}
@@ -29543,6 +29553,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 3}
+--- !u!1 &2083061334 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664,
+    type: 3}
+  m_PrefabInstance: {fileID: 2083061333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2091570572
 PrefabInstance:
   m_ObjectHideFlags: 0
