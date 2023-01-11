@@ -8,13 +8,14 @@ public class FinalMission : MissionBase
     public int goal_parts;
     public int current_parts = 0;
     public GameObject effect;
+    public bool bbb = false;
     public int _current_parts
     {
         get { return current_parts; }
         set
         {
             current_parts = value;
-            if (current_parts >= goal_parts) { Clear(); }
+            if (current_parts >= goal_parts) { Clear(); bbb = true; }
         }
     }
 
