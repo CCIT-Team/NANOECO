@@ -116,6 +116,11 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
     #endregion
 
     public FinalMission final;
+    public void Start()
+    {
+        final = GameObject.Find("FinalMission").gameObject.GetComponent<FinalMission>();
+    }
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
