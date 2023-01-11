@@ -7,6 +7,7 @@ public class FinalMission : MissionBase
     [Header("미션 세팅")]
     public int goal_parts;
     public int current_parts = 0;
+    public GameObject effect;
     public int _current_parts
     {
         get { return current_parts; }
@@ -31,7 +32,7 @@ public class FinalMission : MissionBase
 
     void Update()
     {
-
+        if(goal_parts == current_parts) { effect.SetActive(true); }
     }
 
     public override void Mission_Event()
