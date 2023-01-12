@@ -364,7 +364,7 @@ public abstract class NewMonster : MonoBehaviourPunCallbacks, IPunObservable
             animator.SetBool(hash_chase, false);
             Instantiate(Particles[0], transform.position, Quaternion.identity);
             Instantiate(Particles[1], transform.position, Quaternion.identity);
-            Destroy(gameObject, 0.3f);
+            Destroy(gameObject, 2f);
             Init();
             current_state = CURRNET_STATE.EIdle;
         }
