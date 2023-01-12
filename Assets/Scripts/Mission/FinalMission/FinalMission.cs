@@ -25,6 +25,7 @@ public class FinalMission : MissionBase
     public float delay = 5f;
     public bool clear = false;
     public bool mission_start = false;
+    public GameObject boss_monster;
 
     void Start()
     {
@@ -38,6 +39,7 @@ public class FinalMission : MissionBase
 
     public override void Mission_Event()
     {
+        boss_monster.SetActive(true);
         StartCoroutine(SpawnMonster());
     }
 
@@ -62,7 +64,6 @@ public class FinalMission : MissionBase
         for(int i = 0; i < spawn_points.Count; i++)
         {
             int j = Random.Range(0, monster_groups.Count);
-            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
             Instantiate(monster_groups[j], spawn_points[i].position, Quaternion.identity);
         }
 
