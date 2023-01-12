@@ -9811,6 +9811,7 @@ MonoBehaviour:
   damage: 20
   isboom: 0
   destroytime: 0.1
+  player: {fileID: 0}
   targetLayer: 8
 --- !u!114 &-8104852980533298276
 MonoBehaviour:
