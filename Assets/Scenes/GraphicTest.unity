@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18387312, g: 0.22900677, b: 0.3030378, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -604,7 +604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1669598353
 Transform:
   m_ObjectHideFlags: 0
@@ -9459,9 +9459,33 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 0
     Name: Bomb
-  - Type: 4
+  - Type: 9
     SynchronizeType: 0
-    Name: Dead
+    Name: 'Dead '
+  - Type: 9
+    SynchronizeType: 0
+    Name: Spray
+  - Type: 9
+    SynchronizeType: 0
+    Name: Launcher
+  - Type: 9
+    SynchronizeType: 0
+    Name: Difuser
+  - Type: 9
+    SynchronizeType: 0
+    Name: Swatter
+  - Type: 9
+    SynchronizeType: 0
+    Name: Reload
+  - Type: 9
+    SynchronizeType: 0
+    Name: Change
+  - Type: 9
+    SynchronizeType: 0
+    Name: Attack
+  - Type: 9
+    SynchronizeType: 0
+    Name: Item
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
