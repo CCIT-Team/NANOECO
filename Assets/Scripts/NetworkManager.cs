@@ -52,7 +52,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedLobby()
     {
-        Debug.Log("·Îºñ ¿¬°á ¿Ï·á");
+        Debug.Log("ë¡œë¹„ ì—°ê²° ì™„ë£Œ");
         SceneFunction.loading_canvas.SetActive(false);
         Utils.Ran();
         string num_code = Utils.room_number.ToString();
@@ -65,24 +65,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        //Debug.Log(25252525);
-        //Debug.Log(roomList.Count);
-        //foreach(RoomInfo p in roomList)
-        //{
-        //    Debug.Log(p.Name);
-        //}
-
-        //Debug.Log(123123123);
-        //PhotonNetwork.CurrentRoom.IsOpen = false;
     }
 
 
 
     private void Update()
     {
-        //Debug.Log(PhotonNetwork.CountOfRooms);
-        
-
         //for master check
         if (PhotonNetwork.InRoom)
         {
@@ -130,7 +118,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnCreatedRoom()
     {
 
-        Debug.Log("¹æ »ı¼º ¿Ï·á");
+        Debug.Log("ë°© ìƒì„± ì™„ë£Œ");
 
 
 
@@ -152,16 +140,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
-            //
-            //¸î¸íÀÎÁö È®ÀÎÇÏ°í °¹¼ö´ë·Î Å°°í
-            //Canvas.GetComponent<WRCanvas>().Room_Code.text = PhotonNetwork.CurrentRoom.Name;
         }
         else
         {
-
         }
-
-        //Debug.Log(PhotonNetwork.CurrentRoom.Name);
     }
 
 
@@ -179,7 +161,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         SceneFunction.loading_canvas.SetActive(false);
-        Debug.Log("Á¸ÀçÇÏ´Â ¹æÀÌ ¾ø¾î¿ä~");
+        Debug.Log("ì¡´ì¬í•˜ëŠ” ë°©ì´ ì—†ì–´ìš”~");
 
         Utils.info_message.text = "No room exists.";
         Utils.info_canvas.SetActive(true);
