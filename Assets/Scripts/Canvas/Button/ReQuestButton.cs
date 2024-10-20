@@ -18,12 +18,8 @@ public class ReQuestButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             buttons[i].image.color = new Color(1, 1, 1, 1);
             buttons[i].transform.GetChild(0).gameObject.SetActive(false);
-
-
             Utils.is_select_room = false;
         }
-
-        ///
         if (!transform.GetChild(0).gameObject.activeSelf)
         {
             image.color = new Color(1, 1, 1, 0);
@@ -40,20 +36,5 @@ public class ReQuestButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             Utils.is_select_room = false;
         }
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        //
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        //throw new System.NotImplementedException();
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        //throw new System.NotImplementedException();
     }
 }
